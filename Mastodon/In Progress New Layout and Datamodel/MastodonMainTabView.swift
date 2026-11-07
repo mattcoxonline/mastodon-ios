@@ -193,14 +193,14 @@ struct MastodonMainTabView: View {
                                     view(forTab: subtab)
                                         .modifier(TabBarPlacementReporter(reportingFromTab: subtab))
                                         .tint(.primary)
-                                } label: { subtab.label }
+                                } label: { subtab.label(isSelected: tabViewRouter.selectedTab == subtab) }
                                 .customizationID(subtab.id)
                                 .customizationBehavior(subtab.customizationBehavior, for: .tabBar, .sidebar)
                                 .defaultVisibility(subtab.defaultTabBarVisibility, for: .tabBar)
                             }
                         } header: {
                             HStack {
-                                tab.icon
+                                tab.icon(isSelected: false)
                                 Text(tab.title)
                             }
                         }
@@ -216,7 +216,7 @@ struct MastodonMainTabView: View {
                         if tab == .profile, let avatar = avatarIconRenderer.prerenderedAccountAvatar(authBox.globallyUniqueUserIdentifier, style: .circular) {
                             Label(tab.title, icon: avatar)
                         } else {
-                            tab.label
+                            tab.label(isSelected: tabViewRouter.selectedTab == tab)
                         }
                     }
                     .customizationID(tab.id)
@@ -608,16 +608,16 @@ extension MastodonTabViewRouter.MastodonTab {
         }
     }
     
-    var icon: Image? {
+    func icon(isSelected: Bool) -> Image? {
         switch self {
         case .home:
-            Image(phosphor: .house)
+            Image(phosphor: .house, filled: isSelected)
         case .explore:
-            Image(systemName: "map")
+            Image(systemName: isSelected ? "map.fill" : "map")
         case .notifications:
-            Image(phosphor: .bell)
+            Image(phosphor: .bell, filled: isSelected)
         case .profile:
-            Image(phosphor: .user)
+            Image(phosphor: .user, filled: isSelected)
         case .localFeed:
             Image(systemName: "building.2")
         case .lists, .list:
@@ -628,10 +628,10 @@ extension MastodonTabViewRouter.MastodonTab {
             nil
         }
     }
-    
-    @ViewBuilder var label: some View {
-        if let icon {
-            Label(title, icon: icon)
+
+    @ViewBuilder func label(isSelected: Bool) -> some View {
+        if let iconImage = icon(isSelected: isSelected) {
+            Label(title, icon: iconImage)
         } else {
             Text(title)
         }

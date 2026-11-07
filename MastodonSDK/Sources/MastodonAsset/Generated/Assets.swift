@@ -185,6 +185,7 @@ public enum Asset {
     public static let signOut = SymbolAsset(name: "Phosphor/sign-out")
     public static let slidersHorizontal = SymbolAsset(name: "Phosphor/sliders-horizontal")
     public static let userPlus = SymbolAsset(name: "Phosphor/user-plus")
+    public static let userFill = SymbolAsset(name: "Phosphor/user.fill")
     public static let user = SymbolAsset(name: "Phosphor/user")
     public static let usersFour = SymbolAsset(name: "Phosphor/users-four")
     public static let usersThree = SymbolAsset(name: "Phosphor/users-three")
