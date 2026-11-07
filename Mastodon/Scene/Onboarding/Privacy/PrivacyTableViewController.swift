@@ -22,7 +22,7 @@ enum PolicyRow {
     var url: URL? {
         switch self {
         case .iosAppPrivacy:
-            return URL(string: "https://joinmastodon.org/ios/privacy")
+            return URL(string: "https://oslo.town/privacy")
         case .serverPrivacy(let domain):
             return URL(string: "https://\(domain)/privacy-policy")
         case .serverTermsOfService(let domain, _):

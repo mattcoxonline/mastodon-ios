@@ -146234,13 +146234,13 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "These are the posts gaining traction in your corner of Mastodon."
+            "value" : "These are the posts gaining traction across oslo.town."
           }
         },
         "en-US" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "These are the posts gaining traction in your corner of Mastodon."
+            "value" : "These are the posts gaining traction across oslo.town."
           }
         },
         "es" : {
@@ -146300,13 +146300,13 @@
         "he" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "These are the posts gaining traction in your corner of Mastodon."
+            "value" : "These are the posts gaining traction across oslo.town."
           }
         },
         "hi" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "These are the posts gaining traction in your corner of Mastodon."
+            "value" : "These are the posts gaining traction across oslo.town."
           }
         },
         "hu" : {
@@ -146318,13 +146318,13 @@
         "hy" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "These are the posts gaining traction in your corner of Mastodon."
+            "value" : "These are the posts gaining traction across oslo.town."
           }
         },
         "id" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "These are the posts gaining traction in your corner of Mastodon."
+            "value" : "These are the posts gaining traction across oslo.town."
           }
         },
         "is" : {
@@ -146360,13 +146360,13 @@
         "ko" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "These are the posts gaining traction in your corner of Mastodon."
+            "value" : "These are the posts gaining traction across oslo.town."
           }
         },
         "lt" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "These are the posts gaining traction in your corner of Mastodon."
+            "value" : "These are the posts gaining traction across oslo.town."
           }
         },
         "lv" : {
@@ -146378,7 +146378,7 @@
         "my" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "These are the posts gaining traction in your corner of Mastodon."
+            "value" : "These are the posts gaining traction across oslo.town."
           }
         },
         "nl" : {
@@ -146390,7 +146390,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "These are the posts gaining traction in your corner of Mastodon."
+            "value" : "These are the posts gaining traction across oslo.town."
           }
         },
         "pt" : {
@@ -146408,19 +146408,19 @@
         "ro" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "These are the posts gaining traction in your corner of Mastodon."
+            "value" : "These are the posts gaining traction across oslo.town."
           }
         },
         "ru" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "These are the posts gaining traction in your corner of Mastodon."
+            "value" : "These are the posts gaining traction across oslo.town."
           }
         },
         "si" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "These are the posts gaining traction in your corner of Mastodon."
+            "value" : "These are the posts gaining traction across oslo.town."
           }
         },
         "sl" : {
@@ -198922,13 +198922,13 @@
         "an" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Although the Mastodon app does not collect any data, the server you sign up through may have a different policy.\n\nIf you disagree with the policy for **%@**, you can go back and pick a different server."
+            "value" : "Although the oslo.town app does not collect any data, the server you sign up through may have a different policy.\n\nIf you disagree with the policy for **%@**, you can go back and pick a different server."
           }
         },
         "ar" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Although the Mastodon app does not collect any data, the server you sign up through may have a different policy.\n\nIf you disagree with the policy for **%@**, you can go back and pick a different server."
+            "value" : "Although the oslo.town app does not collect any data, the server you sign up through may have a different policy.\n\nIf you disagree with the policy for **%@**, you can go back and pick a different server."
           }
         },
         "be" : {
@@ -198940,25 +198940,25 @@
         "ca" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Although the Mastodon app does not collect any data, the server you sign up through may have a different policy.\n\nIf you disagree with the policy for **%@**, you can go back and pick a different server."
+            "value" : "Although the oslo.town app does not collect any data, the server you sign up through may have a different policy.\n\nIf you disagree with the policy for **%@**, you can go back and pick a different server."
           }
         },
         "ckb-IR" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Although the Mastodon app does not collect any data, the server you sign up through may have a different policy.\n\nIf you disagree with the policy for **%@**, you can go back and pick a different server."
+            "value" : "Although the oslo.town app does not collect any data, the server you sign up through may have a different policy.\n\nIf you disagree with the policy for **%@**, you can go back and pick a different server."
           }
         },
         "cs" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Although the Mastodon app does not collect any data, the server you sign up through may have a different policy.\n\nIf you disagree with the policy for **%@**, you can go back and pick a different server."
+            "value" : "Although the oslo.town app does not collect any data, the server you sign up through may have a different policy.\n\nIf you disagree with the policy for **%@**, you can go back and pick a different server."
           }
         },
         "cy" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Although the Mastodon app does not collect any data, the server you sign up through may have a different policy.\n\nIf you disagree with the policy for **%@**, you can go back and pick a different server."
+            "value" : "Although the oslo.town app does not collect any data, the server you sign up through may have a different policy.\n\nIf you disagree with the policy for **%@**, you can go back and pick a different server."
           }
         },
         "da" : {
@@ -198982,19 +198982,19 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Although the Mastodon app does not collect any data, the server you sign up through may have a different policy.\n\nIf you disagree with the policy for **%@**, you can go back and pick a different server."
+            "value" : "Although the oslo.town app does not collect any data, the server you sign up through may have a different policy.\n\nIf you disagree with the policy for **%@**, you can go back and pick a different server."
           }
         },
         "en-US" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Although the Mastodon app does not collect any data, the server you sign up through may have a different policy.\n\nIf you disagree with the policy for **%@**, you can go back and pick a different server."
+            "value" : "Although the oslo.town app does not collect any data, the server you sign up through may have a different policy.\n\nIf you disagree with the policy for **%@**, you can go back and pick a different server."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Although the Mastodon app does not collect any data, the server you sign up through may have a different policy.\n\nIf you disagree with the policy for **%@**, you can go back and pick a different server."
+            "value" : "Although the oslo.town app does not collect any data, the server you sign up through may have a different policy.\n\nIf you disagree with the policy for **%@**, you can go back and pick a different server."
           }
         },
         "es-AR" : {
@@ -199012,13 +199012,13 @@
         "eu" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Although the Mastodon app does not collect any data, the server you sign up through may have a different policy.\n\nIf you disagree with the policy for **%@**, you can go back and pick a different server."
+            "value" : "Although the oslo.town app does not collect any data, the server you sign up through may have a different policy.\n\nIf you disagree with the policy for **%@**, you can go back and pick a different server."
           }
         },
         "fi" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Although the Mastodon app does not collect any data, the server you sign up through may have a different policy.\n\nIf you disagree with the policy for **%@**, you can go back and pick a different server."
+            "value" : "Although the oslo.town app does not collect any data, the server you sign up through may have a different policy.\n\nIf you disagree with the policy for **%@**, you can go back and pick a different server."
           }
         },
         "fr" : {
@@ -199042,37 +199042,37 @@
         "gl" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Although the Mastodon app does not collect any data, the server you sign up through may have a different policy.\n\nIf you disagree with the policy for **%@**, you can go back and pick a different server."
+            "value" : "Although the oslo.town app does not collect any data, the server you sign up through may have a different policy.\n\nIf you disagree with the policy for **%@**, you can go back and pick a different server."
           }
         },
         "he" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Although the Mastodon app does not collect any data, the server you sign up through may have a different policy.\n\nIf you disagree with the policy for **%@**, you can go back and pick a different server."
+            "value" : "Although the oslo.town app does not collect any data, the server you sign up through may have a different policy.\n\nIf you disagree with the policy for **%@**, you can go back and pick a different server."
           }
         },
         "hi" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Although the Mastodon app does not collect any data, the server you sign up through may have a different policy.\n\nIf you disagree with the policy for **%@**, you can go back and pick a different server."
+            "value" : "Although the oslo.town app does not collect any data, the server you sign up through may have a different policy.\n\nIf you disagree with the policy for **%@**, you can go back and pick a different server."
           }
         },
         "hu" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Although the Mastodon app does not collect any data, the server you sign up through may have a different policy.\n\nIf you disagree with the policy for **%@**, you can go back and pick a different server."
+            "value" : "Although the oslo.town app does not collect any data, the server you sign up through may have a different policy.\n\nIf you disagree with the policy for **%@**, you can go back and pick a different server."
           }
         },
         "hy" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Although the Mastodon app does not collect any data, the server you sign up through may have a different policy.\n\nIf you disagree with the policy for **%@**, you can go back and pick a different server."
+            "value" : "Although the oslo.town app does not collect any data, the server you sign up through may have a different policy.\n\nIf you disagree with the policy for **%@**, you can go back and pick a different server."
           }
         },
         "id" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Although the Mastodon app does not collect any data, the server you sign up through may have a different policy.\n\nIf you disagree with the policy for **%@**, you can go back and pick a different server."
+            "value" : "Although the oslo.town app does not collect any data, the server you sign up through may have a different policy.\n\nIf you disagree with the policy for **%@**, you can go back and pick a different server."
           }
         },
         "is" : {
@@ -199096,49 +199096,49 @@
         "kab" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Although the Mastodon app does not collect any data, the server you sign up through may have a different policy.\n\nIf you disagree with the policy for **%@**, you can go back and pick a different server."
+            "value" : "Although the oslo.town app does not collect any data, the server you sign up through may have a different policy.\n\nIf you disagree with the policy for **%@**, you can go back and pick a different server."
           }
         },
         "kmr-TR" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Although the Mastodon app does not collect any data, the server you sign up through may have a different policy.\n\nIf you disagree with the policy for **%@**, you can go back and pick a different server."
+            "value" : "Although the oslo.town app does not collect any data, the server you sign up through may have a different policy.\n\nIf you disagree with the policy for **%@**, you can go back and pick a different server."
           }
         },
         "ko" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Although the Mastodon app does not collect any data, the server you sign up through may have a different policy.\n\nIf you disagree with the policy for **%@**, you can go back and pick a different server."
+            "value" : "Although the oslo.town app does not collect any data, the server you sign up through may have a different policy.\n\nIf you disagree with the policy for **%@**, you can go back and pick a different server."
           }
         },
         "lt" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Although the Mastodon app does not collect any data, the server you sign up through may have a different policy.\n\nIf you disagree with the policy for **%@**, you can go back and pick a different server."
+            "value" : "Although the oslo.town app does not collect any data, the server you sign up through may have a different policy.\n\nIf you disagree with the policy for **%@**, you can go back and pick a different server."
           }
         },
         "lv" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Although the Mastodon app does not collect any data, the server you sign up through may have a different policy.\n\nIf you disagree with the policy for **%@**, you can go back and pick a different server."
+            "value" : "Although the oslo.town app does not collect any data, the server you sign up through may have a different policy.\n\nIf you disagree with the policy for **%@**, you can go back and pick a different server."
           }
         },
         "my" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Although the Mastodon app does not collect any data, the server you sign up through may have a different policy.\n\nIf you disagree with the policy for **%@**, you can go back and pick a different server."
+            "value" : "Although the oslo.town app does not collect any data, the server you sign up through may have a different policy.\n\nIf you disagree with the policy for **%@**, you can go back and pick a different server."
           }
         },
         "nl" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Although the Mastodon app does not collect any data, the server you sign up through may have a different policy.\n\nIf you disagree with the policy for **%@**, you can go back and pick a different server."
+            "value" : "Although the oslo.town app does not collect any data, the server you sign up through may have a different policy.\n\nIf you disagree with the policy for **%@**, you can go back and pick a different server."
           }
         },
         "pl" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Although the Mastodon app does not collect any data, the server you sign up through may have a different policy.\n\nIf you disagree with the policy for **%@**, you can go back and pick a different server."
+            "value" : "Although the oslo.town app does not collect any data, the server you sign up through may have a different policy.\n\nIf you disagree with the policy for **%@**, you can go back and pick a different server."
           }
         },
         "pt" : {
@@ -199150,13 +199150,13 @@
         "pt-BR" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Although the Mastodon app does not collect any data, the server you sign up through may have a different policy.\n\nIf you disagree with the policy for **%@**, you can go back and pick a different server."
+            "value" : "Although the oslo.town app does not collect any data, the server you sign up through may have a different policy.\n\nIf you disagree with the policy for **%@**, you can go back and pick a different server."
           }
         },
         "ro" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Although the Mastodon app does not collect any data, the server you sign up through may have a different policy.\n\nIf you disagree with the policy for **%@**, you can go back and pick a different server."
+            "value" : "Although the oslo.town app does not collect any data, the server you sign up through may have a different policy.\n\nIf you disagree with the policy for **%@**, you can go back and pick a different server."
           }
         },
         "ru" : {
@@ -199168,13 +199168,13 @@
         "si" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Although the Mastodon app does not collect any data, the server you sign up through may have a different policy.\n\nIf you disagree with the policy for **%@**, you can go back and pick a different server."
+            "value" : "Although the oslo.town app does not collect any data, the server you sign up through may have a different policy.\n\nIf you disagree with the policy for **%@**, you can go back and pick a different server."
           }
         },
         "sl" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Although the Mastodon app does not collect any data, the server you sign up through may have a different policy.\n\nIf you disagree with the policy for **%@**, you can go back and pick a different server."
+            "value" : "Although the oslo.town app does not collect any data, the server you sign up through may have a different policy.\n\nIf you disagree with the policy for **%@**, you can go back and pick a different server."
           }
         },
         "sq" : {
@@ -199186,13 +199186,13 @@
         "sv" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Although the Mastodon app does not collect any data, the server you sign up through may have a different policy.\n\nIf you disagree with the policy for **%@**, you can go back and pick a different server."
+            "value" : "Although the oslo.town app does not collect any data, the server you sign up through may have a different policy.\n\nIf you disagree with the policy for **%@**, you can go back and pick a different server."
           }
         },
         "th" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Although the Mastodon app does not collect any data, the server you sign up through may have a different policy.\n\nIf you disagree with the policy for **%@**, you can go back and pick a different server."
+            "value" : "Although the oslo.town app does not collect any data, the server you sign up through may have a different policy.\n\nIf you disagree with the policy for **%@**, you can go back and pick a different server."
           }
         },
         "tr" : {
@@ -199233,7 +199233,7 @@
         "an" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Privacy Policy - Mastodon for iOS"
+            "value" : "Privacy Policy - oslo.town for iOS"
           }
         },
         "ar" : {
@@ -199257,7 +199257,7 @@
         "ckb-IR" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Privacy Policy - Mastodon for iOS"
+            "value" : "Privacy Policy - oslo.town for iOS"
           }
         },
         "cs" : {
@@ -199293,13 +199293,13 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Privacy Policy - Mastodon for iOS"
+            "value" : "Privacy Policy - oslo.town for iOS"
           }
         },
         "en-US" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Privacy Policy - Mastodon for iOS"
+            "value" : "Privacy Policy - oslo.town for iOS"
           }
         },
         "es" : {
@@ -199359,13 +199359,13 @@
         "he" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Privacy Policy - Mastodon for iOS"
+            "value" : "Privacy Policy - oslo.town for iOS"
           }
         },
         "hi" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Privacy Policy - Mastodon for iOS"
+            "value" : "Privacy Policy - oslo.town for iOS"
           }
         },
         "hu" : {
@@ -199377,13 +199377,13 @@
         "hy" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Privacy Policy - Mastodon for iOS"
+            "value" : "Privacy Policy - oslo.town for iOS"
           }
         },
         "id" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Privacy Policy - Mastodon for iOS"
+            "value" : "Privacy Policy - oslo.town for iOS"
           }
         },
         "is" : {
@@ -199425,19 +199425,19 @@
         "lt" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Privacy Policy - Mastodon for iOS"
+            "value" : "Privacy Policy - oslo.town for iOS"
           }
         },
         "lv" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Privacy Policy - Mastodon for iOS"
+            "value" : "Privacy Policy - oslo.town for iOS"
           }
         },
         "my" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Privacy Policy - Mastodon for iOS"
+            "value" : "Privacy Policy - oslo.town for iOS"
           }
         },
         "nl" : {
@@ -199467,7 +199467,7 @@
         "ro" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Privacy Policy - Mastodon for iOS"
+            "value" : "Privacy Policy - oslo.town for iOS"
           }
         },
         "ru" : {
@@ -199479,7 +199479,7 @@
         "si" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Privacy Policy - Mastodon for iOS"
+            "value" : "Privacy Policy - oslo.town for iOS"
           }
         },
         "sl" : {
@@ -245645,13 +245645,13 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Trending on Mastodon"
+            "value" : "Trending on oslo.town"
           }
         },
         "en-US" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Trending on Mastodon"
+            "value" : "Trending on oslo.town"
           }
         },
         "es" : {
@@ -245711,13 +245711,13 @@
         "he" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Trending on Mastodon"
+            "value" : "Trending on oslo.town"
           }
         },
         "hi" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Trending on Mastodon"
+            "value" : "Trending on oslo.town"
           }
         },
         "hu" : {
@@ -245729,7 +245729,7 @@
         "hy" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Trending on Mastodon"
+            "value" : "Trending on oslo.town"
           }
         },
         "id" : {
@@ -245777,7 +245777,7 @@
         "lt" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Trending on Mastodon"
+            "value" : "Trending on oslo.town"
           }
         },
         "lv" : {
@@ -245789,7 +245789,7 @@
         "my" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Trending on Mastodon"
+            "value" : "Trending on oslo.town"
           }
         },
         "nl" : {
@@ -245819,7 +245819,7 @@
         "ro" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Trending on Mastodon"
+            "value" : "Trending on oslo.town"
           }
         },
         "ru" : {
@@ -245831,7 +245831,7 @@
         "si" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Trending on Mastodon"
+            "value" : "Trending on oslo.town"
           }
         },
         "sl" : {
@@ -250875,13 +250875,13 @@
         "an" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Open URL in Mastodon"
+            "value" : "Open URL in oslo.town"
           }
         },
         "ar" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Open URL in Mastodon"
+            "value" : "Open URL in oslo.town"
           }
         },
         "be" : {
@@ -250899,7 +250899,7 @@
         "ckb-IR" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Open URL in Mastodon"
+            "value" : "Open URL in oslo.town"
           }
         },
         "cs" : {
@@ -250935,13 +250935,13 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Open URL in Mastodon"
+            "value" : "Open URL in oslo.town"
           }
         },
         "en-US" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Open URL in Mastodon"
+            "value" : "Open URL in oslo.town"
           }
         },
         "es" : {
@@ -251001,13 +251001,13 @@
         "he" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Open URL in Mastodon"
+            "value" : "Open URL in oslo.town"
           }
         },
         "hi" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Open URL in Mastodon"
+            "value" : "Open URL in oslo.town"
           }
         },
         "hu" : {
@@ -251019,13 +251019,13 @@
         "hy" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Open URL in Mastodon"
+            "value" : "Open URL in oslo.town"
           }
         },
         "id" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Open URL in Mastodon"
+            "value" : "Open URL in oslo.town"
           }
         },
         "is" : {
@@ -251061,25 +251061,25 @@
         "ko" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Open URL in Mastodon"
+            "value" : "Open URL in oslo.town"
           }
         },
         "lt" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Open URL in Mastodon"
+            "value" : "Open URL in oslo.town"
           }
         },
         "lv" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Open URL in Mastodon"
+            "value" : "Open URL in oslo.town"
           }
         },
         "my" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Open URL in Mastodon"
+            "value" : "Open URL in oslo.town"
           }
         },
         "nl" : {
@@ -251109,19 +251109,19 @@
         "ro" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Open URL in Mastodon"
+            "value" : "Open URL in oslo.town"
           }
         },
         "ru" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Open URL in Mastodon"
+            "value" : "Open URL in oslo.town"
           }
         },
         "si" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Open URL in Mastodon"
+            "value" : "Open URL in oslo.town"
           }
         },
         "sl" : {
@@ -263937,13 +263937,13 @@
         "an" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Contribute to Mastodon"
+            "value" : "Donate to oslo.town"
           }
         },
         "ar" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Contribute to Mastodon"
+            "value" : "Donate to oslo.town"
           }
         },
         "be" : {
@@ -263955,13 +263955,13 @@
         "ca" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Contribute to Mastodon"
+            "value" : "Donate to oslo.town"
           }
         },
         "ckb-IR" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Contribute to Mastodon"
+            "value" : "Donate to oslo.town"
           }
         },
         "cs" : {
@@ -263997,13 +263997,13 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Contribute to Mastodon"
+            "value" : "Donate to oslo.town"
           }
         },
         "en-US" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Contribute to Mastodon"
+            "value" : "Donate to oslo.town"
           }
         },
         "es" : {
@@ -264033,7 +264033,7 @@
         "fi" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Contribute to Mastodon"
+            "value" : "Donate to oslo.town"
           }
         },
         "fr" : {
@@ -264063,13 +264063,13 @@
         "he" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Contribute to Mastodon"
+            "value" : "Donate to oslo.town"
           }
         },
         "hi" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Contribute to Mastodon"
+            "value" : "Donate to oslo.town"
           }
         },
         "hu" : {
@@ -264081,13 +264081,13 @@
         "hy" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Contribute to Mastodon"
+            "value" : "Donate to oslo.town"
           }
         },
         "id" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Contribute to Mastodon"
+            "value" : "Donate to oslo.town"
           }
         },
         "is" : {
@@ -264123,25 +264123,25 @@
         "ko" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Contribute to Mastodon"
+            "value" : "Donate to oslo.town"
           }
         },
         "lt" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Contribute to Mastodon"
+            "value" : "Donate to oslo.town"
           }
         },
         "lv" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Contribute to Mastodon"
+            "value" : "Donate to oslo.town"
           }
         },
         "my" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Contribute to Mastodon"
+            "value" : "Donate to oslo.town"
           }
         },
         "nl" : {
@@ -264153,7 +264153,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Contribute to Mastodon"
+            "value" : "Donate to oslo.town"
           }
         },
         "pt" : {
@@ -264171,7 +264171,7 @@
         "ro" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Contribute to Mastodon"
+            "value" : "Donate to oslo.town"
           }
         },
         "ru" : {
@@ -264183,7 +264183,7 @@
         "si" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Contribute to Mastodon"
+            "value" : "Donate to oslo.town"
           }
         },
         "sl" : {
@@ -270157,13 +270157,13 @@
         "an" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Open in Mastodon"
+            "value" : "Open in oslo.town"
           }
         },
         "ar" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Open in Mastodon"
+            "value" : "Open in oslo.town"
           }
         },
         "be" : {
@@ -270175,13 +270175,13 @@
         "ca" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Open in Mastodon"
+            "value" : "Open in oslo.town"
           }
         },
         "ckb-IR" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Open in Mastodon"
+            "value" : "Open in oslo.town"
           }
         },
         "cs" : {
@@ -270217,13 +270217,13 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Open in Mastodon"
+            "value" : "Open in oslo.town"
           }
         },
         "en-US" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Open in Mastodon"
+            "value" : "Open in oslo.town"
           }
         },
         "es" : {
@@ -270253,7 +270253,7 @@
         "fi" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Open in Mastodon"
+            "value" : "Open in oslo.town"
           }
         },
         "fr" : {
@@ -270283,13 +270283,13 @@
         "he" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Open in Mastodon"
+            "value" : "Open in oslo.town"
           }
         },
         "hi" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Open in Mastodon"
+            "value" : "Open in oslo.town"
           }
         },
         "hu" : {
@@ -270301,13 +270301,13 @@
         "hy" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Open in Mastodon"
+            "value" : "Open in oslo.town"
           }
         },
         "id" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Open in Mastodon"
+            "value" : "Open in oslo.town"
           }
         },
         "is" : {
@@ -270337,7 +270337,7 @@
         "kmr-TR" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Open in Mastodon"
+            "value" : "Open in oslo.town"
           }
         },
         "ko" : {
@@ -270355,19 +270355,19 @@
         "lv" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Open in Mastodon"
+            "value" : "Open in oslo.town"
           }
         },
         "my" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Open in Mastodon"
+            "value" : "Open in oslo.town"
           }
         },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Open in Mastodon"
+            "value" : "Open in oslo.town"
           }
         },
         "pl" : {
@@ -270391,7 +270391,7 @@
         "ro" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Open in Mastodon"
+            "value" : "Open in oslo.town"
           }
         },
         "ru" : {
@@ -270403,7 +270403,7 @@
         "si" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Open in Mastodon"
+            "value" : "Open in oslo.town"
           }
         },
         "sl" : {
@@ -284775,7 +284775,7 @@
         "an" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Popular on Mastodon"
+            "value" : "Popular on oslo.town"
           }
         },
         "ar" : {
@@ -284799,7 +284799,7 @@
         "ckb-IR" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Popular on Mastodon"
+            "value" : "Popular on oslo.town"
           }
         },
         "cs" : {
@@ -284835,13 +284835,13 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Popular on Mastodon"
+            "value" : "Popular on oslo.town"
           }
         },
         "en-US" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Popular on Mastodon"
+            "value" : "Popular on oslo.town"
           }
         },
         "es" : {
@@ -284901,13 +284901,13 @@
         "he" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Popular on Mastodon"
+            "value" : "Popular on oslo.town"
           }
         },
         "hi" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Popular on Mastodon"
+            "value" : "Popular on oslo.town"
           }
         },
         "hu" : {
@@ -284919,13 +284919,13 @@
         "hy" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Popular on Mastodon"
+            "value" : "Popular on oslo.town"
           }
         },
         "id" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Popular on Mastodon"
+            "value" : "Popular on oslo.town"
           }
         },
         "is" : {
@@ -284949,13 +284949,13 @@
         "kab" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Popular on Mastodon"
+            "value" : "Popular on oslo.town"
           }
         },
         "kmr-TR" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Popular on Mastodon"
+            "value" : "Popular on oslo.town"
           }
         },
         "ko" : {
@@ -284973,13 +284973,13 @@
         "lv" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Popular on Mastodon"
+            "value" : "Popular on oslo.town"
           }
         },
         "my" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Popular on Mastodon"
+            "value" : "Popular on oslo.town"
           }
         },
         "nl" : {
@@ -285009,7 +285009,7 @@
         "ro" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Popular on Mastodon"
+            "value" : "Popular on oslo.town"
           }
         },
         "ru" : {
@@ -285021,7 +285021,7 @@
         "si" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Popular on Mastodon"
+            "value" : "Popular on oslo.town"
           }
         },
         "sl" : {
@@ -289129,7 +289129,7 @@
         "an" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Please open Mastodon to log in to an Account."
+            "value" : "Please open oslo.town to log in to an Account."
           }
         },
         "ar" : {
@@ -289153,7 +289153,7 @@
         "ckb-IR" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Please open Mastodon to log in to an Account."
+            "value" : "Please open oslo.town to log in to an Account."
           }
         },
         "cs" : {
@@ -289189,13 +289189,13 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Please open Mastodon to log in to an Account."
+            "value" : "Please open oslo.town to log in to an Account."
           }
         },
         "en-US" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Please open Mastodon to log in to an Account."
+            "value" : "Please open oslo.town to log in to an Account."
           }
         },
         "es" : {
@@ -289255,31 +289255,31 @@
         "he" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Please open Mastodon to log in to an Account."
+            "value" : "Please open oslo.town to log in to an Account."
           }
         },
         "hi" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Please open Mastodon to log in to an Account."
+            "value" : "Please open oslo.town to log in to an Account."
           }
         },
         "hu" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Please open Mastodon to log in to an Account."
+            "value" : "Please open oslo.town to log in to an Account."
           }
         },
         "hy" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Please open Mastodon to log in to an Account."
+            "value" : "Please open oslo.town to log in to an Account."
           }
         },
         "id" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Please open Mastodon to log in to an Account."
+            "value" : "Please open oslo.town to log in to an Account."
           }
         },
         "is" : {
@@ -289303,7 +289303,7 @@
         "kab" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Please open Mastodon to log in to an Account."
+            "value" : "Please open oslo.town to log in to an Account."
           }
         },
         "kmr-TR" : {
@@ -289315,7 +289315,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Please open Mastodon to log in to an Account."
+            "value" : "Please open oslo.town to log in to an Account."
           }
         },
         "lt" : {
@@ -289327,13 +289327,13 @@
         "lv" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Please open Mastodon to log in to an Account."
+            "value" : "Please open oslo.town to log in to an Account."
           }
         },
         "my" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Please open Mastodon to log in to an Account."
+            "value" : "Please open oslo.town to log in to an Account."
           }
         },
         "nl" : {
@@ -289345,7 +289345,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Please open Mastodon to log in to an Account."
+            "value" : "Please open oslo.town to log in to an Account."
           }
         },
         "pt" : {
@@ -289363,7 +289363,7 @@
         "ro" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Please open Mastodon to log in to an Account."
+            "value" : "Please open oslo.town to log in to an Account."
           }
         },
         "ru" : {
@@ -289375,7 +289375,7 @@
         "si" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Please open Mastodon to log in to an Account."
+            "value" : "Please open oslo.town to log in to an Account."
           }
         },
         "sl" : {
@@ -291306,19 +291306,19 @@
         "an" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "@johnMastodon@no-such.account"
+            "value" : "@ola@oslo.town"
           }
         },
         "ar" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "@johnMastodon@no-such.account"
+            "value" : "@ola@oslo.town"
           }
         },
         "be" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "@johnMastodon@no-such.account"
+            "value" : "@ola@oslo.town"
           }
         },
         "ca" : {
@@ -291330,13 +291330,13 @@
         "ckb-IR" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "@johnMastodon@no-such.account"
+            "value" : "@ola@oslo.town"
           }
         },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "@johnMastodon@no-such.account"
+            "value" : "@ola@oslo.town"
           }
         },
         "cy" : {
@@ -291348,31 +291348,31 @@
         "da" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "@johnMastodon@no-such.account"
+            "value" : "@ola@oslo.town"
           }
         },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "@johnMastodon@no-such.account"
+            "value" : "@ola@oslo.town"
           }
         },
         "el" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "@johnMastodon@no-such.account"
+            "value" : "@ola@oslo.town"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "@johnMastodon@no-such.account"
+            "value" : "@ola@oslo.town"
           }
         },
         "en-US" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "@johnMastodon@no-such.account"
+            "value" : "@ola@oslo.town"
           }
         },
         "es" : {
@@ -291408,13 +291408,13 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "@johnMastodon@no-such.account"
+            "value" : "@ola@oslo.town"
           }
         },
         "ga" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "@johnMastodon@no-such.account"
+            "value" : "@ola@oslo.town"
           }
         },
         "gd" : {
@@ -291432,31 +291432,31 @@
         "he" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "@johnMastodon@no-such.account"
+            "value" : "@ola@oslo.town"
           }
         },
         "hi" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "@johnMastodon@no-such.account"
+            "value" : "@ola@oslo.town"
           }
         },
         "hu" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "@johnMastodon@no-such.account"
+            "value" : "@ola@oslo.town"
           }
         },
         "hy" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "@johnMastodon@no-such.account"
+            "value" : "@ola@oslo.town"
           }
         },
         "id" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "@johnMastodon@no-such.account"
+            "value" : "@ola@oslo.town"
           }
         },
         "is" : {
@@ -291474,25 +291474,25 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "@johnMastodon@no-such.account"
+            "value" : "@ola@oslo.town"
           }
         },
         "kab" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "@johnMastodon@no-such.account"
+            "value" : "@ola@oslo.town"
           }
         },
         "kmr-TR" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "@johnMastodon@no-such.account"
+            "value" : "@ola@oslo.town"
           }
         },
         "ko" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "@johnMastodon@no-such.account"
+            "value" : "@ola@oslo.town"
           }
         },
         "lt" : {
@@ -291504,31 +291504,31 @@
         "lv" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "@johnMastodon@no-such.account"
+            "value" : "@ola@oslo.town"
           }
         },
         "my" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "@johnMastodon@no-such.account"
+            "value" : "@ola@oslo.town"
           }
         },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "@johnMastodon@no-such.account"
+            "value" : "@ola@oslo.town"
           }
         },
         "pl" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "@johnMastodon@no-such.account"
+            "value" : "@ola@oslo.town"
           }
         },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "@johnMastodon@no-such.account"
+            "value" : "@ola@oslo.town"
           }
         },
         "pt-BR" : {
@@ -291540,19 +291540,19 @@
         "ro" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "@johnMastodon@no-such.account"
+            "value" : "@ola@oslo.town"
           }
         },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "@johnMastodon@no-such.account"
+            "value" : "@ola@oslo.town"
           }
         },
         "si" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "@johnMastodon@no-such.account"
+            "value" : "@ola@oslo.town"
           }
         },
         "sl" : {
@@ -291564,19 +291564,19 @@
         "sq" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "@johnMastodon@no-such.account"
+            "value" : "@ola@oslo.town"
           }
         },
         "sv" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "@johnMastodon@no-such.account"
+            "value" : "@ola@oslo.town"
           }
         },
         "th" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "@johnMastodon@no-such.account"
+            "value" : "@ola@oslo.town"
           }
         },
         "tr" : {
@@ -291588,25 +291588,25 @@
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "@johnMastodon@no-such.account"
+            "value" : "@ola@oslo.town"
           }
         },
         "vi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "@johnMastodon@no-such.account"
+            "value" : "@ola@oslo.town"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "@johnMastodon@no-such.account"
+            "value" : "@ola@oslo.town"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "@johnMastodon@no-such.account"
+            "value" : "@ola@oslo.town"
           }
         }
       }
@@ -291617,13 +291617,13 @@
         "an" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "John Mastodon"
+            "value" : "Ola Nordmann"
           }
         },
         "ar" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "John Mastodon"
+            "value" : "Ola Nordmann"
           }
         },
         "be" : {
@@ -291635,19 +291635,19 @@
         "ca" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "John Mastodon"
+            "value" : "Ola Nordmann"
           }
         },
         "ckb-IR" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "John Mastodon"
+            "value" : "Ola Nordmann"
           }
         },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "John Mastodon"
+            "value" : "Ola Nordmann"
           }
         },
         "cy" : {
@@ -291659,37 +291659,37 @@
         "da" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "John Mastodon"
+            "value" : "Ola Nordmann"
           }
         },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "John Mastodon"
+            "value" : "Ola Nordmann"
           }
         },
         "el" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "John Mastodon"
+            "value" : "Ola Nordmann"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "John Mastodon"
+            "value" : "Ola Nordmann"
           }
         },
         "en-US" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "John Mastodon"
+            "value" : "Ola Nordmann"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "John Mastodon"
+            "value" : "Ola Nordmann"
           }
         },
         "es-AR" : {
@@ -291707,7 +291707,7 @@
         "eu" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "John Mastodon"
+            "value" : "Ola Nordmann"
           }
         },
         "fi" : {
@@ -291719,55 +291719,55 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "John Mastodon"
+            "value" : "Ola Nordmann"
           }
         },
         "ga" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "John Mastodon"
+            "value" : "Ola Nordmann"
           }
         },
         "gd" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "John Mastodon"
+            "value" : "Ola Nordmann"
           }
         },
         "gl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "John Mastodon"
+            "value" : "Ola Nordmann"
           }
         },
         "he" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "John Mastodon"
+            "value" : "Ola Nordmann"
           }
         },
         "hi" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "John Mastodon"
+            "value" : "Ola Nordmann"
           }
         },
         "hu" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "John Mastodon"
+            "value" : "Ola Nordmann"
           }
         },
         "hy" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "John Mastodon"
+            "value" : "Ola Nordmann"
           }
         },
         "id" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "John Mastodon"
+            "value" : "Ola Nordmann"
           }
         },
         "is" : {
@@ -291779,31 +291779,31 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "John Mastodon"
+            "value" : "Ola Nordmann"
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "John Mastodon"
+            "value" : "Ola Nordmann"
           }
         },
         "kab" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "John Mastodon"
+            "value" : "Ola Nordmann"
           }
         },
         "kmr-TR" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "John Mastodon"
+            "value" : "Ola Nordmann"
           }
         },
         "ko" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "John Mastodon"
+            "value" : "Ola Nordmann"
           }
         },
         "lt" : {
@@ -291815,55 +291815,55 @@
         "lv" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "John Mastodon"
+            "value" : "Ola Nordmann"
           }
         },
         "my" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "John Mastodon"
+            "value" : "Ola Nordmann"
           }
         },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "John Mastodon"
+            "value" : "Ola Nordmann"
           }
         },
         "pl" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "John Mastodon"
+            "value" : "Ola Nordmann"
           }
         },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "John Mastodon"
+            "value" : "Ola Nordmann"
           }
         },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "John Mastodon"
+            "value" : "Ola Nordmann"
           }
         },
         "ro" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "John Mastodon"
+            "value" : "Ola Nordmann"
           }
         },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "John Mastodon"
+            "value" : "Ola Nordmann"
           }
         },
         "si" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "John Mastodon"
+            "value" : "Ola Nordmann"
           }
         },
         "sl" : {
@@ -291881,13 +291881,13 @@
         "sv" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "John Mastodon"
+            "value" : "Ola Nordmann"
           }
         },
         "th" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "John Mastodon"
+            "value" : "Ola Nordmann"
           }
         },
         "tr" : {
@@ -291899,7 +291899,7 @@
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "John Mastodon"
+            "value" : "Ola Nordmann"
           }
         },
         "vi" : {
@@ -291917,7 +291917,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "John Mastodon"
+            "value" : "Ola Nordmann"
           }
         }
       }
@@ -292239,19 +292239,19 @@
         "an" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "@johnMastodon@no-such.account"
+            "value" : "@ola@oslo.town"
           }
         },
         "ar" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "@johnMastodon@no-such.account"
+            "value" : "@ola@oslo.town"
           }
         },
         "be" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "@johnMastodon@no-such.account"
+            "value" : "@ola@oslo.town"
           }
         },
         "ca" : {
@@ -292263,13 +292263,13 @@
         "ckb-IR" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "@johnMastodon@no-such.account"
+            "value" : "@ola@oslo.town"
           }
         },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "@johnMastodon@no-such.account"
+            "value" : "@ola@oslo.town"
           }
         },
         "cy" : {
@@ -292281,31 +292281,31 @@
         "da" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "@johnMastodon@no-such.account"
+            "value" : "@ola@oslo.town"
           }
         },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "@johnMastodon@no-such.account"
+            "value" : "@ola@oslo.town"
           }
         },
         "el" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "@johnMastodon@no-such.account"
+            "value" : "@ola@oslo.town"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "@johnMastodon@no-such.account"
+            "value" : "@ola@oslo.town"
           }
         },
         "en-US" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "@johnMastodon@no-such.account"
+            "value" : "@ola@oslo.town"
           }
         },
         "es" : {
@@ -292341,13 +292341,13 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "@johnMastodon@no-such.account"
+            "value" : "@ola@oslo.town"
           }
         },
         "ga" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "@johnMastodon@no-such.account"
+            "value" : "@ola@oslo.town"
           }
         },
         "gd" : {
@@ -292365,31 +292365,31 @@
         "he" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "@johnMastodon@no-such.account"
+            "value" : "@ola@oslo.town"
           }
         },
         "hi" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "@johnMastodon@no-such.account"
+            "value" : "@ola@oslo.town"
           }
         },
         "hu" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "@johnMastodon@no-such.account"
+            "value" : "@ola@oslo.town"
           }
         },
         "hy" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "@johnMastodon@no-such.account"
+            "value" : "@ola@oslo.town"
           }
         },
         "id" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "@johnMastodon@no-such.account"
+            "value" : "@ola@oslo.town"
           }
         },
         "is" : {
@@ -292407,25 +292407,25 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "@johnMastodon@no-such.account"
+            "value" : "@ola@oslo.town"
           }
         },
         "kab" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "@johnMastodon@no-such.account"
+            "value" : "@ola@oslo.town"
           }
         },
         "kmr-TR" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "@johnMastodon@no-such.account"
+            "value" : "@ola@oslo.town"
           }
         },
         "ko" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "@johnMastodon@no-such.account"
+            "value" : "@ola@oslo.town"
           }
         },
         "lt" : {
@@ -292437,31 +292437,31 @@
         "lv" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "@johnMastodon@no-such.account"
+            "value" : "@ola@oslo.town"
           }
         },
         "my" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "@johnMastodon@no-such.account"
+            "value" : "@ola@oslo.town"
           }
         },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "@johnMastodon@no-such.account"
+            "value" : "@ola@oslo.town"
           }
         },
         "pl" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "@johnMastodon@no-such.account"
+            "value" : "@ola@oslo.town"
           }
         },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "@johnMastodon@no-such.account"
+            "value" : "@ola@oslo.town"
           }
         },
         "pt-BR" : {
@@ -292473,19 +292473,19 @@
         "ro" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "@johnMastodon@no-such.account"
+            "value" : "@ola@oslo.town"
           }
         },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "@johnMastodon@no-such.account"
+            "value" : "@ola@oslo.town"
           }
         },
         "si" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "@johnMastodon@no-such.account"
+            "value" : "@ola@oslo.town"
           }
         },
         "sl" : {
@@ -292497,19 +292497,19 @@
         "sq" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "@johnMastodon@no-such.account"
+            "value" : "@ola@oslo.town"
           }
         },
         "sv" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "@johnMastodon@no-such.account"
+            "value" : "@ola@oslo.town"
           }
         },
         "th" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "@johnMastodon@no-such.account"
+            "value" : "@ola@oslo.town"
           }
         },
         "tr" : {
@@ -292521,25 +292521,25 @@
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "@johnMastodon@no-such.account"
+            "value" : "@ola@oslo.town"
           }
         },
         "vi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "@johnMastodon@no-such.account"
+            "value" : "@ola@oslo.town"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "@johnMastodon@no-such.account"
+            "value" : "@ola@oslo.town"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "@johnMastodon@no-such.account"
+            "value" : "@ola@oslo.town"
           }
         }
       }
@@ -292550,13 +292550,13 @@
         "an" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "John Mastodon"
+            "value" : "Ola Nordmann"
           }
         },
         "ar" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "John Mastodon"
+            "value" : "Ola Nordmann"
           }
         },
         "be" : {
@@ -292568,19 +292568,19 @@
         "ca" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "John Mastodon"
+            "value" : "Ola Nordmann"
           }
         },
         "ckb-IR" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "John Mastodon"
+            "value" : "Ola Nordmann"
           }
         },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "John Mastodon"
+            "value" : "Ola Nordmann"
           }
         },
         "cy" : {
@@ -292592,37 +292592,37 @@
         "da" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "John Mastodon"
+            "value" : "Ola Nordmann"
           }
         },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "John Mastodon"
+            "value" : "Ola Nordmann"
           }
         },
         "el" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "John Mastodon"
+            "value" : "Ola Nordmann"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "John Mastodon"
+            "value" : "Ola Nordmann"
           }
         },
         "en-US" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "John Mastodon"
+            "value" : "Ola Nordmann"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "John Mastodon"
+            "value" : "Ola Nordmann"
           }
         },
         "es-AR" : {
@@ -292640,7 +292640,7 @@
         "eu" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "John Mastodon"
+            "value" : "Ola Nordmann"
           }
         },
         "fi" : {
@@ -292652,55 +292652,55 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "John Mastodon"
+            "value" : "Ola Nordmann"
           }
         },
         "ga" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "John Mastodon"
+            "value" : "Ola Nordmann"
           }
         },
         "gd" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "John Mastodon"
+            "value" : "Ola Nordmann"
           }
         },
         "gl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "John Mastodon"
+            "value" : "Ola Nordmann"
           }
         },
         "he" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "John Mastodon"
+            "value" : "Ola Nordmann"
           }
         },
         "hi" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "John Mastodon"
+            "value" : "Ola Nordmann"
           }
         },
         "hu" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "John Mastodon"
+            "value" : "Ola Nordmann"
           }
         },
         "hy" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "John Mastodon"
+            "value" : "Ola Nordmann"
           }
         },
         "id" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "John Mastodon"
+            "value" : "Ola Nordmann"
           }
         },
         "is" : {
@@ -292712,31 +292712,31 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "John Mastodon"
+            "value" : "Ola Nordmann"
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "John Mastodon"
+            "value" : "Ola Nordmann"
           }
         },
         "kab" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "John Mastodon"
+            "value" : "Ola Nordmann"
           }
         },
         "kmr-TR" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "John Mastodon"
+            "value" : "Ola Nordmann"
           }
         },
         "ko" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "John Mastodon"
+            "value" : "Ola Nordmann"
           }
         },
         "lt" : {
@@ -292748,55 +292748,55 @@
         "lv" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "John Mastodon"
+            "value" : "Ola Nordmann"
           }
         },
         "my" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "John Mastodon"
+            "value" : "Ola Nordmann"
           }
         },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "John Mastodon"
+            "value" : "Ola Nordmann"
           }
         },
         "pl" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "John Mastodon"
+            "value" : "Ola Nordmann"
           }
         },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "John Mastodon"
+            "value" : "Ola Nordmann"
           }
         },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "John Mastodon"
+            "value" : "Ola Nordmann"
           }
         },
         "ro" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "John Mastodon"
+            "value" : "Ola Nordmann"
           }
         },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "John Mastodon"
+            "value" : "Ola Nordmann"
           }
         },
         "si" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "John Mastodon"
+            "value" : "Ola Nordmann"
           }
         },
         "sl" : {
@@ -292814,13 +292814,13 @@
         "sv" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "John Mastodon"
+            "value" : "Ola Nordmann"
           }
         },
         "th" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "John Mastodon"
+            "value" : "Ola Nordmann"
           }
         },
         "tr" : {
@@ -292832,7 +292832,7 @@
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "John Mastodon"
+            "value" : "Ola Nordmann"
           }
         },
         "vi" : {
@@ -292850,7 +292850,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "John Mastodon"
+            "value" : "Ola Nordmann"
           }
         }
       }

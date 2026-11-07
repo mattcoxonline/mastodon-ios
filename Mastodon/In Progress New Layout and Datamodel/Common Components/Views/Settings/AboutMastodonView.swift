@@ -22,10 +22,10 @@ struct AboutMastodonView: View {
                         result.completeIfNeeded()
                     }
                 
-                // Contribute to Mastodon
+                // Donate to oslo.town
                 NavigationRow(label: L10n.Scene.Settings.AboutMastodon.contributeToMastodon, sublabel: nil)
                     .onTapGesture {
-                        if let url = URL(string: "https://github.com/mastodon/mastodon-ios") {
+                        if let url = URL(string: "https://patreon.com/oslotown") {
                             let result = navigator.openUrl(url, afterDeconflictionDelay: false)
                             result.completeIfNeeded()
                         }
@@ -51,7 +51,7 @@ struct AboutMastodonView: View {
             }
         }
         .safeAreaInset(edge: .bottom) {
-            Text("Mastodon for iOS v\(UIApplication.appVersion()) (\(UIApplication.appBuild()))")
+            Text("oslo.town v\(UIApplication.appVersion()) (\(UIApplication.appBuild()))")
                 .padding(.vertical)
                 .frame(maxWidth: .infinity, alignment: .center)
                 .font(.footnote)

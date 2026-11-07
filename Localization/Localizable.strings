@@ -289,7 +289,7 @@ uploaded to Mastodon.";
 "Scene.ConfirmEmail.OpenEmailApp.Title" = "Check your Inbox.";
 "Scene.ConfirmEmail.TapTheLinkWeEmailedToYouToVerifyYourAccount" = "Tap the link we sent you to verify %@. We’ll wait right here.";
 "Scene.ConfirmEmail.Title" = "Check Your Inbox";
-"Scene.Discovery.Intro" = "These are the posts gaining traction in your corner of Mastodon.";
+"Scene.Discovery.Intro" = "These are the posts gaining traction across oslo.town.";
 "Scene.Discovery.Tabs.Community" = "Community";
 "Scene.Discovery.Tabs.ForYou" = "For You";
 "Scene.Discovery.Tabs.Hashtags" = "Hashtags";
@@ -400,10 +400,10 @@ Please retry in a few minutes.";
 "Scene.Preview.Keyboard.ShowNext" = "Show Next";
 "Scene.Preview.Keyboard.ShowPrevious" = "Show Previous";
 "Scene.Privacy.Button.Confirm" = "I Agree";
-"Scene.Privacy.Description" = "Although the Mastodon app does not collect any data, the server you sign up through may have a different policy.
+"Scene.Privacy.Description" = "Although the oslo.town app does not collect any data, the server you sign up through may have a different policy.
 
 If you disagree with the policy for **%@**, you can go back and pick a different server.";
-"Scene.Privacy.Policy.Ios" = "Privacy Policy - Mastodon for iOS";
+"Scene.Privacy.Policy.Ios" = "Privacy Policy - oslo.town for iOS";
 "Scene.Privacy.Policy.Server" = "Privacy Policy - %@";
 "Scene.Privacy.Title" = "Your Privacy";
 "Scene.Profile.Accessibility.DoubleTapToOpenTheList" = "Double tap to open the list";
@@ -530,7 +530,7 @@ If you disagree with the policy for **%@**, you can go back and pick a different
 "Scene.Search.Recommend.ButtonText" = "See All";
 "Scene.Search.Recommend.HashTag.Description" = "Hashtags that are getting quite a bit of attention";
 "Scene.Search.Recommend.HashTag.PeopleTalking" = "%@ people are talking";
-"Scene.Search.Recommend.HashTag.Title" = "Trending on Mastodon";
+"Scene.Search.Recommend.HashTag.Title" = "Trending on oslo.town";
 "Scene.Search.SearchBar.Cancel" = "Cancel";
 "Scene.Search.SearchBar.Placeholder" = "Search hashtags and users";
 "Scene.Search.Searching.Clear" = "Clear";
@@ -544,7 +544,7 @@ If you disagree with the policy for **%@**, you can go back and pick a different
 "Scene.Search.Searching.Profile" = "Go to @%@@%@";
 "Scene.Search.Searching.RecentSearch" = "Recent searches";
 "Scene.Search.Searching.NoRecentSearches" = "No recent searches.";
-"Scene.Search.Searching.Url" = "Open URL in Mastodon";
+"Scene.Search.Searching.Url" = "Open URL in oslo.town";
 "Scene.Search.Title" = "Search";
 "Scene.ServerPicker.Button.Category.Academia" = "academia";
 "Scene.ServerPicker.Button.Category.Activism" = "activism";
@@ -586,7 +586,7 @@ If you disagree with the policy for **%@**, you can go back and pick a different
 "Scene.ServerRules.TermsOfService" = "terms of service";
 "Scene.ServerRules.Title" = "Server Rules";
 "Scene.Settings.AboutMastodon.ClearMediaStorage" = "Clear Media Storage";
-"Scene.Settings.AboutMastodon.ContributeToMastodon" = "Contribute to Mastodon";
+"Scene.Settings.AboutMastodon.ContributeToMastodon" = "Donate to oslo.town";
 "Scene.Settings.AboutMastodon.MoreSettings" = "Even More Settings";
 "Scene.Settings.AboutMastodon.PrivacyPolicy" = "Privacy Policy";
 "Scene.Settings.AboutMastodon.Title" = "About";
@@ -606,7 +606,7 @@ If you disagree with the policy for **%@**, you can go back and pick a different
 "Scene.Settings.General.Language.DefaultPostLanguage" = "Default Post Language";
 "Scene.Settings.General.Language.SectionTitle" = "Language";
 "Scene.Settings.General.Links.OpenInBrowser" = "Open in Browser";
-"Scene.Settings.General.Links.OpenInMastodon" = "Open in Mastodon";
+"Scene.Settings.General.Links.OpenInMastodon" = "Open in oslo.town";
 "Scene.Settings.General.Links.SectionTitle" = "Links";
 "Scene.Settings.General.Title" = "General";
 "Scene.Settings.Notifications.Alert.Boosts" = "Boosts";
@@ -645,7 +645,7 @@ If you disagree with the policy for **%@**, you can go back and pick a different
 "Scene.Settings.ServerDetails.AboutInstance.Title" = "Administrator";
 "Scene.Settings.ServerDetails.Rules" = "Rules";
 "Scene.SuggestionAccount.FollowAll" = "Follow all";
-"Scene.SuggestionAccount.Title" = "Popular on Mastodon";
+"Scene.SuggestionAccount.Title" = "Popular on oslo.town";
 "Scene.Thread.BackTitle" = "Post";
 "Scene.Thread.Title" = "Post from %@";
 "Scene.Welcome.Education.A11Y.WhatIsMastodon.Title" = "What is Mastodon?";
@@ -659,18 +659,18 @@ If you disagree with the policy for **%@**, you can go back and pick a different
 "Scene.Welcome.PickServer" = "Create account";
 "Scene.Welcome.Separator.Or" = "or";
 "Widget.Common.UnsupportedWidgetFamily" = "Sorry but this Widget family is unsupported.";
-"Widget.Common.UserNotLoggedIn" = "Please open Mastodon to log in to an Account.";
+"Widget.Common.UserNotLoggedIn" = "Please open oslo.town to log in to an Account.";
 "Widget.FollowersCount.ConfigurationDescription" = "Show number of followers.";
 "Widget.FollowersCount.ConfigurationDisplayName" = "Followers";
 "Widget.FollowersCount.FollowersToday" = "%@ followers today";
 "Widget.FollowersCount.Title" = "FOLLOWERS";
 "Widget.Hashtag.Configuration.Description" = "Shows a recent post with the selected hashtag.";
 "Widget.Hashtag.Configuration.DisplayName" = "Hashtag";
-"Widget.Hashtag.NotFound.Account" = "@johnMastodon@no-such.account";
-"Widget.Hashtag.NotFound.AccountName" = "John Mastodon";
+"Widget.Hashtag.NotFound.Account" = "@ola@oslo.town";
+"Widget.Hashtag.NotFound.AccountName" = "Ola Nordmann";
 "Widget.Hashtag.NotFound.Content" = "Sorry, we couldn’t find any posts with the hashtag <a>#%@</a>. Please try a <a>#DifferentHashtag</a> or check the widget settings.";
-"Widget.Hashtag.Placeholder.Account" = "@johnMastodon@no-such.account";
-"Widget.Hashtag.Placeholder.AccountName" = "John Mastodon";
+"Widget.Hashtag.Placeholder.Account" = "@ola@oslo.town";
+"Widget.Hashtag.Placeholder.AccountName" = "Ola Nordmann";
 "Widget.Hashtag.Placeholder.Content" = "This is how a post with a <a>#hashtag</a> would look. Pick whichever <a>#hashtag</a> you want in the widget settings.";
 "Widget.LatestFollowers.ConfigurationDescription" = "Show latest followers.";
 "Widget.LatestFollowers.ConfigurationDisplayName" = "Latest followers";
