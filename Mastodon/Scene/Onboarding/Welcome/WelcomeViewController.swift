@@ -129,7 +129,11 @@ extension WelcomeViewController {
         case .error(let error):
             displayError(error)
         case .logInToExistingAccountRequested:
-            _ = self.sceneCoordinator?.present(scene: .mastodonLogin(authenticationViewModel: authenticationViewModel, suggestedDomain: viewModel.randomDefaultServer?.domain), from: self, transition: .show)
+            // single-instance app: log in directly on oslo.town
+            let server = viewModel.randomDefaultServer ?? Mastodon.Entity.Server.osloDotTown
+            Task {
+                await authenticationViewModel.logIn(on: server, withPresentationContextProvider: self)
+            }
         case .joiningServer:
             break
         case .showingRules(let viewModel):
