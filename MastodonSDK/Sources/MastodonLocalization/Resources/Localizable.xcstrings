@@ -24206,25 +24206,25 @@
         "an" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ubrir en o navegador"
+            "value" : "Ubrir en o navegador web"
           }
         },
         "ar" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "الفَتحُ في المُتَصَفِّح"
+            "value" : "الفتح في متصفح الويب"
           }
         },
         "be" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Адкрыць у браўзеры"
+            "value" : "Адкрыць у вэб-браўзеры"
           }
         },
         "ca" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Obre al navegador"
+            "value" : "Obre al navegador web"
           }
         },
         "ckb-IR" : {
@@ -24236,55 +24236,55 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Otevřít v prohlížeči"
+            "value" : "Otevřít ve webovém prohlížeči"
           }
         },
         "cy" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Agor yn y Porwr"
+            "value" : "Agor yn y Porwr Gwe"
           }
         },
         "da" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Åbn i browser"
+            "value" : "Åbn i webbrowser"
           }
         },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Im Browser öffnen"
+            "value" : "Im Webbrowser öffnen"
           }
         },
         "el" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Άνοιγμα στον Περιηγητή"
+            "value" : "Άνοιγμα στον Περιηγητή Ιστού"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Open in Browser"
+            "value" : "Open in web browser"
           }
         },
         "en-US" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Open in Browser"
+            "state" : "translated",
+            "value" : "Open in web browser"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Abrir en el navegador"
+            "value" : "Abrir en el navegador web"
           }
         },
         "es-AR" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Abrir en el navegador"
+            "value" : "Abrir en el navegador web"
           }
         },
         "et" : {
@@ -24296,85 +24296,85 @@
         "eu" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ireki nabigatzailean"
+            "value" : "Ireki web nabigatzailean"
           }
         },
         "fi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Avaa selaimessa"
+            "value" : "Avaa verkkoselaimessa"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ouvrir dans le navigateur"
+            "value" : "Ouvrir dans le navigateur web"
           }
         },
         "ga" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Oscail sa Bhrabhsálaí"
+            "value" : "Oscail sa Bhrabhsálaí Gréasáin"
           }
         },
         "gd" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Fosgail sa bhrabhsair"
+            "value" : "Fosgail sa bhrabhsair-lìn"
           }
         },
         "gl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Abrir no navegador"
+            "value" : "Abrir no navegador web"
           }
         },
         "he" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Open in Browser"
+            "state" : "translated",
+            "value" : "פתיחה בדפדפן האינטרנט"
           }
         },
         "hi" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Open in Browser"
+            "state" : "translated",
+            "value" : "वेब ब्राउज़र में खोलें"
           }
         },
         "hu" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Megnyitás böngészőben"
+            "value" : "Megnyitás webböngészőben"
           }
         },
         "hy" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Open in Browser"
+            "state" : "translated",
+            "value" : "Բացել վեբ զննիչում"
           }
         },
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Buka di Peramban"
+            "value" : "Buka di peramban web"
           }
         },
         "is" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Opna í vafra"
+            "value" : "Opna í netvafra"
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Apri nel browser"
+            "value" : "Apri nel browser web"
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "ブラウザで開く"
+            "value" : "ウェブブラウザで開く"
           }
         },
         "kab" : {
@@ -24386,25 +24386,25 @@
         "kmr-TR" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Di gerokê de veke"
+            "value" : "Di geroka torê de veke"
           }
         },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "브라우저에서 열기"
+            "value" : "웹 브라우저에서 열기"
           }
         },
         "lt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Atverti naršyklėje"
+            "value" : "Atverti saityno naršyklėje"
           }
         },
         "lv" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Atvērt Pārlūkprogrammā"
+            "value" : "Atvērt tīmekļa pārlūkprogrammā"
           }
         },
         "my" : {
@@ -24416,55 +24416,55 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Open in browser"
+            "value" : "Open in webbrowser"
           }
         },
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Otwórz w przeglądarce"
+            "value" : "Otwórz w przeglądarce internetowej"
           }
         },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Abrir no navegador"
+            "value" : "Abrir no navegador web"
           }
         },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Abrir no navegador"
+            "value" : "Abrir no navegador web"
           }
         },
         "ro" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Deschide în browser"
+            "value" : "Deschide în browserul web"
           }
         },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Открыть в браузере"
+            "value" : "Открыть в веб-браузере"
           }
         },
         "si" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Open in Browser"
+            "state" : "translated",
+            "value" : "වෙබ් බ්‍රව්සරයේ විවෘත කරන්න"
           }
         },
         "sl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Odpri v brskalniku"
+            "value" : "Odpri v spletnem brskalniku"
           }
         },
         "sq" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Hape në Shfletues"
+            "value" : "Hape në shfletuesin ueb"
           }
         },
         "sv" : {
@@ -24476,37 +24476,37 @@
         "th" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "เปิดในเบราว์เซอร์"
+            "value" : "เปิดในเว็บเบราว์เซอร์"
           }
         },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Tarayıcıda Aç"
+            "value" : "Web Tarayıcıda Aç"
           }
         },
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Відкрити в браузері"
+            "value" : "Відкрити у веб-браузері"
           }
         },
         "vi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Mở trong trình duyệt"
+            "value" : "Mở trong trình duyệt web"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "在浏览器中打开"
+            "value" : "在网页浏览器中打开"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "於瀏覽器中開啟"
+            "value" : "於網頁瀏覽器中開啟"
           }
         }
       }
@@ -269846,25 +269846,25 @@
         "an" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ubrir en o navegador"
+            "value" : "Ubrir en o navegador web"
           }
         },
         "ar" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "الفَتحُ في المُتَصَفِّح"
+            "value" : "الفتح في متصفح الويب"
           }
         },
         "be" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Адкрыць у браўзеры"
+            "value" : "Адкрыць у вэб-браўзеры"
           }
         },
         "ca" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Obre al navegador"
+            "value" : "Obre al navegador web"
           }
         },
         "ckb-IR" : {
@@ -269876,55 +269876,55 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Otevřít v prohlížeči"
+            "value" : "Otevřít ve webovém prohlížeči"
           }
         },
         "cy" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Agor yn y Porwr"
+            "value" : "Agor yn y Porwr Gwe"
           }
         },
         "da" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Åbn i browser"
+            "value" : "Åbn i webbrowser"
           }
         },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Im Browser öffnen"
+            "value" : "Im Webbrowser öffnen"
           }
         },
         "el" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Άνοιγμα στον Περιηγητή"
+            "value" : "Άνοιγμα στον Περιηγητή Ιστού"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Open in Browser"
+            "value" : "Open in web browser"
           }
         },
         "en-US" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Open in Browser"
+            "state" : "translated",
+            "value" : "Open in web browser"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Abrir en el navegador"
+            "value" : "Abrir en el navegador web"
           }
         },
         "es-AR" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Abrir en el navegador"
+            "value" : "Abrir en el navegador web"
           }
         },
         "et" : {
@@ -269936,85 +269936,85 @@
         "eu" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ireki nabigatzailean"
+            "value" : "Ireki web nabigatzailean"
           }
         },
         "fi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Avaa selaimessa"
+            "value" : "Avaa verkkoselaimessa"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ouvrir dans le navigateur"
+            "value" : "Ouvrir dans le navigateur web"
           }
         },
         "ga" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Oscail sa Bhrabhsálaí"
+            "value" : "Oscail sa Bhrabhsálaí Gréasáin"
           }
         },
         "gd" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Fosgail sa bhrabhsair"
+            "value" : "Fosgail sa bhrabhsair-lìn"
           }
         },
         "gl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Abrir no navegador"
+            "value" : "Abrir no navegador web"
           }
         },
         "he" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Open in Browser"
+            "state" : "translated",
+            "value" : "פתיחה בדפדפן האינטרנט"
           }
         },
         "hi" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Open in Browser"
+            "state" : "translated",
+            "value" : "वेब ब्राउज़र में खोलें"
           }
         },
         "hu" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Megnyitás böngészőben"
+            "value" : "Megnyitás webböngészőben"
           }
         },
         "hy" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Open in Browser"
+            "state" : "translated",
+            "value" : "Բացել վեբ զննիչում"
           }
         },
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Buka di Peramban"
+            "value" : "Buka di peramban web"
           }
         },
         "is" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Opna í vafra"
+            "value" : "Opna í netvafra"
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Apri nel browser"
+            "value" : "Apri nel browser web"
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "ブラウザで開く"
+            "value" : "ウェブブラウザで開く"
           }
         },
         "kab" : {
@@ -270026,25 +270026,25 @@
         "kmr-TR" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Di gerokê de veke"
+            "value" : "Di geroka torê de veke"
           }
         },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "브라우저에서 열기"
+            "value" : "웹 브라우저에서 열기"
           }
         },
         "lt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Atverti naršyklėje"
+            "value" : "Atverti saityno naršyklėje"
           }
         },
         "lv" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Atvērt Pārlūkprogrammā"
+            "value" : "Atvērt tīmekļa pārlūkprogrammā"
           }
         },
         "my" : {
@@ -270056,55 +270056,55 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Open in browser"
+            "value" : "Open in webbrowser"
           }
         },
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Otwórz w przeglądarce"
+            "value" : "Otwórz w przeglądarce internetowej"
           }
         },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Abrir no navegador"
+            "value" : "Abrir no navegador web"
           }
         },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Abrir no navegador"
+            "value" : "Abrir no navegador web"
           }
         },
         "ro" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Deschide în browser"
+            "value" : "Deschide în browserul web"
           }
         },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Открыть в браузере"
+            "value" : "Открыть в веб-браузере"
           }
         },
         "si" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Open in Browser"
+            "state" : "translated",
+            "value" : "වෙබ් බ්‍රව්සරයේ විවෘත කරන්න"
           }
         },
         "sl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Odpri v brskalniku"
+            "value" : "Odpri v spletnem brskalniku"
           }
         },
         "sq" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Hape në Shfletues"
+            "value" : "Hape në shfletuesin ueb"
           }
         },
         "sv" : {
@@ -270116,37 +270116,37 @@
         "th" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "เปิดในเบราว์เซอร์"
+            "value" : "เปิดในเว็บเบราว์เซอร์"
           }
         },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Tarayıcıda Aç"
+            "value" : "Web Tarayıcıda Aç"
           }
         },
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Відкрити в браузері"
+            "value" : "Відкрити у веб-браузері"
           }
         },
         "vi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Mở trong trình duyệt"
+            "value" : "Mở trong trình duyệt web"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "在浏览器中打开"
+            "value" : "在网页浏览器中打开"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "於瀏覽器中開啟"
+            "value" : "於網頁瀏覽器中開啟"
           }
         }
       }
@@ -270156,308 +270156,308 @@
       "localizations" : {
         "an" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Open in oslo.town"
+            "state" : "translated",
+            "value" : "Ubrir en a aplicazión"
           }
         },
         "ar" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Open in oslo.town"
+            "state" : "translated",
+            "value" : "الفتح في هذا التطبيق"
           }
         },
         "be" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Адкрываць у Mastodon"
+            "value" : "Адкрываць у праграме"
           }
         },
         "ca" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Open in oslo.town"
+            "state" : "translated",
+            "value" : "Obre a l'aplicació"
           }
         },
         "ckb-IR" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Open in oslo.town"
+            "state" : "translated",
+            "value" : "لە ئەپەکەدا بیکەوە"
           }
         },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Otevřít v Mastodonu"
+            "value" : "Otevřít v aplikaci"
           }
         },
         "cy" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Agor yn Mastodon"
+            "value" : "Agor yn yr ap"
           }
         },
         "da" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Åbn i Mastodon"
+            "value" : "Åbn i appen"
           }
         },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "In Mastodon öffnen"
+            "value" : "In dieser App öffnen"
           }
         },
         "el" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Άνοιγμα στο Mastodon"
+            "value" : "Άνοιγμα στην εφαρμογή"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Open in oslo.town"
+            "value" : "Open in this app"
           }
         },
         "en-US" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Open in oslo.town"
+            "state" : "translated",
+            "value" : "Open in this app"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Abrir en Mastodon"
+            "value" : "Abrir en la app"
           }
         },
         "es-AR" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Abrir en Mastodon"
+            "value" : "Abrir en la app"
           }
         },
         "et" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ava võrguaadress Mastodonis"
+            "value" : "Ava rakenduses"
           }
         },
         "eu" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ireki Mastodonen"
+            "value" : "Ireki aplikazioan"
           }
         },
         "fi" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Open in oslo.town"
+            "state" : "translated",
+            "value" : "Avaa sovelluksessa"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ouvrir dans Mastodon"
+            "value" : "Ouvrir dans l'app"
           }
         },
         "ga" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Oscailte i Mastodon"
+            "value" : "Oscail san aip"
           }
         },
         "gd" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Fosgail ann am Mastodon"
+            "value" : "Fosgail san aplacaid"
           }
         },
         "gl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Abrir en Mastodon"
+            "value" : "Abrir na aplicación"
           }
         },
         "he" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Open in oslo.town"
+            "state" : "translated",
+            "value" : "פתיחה באפליקציה"
           }
         },
         "hi" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Open in oslo.town"
+            "state" : "translated",
+            "value" : "इस ऐप में खोलें"
           }
         },
         "hu" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Megnyitás a Mastodonban"
+            "value" : "Megnyitás az alkalmazásban"
           }
         },
         "hy" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Open in oslo.town"
+            "state" : "translated",
+            "value" : "Բացել այս հավելվածում"
           }
         },
         "id" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Open in oslo.town"
+            "state" : "translated",
+            "value" : "Buka di aplikasi"
           }
         },
         "is" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Opna í Mastodon"
+            "value" : "Opna í appinu"
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Apri su Mastodon"
+            "value" : "Apri nell'app"
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "アプリ内ブラウザで開く"
+            "value" : "アプリで開く"
           }
         },
         "kab" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ldi deg Mastodon"
+            "value" : "Ldi deg usnas"
           }
         },
         "kmr-TR" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Open in oslo.town"
+            "state" : "translated",
+            "value" : "Di aplikasyonê de veke"
           }
         },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Mastodon으로 열기"
+            "value" : "앱으로 열기"
           }
         },
         "lt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Atverti platformoje „Mastodon“"
+            "value" : "Atverti programėlėje"
           }
         },
         "lv" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Open in oslo.town"
+            "state" : "translated",
+            "value" : "Atvērt lietotnē"
           }
         },
         "my" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Open in oslo.town"
+            "state" : "translated",
+            "value" : "ဒီအက်ပ်တွင် ဖွင့်ရန်"
           }
         },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Open in oslo.town"
+            "value" : "Open in de app"
           }
         },
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Otwórz w Mastodonie"
+            "value" : "Otwórz w aplikacji"
           }
         },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Abrir no Mastodon"
+            "value" : "Abrir na app"
           }
         },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Abrir no Mastodon"
+            "value" : "Abrir no app"
           }
         },
         "ro" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Open in oslo.town"
+            "state" : "translated",
+            "value" : "Deschide în aplicație"
           }
         },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Открывать в Mastodon"
+            "value" : "Открывать в приложении"
           }
         },
         "si" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Open in oslo.town"
+            "state" : "translated",
+            "value" : "මෙම යෙදුම තුළ විවෘත කරන්න"
           }
         },
         "sl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Odpri v Mastodonu"
+            "value" : "Odpri v aplikaciji"
           }
         },
         "sq" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Hape në Mastodon"
+            "value" : "Hape në aplikacion"
           }
         },
         "sv" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Öppna i Mastodon"
+            "value" : "Öppna i appen"
           }
         },
         "th" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "เปิดใน Mastodon"
+            "value" : "เปิดในแอป"
           }
         },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Mastodon'da Aç"
+            "value" : "Uygulamada Aç"
           }
         },
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Відкрити в Mastodon"
+            "value" : "Відкрити в застосунку"
           }
         },
         "vi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Mở liên kết trong Mastodon"
+            "value" : "Mở liên kết trong ứng dụng"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "在 Mastodon 中打开"
+            "value" : "在应用内打开"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "於 Mastodon 中開啟連結"
+            "value" : "於應用程式內開啟連結"
           }
         }
       }
