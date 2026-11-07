@@ -613,7 +613,7 @@ extension MastodonTabViewRouter.MastodonTab {
         case .home:
             Image(phosphor: .house)
         case .explore:
-            Image(phosphor: .magnifyingGlass)
+            Image(systemName: "map")
         case .notifications:
             Image(phosphor: .bell)
         case .profile:
