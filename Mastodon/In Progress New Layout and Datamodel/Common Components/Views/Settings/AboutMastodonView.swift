@@ -22,15 +22,6 @@ struct AboutMastodonView: View {
                         result.completeIfNeeded()
                     }
                 
-                // Donate to oslo.town
-                NavigationRow(label: L10n.Scene.Settings.AboutMastodon.contributeToMastodon, sublabel: nil)
-                    .onTapGesture {
-                        if let url = URL(string: "https://patreon.com/oslotown") {
-                            let result = navigator.openUrl(url, afterDeconflictionDelay: false)
-                            result.completeIfNeeded()
-                        }
-                    }
-                
                 // Privacy Policy
                 NavigationRow(label: L10n.Scene.Settings.AboutMastodon.privacyPolicy, sublabel: nil)
                     .onTapGesture {

@@ -1,6 +1,18 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "CFBundleDisplayName" : {
+      "comment" : "Bundle display name",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "oslo.town"
+          }
+        }
+      }
+    },
     "CFBundleName" : {
       "comment" : "Bundle name",
       "extractionState" : "extracted_with_value",
@@ -185,13 +197,13 @@
             "value" : "Mastodon"
           }
         },
-        "kmr-TR" : {
+        "ko" : {
           "stringUnit" : {
             "state" : "new",
             "value" : "Mastodon"
           }
         },
-        "ko" : {
+        "ku-TR" : {
           "stringUnit" : {
             "state" : "new",
             "value" : "Mastodon"
@@ -495,16 +507,16 @@
             "value" : "Tasuffeɣt tamaynut"
           }
         },
-        "kmr-TR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Şandiya nû"
-          }
-        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "새 글"
+          }
+        },
+        "ku-TR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Şandiya nû"
           }
         },
         "lt" : {
@@ -806,16 +818,16 @@
             "value" : "Yettwaseqdac i tuṭṭfa n tewlafin deg usuffeɣ n waddaden"
           }
         },
-        "kmr-TR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Bo kişandina wêneyê ji bo rewşa şandiyan tê bikaranîn"
-          }
-        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "게시물에 사용할 사진을 찍기 위해 쓰임"
+          }
+        },
+        "ku-TR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bo kişandina wêneyê ji bo rewşa şandiyan tê bikaranîn"
           }
         },
         "lt" : {
@@ -1117,16 +1129,16 @@
             "value" : "Yettwaseqdac i usekles n tewlafin deg temkarḍit n tewlafin"
           }
         },
-        "kmr-TR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ji bo tomarkirina wêneyê di pirtûkxaneya wêneyan de tê bikaranîn"
-          }
-        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "갤러리에 사진을 저장하기 위해 쓰임"
+          }
+        },
+        "ku-TR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ji bo tomarkirina wêneyê di pirtûkxaneya wêneyan de tê bikaranîn"
           }
         },
         "lt" : {
@@ -1427,16 +1439,16 @@
             "value" : "Nadi"
           }
         },
-        "kmr-TR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Bigere"
-          }
-        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "검색"
+          }
+        },
+        "ku-TR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bigere"
           }
         },
         "lt" : {

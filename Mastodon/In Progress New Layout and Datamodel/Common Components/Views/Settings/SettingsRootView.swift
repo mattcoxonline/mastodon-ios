@@ -14,7 +14,6 @@ enum SettingsDestinationType {
     case privacyAndSafety
     case serverDetails
     case aboutMastodon
-    case betaFeatures
     case languageSelection
 }
 
@@ -99,8 +98,6 @@ struct SettingsNavigationView: View {
                                 .navigationTitle(L10n.Scene.Settings.PrivacySafety.title)
                         case .serverDetails:
                             ServerDetailsView()
-                        case .betaFeatures:
-                            BetaFeaturesView()
                         }
                     default:
                         navigator.destinationView(destination, sceneCoordinator: nil)
@@ -118,12 +115,10 @@ struct SettingsRootView: View {
     let domain: String
     
     var settingsGroups: [SettingsGroup] {
-        let all: [SettingsGroup] = [ .basic, .server, .donations, .betaFeatures, .feedback ].filter { group in
+        let all: [SettingsGroup] = [ .basic, .server, .donations ].filter { group in
             switch group {
-            case .basic, .server, .feedback: return true
+            case .basic, .server: return true
             case .donations: return Mastodon.Entity.DonationCampaign.isEligibleForDonationsSettingsSection(domain: domain)
-            case .betaFeatures:
-                return UserDefaults.isDebugOrTestflightOrSimulator
             }
         }
         return all
@@ -183,24 +178,18 @@ enum SettingsGroup: String, Identifiable {
     case basic
     case server
     case donations
-    case betaFeatures
-    case feedback
-    
+
     func rows(domain: String) -> [SettingsRow] {
         switch self {
         case .basic:
             [.general, .notifications, .privacySafety]
         case .server:
-            [.serverDetails(domain: domain), .aboutMastodon]
+            [.serverDetails(domain: domain), .aboutMastodon, .donateToOsloTown]
         case .donations:
             [.makeDonation, .manageDonations]
-        case .betaFeatures:
-            [.manageBetaFeatures]
-        case .feedback:
-            [.openFeedback]
         }
     }
-    
+
     var id: String { rawValue }
 }
 
@@ -212,11 +201,10 @@ enum SettingsRow: Hashable, Identifiable {
     case aboutMastodon
     case makeDonation
     case manageDonations
-    case manageBetaFeatures
-    case openFeedback
-    
+    case donateToOsloTown
+
     var id: Self { self }
-    
+
     var title: String {
         switch self {
         case .general:
@@ -233,23 +221,17 @@ enum SettingsRow: Hashable, Identifiable {
             return L10n.Scene.Settings.Donation.manage
         case .aboutMastodon:
             return L10n.Scene.Settings.Overview.aboutMastodon
-        case .manageBetaFeatures:
-            return "Beta Features"
-        case .openFeedback:
-            return L10nLookup.Scene.Settings.Overview.feedbackTitle
+        case .donateToOsloTown:
+            return L10n.Scene.Settings.AboutMastodon.contributeToMastodon
         }
     }
-    
+
     var secondaryTitle: String? {
         switch self {
         case .serverDetails(domain: let domain):
             return domain
-        case .general, .notifications, .privacySafety, .makeDonation, .manageDonations, .aboutMastodon:
+        case .general, .notifications, .privacySafety, .makeDonation, .manageDonations, .aboutMastodon, .donateToOsloTown:
             return nil
-        case .manageBetaFeatures:
-            return nil
-        case .openFeedback:
-            return L10nLookup.Scene.Settings.Overview.feedbackSubtitle
         }
     }
     
@@ -260,15 +242,15 @@ enum SettingsRow: Hashable, Identifiable {
 
     var navigation: NavigationType? {
         switch self {
-        case .general, .notifications, .privacySafety, .serverDetails(_), .aboutMastodon, .manageBetaFeatures:
+        case .general, .notifications, .privacySafety, .serverDetails(_), .aboutMastodon:
             return .inApp
-        case .manageDonations, .openFeedback:
+        case .manageDonations, .donateToOsloTown:
             return .external
         case .makeDonation:
             return nil
         }
     }
-    
+
     var icon: Image {
         switch self {
         case .general:
@@ -279,19 +261,15 @@ enum SettingsRow: Hashable, Identifiable {
             return Image(systemName: "lock.fill")
         case .serverDetails(_):
             return Image(systemName: "server.rack")
-        case .makeDonation:
+        case .makeDonation, .donateToOsloTown:
             return Image(systemName: "heart.fill")
         case .manageDonations:
             return Image(systemName: "gear")
         case .aboutMastodon:
             return Image(systemName: "info.circle.fill")
-        case .manageBetaFeatures:
-            return Image(systemName: "wrench.adjustable.fill")
-        case .openFeedback:
-            return Image(systemName: "bubble.right.fill")
         }
     }
-    
+
     var iconTint: Color {
         switch self {
         case .general:
@@ -302,24 +280,20 @@ enum SettingsRow: Hashable, Identifiable {
             return .blue
         case .serverDetails(_):
             return .teal
-        case .makeDonation, .manageDonations, .openFeedback:
+        case .makeDonation, .manageDonations, .donateToOsloTown:
             return Asset.Colors.accent.swiftUIColor
         case .aboutMastodon:
             return Asset.Colors.accent.swiftUIColor
-        case .manageBetaFeatures:
-            return .orange
         }
-        
+
     }
-    
+
     var textColor: Color {
         switch self {
-        case .general, .notifications, .privacySafety, .makeDonation, .manageDonations, .aboutMastodon, .serverDetails(_), .openFeedback:
+        case .general, .notifications, .privacySafety, .makeDonation, .manageDonations, .aboutMastodon, .serverDetails(_), .donateToOsloTown:
             return .primary
-        case .manageBetaFeatures:
-            return Asset.Colors.accent.swiftUIColor
         }
-        
+
     }
 }
 
@@ -340,10 +314,8 @@ extension SettingsRow {
             return .makeDonation
         case .manageDonations:
             return .openUrl(URL(string: "https://sponsor.joinmastodon.org/donate/manage"))
-        case .manageBetaFeatures:
-            return .pushDestination(.betaFeatures)
-        case .openFeedback:
-            return .openUrl(URL(string: "https://community.joinmastodon.org/"))
+        case .donateToOsloTown:
+            return .openUrl(URL(string: "https://patreon.com/oslotown"))
         }
     }
 }
