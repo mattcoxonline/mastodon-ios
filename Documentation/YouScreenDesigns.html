@@ -1,0 +1,173 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><title>You screen — design options</title><style>
+  body { font-family: -apple-system, sans-serif; background: #f5f5f7; color: #1d1d1f; margin: 24px; }
+  h1 { font-size: 22px } h2 { font-size: 17px; margin-top: 36px }
+  .row { display: flex; gap: 20px; flex-wrap: wrap; align-items: flex-start; }
+  .card { background: white; border-radius: 14px; padding: 16px; width: 300px; box-shadow: 0 1px 10px rgba(0,0,0,.07); }
+  .card h3 { margin: 0 0 2px 0; font-size: 15px; }
+  .card .sub { font-size: 11px; color: #6e6e73; text-transform: uppercase; letter-spacing: .05em; margin-bottom: 12px; }
+  .phone { border: 2px solid #3a3a3c; border-radius: 26px; padding: 10px; background: #fbfbfd; width: 272px; }
+  .wf { background: white; border-radius: 16px; height: 500px; overflow: hidden; position: relative; font-size: 11px; color: #3a3a3c; }
+  .wbox { background: #e8e8ed; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #8e8e93; }
+  .wline { background: #e8e8ed; border-radius: 4px; height: 8px; }
+  .wline.darker { background: #d2d2d7; }
+  .ximg { position: relative; background: #e8e8ed; }
+  .ximg:before, .ximg:after { content: ""; position: absolute; left: 8%; right: 8%; top: 50%; height: 1.5px; background: #aeaeb2; }
+  .ximg:before { transform: rotate(18deg); } .ximg:after { transform: rotate(-18deg); }
+  .wrow { display: flex; align-items: center; gap: 8px; padding: 9px 12px; border-bottom: 1px solid #f0f0f3; }
+  .wsq { width: 22px; height: 22px; border-radius: 6px; background: #d2d2d7; flex: none; }
+  .wrow .rline { flex: 1; height: 8px; background: #e8e8ed; border-radius: 4px; }
+  .wrow .chev { color: #c7c7cc; font-size: 13px; }
+  .wbtn { margin: 0 12px; padding: 9px 0; text-align: center; border-radius: 10px; background: #d2d2d7; font-weight: 600; }
+  .wbtn.dark { background: #3a3a3c; color: white; }
+  .tile { background: #f2f2f5; border-radius: 12px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; color: #6e6e73; font-size: 10px; }
+  .notes { font-size: 12.5px; line-height: 1.5; color: #3a3a3c; }
+  .notes b { color: #1d1d1f; }
+  .pros, .cons { font-size: 12.5px; line-height: 1.5; }
+  .pros li::marker { color: #34c759 } .cons li::marker { color: #ff453a }
+  .effort { display:inline-block; background:#e8e8ed; border-radius: 8px; padding: 2px 8px; font-size: 11px; margin-top: 8px; }
+  table { border-collapse: collapse; width: 100%; background: white; border-radius: 12px; overflow: hidden; margin-top: 10px; }
+  th { text-align: left; font-size: 12px; text-transform: uppercase; color: #6e6e73; padding: 10px 12px; }
+  td { border-top: 1px solid #e5e5ea; padding: 10px 12px; font-size: 13.5px; }
+  .inv { background: white; border-radius: 12px; padding: 14px 18px; font-size: 13px; box-shadow: 0 1px 8px rgba(0,0,0,.05); line-height: 1.7; }
+  .rec { background: #f0fff4; border-left: 4px solid #34c759; border-radius: 10px; padding: 14px 16px; font-size: 14px; line-height: 1.6; }
+  .sec { letter-spacing: .08em; font-size: 9.5px; color: #8e8e93; text-transform: uppercase; padding: 10px 12px 4px; }
+</style></head><body>
+<h1>The “You” screen — three design directions</h1>
+<p class="notes">Wireframes, not mocks: grey = content slots, X-boxes = images, everything is about <b>hierarchy and grouping</b>. The current screen is shown for reference. All directions must continue to provide everything in the inventory below — they only differ in where it lives.</p>
+<div class="inv" style="margin-top:14px">
+<b>Function inventory (must survive any redesign):</b> View profile · Edit profile · Settings · Favourites · Saved posts · (Collections, feature-flagged) · Followers · Following · Blocked accounts · Account switching (other logged-in accounts) · Pending registrations · Add account · Log out</div>
+
+<div class="row" style="margin-top:26px">
+
+<div class="card"><h3>Today — the current screen</h3><div class="sub">for reference</div>
+<div class="phone"><div class="wf">
+  <div class="wbox" style="margin:10px 10px 8px 10px; height:64px; border:2px dashed #c7c7cc; background:white;">profile card (new)</div>
+  <div class="wrow"><div class="wsq"></div><div class="rline"></div><div class="chev">›</div></div>
+  <div class="wrow"><div class="wsq"></div><div class="rline"></div><div class="chev">›</div></div>
+  <div class="sec">divider</div>
+  <div class="wrow"><div class="wsq"></div><div class="rline"></div><div class="chev">›</div></div>
+  <div class="wrow"><div class="wsq"></div><div class="rline"></div><div class="chev">›</div></div>
+  <div class="sec">divider</div>
+  <div class="wrow"><div class="wsq"></div><div class="rline"></div><div class="chev">›</div></div>
+  <div class="wrow"><div class="wsq"></div><div class="rline"></div><div class="chev">›</div></div>
+  <div class="wrow"><div class="wsq"></div><div class="rline"></div><div class="chev">›</div></div>
+  <div class="sec">divider</div>
+  <div class="wrow"><div class="wsq"></div><div class="rline"></div></div>
+  <div class="wrow"><div class="wsq"></div><div class="rline"></div></div>
+  <div class="sec">divider</div>
+  <div class="wrow"><div class="wsq"></div><div class="rline" style="background:#ffb3ab"></div></div>
+</div></div>
+<p class="notes"><b>The problem:</b> thirteen near-identical rows in one column — a settings page wearing an identity tab. Your identity (why the tab is called “You”) is one card in a sea of chrome.</p>
+</div>
+
+<div class="card"><h3>Option A — “Your space”</h3><div class="sub">identity first, actions grouped</div>
+<div class="phone"><div class="wf">
+  <div class="ximg" style="height:74px; margin:0 0 -8px 0; border-radius:0;"></div>
+  <div style="display:flex; padding: 0 12px; gap:10px; align-items:flex-end;">
+    <div class="ximg" style="width:64px; height:64px; border-radius:32px; border:3px solid white;"></div>
+    <div style="flex:1; padding-bottom:6px;">
+      <div class="wline darker" style="width:60%; margin-bottom:5px;"></div>
+      <div class="wline" style="width:40%;"></div>
+    </div>
+  </div>
+  <div class="wline" style="margin:10px 12px; width:86%;"></div>
+  <div class="wline" style="margin:4px 12px 10px 12px; width:60%;"></div>
+  <div style="display:flex; gap:8px; padding: 0 12px;">
+    <div style="flex:1; text-align:center; padding:6px; background:#f2f2f5; border-radius:8px;"><b>412</b><br>posts</div>
+    <div style="flex:1; text-align:center; padding:6px; background:#f2f2f5; border-radius:8px;"><b>128</b><br>followers</div>
+    <div style="flex:1; text-align:center; padding:6px; background:#f2f2f5; border-radius:8px;"><b>214</b><br>following</div>
+  </div>
+  <div class="wbtn dark" style="margin-top:10px;">View profile</div>
+  <div class="sec">quick access</div>
+  <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px; padding:4px 12px;">
+    <div class="tile" style="height:64px;">♥ favourites</div>
+    <div class="tile" style="height:64px;">🔖 saved</div>
+    <div class="tile" style="height:64px;">👥 followers</div>
+    <div class="tile" style="height:64px;">➕ following</div>
+  </div>
+  <div class="sec">account</div>
+  <div class="wrow"><div class="wsq" style="border-radius:11px"></div><div class="rline"></div><div class="chev">switch ›</div></div>
+  <div class="wrow"><div class="wsq"></div><div class="rline" style="background:#ffb3ab; width:30%"></div></div>
+</div></div>
+<p class="notes"><b>Key moves:</b> the profile card grows up into a mini profile <b>header</b> (banner + big avatar + handle + bio + stat chips) — the tab becomes a place, not a menu; Edit/Settings become toolbar or overflow ("<b>···</b>") since they're visited rarely; destructive stuff (log out) sinks to the bottom quietly.</p>
+<ul class="pros"><li>Strongest match with the “You” rename — identity-first</li><li>Stats give the screen content, not just plumbing</li><li>Reuses the profile viewer's data model (banner/fields already exist)</li></ul>
+<ul class="cons"><li>Needs banner layout + stat formatting (most new SwiftUI)</li><li>Overflow (“···”) hides Edit/Settings one tap deeper</li></ul>
+<span class="effort">implementation: medium — one view restructure, no logic changes</span>
+</div>
+
+<div class="card"><h3>Option B — “Control panel”</h3><div class="sub">everything surfaced as a grid</div>
+<div class="phone"><div class="wf">
+  <div style="display:flex; align-items:center; gap:8px; padding:12px;">
+    <div class="ximg" style="width:34px; height:34px; border-radius:17px;"></div>
+    <div style="flex:1;"><div class="wline darker" style="width:70%; margin-bottom:4px;"></div><div class="wline" style="width:45%"></div></div>
+    <div class="wsq" style="border-radius:50%"></div>
+  </div>
+  <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px; padding:6px 12px;">
+    <div class="tile" style="height:88px;">✎<br><b>edit profile</b><br><span style="font-size:9px">photo · bio · fields</span></div>
+    <div class="tile" style="height:88px;">♥<br><b>favourites</b><br><span style="font-size:9px">123 posts</span></div>
+    <div class="tile" style="height:88px;">🔖<br><b>saved</b><br><span style="font-size:9px">45 posts</span></div>
+    <div class="tile" style="height:88px;">⚙️<br><b>settings</b><br><span style="font-size:9px">general · privacy</span></div>
+    <div class="tile" style="height:88px;">👥<br><b>followers</b><br><span style="font-size:9px">128</span></div>
+    <div class="tile" style="height:88px;">➕<br><b>following</b><br><span style="font-size:9px">214</span></div>
+  </div>
+  <div style="display:flex; gap:6px; padding:8px 12px;">
+    <div class="wbox" style="flex:1; height:22px; font-size:9px;">switch: @kari ›</div>
+    <div class="wbox" style="flex:1; height:22px; font-size:9px;">+ add account</div>
+  </div>
+  <div class="sec">danger zone (or inside settings)</div>
+  <div class="wrow" style="border:none"><div class="rline" style="background:#ffb3ab; width:25%"></div></div>
+</div></div>
+<p class="notes"><b>Key moves:</b> no scroll at all — a compact identity bar (tap = your profile, gear = settings), a 2×3 tile grid where every destination is one big tap target carrying a <b>live count</b>, account switching as chips/segment, log out demoted to a danger zone or into Settings.</p>
+<ul class="pros"><li>Glanceable; counts make the screen feel alive</li><li>Same tap-depth for everything (flat, no hierarchy)</li><li>Loves Dynamic Type and thumb reach (tap targets are huge)</li></ul>
+<ul class="cons"><li>Counts need data fetches the current screen doesn't do</li><li>Two-level items (settings → …) get artificial homes</li><li>Grid of six can feel “app-launcher”, not “network identity”</li></ul>
+<span class="effort">implementation: medium-high — grid + count plumbing (2 stats calls exist already)</span>
+</div>
+
+<div class="card"><h3>Option C — “Quiet menu”</h3><div class="sub">evolution, not revolution</div>
+<div class="phone"><div class="wf">
+  <div style="display:flex; align-items:center; gap:8px; padding:12px; border-bottom:1px solid #f0f0f3;">
+    <div class="ximg" style="flex:none; width:46px; height:46px; border-radius:23px;"></div>
+    <div style="flex:1;"><div class="wline darker" style="width:65%; margin-bottom:4px;"></div><div class="wline" style="width:40%"></div></div>
+    <div class="wsq" style="border-radius:50%"></div>
+  </div>
+  <div style="display:flex; gap:6px; padding:10px 12px 4px 12px; overflow:hidden;">
+    <div class="wbox" style="height:22px; padding:0 10px; font-size:9px; border-radius:11px;">♥ favourites</div>
+    <div class="wbox" style="height:22px; padding:0 10px; font-size:9px; border-radius:11px;">🔖 saved</div>
+    <div class="wbox" style="height:22px; padding:0 10px; font-size:9px; border-radius:11px;">👥 followers</div>
+    <div class="wbox" style="height:22px; padding:0 10px; font-size:9px; border-radius:11px;">➕ following</div>
+  </div>
+  <div class="sec">accounts</div>
+  <div style="display:flex; gap:6px; padding:0 12px 6px 12px; overflow:hidden;">
+    <div class="ximg" style="width:30px; height:30px; border-radius:15px;"></div>
+    <div class="ximg" style="width:30px; height:30px; border-radius:15px;"></div>
+    <div class="wbox" style="width:30px; height:30px; border-radius:15px; font-size:12px;">+</div>
+  </div>
+  <div class="wrow" style="margin-top:6px"><div class="wsq"></div><div class="rline" style="width:35%"></div><div class="wline" style="width:20%; margin-left:auto"></div></div>
+  <div class="sec">overflow sheet (“···”)</div>
+  <div class="wrow"><div class="wsq"></div><div class="rline"></div></div>
+  <div class="wrow"><div class="wsq"></div><div class="rline"></div></div>
+  <div class="wrow"><div class="wsq"></div><div class="rline" style="background:#ffb3ab"></div></div>
+</div></div>
+<p class="notes"><b>Key moves:</b> keep the list skeleton but change its rhythm — a compact top bar (avatar+name inline; the gear or “···” opens a bottom <b>sheet</b> with Settings · Edit profile · Log out), the four content timelines become a horizontal <b>chip row</b> (scrollable, one tap), accounts become avatar chips instead of rows, Sparse regrouped remainder underneath.</p>
+<ul class="pros"><li>Smallest diff from today — reuses rows and navigation as-is</li><li>Sheet puts rare actions away without hiding content</li><li>Works with every Dynamic-Type size; best VoiceOver story (linear)</li></ul>
+<ul class="cons"><li>Least “wow”; still list-flavoured</li><li>Bottom sheet for settings is unconventional for tab roots</li></ul>
+<span class="effort">implementation: low — restyle + one new sheet, zero logic changes</span>
+</div>
+</div>
+
+<h2>Comparison</h2>
+<table>
+<tr><th></th><th>A — Your space</th><th>B — Control panel</th><th>C — Quiet menu</th></tr>
+<tr><td>Identity strength</td><td>★★★ profile becomes the page</td><td>★☆ identity is a header bar</td><td>★★ compact but present</td></tr>
+<tr><td>At-a-glance value</td><td>★★★ stats + hero</td><td>★★★ counts everywhere</td><td>★★ chips</td></tr>
+<tr><td>Scroll length</td><td>medium</td><td>none</td><td>short</td></tr>
+<tr><td>Changes to reach Settings/Edit</td><td>+1 tap (overflow)</td><td>0 (gear) / +1 (edit as tile)</td><td>+1 tap (sheet)</td></tr>
+<tr><td>Build effort</td><td>medium</td><td>medium-high</td><td>low</td></tr>
+<tr><td>Risk</td><td>banner metrics layout edge cases</td><td>counts fetch + empty states</td><td>almost none</td></tr>
+</table>
+
+<h2>Recommendation</h2>
+<div class="rec"><b>Option A</b>, with one dip into B: the identity-first structure, but keep the four quick-access items as a 2×2 tile row at the top of the content (rather than stacking a second grid) and surface Settings as a top-bar gear instead of burying it in “···” — that removes both cons of A as sketched. It matches the rename (“You” = a place for you), gives the screen live content (stats from the account object, which the profile view already loads), and its layout risk is the same one the existing profile screen already solved. B is the one to revisit if the screen ever grows more destinations (e.g. Collections) — its grid absorbs growth best; C is the fallback if you want ship-today.</div>
+
+<p class="notes" style="margin-top:14px">All three keep the login-affecting flows exactly where they are today (account switching, pending registrations, add account, log out) — the inventory at the top is the acceptance test for whichever direction wins. Implementation in any case is confined to <code>ProfileMainMenuView.swift</code> (SwiftUI, ~250 lines) — no router, auth, or settings changes needed.</p>
+</body></html>
