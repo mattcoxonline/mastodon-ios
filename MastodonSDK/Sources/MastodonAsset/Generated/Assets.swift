@@ -30,10 +30,10 @@ public enum Asset {
   public enum Asset {
     public static let donationThankYou = ImageAsset(name: "Asset/donationThankYou")
     public static let email = ImageAsset(name: "Asset/email")
+    public static let emptyStateMastodon = ImageAsset(name: "Asset/emptyStateMastodon")
     public static let friends = ImageAsset(name: "Asset/friends")
     public static let mastodonTextLogo = ImageAsset(name: "Asset/mastodon.text.logo")
     public static let scribble = ImageAsset(name: "Asset/scribble")
-    public static let emptyStateMastodon = ImageAsset(name: "Asset/emptyStateMastodon")
   }
   public enum Circles {
     public static let forbidden20 = ImageAsset(name: "Circles/forbidden.20")
@@ -51,19 +51,6 @@ public enum Asset {
       public static let darkBlurple = ColorAsset(name: "Colors/Brand/Dark Blurple")
       public static let eggplant = ColorAsset(name: "Colors/Brand/Eggplant")
       public static let lightBlurple = ColorAsset(name: "Colors/Brand/Light Blurple")
-    }
-    public enum FigmaToken {
-        public static let bgInverted = ColorAsset(name: "Colors/FigmaToken/bgInverted")
-        public static let bgBrandSoft = ColorAsset(name: "Colors/FigmaToken/bgBrandSoft")
-        public static let bgBrandSoftest = ColorAsset(name: "Colors/FigmaToken/bgBrandSoftest")
-        public static let bgDangerBase = ColorAsset(name: "Colors/FigmaToken/bgDangerBase")
-        public static let bgWarningSoft = ColorAsset(name: "Colors/FigmaToken/bgWarningSoft")
-        public static let bgWarningSoftest = ColorAsset(name: "Colors/FigmaToken/bgWarningSoftest")
-        public static let bgSecondary = ColorAsset(name: "Colors/FigmaToken/bgSecondary")
-        public static let bgSoftest = ColorAsset(name: "Colors/FigmaToken/bgSoftest")
-        public static let bgSuccessSoftest = ColorAsset(name: "Colors/FigmaToken/bgSuccessSoftest")
-        public static let textSecondary = ColorAsset(name: "Colors/FigmaToken/textSecondary")
-        public static let textInverted = ColorAsset(name: "Colors/FigmaToken/textInverted")
     }
     public enum Button {
       public static let disabled = ColorAsset(name: "Colors/Button/disabled")
@@ -87,6 +74,19 @@ public enum Asset {
     public static let outlineVariant = ColorAsset(name: "Colors/outline.variant")
     public static let surface = ColorAsset(name: "Colors/surface")
     public static let surfaceContainer = ColorAsset(name: "Colors/surface.container")
+    public enum FigmaToken {
+      public static let bgBrandSoft = ColorAsset(name: "Colors/FigmaToken/bgBrandSoft")
+      public static let bgBrandSoftest = ColorAsset(name: "Colors/FigmaToken/bgBrandSoftest")
+      public static let bgDangerBase = ColorAsset(name: "Colors/FigmaToken/bgDangerBase")
+      public static let bgInverted = ColorAsset(name: "Colors/FigmaToken/bgInverted")
+      public static let bgSecondary = ColorAsset(name: "Colors/FigmaToken/bgSecondary")
+      public static let bgSoftest = ColorAsset(name: "Colors/FigmaToken/bgSoftest")
+      public static let bgSuccessSoftest = ColorAsset(name: "Colors/FigmaToken/bgSuccessSoftest")
+      public static let bgWarningSoft = ColorAsset(name: "Colors/FigmaToken/bgWarningSoft")
+      public static let bgWarningSoftest = ColorAsset(name: "Colors/FigmaToken/bgWarningSoftest")
+      public static let textInverted = ColorAsset(name: "Colors/FigmaToken/textInverted")
+      public static let textSecondary = ColorAsset(name: "Colors/FigmaToken/textSecondary")
+    }
     public enum Icon {
       public static let plus = ColorAsset(name: "Colors/Icon/plus")
     }
@@ -156,6 +156,38 @@ public enum Asset {
     public static let starFill = ImageAsset(name: "ObjectsAndTools/star.fill")
     public static let star = ImageAsset(name: "ObjectsAndTools/star")
   }
+  public enum Phosphor {
+    public static let arrowRight = SymbolAsset(name: "Phosphor/arrow-right")
+    public static let arrowsClockwiseFill = SymbolAsset(name: "Phosphor/arrows-clockwise.fill")
+    public static let arrowsClockwise = SymbolAsset(name: "Phosphor/arrows-clockwise")
+    public static let bellFill = SymbolAsset(name: "Phosphor/bell.fill")
+    public static let bell = SymbolAsset(name: "Phosphor/bell")
+    public static let bookmarkSimpleFill = SymbolAsset(name: "Phosphor/bookmark-simple.fill")
+    public static let bookmarkSimple = SymbolAsset(name: "Phosphor/bookmark-simple")
+    public static let chatCircleDots = SymbolAsset(name: "Phosphor/chat-circle-dots")
+    public static let chatCircle = SymbolAsset(name: "Phosphor/chat-circle")
+    public static let circlesFour = SymbolAsset(name: "Phosphor/circles-four")
+    public static let dotsThree = SymbolAsset(name: "Phosphor/dots-three")
+    public static let gear = SymbolAsset(name: "Phosphor/gear")
+    public static let heartFill = SymbolAsset(name: "Phosphor/heart.fill")
+    public static let heart = SymbolAsset(name: "Phosphor/heart")
+    public static let houseFill = SymbolAsset(name: "Phosphor/house.fill")
+    public static let house = SymbolAsset(name: "Phosphor/house")
+    public static let list = SymbolAsset(name: "Phosphor/list")
+    public static let magnifyingGlassFill = SymbolAsset(name: "Phosphor/magnifying-glass.fill")
+    public static let magnifyingGlass = SymbolAsset(name: "Phosphor/magnifying-glass")
+    public static let penNibLight = SymbolAsset(name: "Phosphor/pen-nib-light")
+    public static let penNib = SymbolAsset(name: "Phosphor/pen-nib")
+    public static let plus = SymbolAsset(name: "Phosphor/plus")
+    public static let prohibit = SymbolAsset(name: "Phosphor/prohibit")
+    public static let rssSimple = SymbolAsset(name: "Phosphor/rss-simple")
+    public static let signOut = SymbolAsset(name: "Phosphor/sign-out")
+    public static let slidersHorizontal = SymbolAsset(name: "Phosphor/sliders-horizontal")
+    public static let userPlus = SymbolAsset(name: "Phosphor/user-plus")
+    public static let user = SymbolAsset(name: "Phosphor/user")
+    public static let usersFour = SymbolAsset(name: "Phosphor/users-four")
+    public static let usersThree = SymbolAsset(name: "Phosphor/users-three")
+  }
   public enum Scene {
     public enum Compose {
       public enum Attachment {
@@ -198,10 +230,10 @@ public enum Asset {
     }
     public enum Profile {
       public enum About {
+        public static let botBadge = ImageAsset(name: "Scene/Profile/About/bot_badge")
+        public static let roleBadge = ImageAsset(name: "Scene/Profile/About/role_badge")
         public static let verifiedCheckmark = ImageAsset(name: "Scene/Profile/About/verified_checkmark")
         public static let verifiedLinkBadge = ImageAsset(name: "Scene/Profile/About/verified_link_badge")
-        public static let roleBadge = ImageAsset(name: "Scene/Profile/About/role_badge")
-        public static let botBadge = ImageAsset(name: "Scene/Profile/About/bot_badge")
       }
       public enum Banner {
         public static let bioEditBackgroundGray = ColorAsset(name: "Scene/Profile/Banner/bio.edit.background.gray")
@@ -212,8 +244,6 @@ public enum Asset {
         public static let background = ColorAsset(name: "Scene/Profile/RelationshipButton/background")
         public static let backgroundHighlighted = ColorAsset(name: "Scene/Profile/RelationshipButton/background.highlighted")
       }
-      public static let profileBadgeAdmin = ImageAsset(name: "Scene/Profile/profileBadge-admin")
-      public static let profileBadgeModerator = ImageAsset(name: "Scene/Profile/profileBadge-moderator")
     }
     public enum Report {
       public static let background = ColorAsset(name: "Scene/Report/background")

@@ -1092,6 +1092,7 @@
 /* Begin PBXShellScriptBuildPhase section */
 		DB3D100425BAA71500EAA174 /* Run SwiftGen */ = {
 			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
 			buildActionMask = 12;
 			files = (
 			);
@@ -1106,7 +1107,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if [[ -f \"swiftgen\" ]]; then\n  \"swiftgen\" \nelse\n  echo \"warning: SwiftGen is not installed. Run 'brew install swiftgen' to install it.\"\nfi\n";
+			shellScript = "if command -v swiftgen >/dev/null 2>&1; then\n  swiftgen\nelif [[ -f \"/opt/homebrew/bin/swiftgen\" ]]; then\n  \"/opt/homebrew/bin/swiftgen\"\nelse\n  echo \"warning: SwiftGen is not installed. Run 'brew install swiftgen' to install it.\"\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
