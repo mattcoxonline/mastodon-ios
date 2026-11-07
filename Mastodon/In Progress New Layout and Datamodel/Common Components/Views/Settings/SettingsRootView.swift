@@ -214,7 +214,7 @@ enum SettingsRow: Hashable, Identifiable {
         case .privacySafety:
             return L10n.Scene.Settings.Overview.privacySafety
         case .serverDetails(_):
-            return L10n.Scene.Settings.Overview.serverDetails
+            return L10n.Scene.Settings.Overview.aboutOsloTown
         case .makeDonation:
             return L10n.Scene.Settings.Overview.supportMastodon
         case .manageDonations:
@@ -228,9 +228,7 @@ enum SettingsRow: Hashable, Identifiable {
 
     var secondaryTitle: String? {
         switch self {
-        case .serverDetails(domain: let domain):
-            return domain
-        case .general, .notifications, .privacySafety, .makeDonation, .manageDonations, .aboutMastodon, .donateToOsloTown:
+        case .general, .notifications, .privacySafety, .makeDonation, .manageDonations, .aboutMastodon, .donateToOsloTown, .serverDetails(_):
             return nil
         }
     }
@@ -259,14 +257,12 @@ enum SettingsRow: Hashable, Identifiable {
             return Image(systemName: "bell.badge")
         case .privacySafety:
             return Image(systemName: "lock.fill")
-        case .serverDetails(_):
-            return Image(systemName: "server.rack")
+        case .serverDetails(_), .aboutMastodon:
+            return Image(systemName: "info.circle.fill")
         case .makeDonation, .donateToOsloTown:
             return Image(systemName: "heart.fill")
         case .manageDonations:
             return Image(systemName: "gear")
-        case .aboutMastodon:
-            return Image(systemName: "info.circle.fill")
         }
     }
 
@@ -279,10 +275,8 @@ enum SettingsRow: Hashable, Identifiable {
         case .privacySafety:
             return .blue
         case .serverDetails(_):
-            return .teal
-        case .makeDonation, .manageDonations, .donateToOsloTown:
             return Asset.Colors.accent.swiftUIColor
-        case .aboutMastodon:
+        case .makeDonation, .manageDonations, .donateToOsloTown, .aboutMastodon:
             return Asset.Colors.accent.swiftUIColor
         }
 

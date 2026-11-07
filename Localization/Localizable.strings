@@ -623,6 +623,8 @@ If you disagree with the policy for **%@**, you can go back and pick a different
 "Scene.Settings.Notifications.Policy.Title" = "Get Notifications from";
 "Scene.Settings.Notifications.Title" = "Notifications";
 "Scene.Settings.Overview.AboutMastodon" = "About Mastodon";
+"Scene.Settings.Overview.AboutOsloTown" = "About oslo.town";
+
 "Scene.Settings.Overview.General" = "General";
 "Scene.Settings.Overview.Logout" = "Logout %@";
 "Scene.Settings.Overview.Notifications" = "Notifications";

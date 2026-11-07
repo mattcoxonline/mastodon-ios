@@ -1959,6 +1959,8 @@ public enum L10n {
       public enum Overview {
         /// About Mastodon
         public static let aboutMastodon = L10n.tr("Localizable", "Scene.Settings.Overview.AboutMastodon", fallback: "About Mastodon")
+        /// About oslo.town
+        public static let aboutOsloTown = L10n.tr("Localizable", "Scene.Settings.Overview.AboutOsloTown", fallback: "About oslo.town")
         /// General
         public static let general = L10n.tr("Localizable", "Scene.Settings.Overview.General", fallback: "General")
         /// Logout %@
