@@ -2,6 +2,7 @@
 import SwiftUI
 import MastodonAsset
 import MastodonCore
+import MastodonExtension
 import MastodonLocalization
 import MastodonUI
 
@@ -15,12 +16,10 @@ struct ProfileMainMenuView: View {
             let fullWidth = min(maxFeedContentWidth, geo.size.width)
             ScrollView {
                 LazyVStack(alignment: .leading) {
-                    profileButtons
+                    profileCard
+                    quickAccessGrid
                     Divider()
-                    contentButtons
-                    Divider()
-                    relationshipButtons
-                    Divider()
+                    accountSection
                     alternateAccountButtons
                     pendingRegistrationButtons
                     addAccountButton
@@ -34,6 +33,16 @@ struct ProfileMainMenuView: View {
             .padding(.leading, geo.safeAreaInsets.leading)
             .padding(.trailing, geo.safeAreaInsets.trailing)
             .ignoresSafeArea(.container, edges: .horizontal)
+            .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button {
+                        navigator.presentSheet(.settings, afterDeconflictionDelay: false)
+                    } label: {
+                        Image(phosphor: .gear)
+                    }
+                    .accessibilityLabel(L10n.Common.Controls.Actions.settings)
+                }
+            }
             .task(id: authenticationObserver.currentActiveUser?.globallyUniqueUserIdentifier) {
                 guard let authBox = authenticationObserver.currentActiveUser else { return }
                 await checkForCollections(authBox)
@@ -41,68 +50,167 @@ struct ProfileMainMenuView: View {
         }
     }
     
-    // MARK: Profile buttons
-    @ViewBuilder private var profileButtons: some View {
-        if let currentActiveUser = authenticationObserver.currentActiveUser, let myProfileViewModel {
-            profileCard
-            // Edit Profile
-            navigationRow(L10nLookup.Scene.EditProfile.title, icon: .image(Image(phosphor: .user)), navigatingTo: .editProfile(profileViewModel: myProfileViewModel))
-        }
-        // Settings
-        menuRow(L10n.Common.Controls.Actions.settings, icon: .image(Image(phosphor: .gear))) {
-            navigator.presentSheet(.settings, afterDeconflictionDelay: false)
-        }
-    }
-
+    // MARK: Profile header (Option A: identity-first)
     @ViewBuilder private var profileCard: some View {
         if let currentActiveUser = authenticationObserver.currentActiveUser, let myProfileViewModel {
             let account = currentActiveUser.cachedAccount
-            Button {
-                navigator.push(.myProfile(myProfileViewModel))
-            } label: {
-                HStack(spacing: standardPadding) {
-                    AvatarView(style: .circular, size: .large, avatarSource: .url(account?.avatarURL))
+            VStack(alignment: .leading, spacing: standardPadding) {
+                if let headerString = account?.header, !headerString.isEmpty,
+                   let headerURL = URL(string: headerString), !headerString.hasSuffix("/") {
+                    AsyncImage(url: headerURL) { image in
+                        image.resizable().scaledToFill()
+                    } placeholder: {
+                        Rectangle().fill(.quaternary)
+                    }
+                    .frame(height: 110)
+                    .frame(maxWidth: .infinity)
+                    .clipShape(RoundedRectangle(cornerRadius: doublePadding))
+                }
+                
+                HStack(alignment: .top, spacing: standardPadding) {
+                    AvatarView(style: .circular, size: .extraLarge, avatarSource: .url(account?.avatarURL))
                     VStack(alignment: .leading, spacing: tinySpacing) {
                         Text(account?.displayNameWithFallback ?? currentActiveUser.authentication.username)
-                            .font(.headline)
-                            .foregroundStyle(.primary)
-                            .lineLimit(1)
+                            .font(.title3)
+                            .fontWeight(.bold)
+                            .lineLimit(2)
                         Text("@\(account?.acctWithDomain ?? currentActiveUser.authentication.username)")
                             .font(.subheadline)
                             .foregroundStyle(.secondary)
                             .lineLimit(1)
                     }
-                    Spacer()
-                    VStack(alignment: .trailing, spacing: tinySpacing) {
-                        Text(L10nLookup.Scene.Profile.MainMenu.viewProfile)
-                            .font(.subheadline.weight(.semibold))
-                            .foregroundStyle(Asset.Colors.accent.swiftUIColor)
-                        Image(systemName: "chevron.forward")
-                            .font(.footnote)
-                            .foregroundStyle(Asset.Colors.accent.swiftUIColor)
+                    Spacer(minLength: 0)
+                }
+                
+                if let note = account?.note,
+                   let plain = plainTextFromHTML(note),
+                   !plain.isEmpty {
+                    Text(plain)
+                        .font(.subheadline)
+                        .foregroundStyle(.secondary)
+                        .lineLimit(3)
+                }
+                
+                HStack(spacing: tinySpacing) {
+                    statChip(count: account?.statusesCount ?? 0, label: L10n.Scene.Profile.Dashboard.myPosts) {
+                        navigator.push(.myProfile(myProfileViewModel))
+                    }
+                    if let account {
+                        statChip(count: account.followersCount, label: L10n.Scene.Profile.Dashboard.myFollowers) {
+                            navigator.push(.timeline(.followers(ofUserId: account.id)))
+                        }
+                        statChip(count: account.followingCount, label: L10n.Scene.Profile.Dashboard.myFollowing) {
+                            navigator.push(.timeline(.accountsFollowed(byUserId: account.id)))
+                        }
                     }
                 }
-                .padding(standardPadding)
-                .background(
-                    .regularMaterial,
-                    in: RoundedRectangle(cornerRadius: doublePadding)
-                )
-                .contentShape(RoundedRectangle(cornerRadius: doublePadding))
+                
+                Button {
+                    navigator.push(.myProfile(myProfileViewModel))
+                } label: {
+                    Text(L10nLookup.Scene.Profile.MainMenu.viewProfile)
+                        .frame(maxWidth: .infinity)
+                        .padding(.vertical, tinySpacing)
+                }
+                .buttonStyle(.borderedProminent)
             }
-            .buttonStyle(.plain)
+            .padding(standardPadding)
+            .background(
+                .regularMaterial,
+                in: RoundedRectangle(cornerRadius: doublePadding)
+            )
         }
     }
     
-    // MARK: Content buttons
-    @ViewBuilder private var contentButtons: some View {
-        if let currentUser = authenticationObserver.currentActiveUser, shouldShowCollectionsRow(userGUID: currentUser.globallyUniqueUserIdentifier) {
-            // Collections
-            timelineRow(.collections(curatedByUserID: currentUser.userID), image: Image(phosphor: .circlesFour))
+    private func statChip(count: Int, label: String, action: @escaping () -> Void) -> some View {
+        Button(action: action) {
+            VStack(spacing: 1) {
+                Text(count.asAbbreviatedCountString())
+                    .font(.headline)
+                    .foregroundStyle(.primary)
+                Text(capitalized(label))
+                    .font(.caption2)
+                    .foregroundStyle(.secondary)
+            }
+            .frame(maxWidth: .infinity)
+            .padding(.vertical, tinySpacing)
         }
-        // Favourited Posts
-        timelineRow(.myFavorites, image: Image(phosphor: .heart))
-        // Saved Posts
-        timelineRow(.myBookmarks, image: Image(phosphor: .bookmarkSimple))
+        .buttonStyle(.plain)
+    }
+    
+    private func capitalized(_ string: String) -> String {
+        guard let first = string.first else { return string }
+        return String(first).uppercased() + string.dropFirst()
+    }
+    
+    private func plainTextFromHTML(_ html: String) -> String? {
+        guard let data = html.data(using: .utf8),
+              let attributed = try? NSAttributedString(
+                data: data,
+                options: [
+                    .documentType: NSAttributedString.DocumentType.html,
+                    .characterEncoding: String.Encoding.utf8.rawValue
+                ],
+                documentAttributes: nil
+              ) else { return nil }
+        return attributed.string.trimmingCharacters(in: .whitespacesAndNewlines)
+    }
+    
+    // MARK: Quick access tiles
+    @ViewBuilder private var quickAccessGrid: some View {
+        if let currentUser = authenticationObserver.currentActiveUser, let account = currentUser.cachedAccount {
+            let columns = [
+                GridItem(.flexible(), spacing: tinySpacing, alignment: .topLeading),
+                GridItem(.flexible(), spacing: tinySpacing, alignment: .topLeading)
+            ]
+            LazyVGrid(columns: columns, spacing: tinySpacing) {
+                quickTile(.myFavorites, image: Image(phosphor: .heart))
+                quickTile(.myBookmarks, image: Image(phosphor: .bookmarkSimple))
+                quickTile(.followers(ofUserId: account.id), image: Image(phosphor: .usersThree), subtitle: account.followersCount.asAbbreviatedCountString())
+                quickTile(.accountsFollowed(byUserId: account.id), image: Image(phosphor: .usersFour), subtitle: account.followingCount.asAbbreviatedCountString())
+                if shouldShowCollectionsRow(userGUID: currentUser.globallyUniqueUserIdentifier) {
+                    quickTile(.collections(curatedByUserID: currentUser.userID), image: Image(phosphor: .circlesFour))
+                }
+            }
+        }
+    }
+    
+    private func quickTile(_ timelineType: MastodonTimelineType, image: Image, subtitle: String? = nil) -> some View {
+        Button {
+            navigator.push(.timeline(timelineType))
+        } label: {
+            VStack(alignment: .leading, spacing: tinySpacing) {
+                image
+                    .font(.system(size: iconFontSize))
+                    .foregroundStyle(Asset.Colors.accent.swiftUIColor)
+                Text(timelineType.navigationTitle ?? "")
+                    .font(.subheadline)
+                    .fontWeight(.semibold)
+                    .foregroundStyle(.primary)
+                if let subtitle {
+                    Text(subtitle)
+                        .font(.caption)
+                        .foregroundStyle(.secondary)
+                }
+            }
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .padding(standardPadding)
+            .background(
+                .regularMaterial,
+                in: RoundedRectangle(cornerRadius: doublePadding)
+            )
+        }
+        .buttonStyle(.plain)
+    }
+    
+    // MARK: Account maintenance
+    @ViewBuilder private var accountSection: some View {
+        if let myProfileViewModel {
+            navigationRow(L10nLookup.Scene.EditProfile.title, icon: .image(Image(phosphor: .user)), navigatingTo: .editProfile(profileViewModel: myProfileViewModel))
+        }
+        if let account = authenticationObserver.currentActiveUser?.cachedAccount {
+            timelineRow(.myBlockedAccounts, image: Image(phosphor: .prohibit))
+        }
     }
     
     // MARK: Collections
