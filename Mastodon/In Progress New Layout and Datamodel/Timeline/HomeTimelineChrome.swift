@@ -46,9 +46,9 @@ struct HomeTimelineChrome: ViewModifier {
         Section {
             feedMenuItem(L10n.Common.Controls.Tabs.home, timeline: .homeTimeline, icon: Image(phosphor: .house))
             if tabViewRouter.isLocalTimelineAvailable {
-                feedMenuItem(L10n.Scene.HomeTimeline.TimelineMenu.localCommunity, timeline: .local)
+                feedMenuItem(L10n.Scene.HomeTimeline.TimelineMenu.localCommunity, timeline: .local, icon: Image(phosphor: .usersThree))
             }
-            feedMenuItem(L10n.Scene.HomeTimeline.TimelineMenu.everything, timeline: .everything)
+            feedMenuItem(L10n.Scene.HomeTimeline.TimelineMenu.everything, timeline: .everything, icon: Image(phosphor: .globe))
         }
         if !tabViewRouter.lists.isEmpty {
             Section {

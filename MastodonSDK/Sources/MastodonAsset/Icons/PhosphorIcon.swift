@@ -40,6 +40,7 @@ public enum PhosphorIcon: String, CaseIterable, Sendable {
     case circlesFour = "circles-four"
     case dotsThree = "dots-three"
     case gear
+    case globe
     case heart
     case house
     case list
