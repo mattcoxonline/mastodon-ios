@@ -143,12 +143,30 @@
       <span class="lbadge" style="background:#F9C66B;color:#3B2E0C">Warning</span></div>
     </div></div></div></div></div>
 
-<h2>3 — Mapping: current → Oslo</h2>
-<table><tr><th>Role</th><th>Current</th><th>Oslo</th></tr><tr><td>Accent (light mode)</td><td>Mastodon blurple #563ACC</td><td class="after-col">Oslo mørk blå #2A2859</td></tr><tr><td>Accent (dark mode)</td><td>lighter blurple #6364FF</td><td class="after-col">Oslo blå #6FE9FF</td></tr><tr><td>Welcome / splash background</td><td>pure black #000000</td><td class="after-col">Oslo sort #2C2C2C</td></tr><tr><td>Favourite / boost / links / selected tab</td><td>blurple</td><td class="after-col">mørk blå (light) / blå (dark)</td></tr><tr><td>Donate heart (settings)</td><td>accent blurple</td><td class="after-col">Oslo rød #FF8274</td></tr><tr><td>Notifications tint</td><td>system red</td><td class="after-col">Oslo rød #FF8274</td></tr><tr><td>Success / verified</td><td>system green</td><td class="after-col">mørk grønn / grønn by appearance</td></tr><tr><td>Warning</td><td>system yellow</td><td class="after-col">Oslo gul #F9C66B</td></tr></table>
+<h2>3 — What theming exists today (code audit)</h2>
+<p class="note">The app already has a three-layer token system — no re-architecture is needed to adopt Oslo:</p>
+<table>
+<tr><th>Layer</th><th>What it is</th><th>Notes</th></tr>
+<tr><td>Asset catalog token store</td><td>~60 role-named colorsets in <code>MastodonAsset/Assets.xcassets/Colors/</code> — Label/, Button/, Notification/, Brand/, FigmaToken/, plus semantic singles (danger, success.green, alert.yellow). Light+dark variants live inside each colorset.</td><td>“Theming” = iOS appearance switching; no user-facing theme option exists</td></tr><tr><td>Generated accessors (SwiftGen)</td><td><code>Asset.Colors.*</code> typed enum, regenerated every build. <code>Asset.Colors.accent</code> referenced <b>63×</b> — the single global lever. Missing token names <code>fatalError</code> at runtime, so the token graph is enforced.</td><td>SwiftGen phase rebuilt earlier this session</td></tr><tr><td>UIKit appearance engine (legacy)</td><td><code>ThemeService.apply()</code> + <code>SystemTheme</code> set global UIKit chrome from <code>Asset.Theme.System.*</code>. On iOS 26 it steps aside: “let the system handle everything”.</td><td>Launch-time styling, not theming</td></tr>
+</table>
+<p class="note">Warts found: the welcome screen hardcodes <code>Brand/Blurple</code> instead of the accent token (won’t follow an accent swap — fixed in Phase 1); typo token <code>media.type.indicotor</code> (sic); the <code>Colors/UpdatedPostLayout_2025/</code> folder carries no Xcode namespace, so its accent compiles as plain <code>Colors/accent</code> — why the generated path looks “wrong” but isn’t.</p>
 
-<h2>4 — Suggested implementation</h2>
+<h2>4 — Mapping: current → Oslo, by real token</h2>
+<table>
+<tr><th>Role</th><th>Token (asset catalog)</th><th>Current value</th><th>Oslo</th></tr>
+<tr><td>Accent — SDK-wide tint</td><td><code>Colors/accent (file: Colors/UpdatedPostLayout_2025/accent.colorset)</code></td><td>light <code>#563ACC</code><br>dark <code>#7062F2</code></td><td class='after-col'>light mørk blå <code>#2A2859</code><br>dark blå <code>#6FE9FF</code></td></tr><tr><td>Accent — app-global (Appearance)</td><td><code>Branding.xcassets/AccentColor.colorset</code></td><td><code>#563ACC</code></td><td class='after-col'>same Oslo pair</td></tr><tr><td>Welcome “Create account” button</td><td><code>hardcoded Brand/Blurple</code></td><td>light <code>#552CFB</code><br>dark <code>#858AFA</code></td><td class='after-col'>point at Colors/accent (so it follows the theme)</td></tr><tr><td>Welcome / splash background</td><td><code>SplashBackground.colorset + <code>.black</code> in code</code></td><td><code>#000000</code></td><td class='after-col'>Oslo sort <code>#2C2C2C</code></td></tr><tr><td>Danger / destructive</td><td><code>Colors/danger</code></td><td><code>#DF405A</code></td><td class='after-col'>rød <code>#FF8274</code>*</td></tr><tr><td>Success / verified</td><td><code>Colors/success.green</code></td><td><code>#79BDA0</code></td><td class='after-col'>light mørk grønn <code>#034B45</code><br>dark grønn <code>#43F8B6</code></td></tr><tr><td>Warning</td><td><code>Colors/alert.yellow</code></td><td><code>#CA8F04</code></td><td class='after-col'>Oslo gul <code>#F9C66B</code></td></tr><tr><td>Notification tints</td><td><code>Colors/Notification/favourite · mention · reblog</code></td><td>per-action legacy</td><td class='after-col'>favourite → rød · mention → blå · reblog → grønn</td></tr><tr><td>Text hierarchy</td><td><code>Colors/Label/primary · secondary · tertiary</code></td><td>near-system</td><td class='after-col'>keep system values (already adapt)</td></tr>
+</table>
+<p class="note">* Oslo rød <code>#FF8274</code> on white is ~2.5:1 contrast — fine for filled badges, buttons and icons, not for body text on light surfaces; keep destructive <em>text</em> on a darker variant if needed.</p>
+
+<h2>5 — Implementation, phased by file</h2>
 <p class="note">
-<b>Phase 1 (one small commit):</b> give the existing <code>AccentColor</code> colorset appearance variants — light = Oslo mørk blå <code>#2A2859</code>, dark = Oslo blå <code>#6FE9FF</code> — and swap the welcome/splash black for Oslo sort <code>#2C2C2C</code>. Because every button, link, tab tint, favourite/boost fill and donate heart reads that one colorset, the whole app re-skins itself with no code changes.<br><br>
-<b>Phase 2:</b> semantic colours — donate heart and notifications tint → Oslo rød, success states → grønn family, warnings → Oslo gul. These are 3–5 call-site tweaks, all flagged in the icon audit.<br><br>
-<b>Phase 3 (later, optional):</b> a Settings → Appearance "Theme" switcher (Oslo / Mastodon classic / maybe an Oslo lys beige "paper" theme using the beiges) once a paid TestFlight audience exists and there's a reason to offer choice. Until then, one coherent identity beats a settings option nobody has asked for.</p>
+<b>Phase 1 — one commit, no code-churn:</b><br>
+1. <code>Colors/UpdatedPostLayout_2025/accent.colorset</code>: light <code>#563ACC → #2A2859</code>, dark <code>#7062F2 → #6FE9FF</code>.<br>
+2. <code>Branding.xcassets/AccentColor.colorset</code>: same Oslo pair (app-global Appearance tint).<br>
+3. <code>Branding.xcassets/SplashBackground.colorset</code> + welcome <code>.black</code> → <code>#2C2C2C</code>.<br>
+4. Repoint the welcome screen’s hard-coded <code>Brand/Blurple</code> button to <code>Asset.Colors.accent</code> so it follows.<br>
+Buttons, links, boost/favourite fills, tab tints all read the accent token — nothing else changes and the app re-skins itself.<br><br>
+<b>Phase 2 — semantic colours, each a one-file colorset edit:</b><br>
+<code>Colors/success.green</code> → grønn pair · <code>Colors/danger</code> → rød · <code>Colors/alert.yellow</code> → gul · <code>Colors/Notification/favourite | mention | reblog</code> → rød / blå / grønn.<br><br>
+<b>Phase 3 (deferred) — theme switcher:</b> colorsets are compile-time, so a Settings → Appearance “Oslo / Mastodon classic” choice needs a small <code>ThemeManager</code> indirection in front of <code>Asset.Colors.*</code> (accent + semantic tokens only). Worth building when an audience asks for the choice, not before.</p>
 </body></html>
