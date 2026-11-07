@@ -1,36 +1,20 @@
 {
   "fill" : {
-    "solid" : "srgb:0.38824,0.39216,1.00000,1.00000"
+    "solid" : "srgb:0.27843,0.55686,0.41569,1.00000"
   },
   "groups" : [
     {
       "layers" : [
         {
-          "image-name" : "mastodon-logo-white.svg",
-          "name" : "mastodon-logo-white",
+          "image-name" : "oslo-icon-white.svg",
+          "name" : "oslo-icon-white",
           "position" : {
-            "scale" : 10,
+            "scale" : 1.0894,
             "translation-in-points" : [
               0,
               0
             ]
           }
-        },
-        {
-          "fill" : {
-            "solid" : "srgb:0.52157,0.54118,0.98039,1.00000"
-          },
-          "hidden-specializations" : [
-            {
-              "value" : false
-            },
-            {
-              "appearance" : "light",
-              "value" : true
-            }
-          ],
-          "image-name" : "Icon-Dark-1024x1024.png",
-          "name" : "Icon-Dark-1024x1024"
         }
       ],
       "lighting-specializations" : [

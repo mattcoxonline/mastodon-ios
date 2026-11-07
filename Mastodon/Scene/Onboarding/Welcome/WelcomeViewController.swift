@@ -39,8 +39,6 @@ final class WelcomeViewController: UIViewController {
     var disposeBag = Set<AnyCancellable>()
     var observations = Set<NSKeyValueObservation>()
     private(set) lazy var viewModel = WelcomeViewModel()
-    
-    let welcomeIllustrationView = WelcomeIllustrationView()
 
     private(set) lazy var mastodonLogo: UIImageView = {
         let imageView = UIImageView(image: Asset.Scene.Welcome.mastodonLogo.image)
@@ -182,9 +180,6 @@ extension WelcomeViewController {
         observeLegibilityTraitChanges()
         observeButtonShapesNotification()
 
-        view.addSubview(welcomeIllustrationView)
-        welcomeIllustrationView.translatesAutoresizingMaskIntoConstraints = false
-
         mastodonLogo.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(mastodonLogo)
         
@@ -224,12 +219,6 @@ extension WelcomeViewController {
             learnMoreButton.heightAnchor.constraint(greaterThanOrEqualToConstant: WelcomeViewController.actionButtonHeight),
         ])
 
-        NSLayoutConstraint.activate([
-            welcomeIllustrationView.topAnchor.constraint(equalTo: view.topAnchor),
-            welcomeIllustrationView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            view.trailingAnchor.constraint(equalTo: welcomeIllustrationView.trailingAnchor)
-        ])
-
         pickOtherServerButton.addTarget(self, action: #selector(pickOtherServerTapped(_:)), for: .touchUpInside)
         signInButton.addTarget(self, action: #selector(signIn(_:)), for: .touchUpInside)
         learnMoreButton.addTarget(self, action: #selector(learnMore(_:)), for: .touchUpInside)
@@ -244,11 +233,9 @@ extension WelcomeViewController {
             }
             .store(in: &disposeBag)
 
-        setupIllustrationLayout()
-
         viewModel.downloadDefaultServer()
     }
-    
+
     private var computedTopAnchorInset: CGFloat {
         (navigationController?.navigationBar.bounds.height ?? UINavigationBar().bounds.height) + Constants.topAnchorInset
     }
@@ -275,14 +262,10 @@ extension WelcomeViewController {
             )
         }
     }
-    
-    private func setupIllustrationLayout() {
-        welcomeIllustrationView.setup()
-    }
 }
 
 extension WelcomeViewController {
-    
+
     private func joinServer(_ server: Mastodon.Entity.Server) {
         Task {
             do {
