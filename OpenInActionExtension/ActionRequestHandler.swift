@@ -82,11 +82,11 @@ private extension ActionRequestHandler {
                 let value = result.value
                 if let foundAccount = value.accounts.first {
                     self?.doneWithResults([
-                        "openURL": "mastodon://profile/\(foundAccount.acct)"
+                        "openURL": "oslotown://profile/\(foundAccount.acct)"
                     ])
                 } else if let foundStatus = value.statuses.first {
                     self?.doneWithResults([
-                        "openURL": "mastodon://status/\(foundStatus.id)"
+                        "openURL": "oslotown://status/\(foundStatus.id)"
                     ])
                 } else if let foundHashtag = value.hashtags.first {
                     self?.continueWithSearch(foundHashtag.name)
@@ -107,7 +107,7 @@ private extension ActionRequestHandler {
             return
         }
         doneWithResults(
-            ["openURL": "mastodon://search?query=\(query)"]
+            ["openURL": "oslotown://search?query=\(query)"]
         )
     }
 }

@@ -236,10 +236,10 @@ extension SceneDelegate {
 
             coordinator.switchToTabBar(tab: .notifications)
 
-        case "org.joinmastodon.app.new-post":
+        case "town.oslo.app.new-post":
             showComposeViewController()
 
-        case "org.joinmastodon.app.search":
+        case "town.oslo.app.search":
             coordinator?.switchToTabBar(tab: .explore)
 
 

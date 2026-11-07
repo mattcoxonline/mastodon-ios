@@ -12,7 +12,7 @@ import MastodonSDK
 @MainActor
 public final class EmojiService {
     public static let shared = { EmojiService() }()
-    let workingQueue = DispatchQueue(label: "org.joinmastodon.app.EmojiService.working-queue")
+    let workingQueue = DispatchQueue(label: "town.oslo.app.EmojiService.working-queue")
     private(set) var customEmojiViewModelDict: [String: CustomEmojiViewModel] = [:]
 }
 

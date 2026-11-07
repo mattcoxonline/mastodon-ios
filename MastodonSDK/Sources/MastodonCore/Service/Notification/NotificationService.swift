@@ -42,11 +42,11 @@ public final class NotificationService {
     
     public static let shared = { NotificationService() }()
     
-    public static let unreadShortcutItemIdentifier = "org.joinmastodon.app.NotificationService.unread-shortcut"
+    public static let unreadShortcutItemIdentifier = "town.oslo.app.NotificationService.unread-shortcut"
     
     private var disposeBag = Set<AnyCancellable>()
     
-    private let workingQueue = DispatchQueue(label: "org.joinmastodon.app.NotificationService.working-queue")
+    private let workingQueue = DispatchQueue(label: "town.oslo.app.NotificationService.working-queue")
     private var subscriptionUpdateQueue = [UpdateOperation]()
     private var currentUpdateInProgress: UpdateOperation? = nil {
         didSet {

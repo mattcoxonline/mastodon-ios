@@ -122,7 +122,7 @@ extension ShareViewController {
 
 extension ShareViewController {
     @objc private func cancelBarButtonItemPressed(_ sender: UIBarButtonItem) {
-        extensionContext?.cancelRequest(withError: NSError(domain: "org.joinmastodon.app.ShareActionExtension", code: -1))
+        extensionContext?.cancelRequest(withError: NSError(domain: "town.oslo.app.ShareActionExtension", code: -1))
     }
 
     @objc private func publishBarButtonItemPressed(_ sender: UIBarButtonItem) {

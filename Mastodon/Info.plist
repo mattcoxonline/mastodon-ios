@@ -26,10 +26,10 @@
 	<array>
 		<dict>
 			<key>CFBundleURLName</key>
-			<string>org.joinmastodon.app</string>
+			<string>town.oslo.app</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>mastodon</string>
+				<string>oslotown</string>
 			</array>
 		</dict>
 	</array>
@@ -98,7 +98,7 @@
 			<key>UIApplicationShortcutItemTitle</key>
 			<string>NewPostShortcutItemTitle</string>
 			<key>UIApplicationShortcutItemType</key>
-			<string>org.joinmastodon.app.new-post</string>
+			<string>town.oslo.app.new-post</string>
 		</dict>
 		<dict>
 			<key>UIApplicationShortcutItemIconSymbolName</key>
@@ -106,7 +106,7 @@
 			<key>UIApplicationShortcutItemTitle</key>
 			<string>SearchShortcutItemTitle</string>
 			<key>UIApplicationShortcutItemType</key>
-			<string>org.joinmastodon.app.search</string>
+			<string>town.oslo.app.search</string>
 		</dict>
 	</array>
 	<key>UIApplicationSupportsIndirectInputEvents</key>

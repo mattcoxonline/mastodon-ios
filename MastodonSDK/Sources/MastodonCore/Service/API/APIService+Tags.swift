@@ -10,7 +10,7 @@ import Combine
 import MastodonSDK
 
 extension Notification.Name {
-    public static let followedTagsDidChange = Notification.Name(rawValue: "org.joinmastodon.app.followed-tags-changed")
+    public static let followedTagsDidChange = Notification.Name(rawValue: "town.oslo.app.followed-tags-changed")
 }
 
 extension APIService {

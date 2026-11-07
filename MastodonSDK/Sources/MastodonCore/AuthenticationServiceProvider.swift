@@ -13,7 +13,7 @@ public class AuthenticationServiceProvider: ObservableObject {
     private let logger = Logger(subsystem: "AuthenticationServiceProvider", category: "Authentication")
 
     public static let shared = AuthenticationServiceProvider()
-    private static let keychain = Keychain(service: "org.joinmastodon.app.authentications", accessGroup: AppName.groupID)
+    private static let keychain = Keychain(service: "town.oslo.app.authentications", accessGroup: AppName.groupID)
     private let userDefaults: UserDefaults = .shared
     
     @Published public private(set) var invalidAuthentications: [MastodonAuthenticationBox] = []

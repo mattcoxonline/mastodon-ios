@@ -10,7 +10,7 @@ import Combine
 import MastodonSDK
 
 extension Notification.Name {
-    public static let listsDidChange = Notification.Name(rawValue: "org.joinmastodon.app.lists-changed")
+    public static let listsDidChange = Notification.Name(rawValue: "town.oslo.app.lists-changed")
 }
 
 extension APIService {

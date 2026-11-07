@@ -17,8 +17,8 @@ public final class APIService {
     @MainActor
     public static let shared = { APIService() }()
     
-    public static let callbackURLScheme = "mastodon"
-    nonisolated public static let oauthCallbackURL = "mastodon://joinmastodon.org/oauth"
+    public static let callbackURLScheme = "oslotown"
+    nonisolated public static let oauthCallbackURL = "oslotown://joinmastodon.org/oauth"
 
     // internal
     let session: URLSession

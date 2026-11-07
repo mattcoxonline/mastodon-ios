@@ -10,7 +10,7 @@ import Combine
 import MastodonSDK
 
 extension Notification.Name {
-    public static let relationshipChanged = Notification.Name(rawValue: "org.joinmastodon.app.relationship-changed")
+    public static let relationshipChanged = Notification.Name(rawValue: "town.oslo.app.relationship-changed")
 }
 
 public enum UserInfoKey {
