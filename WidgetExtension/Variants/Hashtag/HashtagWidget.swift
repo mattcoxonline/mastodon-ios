@@ -131,7 +131,7 @@ struct HashtagWidgetTimelineEntry: TimelineEntry {
             date: .now,
             hashtag: HashtagEntry(
                 accountName: "Unconfigured",
-                account: "@unconfigured@mastodon.social",
+                account: "@unconfigured@oslo.town",
                 content: "Caturday is the best day of the week #CatsOfMastodon",
                 reblogCount: 14,
                 favoriteCount: 13,
