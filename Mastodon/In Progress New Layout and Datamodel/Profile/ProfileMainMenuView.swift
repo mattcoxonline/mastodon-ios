@@ -11,6 +11,8 @@ struct ProfileMainMenuView: View {
     @Environment(ProfileViewModel.self) private var myProfileViewModel: ProfileViewModel?
     @Environment(AuthenticationObserver.self) private var authenticationObserver
     
+    @State private var bioText: String?
+    
     var body: some View {
         GeometryReader { geo in
             let fullWidth = min(maxFeedContentWidth, geo.size.width)
@@ -82,10 +84,8 @@ struct ProfileMainMenuView: View {
                     Spacer(minLength: 0)
                 }
                 
-                if let note = account?.note,
-                   let plain = plainTextFromHTML(note),
-                   !plain.isEmpty {
-                    Text(plain)
+                if let bioText, !bioText.isEmpty {
+                    Text(bioText)
                         .font(.subheadline)
                         .foregroundStyle(.secondary)
                         .lineLimit(3)
@@ -119,6 +119,15 @@ struct ProfileMainMenuView: View {
                 .regularMaterial,
                 in: RoundedRectangle(cornerRadius: doublePadding)
             )
+            .task(id: account?.note) {
+                guard let note = account?.note, !note.isEmpty else {
+                    bioText = nil
+                    return
+                }
+                bioText = await Task.detached(priority: .userInitiated) {
+                    Self.plainTextFromHTML(note)
+                }.value
+            }
         }
     }
     
@@ -143,7 +152,7 @@ struct ProfileMainMenuView: View {
         return String(first).uppercased() + string.dropFirst()
     }
     
-    private func plainTextFromHTML(_ html: String) -> String? {
+    nonisolated private static func plainTextFromHTML(_ html: String) -> String? {
         guard let data = html.data(using: .utf8),
               let attributed = try? NSAttributedString(
                 data: data,
