@@ -10,14 +10,10 @@ import Combine
 import MastodonSDK
 
 extension APIService {
-    
-    #if DEBUG
-    private static let clientName = "Mastodon for iOS (Development)"
-    #else
-    private static let clientName = "Mastodon for iOS"
-    #endif
 
-    private static let appWebsite = "https://app.joinmastodon.org/ios"
+    private static let clientName = "oslo.town for iOS"
+
+    private static let appWebsite = "https://oslo.town"
     
     public func createApplication(domain: String) async throws -> Mastodon.Entity.Application {
         let query = Mastodon.API.App.CreateQuery(
