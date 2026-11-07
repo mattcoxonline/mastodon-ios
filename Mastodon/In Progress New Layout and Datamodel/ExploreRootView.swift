@@ -9,6 +9,7 @@ import MastodonLocalization
 struct ExploreRootView: View {
     @Environment(MastodonNavigationRouter.self) var navigationStackNavigator
     @Environment(SearchViewModel.self) var searchViewModel
+    @Environment(MastodonTabViewRouter.self) var tabViewRouter
     
     @State var searchQueryModel = SearchQueryModel()
     
@@ -29,6 +30,25 @@ struct ExploreRootView: View {
             .searchSuggestions {
                 if searchViewModel.searchText.isEmpty {
                     searchHistorySuggestions
+                }
+            }
+            .overlay(alignment: .bottomTrailing) {
+                // Search FAB: makes search reachable without pull-to-reveal
+                if !tabViewRouter.currentTabBarPlacement.isSidebarAvailable && !searchViewModel.isSearchActive {
+                    Button {
+                        searchViewModel.isSearchActive = true
+                    } label: {
+                        Image(phosphor: .magnifyingGlass)
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 24, height: 24)
+                            .visualEffect({ content, geo in
+                                content.offset(x: geo.size.width * 0.04, y: -geo.size.height * 0.04)
+                            })
+                    }
+                    .buttonStyle(.prominentCircle(diameter: 50))
+                    .padding()
+                    .accessibilityLabel(L10n.Common.Controls.Tabs.A11Y.search)
                 }
             }
             .navigationDestination(for: MastodonNavigationDestination.self) { destination in
