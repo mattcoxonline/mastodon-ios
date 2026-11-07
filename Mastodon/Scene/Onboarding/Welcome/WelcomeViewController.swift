@@ -389,7 +389,8 @@ extension WelcomeViewController {
 
     @objc
     private func pickOtherServerTapped(_ sender: UIButton) {
-        authenticationViewModel.pickServer()
+        // single-instance app: account creation goes directly to oslo.town
+        joinDefaultServerTapped(sender)
     }
     
     @objc

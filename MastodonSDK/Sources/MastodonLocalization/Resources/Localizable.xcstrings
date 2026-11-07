@@ -288196,7 +288196,7 @@
         "an" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Pick another server"
+            "value" : "Create account"
           }
         },
         "ar" : {
@@ -288220,7 +288220,7 @@
         "ckb-IR" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Pick another server"
+            "value" : "Create account"
           }
         },
         "cs" : {
@@ -288256,13 +288256,13 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Pick another server"
+            "value" : "Create account"
           }
         },
         "en-US" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Pick another server"
+            "value" : "Create account"
           }
         },
         "es" : {
@@ -288322,13 +288322,13 @@
         "he" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Pick another server"
+            "value" : "Create account"
           }
         },
         "hi" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Pick another server"
+            "value" : "Create account"
           }
         },
         "hu" : {
@@ -288346,7 +288346,7 @@
         "id" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Pick another server"
+            "value" : "Create account"
           }
         },
         "is" : {
@@ -288394,13 +288394,13 @@
         "lv" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Pick another server"
+            "value" : "Create account"
           }
         },
         "my" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Pick another server"
+            "value" : "Create account"
           }
         },
         "nl" : {
@@ -288430,7 +288430,7 @@
         "ro" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Pick another server"
+            "value" : "Create account"
           }
         },
         "ru" : {
@@ -288442,7 +288442,7 @@
         "si" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Pick another server"
+            "value" : "Create account"
           }
         },
         "sl" : {

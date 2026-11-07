@@ -656,7 +656,7 @@ If you disagree with the policy for **%@**, you can go back and pick a different
 "Scene.Welcome.JoinDefaultServer" = "Join %@";
 "Scene.Welcome.LearnMore" = "Learn more";
 "Scene.Welcome.LogIn" = "Log In";
-"Scene.Welcome.PickServer" = "Pick another server";
+"Scene.Welcome.PickServer" = "Create account";
 "Scene.Welcome.Separator.Or" = "or";
 "Widget.Common.UnsupportedWidgetFamily" = "Sorry but this Widget family is unsupported.";
 "Widget.Common.UserNotLoggedIn" = "Please open Mastodon to log in to an Account.";
