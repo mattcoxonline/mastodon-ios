@@ -322,6 +322,7 @@ Please retry in a few minutes.";
 "Scene.Following.Footer" = "Follows from other servers are not displayed.";
 "Scene.Following.Title" = "following";
 "Scene.HomeTimeline.EmptyState.ListEmptyMessageTitle" = "This list is empty";
+"Scene.HomeTimeline.TimelineMenu.Everything" = "Everything";
 "Scene.HomeTimeline.TimelineMenu.Following" = "Following";
 "Scene.HomeTimeline.TimelineMenu.Hashtags.EmptyMessage" = "You don't follow any Hashtags";
 "Scene.HomeTimeline.TimelineMenu.Hashtags.Title" = "Followed Hashtags";

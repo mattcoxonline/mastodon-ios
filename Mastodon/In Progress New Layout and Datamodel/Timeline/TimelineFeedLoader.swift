@@ -86,6 +86,7 @@ public enum MastodonTimelineType: Identifiable, Equatable {
     case myFollowedHashtags
     case myBlockedAccounts
     case local
+    case everything
     case list(String)
     case hashtag(Mastodon.Entity.Tag, includeHeader: Bool)
     case collection(CollectionViewModel)
@@ -114,6 +115,7 @@ public enum MastodonTimelineType: Identifiable, Equatable {
         case .myFollowedHashtags: "hashtags"
         case .myBlockedAccounts: "blockedAccounts"
         case .local: "local"
+        case .everything: "everything"
         case .list(let listID): "list-\(listID)"
         case .hashtag(let tag, let includeHeader): "hashtag-\(tag.name)-\(includeHeader)"
         case .collection(let viewModel): "collection-\(viewModel.id)"
@@ -208,6 +210,8 @@ public enum MastodonTimelineType: Identifiable, Equatable {
         case .list:
                 .home
         case .local:
+                .public
+        case .everything:
                 .public
         case .discover, .linkMentions:
                 .public
@@ -681,6 +685,20 @@ final class TimelineFeedLoader: MastodonFeedLoader<TimelineItem, CacheableTimeli
                 } else {
                     return try await APIService.shared.publicTimeline(
                         query: .init(local: true),
+                        authenticationBox: authenticatedUser
+                    )
+                }
+            }()
+            newBatch = response.value.map { timelineItem(fromStatus: $0, isPinned: false) }
+            newBatchBottomLoad = bottomLoad(fromLink: response.link)
+            newAsyncRefreshAvailable = response.asyncRefreshAvaliable
+        case .everything:
+            let response = try await {
+                if let loadUrl {
+                    return try await APIService.shared.statuses(fromUrl: loadUrl, authenticationBox: authenticatedUser)
+                } else {
+                    return try await APIService.shared.publicTimeline(
+                        query: .init(),
                         authenticationBox: authenticatedUser
                     )
                 }

@@ -480,7 +480,7 @@ import MastodonUI
             switch timeline {
             case .homeTimeline, .list, .featuredItems, .followers, .accountsFollowed, .familiarFollowers, .collection, .myBlockedAccounts:
                 self?.needsReloadOnNextAppear = .feedRelationshipsChanged
-            case .myBookmarks, .myFavorites, .myFollowedHashtags, .local, .hashtag, .linkMentions, .discover, .search, .userPosts, .postHistory, .thread, .remoteThread, .notifications, .notificationRequests, .whoFavourited, .whoBoosted, .collections:
+            case .myBookmarks, .myFavorites, .myFollowedHashtags, .local, .everything, .hashtag, .linkMentions, .discover, .search, .userPosts, .postHistory, .thread, .remoteThread, .notifications, .notificationRequests, .whoFavourited, .whoBoosted, .collections:
                 // TODO: some of these cases may actually benefit from a reload when relationships change
                 return
             }

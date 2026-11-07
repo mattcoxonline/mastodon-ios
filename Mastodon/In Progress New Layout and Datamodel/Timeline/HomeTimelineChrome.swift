@@ -48,6 +48,7 @@ struct HomeTimelineChrome: ViewModifier {
             if tabViewRouter.isLocalTimelineAvailable {
                 feedMenuItem(L10n.Scene.HomeTimeline.TimelineMenu.localCommunity, timeline: .local)
             }
+            feedMenuItem(L10n.Scene.HomeTimeline.TimelineMenu.everything, timeline: .everything)
         }
         if !tabViewRouter.lists.isEmpty {
             Section {
@@ -88,6 +89,8 @@ struct HomeTimelineChrome: ViewModifier {
             return L10n.Common.Controls.Tabs.home
         case .local:
             return L10n.Scene.HomeTimeline.TimelineMenu.localCommunity
+        case .everything:
+            return L10n.Scene.HomeTimeline.TimelineMenu.everything
         case .list(let listID):
             return tabViewRouter.lists.first(where: { $0.id == listID })?.title
         case .hashtag(let hashtag, _):

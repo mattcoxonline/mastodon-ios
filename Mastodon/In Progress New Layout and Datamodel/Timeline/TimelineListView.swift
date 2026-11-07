@@ -388,6 +388,8 @@ struct TimelineListView: View {
             fallthrough
         case .local:
             fallthrough
+        case .everything:
+            fallthrough
         case .list:
             fallthrough
         case .hashtag:
@@ -458,6 +460,8 @@ struct TimelineListView: View {
             fallthrough
         case .local:
             fallthrough
+        case .everything:
+            fallthrough
         case .list:
             fallthrough
         case .hashtag:
@@ -524,6 +528,8 @@ struct TimelineListView: View {
         case .myFollowedHashtags:
             EmptyView()
         case .local:
+            EmptyView()
+        case .everything:
             EmptyView()
         case .list:
             EmptyView()
@@ -1579,7 +1585,7 @@ extension MastodonTimelineType {
         case .hashtag(let tag, _):
             return "#\(tag.name)"
             
-        case .local, .list, .featuredItems:
+        case .local, .everything, .list, .featuredItems:
             return nil
             
         case .myFollowedHashtags:
