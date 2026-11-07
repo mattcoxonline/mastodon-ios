@@ -181,12 +181,14 @@ extension WelcomeViewController {
         observeButtonShapesNotification()
 
         mastodonLogo.translatesAutoresizingMaskIntoConstraints = false
+        mastodonLogo.contentMode = .scaleAspectFit
         view.addSubview(mastodonLogo)
-        
+
         NSLayoutConstraint.activate([
-            mastodonLogo.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 24),
             mastodonLogo.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            mastodonLogo.widthAnchor.constraint(equalToConstant: 300),
+            mastodonLogo.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: -80),
+            mastodonLogo.widthAnchor.constraint(equalToConstant: 240),
+            mastodonLogo.heightAnchor.constraint(equalToConstant: 240),
         ])
         
         buttonContainer.axis = .vertical
@@ -223,7 +225,7 @@ extension WelcomeViewController {
         signInButton.addTarget(self, action: #selector(signIn(_:)), for: .touchUpInside)
         learnMoreButton.addTarget(self, action: #selector(learnMore(_:)), for: .touchUpInside)
 
-        view.backgroundColor = Asset.Scene.Welcome.Illustration.backgroundGreen.color
+        view.backgroundColor = .black
         
         viewModel.$needsShowDismissEntry
             .receive(on: DispatchQueue.main)
