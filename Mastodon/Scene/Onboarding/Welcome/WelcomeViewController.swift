@@ -7,6 +7,7 @@
 
 import AuthenticationServices
 import UIKit
+import SafariServices
 import Combine
 import MastodonAsset
 import MastodonCore
@@ -40,7 +41,6 @@ final class WelcomeViewController: UIViewController {
     private(set) lazy var viewModel = WelcomeViewModel()
     
     let welcomeIllustrationView = WelcomeIllustrationView()
-    let separatorView = WelcomeSeparatorView(frame: .zero)
 
     private(set) lazy var mastodonLogo: UIImageView = {
         let imageView = UIImageView(image: Asset.Scene.Welcome.mastodonLogo.image)
@@ -53,7 +53,7 @@ final class WelcomeViewController: UIViewController {
     
     let buttonContainer = UIStackView()
 
-    private(set) lazy var joinDefaultServerButton: UIButton = {
+    private(set) lazy var pickOtherServerButton: UIButton = {
         var buttonConfiguration = UIButton.Configuration.filled()
         buttonConfiguration.baseForegroundColor = .white
         buttonConfiguration.background.backgroundColor = Asset.Colors.Brand.blurple.color
@@ -67,24 +67,20 @@ final class WelcomeViewController: UIViewController {
                                                   bottom: WelcomeViewController.actionButtonPadding.bottom,
                                                   trailing: WelcomeViewController.actionButtonPadding.right)
 
+        buttonConfiguration.attributedTitle = AttributedString(
+            L10n.Scene.Welcome.pickServer,
+            attributes: .init([.font: UIFontMetrics(forTextStyle: .headline).scaledFont(for: .systemFont(ofSize: 17, weight: .semibold))])
+        )
+
         let button = UIButton(configuration: buttonConfiguration)
-        // Respond to runtime Accessibility > Display & Text Size > Bold Text changes
-        button.registerForTraitChanges([UITraitLegibilityWeight.self]) { (button: UIButton, previousTraitCollection: UITraitCollection) in
-            let updatedAttributes = UIFontMetrics(forTextStyle: .headline).scaledFont(for: .systemFont(ofSize: 17, weight: .semibold))
-            if let characters = button.configuration?.attributedTitle?.characters {
-                let priorString = String(characters)
-                button.configuration?.attributedTitle = AttributedString(
-                    priorString, attributes: .init([.font: updatedAttributes])
-                )
-            }
-        }
+
         return button
     }()
 
-    private(set) lazy var pickOtherServerButton: UIButton = {
+    private(set) lazy var signInButton: UIButton = {
         var buttonConfiguration = UIButton.Configuration.borderedTinted()
         buttonConfiguration.attributedTitle = AttributedString(
-            L10n.Scene.Welcome.pickServer,
+            L10n.Scene.Welcome.logIn,
             attributes: .init([.font: UIFontMetrics(forTextStyle: .headline).scaledFont(for: .systemFont(ofSize: 17, weight: .semibold))])
         )
 
@@ -100,19 +96,6 @@ final class WelcomeViewController: UIViewController {
                                                   trailing: WelcomeViewController.actionButtonPadding.right)
 
         let button = UIButton(configuration: buttonConfiguration)
-
-        return button
-    }()
-
-    private(set) lazy var signInButton: UIButton = {
-        var buttonConfiguration = UIButton.Configuration.plain()
-        buttonConfiguration.baseForegroundColor = .white
-        buttonConfiguration.attributedTitle = AttributedString(
-            L10n.Scene.Welcome.logIn,
-            attributes: .init([.font: UIFontMetrics(forTextStyle: .headline).scaledFont(for: .systemFont(ofSize: 17, weight: .semibold))])
-        )
-
-        let button = UIButton(configuration: buttonConfiguration)
         return button
     }()
 
@@ -126,17 +109,6 @@ final class WelcomeViewController: UIViewController {
 
         let button = UIButton(configuration: buttonConfiguration)
         return button
-    }()
-
-    private(set) lazy var bottomButtonStackView: UIStackView = {
-        let bottomButtonStackView = UIStackView(arrangedSubviews: [learnMoreButton, signInButton])
-        bottomButtonStackView.axis = .horizontal
-        bottomButtonStackView.distribution = .fill
-        bottomButtonStackView.alignment = .center
-        bottomButtonStackView.spacing = 16
-        bottomButtonStackView.setContentHuggingPriority(.required, for: .vertical)
-
-        return bottomButtonStackView
     }()
 }
 
@@ -234,41 +206,30 @@ extension WelcomeViewController {
             view.layoutMarginsGuide.bottomAnchor.constraint(equalTo: buttonContainer.bottomAnchor),
         ])
 
-        joinDefaultServerButton.translatesAutoresizingMaskIntoConstraints = false
-        buttonContainer.addArrangedSubview(joinDefaultServerButton)
-        NSLayoutConstraint.activate([
-            joinDefaultServerButton.heightAnchor.constraint(greaterThanOrEqualToConstant: WelcomeViewController.actionButtonHeight)
-        ])
-        
         pickOtherServerButton.translatesAutoresizingMaskIntoConstraints = false
         buttonContainer.addArrangedSubview(pickOtherServerButton)
         NSLayoutConstraint.activate([
             pickOtherServerButton.heightAnchor.constraint(greaterThanOrEqualToConstant: WelcomeViewController.actionButtonHeight)
         ])
 
-        buttonContainer.addArrangedSubview(separatorView)
-
         signInButton.translatesAutoresizingMaskIntoConstraints = false
+        buttonContainer.addArrangedSubview(signInButton)
         NSLayoutConstraint.activate([
             signInButton.heightAnchor.constraint(greaterThanOrEqualToConstant: WelcomeViewController.actionButtonHeight)
         ])
 
         learnMoreButton.translatesAutoresizingMaskIntoConstraints = false
+        buttonContainer.addArrangedSubview(learnMoreButton)
         NSLayoutConstraint.activate([
             learnMoreButton.heightAnchor.constraint(greaterThanOrEqualToConstant: WelcomeViewController.actionButtonHeight),
-            bottomButtonStackView.heightAnchor.constraint(equalTo: learnMoreButton.heightAnchor),
         ])
-
-        buttonContainer.addArrangedSubview(bottomButtonStackView)
 
         NSLayoutConstraint.activate([
             welcomeIllustrationView.topAnchor.constraint(equalTo: view.topAnchor),
             welcomeIllustrationView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            view.trailingAnchor.constraint(equalTo: welcomeIllustrationView.trailingAnchor),
-            separatorView.centerYAnchor.constraint(equalTo: welcomeIllustrationView.bottomAnchor)
+            view.trailingAnchor.constraint(equalTo: welcomeIllustrationView.trailingAnchor)
         ])
 
-        joinDefaultServerButton.addTarget(self, action: #selector(joinDefaultServerTapped(_:)), for: .touchUpInside)
         pickOtherServerButton.addTarget(self, action: #selector(pickOtherServerTapped(_:)), for: .touchUpInside)
         signInButton.addTarget(self, action: #selector(signIn(_:)), for: .touchUpInside)
         learnMoreButton.addTarget(self, action: #selector(learnMore(_:)), for: .touchUpInside)
@@ -285,15 +246,7 @@ extension WelcomeViewController {
 
         setupIllustrationLayout()
 
-        configureJoinDefaultServerButton(nil, isLoading: true)
-
-        viewModel.downloadDefaultServer { [weak self] in
-            guard let selectedDefaultServer = self?.viewModel.randomDefaultServer else { return }
-
-            DispatchQueue.main.async {
-                self?.configureJoinDefaultServerButton(selectedDefaultServer.domain, isLoading: false)
-            }
-        }
+        viewModel.downloadDefaultServer()
     }
     
     private var computedTopAnchorInset: CGFloat {
@@ -342,57 +295,23 @@ extension WelcomeViewController {
 
     //MARK: - Actions
     @objc
-    private func joinDefaultServerTapped(_ sender: UIButton) {
-
+    private func pickOtherServerTapped(_ sender: UIButton) {
         guard let server = viewModel.randomDefaultServer else { return }
-       
-        configureJoinDefaultServerButton(server.domain, isLoading: true)
-        
+
+        sender.configuration?.showsActivityIndicator = true
+        sender.isEnabled = false
+
         Task {
             do {
                 try await authenticationViewModel.joinServer(server, presentationContextProvider: self)
-                // reset the button after successful completion (which is not completion of the full sign in process, only the first step of reaching the server and getting the rules)
-                configureJoinDefaultServerButton(server.domain, isLoading: false)
             } catch {
-                // reset to try again with a potentially different random default server
-                guard let randomServer = self.viewModel.pickRandomDefaultServer() else {
-                    configureJoinDefaultServerButton(nil, isLoading: true)
-                    return
-                }
-                self.viewModel.randomDefaultServer = randomServer
-                configureJoinDefaultServerButton(randomServer.domain, isLoading: false)
+                displayError(error)
             }
-        }
-    }
-    
-    private func configureJoinDefaultServerButton(_ domain: String?, isLoading: Bool) {
-        guard let domain else {
-            joinDefaultServerButton.configuration?.showsActivityIndicator = isLoading
-            joinDefaultServerButton.isEnabled = false
-            joinDefaultServerButton.configuration?.attributedTitle = nil
-            return
-        }
-        
-        if isLoading {
-            joinDefaultServerButton.configuration?.attributedTitle = nil
-            joinDefaultServerButton.isEnabled = false
-            joinDefaultServerButton.configuration?.showsActivityIndicator = true
-        } else {
-            joinDefaultServerButton.isEnabled = true
-            joinDefaultServerButton.configuration?.showsActivityIndicator = false
-            joinDefaultServerButton.configuration?.attributedTitle = AttributedString(
-                L10n.Scene.Welcome.joinDefaultServer(domain),
-                attributes: .init([.font: UIFontMetrics(forTextStyle: .headline).scaledFont(for: .systemFont(ofSize: 17, weight: .semibold))])
-            )
+            sender.configuration?.showsActivityIndicator = false
+            sender.isEnabled = true
         }
     }
 
-    @objc
-    private func pickOtherServerTapped(_ sender: UIButton) {
-        // single-instance app: account creation goes directly to oslo.town
-        joinDefaultServerTapped(sender)
-    }
-    
     @objc
     private func signIn(_ sender: UIButton) {
         authenticationViewModel.logInRequested()
@@ -400,15 +319,15 @@ extension WelcomeViewController {
 
     @objc
     private func learnMore(_ sender: UIButton) {
-        let educationViewController = EducationViewController()
-        educationViewController.modalPresentationStyle = .pageSheet
+        let safariViewController = SFSafariViewController(url: URL(string: "https://join.oslo.town")!)
+        safariViewController.modalPresentationStyle = .pageSheet
 
-        if let sheetPresentationController = educationViewController.sheetPresentationController {
-            sheetPresentationController.detents = [.medium()]
+        if let sheetPresentationController = safariViewController.sheetPresentationController {
+            sheetPresentationController.detents = [.medium(), .large()]
             sheetPresentationController.prefersGrabberVisible = true
         }
 
-        present(educationViewController, animated: true)
+        present(safariViewController, animated: true)
     }
 
     @objc
@@ -421,16 +340,6 @@ extension WelcomeViewController {
 
 extension WelcomeViewController {
     func observeLegibilityTraitChanges() {
-        joinDefaultServerButton.registerForTraitChanges([UITraitLegibilityWeight.self]) { (button: UIButton, previousTraitCollection: UITraitCollection) in
-            let updatedAttributes = UIFontMetrics(forTextStyle: .headline).scaledFont(for: .systemFont(ofSize: 17, weight: .semibold))
-            if let characters = button.configuration?.attributedTitle?.characters {
-                let priorString = String(characters)
-                button.configuration?.attributedTitle = AttributedString(
-                    priorString, attributes: .init([.font: updatedAttributes])
-                )
-            }
-        }
-
         pickOtherServerButton.registerForTraitChanges([UITraitLegibilityWeight.self]) { (button: UIButton, previousTraitCollection: UITraitCollection) in
             button.configuration?.attributedTitle = AttributedString(
                 L10n.Scene.Welcome.pickServer,
@@ -463,10 +372,8 @@ extension WelcomeViewController {
     @objc func updateButtonShapes() {
         if UIAccessibility.buttonShapesEnabled {
             learnMoreButton.configuration?.welcomeBorderedShapeConfiguration()
-            signInButton.configuration?.welcomeBorderedShapeConfiguration()
         } else {
             learnMoreButton.configuration?.defaultWelcome()
-            signInButton.configuration?.defaultWelcome()
         }
     }
 }

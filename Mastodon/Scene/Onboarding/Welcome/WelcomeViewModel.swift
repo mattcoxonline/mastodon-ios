@@ -30,8 +30,4 @@ final class WelcomeViewModel {
         randomDefaultServer = Mastodon.Entity.Server.osloDotTown
         completion?()
     }
-
-    func pickRandomDefaultServer() -> Mastodon.Entity.Server? {
-        Mastodon.Entity.Server.osloDotTown
-    }
 }
