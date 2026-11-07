@@ -57,8 +57,8 @@ extension Mastodon.Entity {
             return lhs.domain.caseInsensitiveCompare(rhs.domain) == .orderedSame
         }
         
-        public static var mastodonDotSocial: Server {
-            return Server(domain: "mastodon.social", instance: Instance(domain: "mastodon.social"))
+        public static var osloDotTown: Server {
+            return Server(domain: "oslo.town", instance: Instance(domain: "oslo.town"))
         }
     }
 }
