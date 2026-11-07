@@ -44,14 +44,52 @@ struct ProfileMainMenuView: View {
     // MARK: Profile buttons
     @ViewBuilder private var profileButtons: some View {
         if let currentActiveUser = authenticationObserver.currentActiveUser, let myProfileViewModel {
-            // View Profile
-            navigationRow(L10nLookup.Scene.Profile.MainMenu.viewProfile, icon: .avatar(currentActiveUser.cachedAccount?.avatarURL), navigatingTo: .myProfile(myProfileViewModel))
+            profileCard
             // Edit Profile
             navigationRow(L10nLookup.Scene.EditProfile.title, icon: .image(Image(phosphor: .user)), navigatingTo: .editProfile(profileViewModel: myProfileViewModel))
         }
         // Settings
         menuRow(L10n.Common.Controls.Actions.settings, icon: .image(Image(phosphor: .gear))) {
             navigator.presentSheet(.settings, afterDeconflictionDelay: false)
+        }
+    }
+
+    @ViewBuilder private var profileCard: some View {
+        if let currentActiveUser = authenticationObserver.currentActiveUser, let myProfileViewModel {
+            let account = currentActiveUser.cachedAccount
+            Button {
+                navigator.push(.myProfile(myProfileViewModel))
+            } label: {
+                HStack(spacing: standardPadding) {
+                    AvatarView(style: .circular, size: .large, avatarSource: .url(account?.avatarURL))
+                    VStack(alignment: .leading, spacing: tinySpacing) {
+                        Text(account?.displayNameWithFallback ?? currentActiveUser.authentication.username)
+                            .font(.headline)
+                            .foregroundStyle(.primary)
+                            .lineLimit(1)
+                        Text("@\(account?.acctWithDomain ?? currentActiveUser.authentication.username)")
+                            .font(.subheadline)
+                            .foregroundStyle(.secondary)
+                            .lineLimit(1)
+                    }
+                    Spacer()
+                    VStack(alignment: .trailing, spacing: tinySpacing) {
+                        Text(L10nLookup.Scene.Profile.MainMenu.viewProfile)
+                            .font(.subheadline.weight(.semibold))
+                            .foregroundStyle(Asset.Colors.accent.swiftUIColor)
+                        Image(systemName: "chevron.forward")
+                            .font(.footnote)
+                            .foregroundStyle(Asset.Colors.accent.swiftUIColor)
+                    }
+                }
+                .padding(standardPadding)
+                .background(
+                    .regularMaterial,
+                    in: RoundedRectangle(cornerRadius: doublePadding)
+                )
+                .contentShape(RoundedRectangle(cornerRadius: doublePadding))
+            }
+            .buttonStyle(.plain)
         }
     }
     

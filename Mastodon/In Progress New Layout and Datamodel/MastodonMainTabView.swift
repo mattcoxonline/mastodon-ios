@@ -594,7 +594,7 @@ extension MastodonTabViewRouter.MastodonTab {
         case .notifications:
             L10n.Common.Controls.Tabs.notifications
         case .profile:
-            L10n.Common.Controls.Tabs.profile
+            L10n.Common.Controls.Tabs.you
         case .localFeed:
             L10n.Scene.HomeTimeline.TimelineMenu.localCommunity
         case .lists:

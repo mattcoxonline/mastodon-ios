@@ -185,6 +185,8 @@ Please check your internet connection.";
 "Common.Controls.Tabs.A11Y.Explore" = "Explore";
 "Common.Controls.Tabs.A11Y.Search" = "Search";
 "Common.Controls.Tabs.Home" = "Home";
+"Common.Controls.Tabs.You" = "You";
+
 "Common.Controls.Tabs.Notifications" = "Notifications";
 "Common.Controls.Tabs.Profile" = "Profile";
 "Common.Controls.Tabs.SearchAndExplore" = "Search and Explore";

@@ -595,6 +595,8 @@ public enum L10n {
         public static let profile = L10n.tr("Localizable", "Common.Controls.Tabs.Profile", fallback: "Profile")
         /// Search and Explore
         public static let searchAndExplore = L10n.tr("Localizable", "Common.Controls.Tabs.SearchAndExplore", fallback: "Search and Explore")
+        /// You
+        public static let you = L10n.tr("Localizable", "Common.Controls.Tabs.You", fallback: "You")
         public enum A11Y {
           /// Explore
           public static let explore = L10n.tr("Localizable", "Common.Controls.Tabs.A11Y.Explore", fallback: "Explore")
