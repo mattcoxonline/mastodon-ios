@@ -94,17 +94,6 @@ struct MastodonPostRowView: View {
                         .onTapGesture {
                             goToProfile(author)
                         }
-#if DEBUG
-                    Text(viewModel.initialDisplayInfo.id)
-                        .font(.footnote)
-                        .border(.red)
-                    if viewModel.initialDisplayInfo.id != viewModel.initialDisplayInfo.actionablePostID {
-                        Text("actionable: \(viewModel.initialDisplayInfo.actionablePostID)")
-                            .font(.footnote)
-                            .border(.red)
-                    }
-#endif
-                   
                     // MARK: Content warned and/or filtered
                     contentConcealLozenge
                         .frame(width: contentWidth)
@@ -112,18 +101,7 @@ struct MastodonPostRowView: View {
                     if contentConcealModel.currentMode.isShowingTextContent {
                         MastodonPostContentStackView(contentWidth: contentWidth, actionHandler: actionHandler, navigator: navigator, filterContext: filterContext)
                     }
-                    
-#if DEBUG && false
-                    VStack {
-                        Text(viewModel.post.id)
-                        if let actionableID = viewModel.post.actionablePost?.id, actionableID != viewModel.post.id {
-                            Text("(content: \(actionableID))")
-                        }
-                    }
-                    .foregroundStyle(.red)
-                    .font(.footnote)
-#endif
-                    
+
                     // MARK: Action Bar
                     if viewModel.displayType == .standard, let actionablePost = viewModel.fullPost?.actionablePost {
                         Spacer()

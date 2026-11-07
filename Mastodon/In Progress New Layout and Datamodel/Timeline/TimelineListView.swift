@@ -902,38 +902,6 @@ struct TimelineListView: View {
             .environment(contentConcealModel)
             .padding(EdgeInsets(top: 0, leading: standardPadding, bottom: 0, trailing: doublePadding))
             .frame(width: useableWidth, height: expectedHeight, alignment: .top)
-#if DEBUG
-            .background {
-                ZStack(alignment: .topTrailing) {
-                    HStack {
-                        Spacer()
-                            .frame(width: avatarSize.rawValue + spacingBetweenGutterAndContent)
-                        Rectangle()
-                            .fill(isScrollAnchor ? .yellow.opacity(0.2) : .clear)
-                            .frame(width: spacingBetweenGutterAndContent)
-                        Spacer()
-                            .frame(maxWidth: .infinity)
-                    }
-                    
-                    if let expectedHeight {
-                        let difference: CGFloat? = {
-                            guard let actual = postViewModel.actualLayoutHeight else { return nil }
-                            return actual - expectedHeight
-                        }()
-                        Text("calculated: \(expectedHeight)\nactual: \(String(describing: postViewModel.actualLayoutHeight))\ndifference: \(String(describing: difference))")
-                            .foregroundStyle(.red)
-                            .padding()
-                            .background {
-                                RoundedRectangle(cornerRadius: 10)
-                                    .fill(.white.opacity(0.3))
-                            }
-                        FrameReader() { newFrame in
-                            postViewModel.actualLayoutHeight = newFrame.size.height
-                        }
-                    }
-                }
-            }
-#endif
             .contentShape(Rectangle())
             .onTapGesture {
                 switch viewModel.timeline {
