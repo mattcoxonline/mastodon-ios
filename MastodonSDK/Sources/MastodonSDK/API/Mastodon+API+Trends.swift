@@ -11,7 +11,9 @@ import Foundation
 extension Mastodon.API.Trends {
     
     static func trendsURL(domain: String) -> URL {
-        Mastodon.API.endpointURL(domain: domain).appendingPathComponent("trends")
+        Mastodon.API.endpointURL(domain: domain)
+            .appendingPathComponent("trends")
+            .appendingPathComponent("tags")
     }
 
     /// Trending tags
