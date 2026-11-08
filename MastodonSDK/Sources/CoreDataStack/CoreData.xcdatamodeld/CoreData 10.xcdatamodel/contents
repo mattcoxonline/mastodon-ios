@@ -128,7 +128,7 @@
         <attribute name="sensitive" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="spoilerText" optional="YES" attributeType="String"/>
         <attribute name="text" optional="YES" attributeType="String"/>
-        <attribute name="translatedContent" optional="YES" transient="YES" attributeType="Transformable"/>
+        <attribute name="translatedContent" optional="YES" transient="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromDataTransformerName"/>
         <attribute name="updatedAt" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="uri" attributeType="String"/>
         <attribute name="url" optional="YES" attributeType="String"/>
