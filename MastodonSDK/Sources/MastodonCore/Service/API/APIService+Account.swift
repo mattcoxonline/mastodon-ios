@@ -32,6 +32,16 @@ extension APIService {
         ).singleOutput().value
         return account
     }
+
+    public func accountLookup(domain: String, acct: String, authorization: Mastodon.API.OAuth.Authorization) async throws -> Mastodon.Entity.Account {
+        let account = try await Mastodon.API.Account.lookupAccount(
+            session: session,
+            domain: domain,
+            query: Mastodon.API.Account.AccountLookupQuery(acct: acct),
+            authorization: authorization
+        ).singleOutput().value
+        return account
+    }
     
     public func accountsInfo(userIDs: [String], authenticationBox: MastodonAuthenticationBox) async throws -> [Mastodon.Entity.Account.ID : Mastodon.Entity.Account] {
         let dedupedIds = Array(Set(userIDs))

@@ -65,6 +65,9 @@ public enum DiscoveryType: Equatable {
     case posts
     case hashtags
     case forYou
+
+    /// The account whose curated collections populate the Explore "Directory" tab.
+    public static let directoryCuratorAcct = "matt@oslo.town"
 }
 
 @Observable public class SearchQueryModel: Identifiable {
@@ -477,6 +480,7 @@ final class TimelineFeedLoader: MastodonFeedLoader<TimelineItem, CacheableTimeli
     private var accountViewModels = [Mastodon.Entity.Account.ID : AccountRowViewModel]()
     private var collectionViewModels = [Mastodon.Entity.Collection.ID : CollectionViewModel]()
     private var hashtagViewModels = [String : HashtagRowViewModel]()
+    private var directoryCuratorAccountID: Mastodon.Entity.Account.ID?
     
     private let myAccountID: Mastodon.Entity.Account.ID?
     
@@ -793,23 +797,22 @@ final class TimelineFeedLoader: MastodonFeedLoader<TimelineItem, CacheableTimeli
                 newBatchBottomLoad = bottomLoad(fromLink: response.link)
                 newAsyncRefreshAvailable = response.asyncRefreshAvaliable
             case .forYou:
-                let response = try await {
-                    if let loadUrl {
-                        return try await APIService.shared.suggestionAccounts(fromUrl: loadUrl, authenticationBox: authenticatedUser)
-                    } else {
-                            return try await APIService.shared.suggestionAccountV2(
-                                query: nil,
-                                authenticationBox: authenticatedUser
-                            )
+                let curatorUserID = try await {
+                    if let directoryCuratorAccountID {
+                        return directoryCuratorAccountID
                     }
+                    let account = try await APIService.shared.accountLookup(
+                        domain: authenticatedUser.domain,
+                        acct: DiscoveryType.directoryCuratorAcct,
+                        authorization: authenticatedUser.userAuthorization
+                    )
+                    directoryCuratorAccountID = account.id
+                    return account.id
                 }()
-               
-                newBatch = response.value.map { suggestion in
-                    let suggestedBecause = suggestion.sources ?? [suggestion.source].compactMap{$0}
-                    return timelineItem(fromAccount: suggestion.account, suggestedBecause: suggestedBecause.isEmpty ? nil : suggestedBecause)
-                }
-                newBatchBottomLoad = bottomLoad(fromLink: response.link)
-                newAsyncRefreshAvailable = response.asyncRefreshAvaliable
+
+                newBatch = try await collections(curatedBy: curatorUserID)
+                newBatchBottomLoad = .nothingMoreToLoad
+                newAsyncRefreshAvailable = nil
             }
         case .linkMentions(let url):
             let response = try await {
