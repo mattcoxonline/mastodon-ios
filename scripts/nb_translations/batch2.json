@@ -1,0 +1,8 @@
+{
+  "Localizable.xcstrings": {
+    "plural.count.follower": {"plural": {"one": "%ld følger", "other": "%ld følgere"}}
+  },
+  "Localizable-Profile.xcstrings": {
+    "Scene.Profile.FeaturedTab.collectionsHeading": "Samlinger"
+  }
+}

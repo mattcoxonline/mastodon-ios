@@ -664,11 +664,12 @@ final class TimelineFeedLoader: MastodonFeedLoader<TimelineItem, CacheableTimeli
             }
         }
         func directoryFeatured(from collections: [CollectionViewModel]) async -> DirectoryFeaturedModel? {
+            var generator = DailySeedGenerator()
             let candidates = collections.compactMap { collection -> (collection: CollectionViewModel, memberID: Mastodon.Entity.Account.ID)? in
-                guard let memberID = collection.collection.items.compactMap({ $0.account_id }).randomElement() else { return nil }
+                guard let memberID = collection.collection.items.compactMap({ $0.account_id }).randomElement(using: &generator) else { return nil }
                 return (collection, memberID)
             }
-            guard let pick = candidates.randomElement() else { return nil }
+            guard let pick = candidates.randomElement(using: &generator) else { return nil }
             let accountEntity: Mastodon.Entity.Account?
             do {
                 let accounts = try await APIService.shared.accountsInfo(userIDs: [pick.memberID], authenticationBox: authenticatedUser)
@@ -878,6 +879,7 @@ final class TimelineFeedLoader: MastodonFeedLoader<TimelineItem, CacheableTimeli
                 let directoryCollectionViewModels = try await directoryCollections(curatedBy: curatorUserID)
                 let featured = await directoryFeatured(from: directoryCollectionViewModels)
                 newBatch = (featured.map { [TimelineItem.directoryFeatured($0)] } ?? [])
+                    + (directoryCollectionViewModels.isEmpty ? [] : [TimelineItem.heading(L10nLookup.Scene.Profile.FeaturedTab.collectionsHeading)])
                     + directoryCollectionViewModels.map { TimelineItem.directoryCollection($0) }
                 newBatchBottomLoad = .nothingMoreToLoad
                 newAsyncRefreshAvailable = nil
@@ -1850,4 +1852,23 @@ struct NotificationsLoader {
         return (groups, response.link, response.asyncRefreshAvaliable)
     }
     
+}
+
+/// Deterministic per-day random number generator, so the Directory featured
+/// account stays stable across pulls-to-refresh within a calendar day.
+struct DailySeedGenerator: RandomNumberGenerator {
+    private var state: UInt64
+
+    init() {
+        let day = Calendar.current.ordinality(of: .day, in: .era, for: Date()) ?? 0
+        state = UInt64(bitPattern: Int64(day))
+    }
+
+    mutating func next() -> UInt64 {
+        state &+= 0x9E3779B97F4A7C15
+        var z = state
+        z = (z ^ (z >> 30)) &* 0xBF58476D1CE4E5B9
+        z = (z ^ (z >> 27)) &* 0x94D049BB133111EB
+        return z ^ (z >> 31)
+    }
 }

@@ -11477,6 +11477,24 @@
               }
             }
           }
+        },
+        "nb" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%ld følger"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%ld følgere"
+                }
+              }
+            }
+          }
         }
       }
     },

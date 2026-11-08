@@ -89,8 +89,6 @@ struct DirectoryFeaturedCard: View {
     }
 
     private var followersLine: String {
-        let count = model.accountRowViewModel.account.metrics.followersCount
-        let formatted = MastodonMetricFormatter().string(from: count) ?? "-"
-        return "\(formatted) Followers"
+        L10n.Plural.Count.follower(model.accountRowViewModel.account.metrics.followersCount)
     }
 }

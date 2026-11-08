@@ -2198,8 +2198,8 @@
       "localizations" : {
         "ar" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Collections"
+            "state" : "translated",
+            "value" : "المجموعات"
           }
         },
         "en" : {
@@ -2216,14 +2216,20 @@
         },
         "pl" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Collections"
+            "state" : "translated",
+            "value" : "Kolekcje"
           }
         },
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Колекції"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Samlinger"
           }
         }
       }
