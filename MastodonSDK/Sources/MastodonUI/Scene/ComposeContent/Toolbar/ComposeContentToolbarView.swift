@@ -34,7 +34,12 @@ struct ComposeContentToolbarView: View {
     // toolbar container, so the bar is hidden.
     var body: some View {
         NavigationStack {
+            // The hosting view already extends into the home-indicator zone (the
+            // UIKit side positions it there deliberately), so the toolbars must
+            // ignore the propagated bottom safe-area inset - otherwise the glass
+            // capsule renders only in the sliver above the inset and clips.
             Color.clear
+                .ignoresSafeArea(.container, edges: .bottom)
                 .toolbar(.hidden, for: .navigationBar)
                 .toolbar {
                     ToolbarItemGroup(placement: .bottomBar) {
