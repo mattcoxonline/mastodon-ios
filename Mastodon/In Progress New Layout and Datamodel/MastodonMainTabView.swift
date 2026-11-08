@@ -248,7 +248,10 @@ struct MastodonMainTabView: View {
                 })
         }
         .buttonStyle(.prominentCircle(diameter: 50))
-        .padding()
+        // clears the floating tab bar: its capsule top sits ~50pt above the
+        // safe-area bottom on this layout, so 60pt keeps the FAB clear of it
+        .padding(.bottom, Spacing.xxl + Spacing.l + Spacing.m)
+        .padding(.trailing, Spacing.xl)
         .accessibilityLabel(L10nLookup.MastodonMenuAction.Navigation.compose)
     }
     
