@@ -607,6 +607,12 @@
             "state" : "translated",
             "value" : "Створити"
           }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Skriv"
+          }
         }
       }
     },
