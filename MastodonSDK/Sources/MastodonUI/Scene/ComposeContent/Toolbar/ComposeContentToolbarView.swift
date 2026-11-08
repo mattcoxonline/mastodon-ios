@@ -18,7 +18,7 @@ protocol ComposeContentToolbarViewDelegate: AnyObject {
 
 struct ComposeContentToolbarView: View {
 
-    static var toolbarHeight: CGFloat { 64 }
+    static var toolbarHeight: CGFloat { 72 }
 
     @ObservedObject var viewModel: ViewModel
 
