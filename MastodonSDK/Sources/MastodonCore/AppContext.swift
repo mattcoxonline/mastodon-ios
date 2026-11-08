@@ -8,6 +8,7 @@
 import UIKit
 import SwiftUI
 import Combine
+import SDWebImage
 
 @MainActor
 public class AppContext: ObservableObject {
@@ -25,5 +26,13 @@ public class AppContext: ObservableObject {
         .eraseToAnyPublisher()
     
     private init() {
+        // Cap the image cache so timeline media and avatars don't
+        // accumulate to hundreds of MB of decoded pixels. 100MB memory
+        // covers roughly 250 screen-sized images — enough for a full
+        // scroll session. SDWebImage also auto-purges on background
+        // entry and memory warnings (built-in).
+        SDImageCache.shared.config.maxMemoryCost = 100 * 1024 * 1024
+        SDImageCache.shared.config.maxDiskSize = 200 * 1024 * 1024
+        SDImageCache.shared.config.maxDiskAge = 7 * 24 * 60 * 60 // 1 week
     }
 }

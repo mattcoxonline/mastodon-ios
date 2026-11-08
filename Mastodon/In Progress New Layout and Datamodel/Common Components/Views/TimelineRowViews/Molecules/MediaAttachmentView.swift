@@ -384,7 +384,13 @@ struct BlurhashImageView: View {
             }
             
             if let url {
-                WebImage(url: url) { phase in
+                // Decode at display resolution (~1200px edge) instead of
+                // full server size — prevents 48MB decodes for 1.4MB of
+                // visible pixels on every photo in the timeline.
+                WebImage(
+                    url: url,
+                    context: [.imageThumbnailPixelSize: CGSize(width: 1200, height: 1200)]
+                ) { phase in
                     switch phase {
                     case .empty:
                         EmptyView() // show blurhash behind
