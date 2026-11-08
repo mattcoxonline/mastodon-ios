@@ -8,9 +8,10 @@ import XCTest
 @MainActor
 final class TabBarSmokeTests: XCTestCase {
 
-    /// Verifies the "4 + 1" tab bar: Feed, Explore, Compose (action tab in the
-    /// center), Notifications, You. Requires a logged-in simulator session.
-    func testTabBarHasFiveItemsWithCompose() throws {
+    /// Verifies the "4 + 1" tab bar: Feed, Explore, Notifications, You, plus a
+    /// trailing Compose action item (HIG pattern). Requires a logged-in
+    /// simulator session.
+    func testTabBarHasFourTabsPlusTrailingCompose() throws {
         let app = XCUIApplication()
         app.launch()
         let tabBar = app.tabBars.firstMatch
@@ -20,10 +21,7 @@ final class TabBarSmokeTests: XCTestCase {
         let buttons = tabBar.buttons.allElementsBoundByIndex
         let labels = buttons.map(\.label)
         print("TAB BAR LABELS: \(labels)")
-        XCTAssertEqual(buttons.count, 5, "expected four tabs plus compose, got: \(labels)")
-        XCTAssertTrue(labels.contains("Compose"), "compose tab missing: \(labels)")
-        if let composeIndex = labels.firstIndex(of: "Compose") {
-            XCTAssertEqual(composeIndex, 2, "compose should be the center item, got: \(labels)")
-        }
+        XCTAssertEqual(buttons.count, 5, "expected four tabs plus trailing compose, got: \(labels)")
+        XCTAssertEqual(labels.firstIndex(of: "Compose"), 4, "compose should be the trailing item, got: \(labels)")
     }
 }
