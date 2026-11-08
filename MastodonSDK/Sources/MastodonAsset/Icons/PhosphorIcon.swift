@@ -46,6 +46,7 @@ public enum PhosphorIcon: String, CaseIterable, Sendable {
     case list
     case listBullets = "list-bullets"
     case magnifyingGlass = "magnifying-glass"
+    case mapTrifold = "map-trifold"
     case penNib = "pen-nib"
     case penNibLight = "pen-nib-light"
     case plus

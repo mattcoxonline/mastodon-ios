@@ -639,7 +639,7 @@ extension MastodonTabViewRouter.MastodonTab {
         case .home:
             Image(phosphor: .listBullets, filled: isSelected)
         case .explore:
-            Image(systemName: "map")
+            Image(phosphor: .mapTrifold)
         case .notifications:
             Image(systemName: "at")
         case .profile:

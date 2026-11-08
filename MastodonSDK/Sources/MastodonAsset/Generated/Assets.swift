@@ -179,6 +179,7 @@ public enum Asset {
     public static let list = SymbolAsset(name: "Phosphor/list")
     public static let magnifyingGlassFill = SymbolAsset(name: "Phosphor/magnifying-glass.fill")
     public static let magnifyingGlass = SymbolAsset(name: "Phosphor/magnifying-glass")
+    public static let mapTrifold = SymbolAsset(name: "Phosphor/map-trifold")
     public static let penNibLight = SymbolAsset(name: "Phosphor/pen-nib-light")
     public static let penNib = SymbolAsset(name: "Phosphor/pen-nib")
     public static let plus = SymbolAsset(name: "Phosphor/plus")
