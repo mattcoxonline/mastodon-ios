@@ -46,6 +46,12 @@ final class TabBarSmokeTests: XCTestCase {
         composeButton.tap()
         let textInput = app.textViews.firstMatch
         XCTAssertTrue(textInput.waitForExistence(timeout: 10), "compose sheet did not open")
+
+        // the glass toolbar exposes every action via its accessibility labels
+        // (English fallbacks; the simulator session runs in English)
+        for name in ["Add Attachment", "Add Poll", "Custom Emoji Picker", "Enable Content Warning"] {
+            XCTAssertTrue(app.buttons[name].firstMatch.waitForExistence(timeout: 5), "toolbar button missing: \(name)")
+        }
     }
 
     /// Tapping the Oslo tab shows the local timeline.

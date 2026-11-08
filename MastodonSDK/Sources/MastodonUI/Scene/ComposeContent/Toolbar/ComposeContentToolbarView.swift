@@ -18,10 +18,9 @@ protocol ComposeContentToolbarViewDelegate: AnyObject {
 
 struct ComposeContentToolbarView: View {
 
-    static var toolbarHeight: CGFloat { 48 }
+    static var toolbarHeight: CGFloat { 60 }
 
     @ObservedObject var viewModel: ViewModel
-    let isZoomed = (UIScreen.main.scale != UIScreen.main.nativeScale)
 
     @State private var showingLanguagePicker = false
     @State private var didChangeLanguage = false
@@ -39,12 +38,8 @@ struct ComposeContentToolbarView: View {
                 .toolbar(.hidden, for: .navigationBar)
                 .toolbar {
                     ToolbarItemGroup(placement: .bottomBar) {
-                        ScrollView(isZoomed ? .horizontal : []) {
-                            HStack(spacing: .zero) {
-                                ForEach(ComposeContentToolbarView.ViewModel.Action.allCases.filter { $0 != .visibility }, id: \.self) { action in
-                                    toolbarControl(for: action)
-                                }
-                            }
+                        ForEach(ComposeContentToolbarView.ViewModel.Action.allCases.filter { $0 != .visibility }, id: \.self) { action in
+                            toolbarControl(for: action)
                         }
                     }
                     if #available(iOS 26.0, *) {
