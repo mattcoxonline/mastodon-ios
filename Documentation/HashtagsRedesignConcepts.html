@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Explore &rsaquo; Hashtags — three rework concepts</title>
+<style>
+  :root {
+    --accent: #563ACC;
+    --bg: #f5f5f7;
+    --card: #ffffff;
+    --ink: #1a1a1f;
+    --sub: #6e6e78;
+    --hair: #e4e4ea;
+    --oslo-blue: #6FE9FF;
+    --oslo-navy: #2A2859;
+    --oslo-green: #43F8B6;
+  }
+  * { box-sizing: border-box; }
+  body { font-family: -apple-system, BlinkMacSystemFont, sans-serif; background: var(--bg); color: var(--ink); margin: 0; padding: 40px 20px; line-height: 1.45; }
+  .wrap { max-width: 1000px; margin: 0 auto; }
+  h1 { font-size: 28px; margin: 0 0 6px; }
+  .lede { color: var(--sub); max-width: 720px; margin-bottom: 28px; }
+  section.concept { background: var(--card); border-radius: 24px; padding: 32px; margin: 28px 0; }
+  .kicker { color: var(--accent); font-weight: 700; letter-spacing: .08em; text-transform: uppercase; font-size: 12px; }
+  h2 { font-size: 22px; margin: 6px 0 4px; }
+  .insp { color: var(--sub); font-size: 14px; margin-bottom: 20px; }
+  .cols { display: flex; gap: 28px; flex-wrap: wrap; }
+  .phone { flex: 1 1 300px; min-width: 300px; max-width: 380px; background: #f2f2f7; border-radius: 34px; padding: 14px; border: 1px solid var(--hair); }
+  .screen { background: #fff; border-radius: 24px; overflow: hidden; font-size: 13px; }
+  .shead { padding: 12px 16px 4px; font-weight: 700; font-size: 17px; display:flex; justify-content: space-between; align-items: baseline; }
+  .shead .cnt { font-size: 11px; color: var(--sub); font-weight: 500; }
+  .seg { display: flex; margin: 8px 12px; background: #e9e9f0; border-radius: 9px; padding: 2px; font-size: 12px; }
+  .seg div { flex: 1; text-align: center; padding: 5px 0; color: var(--sub); }
+  .seg div.on { background: #fff; color: var(--ink); border-radius: 7px; font-weight: 600; box-shadow: 0 1px 2px rgba(0,0,0,.08); }
+  .row { display: flex; gap: 12px; padding: 11px 14px; border-bottom: 1px solid var(--hair); align-items: center; }
+  .row:last-child { border-bottom: 0; }
+  .rank { width: 26px; font-weight: 800; color: #b7b7c2; font-size: 15px; text-align: center; }
+  .rank.top { color: var(--accent); }
+  .tag { font-weight: 700; }
+  .stats { font-size: 11px; color: var(--sub); margin-top: 1px; }
+  .delta { font-size: 10px; font-weight: 700; padding: 2px 6px; border-radius: 6px; }
+  .up { color: #0a7d33; background: #d9f4e3; }
+  .down { color: #b02a2a; background: #fbe1e1; }
+  .spark { flex: 0 0 52px; }
+  .btn { margin-left: auto; font-size: 11px; font-weight: 700; color: var(--accent); border: 1.5px solid var(--accent); border-radius: 12px; padding: 4px 11px; }
+  .btn.on { background: var(--accent); color: #fff; }
+  .notes dl { margin: 0; }
+  .notes div { margin-bottom: 10px; }
+  .notes dt { font-weight: 700; font-size: 13px; }
+  .notes dd { margin: 2px 0 0 0; font-size: 13.5px; color: #3c3c44; }
+  .pill { display: inline-block; font-size: 11px; font-weight: 700; padding: 2px 9px; border-radius: 999px; background: #eae7f8; color: var(--accent); margin-right: 6px; }
+  table { border-collapse: collapse; width: 100%; font-size: 13.5px; }
+  th, td { text-align: left; padding: 9px 12px; border-bottom: 1px solid var(--hair); vertical-align: top; }
+  th { font-size: 12px; text-transform: uppercase; letter-spacing: .05em; color: var(--sub); }
+  .topic { display: flex; gap: 12px; padding: 12px 14px; border-bottom: 1px solid var(--hair); align-items: center; }
+  .tile { width: 42px; height: 42px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 21px; flex: 0 0 42px; }
+  .t1 { background: var(--oslo-navy); } .t2 { background: var(--oslo-green); } .t3 { background: #FF8274; } .t4 { background: var(--oslo-blue); } .t5 { background: #F9C66B; }
+  .who { font-size: 11px; color: var(--sub); }
+  .chips { margin: 6px 0 2px; }
+  .chip { display: inline-block; font-size: 10.5px; background: #eeeff4; color: #444; border-radius: 6px; padding: 1px 7px; margin-right: 4px; }
+  .vel { width: 46px; height: 5px; background: #e6e6ee; border-radius: 3px; overflow: hidden; flex: 0 0 46px; }
+  .vel i { display: block; height: 100%; background: linear-gradient(90deg, var(--oslo-blue), var(--accent)); border-radius: 3px; }
+  .live { color: #b02a2a; font-weight: 800; font-size: 10px; }
+  .dot { display:inline-block; width:7px; height:7px; background:#FF8274; border-radius:50%; margin-right:4px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Explore &rsaquo; Hashtags — three rework concepts</h1>
+  <p class="lede">
+    The current page is a flat list of trending tags from <code>/api/v1/trends/tags</code> — hashtag, follow state, nothing else.
+    Two facts shape the redesign: <strong>(1)</strong> every tag arrives with <strong>7 days of history</strong> (posts + participants per day), so ranking, momentum and sparklines are free client-side;
+    <strong>(2)</strong> on a small instance the raw trend list is dominated by federated noise (#silentsunday, #lfc, #rodelijn) — the page needs an Oslo lens, not a bigger list.
+    What X, Bluesky and Threads each do differently is the third input.
+  </p>
+
+  <!-- ======================= CONCEPT A ======================= -->
+  <section class="concept">
+    <span class="kicker">Concept A</span>
+    <h2>Trend Board &mdash; ranked, with a memory</h2>
+    <p class="insp">Inspired by X/Twitter's Trending tab: a ranked board with counts, rank movement and a "what's happening" feeling — but built entirely from the data Mastodon already sends.</p>
+    <div class="cols">
+      <div class="phone">
+        <div class="screen">
+          <div class="shead">Trend Board <span class="cnt">1,204 posts today</span></div>
+          <div class="seg"><div class="on">Today</div><div>This Week</div></div>
+          <div class="row">
+            <div class="rank top">1</div>
+            <div style="flex:1">
+              <div class="tag">#oslo</div>
+              <div class="stats">312 posts &middot; 89 people <span class="delta up">&uarr; 2</span></div>
+            </div>
+            <svg class="spark" width="52" height="24" viewBox="0 0 52 24"><polyline points="0,20 9,16 17,13 26,9 35,10 43,5 51,3" fill="none" stroke="#563ACC" stroke-width="2"/></svg>
+            <div class="btn">Follow</div>
+          </div>
+          <div class="row">
+            <div class="rank top">2</div>
+            <div style="flex:1">
+              <div class="tag">#oslopride</div>
+              <div class="stats">188 posts &middot; 54 people <span class="delta up">new</span></div>
+            </div>
+            <svg class="spark" width="52" height="24" viewBox="0 0 52 24"><polyline points="0,22 9,22 17,21 26,14 35,8 43,6 51,3" fill="none" stroke="#563ACC" stroke-width="2"/></svg>
+            <div class="btn on">Following</div>
+          </div>
+          <div class="row">
+            <div class="rank">3</div>
+            <div style="flex:1">
+              <div class="tag">#lunsjpauserunga</div>
+              <div class="stats">61 posts &middot; 39 people <span class="delta down">&darr; 1</span></div>
+            </div>
+            <svg class="spark" width="52" height="24" viewBox="0 0 52 24"><polyline points="0,10 9,7 17,9 26,12 35,13 43,15 51,17" fill="none" stroke="#563ACC" stroke-width="2"/></svg>
+            <div class="btn">Follow</div>
+          </div>
+          <div class="row">
+            <div class="rank">4</div>
+            <div style="flex:1">
+              <div class="tag">#turtingioslo</div>
+              <div class="stats">44 posts &middot; 29 people <span class="delta up">&uarr; 1</span></div>
+            </div>
+            <svg class="spark" width="52" height="24" viewBox="0 0 52 24"><polyline points="0,18 9,19 17,15 26,14 35,11 43,8 51,7" fill="none" stroke="#563ACC" stroke-width="2"/></svg>
+            <div class="btn">Follow</div>
+          </div>
+        </div>
+      </div>
+      <div class="notes" style="flex:1 1 340px;">
+        <dl>
+          <div><dt>What it adds over today</dt><dd>Rank numbers, participants (not just posts), 7-day sparklines, rank movement ("&uarr;2" = today's bucket vs yesterday's, computed client-side), and a <strong>Today / This Week</strong> toggle that re-ranks from the same history array.</dd></div>
+          <div><dt>The Oslo lens</dt><dd>A pinned <strong>"From people here"</strong> section first: tags that local accounts (the Directory curator graph, or simply local-timeline participants) actually used today &mdash; then the federated noise below under "Elsewhere". Solves the #lfc problem without any server change.</dd></div>
+          <div><dt>Engineering</dt><dd><span class="pill">cheap</span>100% client-side: existing trends API + <code>Tag.history</code>. The current HashtagRowView becomes a richer row; the segmented picker stays. No new timeline plumbing.</dd></div>
+          <div><dt>Cost / risk</dt><dd>~1-2 days. Sparkline deltas look sparse on tiny days (12 posts) &mdash; design must normalize. The local/federated split needs one cheap source: whether the tag has posts in the local timeline cache, or a per-day "local uses" can't be derived &mdash; worst case the split is heuristic (tag known to be used by local accounts you follow).</dd></div>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================= CONCEPT B ======================= -->
+  <section class="concept">
+    <span class="kicker">Concept B</span>
+    <h2>Topic Guides &mdash; curated, not crawled</h2>
+    <p class="insp">Inspired by Threads' "Today's topics": AI-clustered topic cards with tap-through feeds. Oslo.town takes the editorial route it already loves (Directory = @matt's curation): topics are defined by a curator, each guide is a bundle of hashtags + a merged feed.</p>
+    <div class="cols">
+      <div class="phone">
+        <div class="screen">
+          <div class="shead">Topic Guides <span class="cnt">updated weekly</span></div>
+          <div class="topic">
+            <div class="tile t1">📰</div>
+            <div style="flex:1">
+              <div class="tag">Nyheter i Oslo</div>
+              <div class="who">63 people &middot; today &nbsp;&middot;&nbsp; curator: @matt</div>
+              <div class="chips"><span class="chip">#oslo</span><span class="chip">#nyheter</span><span class="chip">#oslopolitik</span><span class="chip">+2</span></div>
+            </div>
+          </div>
+          <div class="topic">
+            <div class="tile t2">🏃</div>
+            <div style="flex:1">
+              <div class="tag">Friluftsliv</div>
+              <div class="who">41 people &middot; today &nbsp;&middot;&nbsp; 5 tags</div>
+              <div class="chips"><span class="chip">#turtingioslo</span><span class="chip">#friluftsliv</span><span class="chip">#marka</span></div>
+            </div>
+          </div>
+          <div class="topic">
+            <div class="tile t3">🎶</div>
+            <div style="flex:1">
+              <div class="tag">Musikk &amp; scener</div>
+              <div class="who">28 people &middot; today &nbsp;&middot;&nbsp; 6 tags</div>
+              <div class="chips"><span class="chip">#osljazz</span><span class="chip">#konsert</span><span class="chip">#SuppeKlubb</span></div>
+            </div>
+          </div>
+          <div class="topic">
+            <div class="tile t4">🚲</div>
+            <div style="flex:1">
+              <div class="tag">Byliv &amp; sykkel</div>
+              <div class="who">19 people &middot; today &nbsp;&middot;&nbsp; 4 tags</div>
+              <div class="chips"><span class="chip">#sykkelvel</span><span class="chip">#byutvikling</span></div>
+            </div>
+          </div>
+          <div class="topic">
+            <div class="tile t5">🍃</div>
+            <div style="flex:1">
+              <div class="tag">Mat &amp; kafé</div>
+              <div class="who">17 people &middot; today &nbsp;&middot;&nbsp; 3 tags</div>
+              <div class="chips"><span class="chip">#oslokaffe</span><span class="chip">#matoslo</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="notes" style="flex:1 1 340px;">
+        <dl>
+          <div><dt>What it replaces</dt><dd>The flat tag list becomes <strong>curated topic cards</strong>. Each guide = emoji tile, title, curator byline, participant count ("63 people today" &mdash; summed across the bundle's tags from their history), and the member tags. Tap opens a <strong>merged multi-tag timeline</strong>.</dd></div>
+          <div><dt>The merge is the interesting bit</dt><dd>Mastodon has no multi-tag timeline API, but the app can fetch each member's hashtag timeline in parallel and merge-by-date client-side (dedupe by post id). 4-6 tags is fine. This also unlocks "topic feed" elsewhere later (e.g., pinned to the Feed picker).</dd></div>
+          <div><dt>The Oslo lens</dt><dd>Bundles are a curation artifact &mdash; either defined in-app (config list in DiscoveryType, like <code>directoryCuratorAcct</code> already works) or, nicer, <strong>stored on the curator's Mastodon server as lists or collections</strong> the app fetches &mdash; zero app updates to change the guides, same philosophy as the Directory.</dd></div>
+          <div><dt>Engineering</dt><dd><span class="pill">medium</span>Merged timeline type (new MastodonTimelineType case + merge loader), topic model + fetch (in-app config to start), new cards on top of existing rows for a "Trending beyond the guides" tail.</dd></div>
+          <div><dt>Cost / risk</dt><dd>~3-5 days. Curation burden lands on a human (that's the point, but it must be low-effort or it rots). Merged feeds paginate awkwardly (N link headers) &mdash; load-first-20-of-each-and-merge is good enough.</dd></div>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================= CONCEPT C ======================= -->
+  <section class="concept">
+    <span class="kicker">Concept C</span>
+    <h2>The Live Pulse &mdash; velocity, not volume</h2>
+    <p class="insp">Inspired by Bluesky's trending (velocity-ranked, minimal, refreshes in place). Built on something Mastodon apps never use: the app now has a <strong>streaming connection</strong> (shipped for the feed), and every streamed post arrives with its hashtags.</p>
+    <div class="cols">
+      <div class="phone">
+        <div class="screen">
+          <div class="shead"><span><span class="dot"></span><span class="live">LIVE</span></span> The Pulse</div>
+          <div class="seg"><div class="on">Around you</div><div>oslo.town</div><div>Fediverse</div></div>
+          <div class="row">
+            <div style="flex:1">
+              <div class="tag">#oslopride</div>
+              <div class="stats">14 posts/h &middot; 42 today &nbsp;&middot;&nbsp; 3 people you follow are in it &mdash; last 2h</div>
+            </div>
+            <div class="vel"><i style="width:85%"></i></div>
+          </div>
+          <div class="row">
+            <div style="flex:1">
+              <div class="tag">#tg2026</div>
+              <div class="stats">9 posts/h &middot; marked by 2 people you follow &mdash; last 2h</div>
+            </div>
+            <div class="vel"><i style="width:55%"></i></div>
+          </div>
+          <div class="row">
+            <div style="flex:1">
+              <div class="tag">#kakkalakki</div>
+              <div class="stats">6 posts/h &middot; new in your feed circle</div>
+            </div>
+            <div class="vel"><i style="width:35%"></i></div>
+          </div>
+          <div class="row">
+            <div style="flex:1">
+              <div class="tag">#suppeklubb</div>
+              <div class="stats">4 posts/h &middot; 17 posts · 1.5h window</div>
+            </div>
+            <div class="vel"><i style="width:22%"></i></div>
+          </div>
+          <div class="row">
+            <div style="flex:1">
+              <div class="tag">#byliv</div>
+              <div class="stats">3 posts/h &middot; steady since Monday</div>
+            </div>
+            <div class="vel"><i style="width:14%"></i></div>
+          </div>
+        </div>
+      </div>
+      <div class="notes" style="flex:1 1 340px;">
+        <dl>
+          <div><dt>What it replaces</dt><dd>Instead of the server's daily trend rollup, the app keeps a <strong>rolling window counter</strong> fed by everything that passes through it: home stream (already live), Oslo tab stream, and the Everything stream while you browse. Tags are ranked by <strong>velocity</strong> (posts per hour) over the last ~3-6 hours, with follow-graph context lines.</dd></div>
+          <div><dt>Three scopes, one honest story</dt><dd><strong>Around you</strong> = tags from your home stream (who you follow actually shapes it). <strong>oslo.town</strong> = the Oslo tab's public:local stream (the community pulse &mdash; small numbers, worn proudly: "6 posts/h" is true here). <strong>Fediverse</strong> = the Everything stream, which replaces the server's noisy trend list with what your own firehose shows.</dd></div>
+          <div><dt>The Oslo lens</dt><dd>Built in. The oslo.town scope <em>is</em> the lens. Small-instance numbers stop being embarrassing because the design treats velocity as the story, not raw counts vs. Twitter-scale.</dd></div>
+          <div><dt>Engineering</dt><dd><span class="pill">ambitious</span>An in-memory tag/aggregator over streamed posts (phase-2 infrastructure makes this real: every <code>update</code> event already carries the post JSON), plus a discrete session store so the window survives restarts. New ranked list UI. No API or server changes.</dd></div>
+          <div><dt>Cost / risk</dt><dd>~5-8 days. Honest limits: the window only sees what the app sees (no stream open &rarr; no data; cold start needs a backfill from trend history). Aggregation bugs (tag normalization) are the classic trap. The "LIVE" claim needs the streaming phase-3 groundwork to hold while browsing Explore.</dd></div>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================= COMPARISON ======================= -->
+  <section class="concept">
+    <span class="kicker">Choosing</span>
+    <h2>Comparison &amp; recommendation</h2>
+    <table>
+      <tr><th></th><th>A &middot; Trend Board</th><th>B &middot; Topic Guides</th><th>C &middot; Live Pulse</th></tr>
+      <tr><th>Platform echo</th><td>X trend ranked list</td><td>Threads topic cards</td><td>Bluesky velocity feed</td></tr>
+      <tr><th>Fixes the noise problem</th><td>Partly (local-first sections)</td><td>Fully (editorial filter)</td><td>Fully (scoped streams)</td></tr>
+      <tr><th>New server needs</th><td>None</td><td>None (curator-config)</td><td>None</td></tr>
+      <tr><th>Effort</th><td>1&ndash;2 days</td><td>3&ndash;5 days</td><td>5&ndash;8 days</td></tr>
+      <tr><th>Maintenance</th><td>Zero</td><td>Curator updates guides</td><td>Zero</td></tr>
+      <tr><th>Uses existing infrastructure</th><td>History arrays</td><td>Directory curation pattern</td><td>Streaming (phase 2)</td></tr>
+    </table>
+    <p style="margin-top:16px; font-size:14.5px; color:#3c3c44;">
+      <strong>Recommendation:</strong> B is the identity move and A is the quick win &mdash; they also compose well: A's ranked board underneath, B's curated guides on top, giving the page both a live floor and an editorial face. C is the most original (nobody in the Mastodon app ecosystem has a stream-fed live tag pulse) but stands on phase-3 streaming and session aggregation, so it's a second-quarter project. A sensible order: <strong>B &rarr; A &rarr; C</strong>.
+    </p>
+  </section>
+</div>
+</body>
+</html>
