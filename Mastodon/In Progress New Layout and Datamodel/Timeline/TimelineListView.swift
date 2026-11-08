@@ -140,7 +140,7 @@ enum MastodonTimelineSheet: Identifiable {
 fileprivate let avatarSize = AvatarSize.large
 
 func contentWidth(forUseableWidth useableWidth: CGFloat) -> CGFloat {
-    return max(1, useableWidth - (Spacing.s /*left margin*/ + spacingBetweenGutterAndContent /*avatar trailing to content leading*/ + Spacing.l /*right margin*/) - avatarSize.rawValue)
+    return max(1, useableWidth - (Spacing.m /*left margin*/ + spacingBetweenGutterAndContent /*avatar trailing to content leading*/ + Spacing.m /*right margin*/) - avatarSize.rawValue)
 }
 
 extension View {
@@ -685,7 +685,7 @@ struct TimelineListView: View {
                     Text(text)
                         .fontWeight(.semibold)
                         .foregroundStyle(.secondary)
-                        .padding(Spacing.s)
+                        .padding(EdgeInsets(top: Spacing.s, leading: Spacing.m, bottom: Spacing.s, trailing: Spacing.s))
                         .frame(width: useableWidth, alignment: .leading)
                     
                 case .scopedSearchResults(let queryModel):
@@ -699,7 +699,7 @@ struct TimelineListView: View {
                     if let filteredNotificationsViewModel {
                         FilteredNotificationsRowView(contentWidth: contentWidth)
                             .environment(filteredNotificationsViewModel)
-                            .padding(EdgeInsets(top: Spacing.s, leading: Spacing.s, bottom: Spacing.s, trailing: Spacing.l))
+                            .padding(EdgeInsets(top: Spacing.s, leading: Spacing.m, bottom: Spacing.s, trailing: Spacing.m))
                             .frame(width: useableWidth)
                             .accessibilityElement(children: .combine)
                             .accessibilityAction {
@@ -710,7 +710,7 @@ struct TimelineListView: View {
                             }
                     } else {
                         Text(L10nLookup.Timeline.EmptyState.someNotificationsHaveBeenFiltered)
-                            .padding(EdgeInsets(top: Spacing.s, leading: Spacing.s, bottom: Spacing.s, trailing: Spacing.l))
+                            .padding(EdgeInsets(top: Spacing.s, leading: Spacing.m, bottom: Spacing.s, trailing: Spacing.m))
                             .frame(width: useableWidth)
                     }
                     Divider()
@@ -743,7 +743,7 @@ struct TimelineListView: View {
                 case .notification(let notificationViewModel):
                     NotificationRowView(contentWidth: contentWidth, actionHandler: viewModel)
                         .environment(notificationViewModel)
-                        .padding(EdgeInsets(top: Spacing.s, leading: Spacing.s, bottom: Spacing.s, trailing: Spacing.l))
+                        .padding(EdgeInsets(top: Spacing.s, leading: Spacing.m, bottom: Spacing.s, trailing: Spacing.m))
                         .frame(width: useableWidth)
                         .background() {
                             if let inlinePost = notificationViewModel.inlinePostViewModel {
@@ -758,19 +758,19 @@ struct TimelineListView: View {
                 case .hashtag(let tagViewModel):
                     switch viewModel.timeline {
                     case .hashtag:
-                        HashtagHeaderView(availableWidth: useableWidth - Spacing.l * 2)
+                        HashtagHeaderView(availableWidth: useableWidth - Spacing.m * 2)
                             .environment(tagViewModel)
-                            .padding(EdgeInsets(top: Spacing.l, leading: Spacing.l, bottom: Spacing.s, trailing: Spacing.l))
+                            .padding(EdgeInsets(top: Spacing.l, leading: Spacing.m, bottom: Spacing.s, trailing: Spacing.m))
                             .frame(width: useableWidth)
                         Divider()
                     case .myFollowedHashtags:
-                        HashtagHeaderView(availableWidth: useableWidth - Spacing.l * 2)
+                        HashtagHeaderView(availableWidth: useableWidth - Spacing.m * 2)
                             .environment(tagViewModel)
-                            .padding(EdgeInsets(top: Spacing.l, leading: Spacing.l, bottom: Spacing.s, trailing: Spacing.l))
+                            .padding(EdgeInsets(top: Spacing.l, leading: Spacing.m, bottom: Spacing.s, trailing: Spacing.m))
                             .frame(width: useableWidth)
                     default:
                         HashtagRowView()
-                            .padding(EdgeInsets(top: Spacing.l, leading: Spacing.l, bottom: Spacing.s, trailing: Spacing.l))
+                            .padding(EdgeInsets(top: Spacing.l, leading: Spacing.m, bottom: Spacing.s, trailing: Spacing.m))
                             .frame(width: useableWidth)
                             .environment(tagViewModel)
                             .onTapGesture {
@@ -792,7 +792,7 @@ struct TimelineListView: View {
                         .foregroundStyle(.secondary)
                         .padding(.vertical)
                     }
-                    .padding(EdgeInsets(top: Spacing.l, leading: Spacing.l, bottom: Spacing.s, trailing: Spacing.l))
+                    .padding(EdgeInsets(top: Spacing.l, leading: Spacing.m, bottom: Spacing.s, trailing: Spacing.m))
                     .frame(width: useableWidth)
                     
                 case .account(let accountViewModel):
@@ -802,7 +802,7 @@ struct TimelineListView: View {
                         // collection member: card layout
                         CollectionAccountCard(control: accountRowControl(for: accountViewModel))
                             .environment(accountViewModel)
-                            .padding(EdgeInsets(top: Spacing.s, leading: Spacing.l, bottom: Spacing.s, trailing: Spacing.l))
+                            .padding(EdgeInsets(top: Spacing.s, leading: Spacing.m, bottom: Spacing.s, trailing: Spacing.m))
                             .frame(width: useableWidth)
                             .onTapGesture {
                                 navigator.push(.profile(account: accountViewModel.account._legacyEntity, relationship: nil))
@@ -811,7 +811,7 @@ struct TimelineListView: View {
                         // TODO: larger, more informative view if in a .discovery timeline?
                         AccountRowView(contentWidth: contentWidth, control: accountRowControl(for: accountViewModel))
                             .environment(accountViewModel)
-                            .padding(EdgeInsets(top: Spacing.s, leading: Spacing.l, bottom: Spacing.s, trailing: Spacing.s))
+                            .padding(EdgeInsets(top: Spacing.s, leading: Spacing.m, bottom: Spacing.s, trailing: Spacing.m))
                             .frame(width: useableWidth)
                             .onTapGesture {
                                 navigator.push(.profile(account: accountViewModel.account._legacyEntity, relationship: nil))
@@ -820,7 +820,7 @@ struct TimelineListView: View {
                 case .collection(let collectionViewModel):
                     CollectionRowView(contentWidth: contentWidth, includeMenu: true, showsAuthor: false)
                         .environment(collectionViewModel)
-                        .padding(EdgeInsets(top: Spacing.s, leading: Spacing.s, bottom: Spacing.s, trailing: Spacing.l))
+                        .padding(EdgeInsets(top: Spacing.s, leading: Spacing.m, bottom: Spacing.s, trailing: Spacing.m))
                         .frame(width: useableWidth)
                         .onTapGesture {
                             navigator.push(.timeline(.collection(collectionViewModel)))
@@ -829,7 +829,7 @@ struct TimelineListView: View {
                 case .directoryFeatured(let featuredModel):
                     DirectoryFeaturedCard()
                         .environment(featuredModel)
-                        .padding(EdgeInsets(top: Spacing.l, leading: Spacing.l, bottom: Spacing.s, trailing: Spacing.l))
+                        .padding(EdgeInsets(top: Spacing.l, leading: Spacing.m, bottom: Spacing.s, trailing: Spacing.m))
                         .frame(width: useableWidth)
                         .onTapGesture {
                             navigator.push(.profile(account: featuredModel.accountRowViewModel.account._legacyEntity, relationship: featuredModel.accountRowViewModel.myRelationship))
@@ -838,7 +838,7 @@ struct TimelineListView: View {
                 case .directoryCollection(let collectionViewModel):
                     DirectoryCollectionRow()
                         .environment(collectionViewModel)
-                        .padding(EdgeInsets(top: Spacing.s, leading: Spacing.l, bottom: Spacing.s, trailing: Spacing.l))
+                        .padding(EdgeInsets(top: Spacing.s, leading: Spacing.m, bottom: Spacing.s, trailing: Spacing.m))
                         .frame(width: useableWidth)
                         .onTapGesture {
                             navigator.push(.timeline(.collection(collectionViewModel)))
@@ -855,7 +855,7 @@ struct TimelineListView: View {
             }
         case .concealAll(_, showTextAnyway: false, _):
             concealedContentsView()
-                .padding(Spacing.s)
+                .padding(EdgeInsets(top: Spacing.s, leading: Spacing.m, bottom: Spacing.s, trailing: Spacing.m))
         }
     }
     
@@ -929,7 +929,7 @@ struct TimelineListView: View {
         MastodonPostRowView(contentWidth: contentWidth, precalculatedHeight: expectedHeight, isPinned: isPinned, actionHandler: viewModel, threadedContext: viewModel.threadedConversationModel?.context(for: postViewModel.initialDisplayInfo.id), filterContext: viewModel.timeline.filterContext)
             .environment(postViewModel)
             .environment(contentConcealModel)
-            .padding(EdgeInsets(top: 0, leading: Spacing.s, bottom: 0, trailing: Spacing.l))
+            .padding(EdgeInsets(top: 0, leading: Spacing.m, bottom: 0, trailing: Spacing.m))
             .frame(width: useableWidth, height: expectedHeight, alignment: .top)
             .contentShape(Rectangle())
             .onTapGesture {
@@ -975,12 +975,12 @@ struct TimelineListView: View {
                         .fontWeight(.semibold)
                         .padding(.vertical, Spacing.s)
                         .padding(.horizontal)
-                        .frame(width: useableWidth - Spacing.s - Spacing.s)
+                        .frame(width: useableWidth - Spacing.m - Spacing.m)
                         .background() {
                             MastodonSecondaryBackground(fillInDarkModeOnly: true)
                         }
                     }
-                    .padding(EdgeInsets(top: 0, leading: Spacing.s, bottom: Spacing.l, trailing: Spacing.s))
+                    .padding(EdgeInsets(top: 0, leading: Spacing.m, bottom: Spacing.l, trailing: Spacing.m))
                 }
             } else {
                 ForEach(postViewModels, id: \.self.initialDisplayInfo.id) { postModel in
