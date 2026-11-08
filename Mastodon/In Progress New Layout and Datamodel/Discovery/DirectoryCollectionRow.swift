@@ -12,7 +12,7 @@ struct DirectoryCollectionRow: View {
     static let defaultEmoji = "🗂"
 
     var body: some View {
-        HStack(alignment: .center, spacing: standardPadding) {
+        HStack(alignment: .center, spacing: Spacing.m) {
             tile
             VStack(alignment: .leading, spacing: 1) {
                 Text(title)

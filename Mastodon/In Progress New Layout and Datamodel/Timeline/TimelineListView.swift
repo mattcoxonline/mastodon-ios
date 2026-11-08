@@ -800,7 +800,7 @@ struct TimelineListView: View {
                         // collection member: card layout
                         CollectionAccountCard(control: accountRowControl(for: accountViewModel))
                             .environment(accountViewModel)
-                            .padding(EdgeInsets(top: standardPadding, leading: standardPadding, bottom: standardPadding, trailing: standardPadding))
+                            .padding(EdgeInsets(top: Spacing.s, leading: Spacing.l, bottom: Spacing.s, trailing: Spacing.l))
                             .frame(width: useableWidth)
                             .onTapGesture {
                                 navigator.push(.profile(account: accountViewModel.account._legacyEntity, relationship: nil))
@@ -827,7 +827,7 @@ struct TimelineListView: View {
                 case .directoryFeatured(let featuredModel):
                     DirectoryFeaturedCard()
                         .environment(featuredModel)
-                        .padding(EdgeInsets(top: standardPadding, leading: doublePadding, bottom: standardPadding, trailing: doublePadding))
+                        .padding(EdgeInsets(top: Spacing.l, leading: Spacing.l, bottom: Spacing.s, trailing: Spacing.l))
                         .frame(width: useableWidth)
                         .onTapGesture {
                             navigator.push(.profile(account: featuredModel.accountRowViewModel.account._legacyEntity, relationship: featuredModel.accountRowViewModel.myRelationship))
@@ -836,7 +836,7 @@ struct TimelineListView: View {
                 case .directoryCollection(let collectionViewModel):
                     DirectoryCollectionRow()
                         .environment(collectionViewModel)
-                        .padding(EdgeInsets(top: standardPadding, leading: doublePadding, bottom: standardPadding, trailing: doublePadding))
+                        .padding(EdgeInsets(top: Spacing.s, leading: Spacing.l, bottom: Spacing.s, trailing: Spacing.l))
                         .frame(width: useableWidth)
                         .onTapGesture {
                             navigator.push(.timeline(.collection(collectionViewModel)))
@@ -1028,10 +1028,10 @@ struct TimelineListView: View {
                     .frame(maxWidth: .infinity, alignment: .center)
             }
         case .collection(let collectionViewModel):
-            VStack(alignment: .leading, spacing: standardPadding) {
+            VStack(alignment: .leading, spacing: Spacing.m) {
                 let splitName = DirectoryCollectionRow.firstEmoji(inTitle: collectionViewModel.collection.name ?? "")
-                VStack(alignment: .leading, spacing: standardPadding) {
-                    HStack(alignment: .center, spacing: standardPadding) {
+                VStack(alignment: .leading, spacing: Spacing.m) {
+                    HStack(alignment: .center, spacing: Spacing.m) {
                         CollectionEmojiTile(emoji: splitName.emoji ?? DirectoryCollectionRow.defaultEmoji)
                             .accessibilityHidden(true)
                         VStack(alignment: .leading, spacing: 1) {
@@ -1051,12 +1051,12 @@ struct TimelineListView: View {
                             .font(.subheadline)
                             .foregroundStyle(.secondary)
                     }
-                    HStack(alignment: .center, spacing: standardPadding) {
+                    HStack(alignment: .center, spacing: Spacing.m) {
                         HStack(spacing: 0) {
                             ForEach(Array(collectionViewModel.accountAvatarUrls.prefix(6).enumerated()), id: \.offset) { index, url in
                                 AvatarView(style: .circular, size: .small, avatarSource: .url(url))
                                     .overlay(Circle().stroke(Color(uiColor: .systemBackground), lineWidth: 2))
-                                    .padding(.leading, index == 0 ? 0 : -2 * standardPadding)
+                                    .padding(.leading, index == 0 ? 0 : -Spacing.l)
                                     .accessibilityHidden(true)
                             }
                         }
@@ -1067,10 +1067,10 @@ struct TimelineListView: View {
                             .foregroundStyle(.secondary)
                     }
                 }
-                .padding(standardPadding)
+                .padding(Spacing.l)
                 .background(
                     Color(uiColor: .secondarySystemBackground),
-                    in: RoundedRectangle(cornerRadius: doublePadding)
+                    in: RoundedRectangle(cornerRadius: Radius.m)
                 )
                 let myAccountId = AuthenticationServiceProvider.shared.currentActiveUser.value?.userID
                 if !collectionViewModel.iHaveRemovedMyself, let meAsMember = collectionViewModel.collection.items.first(where: { $0.account_id == myAccountId }) {
@@ -1087,7 +1087,7 @@ struct TimelineListView: View {
                     .fixedSize(horizontal: false, vertical: true)
                 }
             }
-            .padding(.horizontal, standardPadding)
+            .padding(.horizontal, Spacing.l)
             .padding(.bottom, doublePadding)
             .frame(maxWidth: .infinity, alignment: .leading)
         default:

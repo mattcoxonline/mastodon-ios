@@ -21,14 +21,14 @@ struct CollectionAccountCard: View {
         VStack(alignment: .leading, spacing: 0) {
             coverStrip
 
-            HStack(alignment: .center, spacing: standardPadding) {
+            HStack(alignment: .center, spacing: Spacing.m) {
                 AvatarView(
                     style: .circular,
                     size: .large,
                     avatarSource: .url(viewModel.account.avatarURL)
                 )
                 .overlay(Circle().stroke(cardBackground, lineWidth: 3))
-                .padding(.top, -3 * standardPadding)
+                .padding(.top, -Spacing.xl)
                 .accessibilityHidden(true)
 
                 VStack(alignment: .leading, spacing: 1) {
@@ -44,7 +44,7 @@ struct CollectionAccountCard: View {
                         .lineLimit(1)
                 }
 
-                Spacer(minLength: standardPadding)
+                Spacer(minLength: Spacing.m)
 
                 switch control {
                 case .relationship:
@@ -61,26 +61,26 @@ struct CollectionAccountCard: View {
                     RemoveFromCollectionButton(action: action)
                 }
             }
-            .padding(.horizontal, standardPadding)
+            .padding(.horizontal, Spacing.m)
 
             if let bioLine = viewModel.bioLine {
                 Text(bioLine)
                     .font(.subheadline)
                     .foregroundStyle(.secondary)
                     .lineLimit(2)
-                    .padding(.horizontal, standardPadding)
-                    .padding(.top, tinySpacing)
-                    .padding(.bottom, standardPadding)
+                    .padding(.horizontal, Spacing.m)
+                    .padding(.top, Spacing.xs)
+                    .padding(.bottom, Spacing.m)
             } else {
-                Spacer(minLength: standardPadding)
-                    .frame(height: standardPadding)
+                Spacer(minLength: Spacing.m)
+                    .frame(height: Spacing.m)
             }
         }
-        .padding(.top, standardPadding)
+        .padding(.top, Spacing.m)
         .frame(maxWidth: .infinity, alignment: .leading)
         .background(
             cardBackground,
-            in: RoundedRectangle(cornerRadius: doublePadding)
+            in: RoundedRectangle(cornerRadius: Radius.m)
         )
         .accessibilityElement(children: .contain)
     }
@@ -97,14 +97,14 @@ struct CollectionAccountCard: View {
                     Color(uiColor: .tertiarySystemFill)
                 }
             }
-            .frame(height: 7 * standardPadding)
-            .clipShape(RoundedRectangle(cornerRadius: 3 * standardPadding))
-            .padding(.horizontal, standardPadding)
+            .frame(height: 64)
+            .clipShape(RoundedRectangle(cornerRadius: Radius.m))
+            .padding(.horizontal, Spacing.m)
         } else {
             Color(uiColor: .tertiarySystemFill)
-                .frame(height: 7 * standardPadding)
-                .clipShape(RoundedRectangle(cornerRadius: 3 * standardPadding))
-                .padding(.horizontal, standardPadding)
+                .frame(height: 64)
+                .clipShape(RoundedRectangle(cornerRadius: Radius.m))
+                .padding(.horizontal, Spacing.m)
         }
     }
 }

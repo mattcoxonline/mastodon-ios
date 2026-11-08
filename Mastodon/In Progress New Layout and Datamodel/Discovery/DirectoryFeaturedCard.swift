@@ -37,13 +37,13 @@ struct DirectoryFeaturedCard: View {
     @Environment(DirectoryFeaturedModel.self) private var model
 
     var body: some View {
-        VStack(alignment: .leading, spacing: standardPadding) {
+        VStack(alignment: .leading, spacing: Spacing.m) {
             Text(L10n.Scene.Discovery.featured.uppercased())
                 .font(.subheadline)
                 .fontWeight(.semibold)
                 .foregroundStyle(.secondary)
 
-            HStack(alignment: .center, spacing: standardPadding) {
+            HStack(alignment: .center, spacing: Spacing.m) {
                 AvatarView(style: .circular, size: .large, avatarSource: .url(model.accountRowViewModel.account.avatarURL))
                     .accessibilityHidden(true)
 
@@ -66,7 +66,7 @@ struct DirectoryFeaturedCard: View {
                         .lineLimit(1)
                 }
 
-                Spacer(minLength: standardPadding)
+                Spacer(minLength: Spacing.m)
 
                 model.accountRowViewModel.relationshipButton.button() {
                     Task {
@@ -79,10 +79,10 @@ struct DirectoryFeaturedCard: View {
                 }
             }
             .frame(maxWidth: .infinity, alignment: .leading)
-            .padding(standardPadding)
+            .padding(Spacing.l)
             .background(
                 .regularMaterial,
-                in: RoundedRectangle(cornerRadius: doublePadding)
+                in: RoundedRectangle(cornerRadius: Radius.l)
             )
         }
         .accessibilityElement(children: .combine)
