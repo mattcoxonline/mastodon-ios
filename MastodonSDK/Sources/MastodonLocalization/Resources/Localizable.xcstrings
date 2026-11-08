@@ -17783,37 +17783,37 @@
         "ar" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "الشائع"
+            "value" : "الرائج"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Popular"
+            "value" : "Trending"
           }
         },
         "en-US" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Popular"
+            "value" : "Trending"
           }
         },
         "nb" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Populært"
+            "value" : "Trender"
           }
         },
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Popularne"
+            "value" : "Na czasie"
           }
         },
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Популярне"
+            "value" : "У тренді"
           }
         }
       }
