@@ -938,6 +938,8 @@ public enum L10n {
     public enum Discovery {
       /// These are the posts gaining traction in your corner of Mastodon.
       public static let intro = L10n.tr("Localizable", "Scene.Discovery.Intro", fallback: "These are the posts gaining traction in your corner of Mastodon.")
+      /// Featured
+      public static let featured = L10n.tr("Localizable", "Scene.Discovery.Featured", fallback: "Featured")
       public enum Tabs {
         /// Community
         public static let community = L10n.tr("Localizable", "Scene.Discovery.Tabs.Community", fallback: "Community")

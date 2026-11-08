@@ -347,6 +347,8 @@ enum TimelineItem: Identifiable {
     case link(Mastodon.Entity.Card)
     case account(AccountRowViewModel)
     case collection(CollectionViewModel)
+    case directoryFeatured(DirectoryFeaturedModel)
+    case directoryCollection(CollectionViewModel)
     case filteredNotificationsInfo(
         Mastodon.Entity.NotificationPolicy?,
         FilteredNotificationsRowView.ViewModel?)
@@ -374,6 +376,10 @@ enum TimelineItem: Identifiable {
             return "account-\(accountViewModel.id)"
         case .collection(let collectionViewModel):
             return "collection-\(collectionViewModel.id)"
+        case .directoryFeatured(let featuredModel):
+            return "directoryFeatured-\(featuredModel.accountRowViewModel.id)"
+        case .directoryCollection(let collectionViewModel):
+            return "directoryCollection-\(collectionViewModel.id)"
         case .filteredNotificationsInfo:
             return "filteredNotifications"
         case .scopedSearchResults(let queryModel):
@@ -405,6 +411,10 @@ enum TimelineItem: Identifiable {
             return accountViewModel.id
         case .collection(let collectionViewModel):
             return collectionViewModel.id
+        case .directoryFeatured(let featuredModel):
+            return featuredModel.accountRowViewModel.id
+        case .directoryCollection(let collectionViewModel):
+            return collectionViewModel.id
         case .filteredNotificationsInfo:
             return nil
         case .scopedSearchResults:
@@ -418,7 +428,7 @@ enum TimelineItem: Identifiable {
     
     var isRealItem: Bool {
         switch self {
-        case .pinnedPosts, .post, .notification, .notificationRequest, .hashtag, .link, .account, .collection:
+        case .pinnedPosts, .post, .notification, .notificationRequest, .hashtag, .link, .account, .collection, .directoryFeatured, .directoryCollection:
             return true
         case .heading, .filteredNotificationsInfo, .scopedSearchResults, .loadingIndicator, .noItem:
             return false
@@ -527,7 +537,9 @@ final class TimelineFeedLoader: MastodonFeedLoader<TimelineItem, CacheableTimeli
                             break
                         case .hashtag(let hashtagModel):
                             hashtagModel.incorporateUpdate(update)
-                        case .filteredNotificationsInfo, .scopedSearchResults, .loadingIndicator, .noItem, .collection, .heading, .link:
+                        case .directoryFeatured(let featuredModel):
+                            featuredModel.accountRowViewModel.incorporateUpdate(update)
+                        case .filteredNotificationsInfo, .scopedSearchResults, .loadingIndicator, .noItem, .collection, .directoryCollection, .heading, .link:
                             break
                         }
                     }
@@ -577,7 +589,7 @@ final class TimelineFeedLoader: MastodonFeedLoader<TimelineItem, CacheableTimeli
             let isPinnedByMe = (post as? MastodonContentPost)?.content.myActions.pinnedByMe
             return TimelineItem.post(viewModel, isPinned: isPinned || (isPinnedByMe == true))
         }
-        func timelineItem(fromAccount accountEntity: Mastodon.Entity.Account, suggestedBecause: [Mastodon.Entity.V2.SuggestionAccount.SuggestionReason]?) -> TimelineItem {
+        @discardableResult func accountRowViewModel(from accountEntity: Mastodon.Entity.Account, suggestedBecause: [Mastodon.Entity.V2.SuggestionAccount.SuggestionReason]?) -> AccountRowViewModel {
             let account = MastodonAccount.fromEntity(accountEntity, authenticatedDomain: authenticatedUser.domain)
             let viewModel = {
                 if let existing = accountViewModels[account.id] {
@@ -589,7 +601,10 @@ final class TimelineFeedLoader: MastodonFeedLoader<TimelineItem, CacheableTimeli
                     return model
                 }
             }()
-            return TimelineItem.account(viewModel)
+            return viewModel
+        }
+        func timelineItem(fromAccount accountEntity: Mastodon.Entity.Account, suggestedBecause: [Mastodon.Entity.V2.SuggestionAccount.SuggestionReason]?) -> TimelineItem {
+            return TimelineItem.account(accountRowViewModel(from: accountEntity, suggestedBecause: suggestedBecause))
         }
         @MainActor func updateCollectionModel(_ model: CollectionViewModel, withAuthorAccountID authorID: Mastodon.Entity.Account.ID, partialAccounts: [Mastodon.Entity.PartialAccountWithAvatar]) {
             let authorHandle = partialAccounts.first(where: { $0.id == authorID })?.fullHandle ?? "someone@somewhere.social"
@@ -601,8 +616,8 @@ final class TimelineFeedLoader: MastodonFeedLoader<TimelineItem, CacheableTimeli
             }
             model.updateAvatarUrls(partialAccounts)
         }
-        func timelineItem(fromCollection collection: Mastodon.Entity.Collection, partialAccounts: [Mastodon.Entity.PartialAccountWithAvatar]) -> TimelineItem {
-          
+        func collectionViewModel(_ collection: Mastodon.Entity.Collection, partialAccounts: [Mastodon.Entity.PartialAccountWithAvatar]) -> CollectionViewModel {
+
             let viewModel = {
                 if let existing = collectionViewModels[collection.id] {
                     existing.updateCollection(collection)
@@ -615,7 +630,10 @@ final class TimelineFeedLoader: MastodonFeedLoader<TimelineItem, CacheableTimeli
                 }
             }()
             newCollectionModels[collection.id] = viewModel
-            return TimelineItem.collection(viewModel)
+            return viewModel
+        }
+        func timelineItem(fromCollection collection: Mastodon.Entity.Collection, partialAccounts: [Mastodon.Entity.PartialAccountWithAvatar]) -> TimelineItem {
+            return TimelineItem.collection(collectionViewModel(collection, partialAccounts: partialAccounts))
         }
         func timelineItem(fromHashtag hashtag: Mastodon.Entity.Tag) -> TimelineItem {
             let viewModel = {
@@ -636,6 +654,38 @@ final class TimelineFeedLoader: MastodonFeedLoader<TimelineItem, CacheableTimeli
             return response.value.collections.map { collection in
                 timelineItem(fromCollection: collection, partialAccounts: partialAccounts)
             }
+        }
+        func directoryCollections(curatedBy userID: String) async throws -> [CollectionViewModel] {
+            guard authenticatedUser.authentication.instanceConfiguration?.isAvailable(.collections) == true else { return [] }
+            let response = try await APIService.shared.collections(accountID: userID, authenticationBox: authenticatedUser)
+            let partialAccounts = response.value.partialAccounts ?? []
+            return response.value.collections.map { collection in
+                collectionViewModel(collection, partialAccounts: partialAccounts)
+            }
+        }
+        func directoryFeatured(from collections: [CollectionViewModel]) async -> DirectoryFeaturedModel? {
+            let candidates = collections.compactMap { collection -> (collection: CollectionViewModel, memberID: Mastodon.Entity.Account.ID)? in
+                guard let memberID = collection.collection.items.compactMap({ $0.account_id }).randomElement() else { return nil }
+                return (collection, memberID)
+            }
+            guard let pick = candidates.randomElement() else { return nil }
+            let accountEntity: Mastodon.Entity.Account?
+            do {
+                let accounts = try await APIService.shared.accountsInfo(userIDs: [pick.memberID], authenticationBox: authenticatedUser)
+                accountEntity = accounts[pick.memberID]
+            } catch {
+                return nil
+            }
+            guard let accountEntity else { return nil }
+            let bioLine: String? = await {
+                let note = accountEntity.note
+                guard !note.isEmpty else { return nil }
+                return await Task.detached(priority: .userInitiated) {
+                    DirectoryFeaturedModel.plainText(fromHTML: note)
+                }.value
+            }()
+            let accountRowViewModel = accountRowViewModel(from: accountEntity, suggestedBecause: nil)
+            return DirectoryFeaturedModel(accountRowViewModel: accountRowViewModel, bioLine: bioLine)
         }
         
         func threadItems(focusing statusID: Mastodon.Entity.Status.ID) async throws -> (items: [TimelineItem], asyncRefresh: Mastodon.Response.AsyncRefreshAvailable?) {
@@ -810,7 +860,10 @@ final class TimelineFeedLoader: MastodonFeedLoader<TimelineItem, CacheableTimeli
                     return account.id
                 }()
 
-                newBatch = try await collections(curatedBy: curatorUserID)
+                let directoryCollectionViewModels = try await directoryCollections(curatedBy: curatorUserID)
+                let featured = await directoryFeatured(from: directoryCollectionViewModels)
+                newBatch = (featured.map { [TimelineItem.directoryFeatured($0)] } ?? [])
+                    + directoryCollectionViewModels.map { TimelineItem.directoryCollection($0) }
                 newBatchBottomLoad = .nothingMoreToLoad
                 newAsyncRefreshAvailable = nil
             }
@@ -1242,7 +1295,7 @@ struct CacheableTimeline: CacheableFeed {
                 }
             case .notification, .notificationRequest:
                 return item
-            case .hashtag, .link, .account, .collection:
+            case .hashtag, .link, .account, .collection, .directoryFeatured, .directoryCollection:
                 return item
             }
         }
@@ -1267,6 +1320,8 @@ struct CacheableTimeline: CacheableFeed {
                 case .link: return true
                 case .account: return true
                 case .collection: return true
+                case .directoryFeatured: return true
+                case .directoryCollection: return true
                 }
             })?.id
             
@@ -1286,6 +1341,8 @@ struct CacheableTimeline: CacheableFeed {
                     case .account:
                         return item.id == oldestIdInNewBatch
                     case .collection:
+                        return item.id == oldestIdInNewBatch
+                    case .directoryFeatured, .directoryCollection:
                         return item.id == oldestIdInNewBatch
                     case .heading, .loadingIndicator, .filteredNotificationsInfo, .scopedSearchResults, .noItem:
                         return false
@@ -1323,7 +1380,7 @@ struct CacheableTimeline: CacheableFeed {
     func byDeleting(postId: Mastodon.Entity.Status.ID) -> CacheableTimeline {
         let newItems = items.compactMap { item -> TimelineItem? in
             switch item {
-            case .heading, .loadingIndicator, .scopedSearchResults, .filteredNotificationsInfo, .hashtag, .link, .account, .collection:
+            case .heading, .loadingIndicator, .scopedSearchResults, .filteredNotificationsInfo, .hashtag, .link, .account, .collection, .directoryFeatured, .directoryCollection:
                 return item
             case .post(let postViewModel, _):
                 if postViewModel.fullPost?.actionablePost?.id != postId {
@@ -1564,6 +1621,8 @@ extension TimelineFeedLoader {
                     create(forPostItem: item)
                 }
             case .collection:
+                break
+            case .directoryFeatured, .directoryCollection:
                 break
             case .notification:
                 // TODO: create conceal models for summarized statuses?

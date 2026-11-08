@@ -160,7 +160,7 @@ import MastodonUI
             case .pinnedPosts:
                 // this should always be the very first item in the list, so we don't need to worry about calculating heights above
                 fallthrough
-            case .heading, .collection, .notification, .notificationRequest, .scopedSearchResults, .hashtag, .link, .account, .filteredNotificationsInfo, .loadingIndicator, .noItem:
+            case .heading, .collection, .directoryFeatured, .directoryCollection, .notification, .notificationRequest, .scopedSearchResults, .hashtag, .link, .account, .filteredNotificationsInfo, .loadingIndicator, .noItem:
                 currentDisplaySlice = prefix + newSlice + suffix
                 self.resetToUntrackedAfterDelay(from: loadingState)
             }
@@ -283,6 +283,8 @@ import MastodonUI
                     case .account:
                         return item
                     case .collection:
+                        return item
+                    case .directoryFeatured, .directoryCollection:
                         return item
                     case .pinnedPosts:
                         let someModelNeedsPrep = {
@@ -733,6 +735,10 @@ extension TimelineListViewModel {
                 return item.id
             case .collection:
                 return nil
+            case .directoryFeatured:
+                return item.id
+            case .directoryCollection:
+                return nil
             case .filteredNotificationsInfo, .notificationRequest, .loadingIndicator, .scopedSearchResults, .noItem, .heading:
                 return nil
             }
@@ -801,6 +807,10 @@ extension TimelineListViewModel {
                 }
             case .account(let accountRowViewModel):
                 relationshipsToFetch.insert(accountRowViewModel.id)
+            case .directoryFeatured(let featuredModel):
+                relationshipsToFetch.insert(featuredModel.accountRowViewModel.id)
+            case .directoryCollection(let collectionViewModel):
+                processCollectionModel(collectionViewModel)
             case .hashtag, .link:
                 break
             case .collection(let collectionViewModel):
@@ -882,6 +892,18 @@ extension TimelineListViewModel {
                     case .hashtag, .link:
                         break
                     case .collection(let collectionViewModel):
+                        updateCollectionModel(collectionViewModel)
+                    case .directoryFeatured(let featuredModel):
+                        let accountViewModel = featuredModel.accountRowViewModel
+                        if let relationship = fetchedRelationships[accountViewModel.id] {
+                            if accountViewModel.actionHandler == nil {
+                                accountViewModel.actionHandler = self
+                            }
+                            accountViewModel.prepareForDisplay(withRelationship: relationship)
+                        } else if accountViewModel.id == AuthenticationServiceProvider.shared.currentActiveUser.value?.userID {
+                            accountViewModel.prepareForDisplay(withRelationship: .isMe)
+                        }
+                    case .directoryCollection(let collectionViewModel):
                         updateCollectionModel(collectionViewModel)
                     case .heading, .filteredNotificationsInfo, .notificationRequest, .loadingIndicator, .scopedSearchResults, .noItem:
                         break
@@ -1093,7 +1115,7 @@ extension TimelineListViewModel: MastodonPostMenuActionHandler {
                                 if viewModel.fullPost?.actionablePost?.id == actionablePost.id {
                                     viewModel.isShowingTranslation = true
                                 }
-                            case .notification, .notificationRequest, .account, .collection:
+                            case .notification, .notificationRequest, .account, .collection, .directoryFeatured, .directoryCollection:
                                 break
                             }
                         }
@@ -1114,7 +1136,7 @@ extension TimelineListViewModel: MastodonPostMenuActionHandler {
                                 if viewModel.fullPost?.actionablePost?.id == actionablePost.id {
                                     viewModel.isShowingTranslation = false
                                 }
-                            case .notification, .notificationRequest, .account, .collection:
+                            case .notification, .notificationRequest, .account, .collection, .directoryFeatured, .directoryCollection:
                                 break
                             }
                         }

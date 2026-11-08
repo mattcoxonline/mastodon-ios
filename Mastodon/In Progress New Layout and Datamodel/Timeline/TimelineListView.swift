@@ -814,7 +814,25 @@ struct TimelineListView: View {
                         .onTapGesture {
                             navigator.push(.timeline(.collection(collectionViewModel)))
                         }
-                    
+
+                case .directoryFeatured(let featuredModel):
+                    DirectoryFeaturedCard()
+                        .environment(featuredModel)
+                        .padding(EdgeInsets(top: standardPadding, leading: doublePadding, bottom: standardPadding, trailing: doublePadding))
+                        .frame(width: useableWidth)
+                        .onTapGesture {
+                            navigator.push(.profile(account: featuredModel.accountRowViewModel.account._legacyEntity, relationship: featuredModel.accountRowViewModel.myRelationship))
+                        }
+
+                case .directoryCollection(let collectionViewModel):
+                    DirectoryCollectionRow()
+                        .environment(collectionViewModel)
+                        .padding(EdgeInsets(top: standardPadding, leading: doublePadding, bottom: standardPadding, trailing: doublePadding))
+                        .frame(width: useableWidth)
+                        .onTapGesture {
+                            navigator.push(.timeline(.collection(collectionViewModel)))
+                        }
+
                 case .noItem:
                     EmptyView()
                 }

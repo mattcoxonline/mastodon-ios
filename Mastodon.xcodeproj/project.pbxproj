@@ -429,6 +429,8 @@
 				"Common Components/Views/TimelineRowViews/RelationshipViewModel.swift",
 				"Common Components/Views/WebContentView.swift",
 				"Common Components/ZoomableScrollView.swift",
+				"Discovery/DirectoryCollectionRow.swift",
+				"Discovery/DirectoryFeaturedCard.swift",
 				DiscoveryFeedsView.swift,
 				ExploreRootView.swift,
 				FeedLoader/MastodonFeedLoader.swift,
