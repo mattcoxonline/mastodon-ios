@@ -373,6 +373,7 @@
 				Profile/ProfileViewModel.swift,
 				ReauthorizeLogin.swift,
 				ReportFlow/ReportablePostRowView.swift,
+				Streaming/StreamingFeedClient.swift,
 				Timeline/CentralPostViewModelCache.swift,
 				Timeline/HomeTimelineChrome.swift,
 				Timeline/PrecalculatedRowHeights.swift,
@@ -1102,9 +1103,6 @@
 			children = (
 				2AB5011F299243FB00346092 /* Base */,
 				2AB501222992440200346092 /* en */,
-				2AB5012C2992443300346092 /* es-AR */,
-				2AB5014C2992443B00346092 /* zh-Hant */,
-				2AB5014E2992443B00346092 /* zh-Hans */,
 				2AB501542992443D00346092 /* ar */,
 			);
 			name = WidgetExtension.intentdefinition;
@@ -1115,10 +1113,7 @@
 			children = (
 				DB0009A826AEE5DC009B9D2D /* Base */,
 				DB0009AD26AEE5E4009B9D2D /* ar */,
-				DBA4B0D326BD10AC0077136E /* zh-Hans */,
 				DBA4B0F526C2621D0077136E /* en */,
-				DB519B0C281BCAC300F0C99D /* zh-Hant */,
-				DBC9E3A9282E17DF0063A4D9 /* es-AR */,
 			);
 			name = Intents.intentdefinition;
 			sourceTree = "<group>";
@@ -1144,9 +1139,6 @@
 			children = (
 				DBA4B0F826C269880077136E /* en */,
 				DB4B778B26CA504300B087B3 /* ar */,
-				DB4B778D26CA504500B087B3 /* zh-Hans */,
-				DB519B0E281BCAC300F0C99D /* zh-Hant */,
-				DBC9E3AB282E17DF0063A4D9 /* es-AR */,
 			);
 			name = Intents.stringsdict;
 			sourceTree = "<group>";

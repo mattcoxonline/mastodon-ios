@@ -17,6 +17,36 @@ import MastodonUI
     private let homeQueryFilter: TimelineQueryFilter?
     
     var isCurrentlyOnScreen = false
+
+    private var streamingFeedClient: StreamingFeedClient?
+
+    /// Starts or stops the streaming connection based on the current timeline and
+    /// visibility. Phase 1: home timeline only.
+    func updateStreamingConnection() {
+        guard isCurrentlyOnScreen, timeline == .homeTimeline, let authenticatedUser else {
+            streamingFeedClient?.stop()
+            streamingFeedClient = nil
+            return
+        }
+        guard streamingFeedClient == nil else { return }
+
+        let client = StreamingFeedClient(domain: authenticatedUser.domain, accessToken: authenticatedUser.userAuthorization.accessToken)
+        client.onEvent = { [weak self] event in
+            guard let self else { return }
+            switch event {
+            case .newPost(let status):
+                self.feedLoader?.insertStreamedPost(status)
+            case .deletedPost(let statusID):
+                FeedCoordinator.shared.publishUpdate(.deletedPost(statusID))
+            }
+        }
+        client.onReconnected = { [weak self] in
+            // fill anything that was missed while the socket was down
+            self?.feedLoader?.requestLoad(.newer)
+        }
+        streamingFeedClient = client
+        client.start()
+    }
     
     private var lastPushNotificationCount = 0
     

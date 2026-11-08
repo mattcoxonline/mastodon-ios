@@ -339,6 +339,7 @@ struct TimelineListView: View {
         }
         .onAppear() {
             viewModel.isCurrentlyOnScreen = true
+            viewModel.updateStreamingConnection()
             viewModel.clearPendingActions(navigator)
             if viewModel.timeline.canDisplayDonationBanner {
                 Task {
@@ -358,6 +359,7 @@ struct TimelineListView: View {
         }
         .onDisappear() {
             viewModel.isCurrentlyOnScreen = false
+            viewModel.updateStreamingConnection()
             viewModel.loadingState = .untracked
             if viewModel.timeline == .notificationRequests, viewModel.notificationRequestsAcceptanceDidChange {
                 viewModel.notificationRequestsAcceptanceDidChange = false

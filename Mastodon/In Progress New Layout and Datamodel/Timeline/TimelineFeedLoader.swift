@@ -688,7 +688,7 @@ final class TimelineFeedLoader: MastodonFeedLoader<TimelineItem, CacheableTimeli
             let accountRowViewModel = accountRowViewModel(from: accountEntity, suggestedBecause: nil)
             return DirectoryFeaturedModel(accountRowViewModel: accountRowViewModel, bioLine: bioLine)
         }
-        
+
         func threadItems(focusing statusID: Mastodon.Entity.Status.ID) async throws -> (items: [TimelineItem], asyncRefresh: Mastodon.Response.AsyncRefreshAvailable?) {
             async let focusedStatus = APIService.shared.status(statusID: statusID, authenticationBox: authenticatedUser)
             let statusContextResponse = try await APIService.shared.statusContext(
@@ -1575,6 +1575,21 @@ extension TimelineFeedLoader {
 
 // MARK: Accounts Cache
 extension TimelineFeedLoader {
+    /// Prepends a live-streamed post into the current cached results without a
+    /// REST round trip. Skipped when the post is already in the cache (e.g. a
+    /// reconnect gap-fill raced the stream).
+    func insertStreamedPost(_ status: Mastodon.Entity.Status) {
+        let post = GenericMastodonPost.fromStatus(status, authenticatedDomain: authenticatedUser.domain)
+        let postViewModel = CentralPostViewModelCache.shared.model(forPost: post)
+        let item = TimelineItem.post(postViewModel, isPinned: status.pinned == true)
+        transformCachedResults { cache in
+            if cache.items.contains(where: { $0.id == item.id }) {
+                return cache
+            }
+            return CacheableTimeline(older: cache.items, olderBottomLoad: cache.nextBottomLoad, newer: [item], newerBottomLoad: cache.nextBottomLoad, discardOlderIfNoOverlap: false)
+        }
+    }
+
     func account(_ id: Mastodon.Entity.Account.ID) -> MastodonAccount? {
         return accountsCache[id]
     }
