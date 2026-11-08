@@ -174,6 +174,8 @@ public enum Asset {
     public static let heart = SymbolAsset(name: "Phosphor/heart")
     public static let houseFill = SymbolAsset(name: "Phosphor/house.fill")
     public static let house = SymbolAsset(name: "Phosphor/house")
+    public static let listBulletsFill = SymbolAsset(name: "Phosphor/list-bullets.fill")
+    public static let listBullets = SymbolAsset(name: "Phosphor/list-bullets")
     public static let list = SymbolAsset(name: "Phosphor/list")
     public static let magnifyingGlassFill = SymbolAsset(name: "Phosphor/magnifying-glass.fill")
     public static let magnifyingGlass = SymbolAsset(name: "Phosphor/magnifying-glass")

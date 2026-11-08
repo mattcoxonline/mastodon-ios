@@ -588,7 +588,7 @@ extension MastodonTabViewRouter.MastodonTab {
     var title: String {
         switch self {
         case .home:
-            L10n.Common.Controls.Tabs.home
+            L10n.Common.Controls.Tabs.feed
         case .explore:
             L10n.Common.Controls.Tabs.A11Y.explore
         case .notifications:
@@ -611,7 +611,7 @@ extension MastodonTabViewRouter.MastodonTab {
     func icon(isSelected: Bool) -> Image? {
         switch self {
         case .home:
-            Image(phosphor: .house, filled: isSelected)
+            Image(phosphor: .listBullets, filled: isSelected)
         case .explore:
             Image(systemName: isSelected ? "map.fill" : "map")
         case .notifications:

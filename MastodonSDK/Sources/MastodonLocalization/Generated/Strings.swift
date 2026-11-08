@@ -587,6 +587,8 @@ public enum L10n {
         }
       }
       public enum Tabs {
+        /// Feed
+        public static let feed = L10n.tr("Localizable", "Common.Controls.Tabs.Feed", fallback: "Feed")
         /// Home
         public static let home = L10n.tr("Localizable", "Common.Controls.Tabs.Home", fallback: "Home")
         /// Notifications
