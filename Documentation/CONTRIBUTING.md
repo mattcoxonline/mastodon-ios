@@ -16,46 +16,32 @@ File an issue about the bug or feature request. Make sure you are installing the
 
 ## Translation
 
-[![Crowdin](https://badges.crowdin.net/mastodon-for-ios/localized.svg)](https://crowdin.com/project/mastodon-for-ios)
+This fork ships an allowlist of languages: **English (`en`/`en-US`), Norwegian Bokmål (`nb`), Polish (`pl`), Ukrainian (`uk`), and Arabic (`ar`)**. All other upstream locales have been pruned from the string catalogs and bundled resources. Norwegian Nynorsk is deferred.
 
-The app uses CrowdIn to crowdsource translations. Translations will update regularly via a GitHub action. Please request the language if it is not listed via an issue.
-
-Note that we have switched the main app localizations from using `.strings` and `.stringsdict` files (and `swiftgen` to create typed accessors) to using `.xcstrings` (and a manually-maintained `L10nLookup` struct to provide the typed accessors).
-- The typed accessors in the swiftgen-generated `L10n` struct are still in use in the app, but the file is no longer automatically updated and no new accessors should be added to it manually. As the accessors are replaced by new ones in the `L10nLookup` struct (hopefully with more meaningful argument names), they should be removed from the old `L10n` struct.
+Notes that carry over from upstream: the localizations use `.xcstrings` catalogs with a manually-maintained `L10nLookup` struct for typed accessors. The typed accessors in the generated `L10n` struct are still in use in the app but the file is no longer automatically updated; new accessors belong in `L10nLookup`.
 
 ### To add new localized strings:
 
-- Edit `MastodonSDK/Sources/MastodonLocalizations/Resources/Localizable.xcstrings` to add the new string:
-    - The key should follow our hierarchical naming conventions as you will see in other entries. The key should not be the English string itself.
-    - Add the English user-facing text corresponding to the new key.
-    - If plural variation is required, use the context menu option "Vary by Plural" to add it.
-- Add a typed accessor in the `L10nLookup` struct:
-    - Its place in the hierarchy should match the key you created.
-    - Any argument names should match those in the `.xcstrings` entry you created.
-    - Static strings can be `let` constants (the device language cannot change without a restart). Strings with substitutions must be functions.
-- Use the new typed strings by importing `MastodonLocalization` and using the `L10nLookup` struct.
-    - The `L10nLookup` struct will return the proper localization if it is available or fallback to English if it is not.
-    - If you see the key itself in the UI, that means the string was not found in the `.xcstrings` file. Check for typos.
+- Edit the appropriate `.xcstrings` catalog under `MastodonSDK/Sources/MastodonLocalization/Resources/` to add the new string (keys follow the hierarchical naming conventions; the key should not be the English string itself).
+- Provide the English value; for plural variation use the "Vary by Plural" context-menu option (Norwegian/Polish/Ukrainian use `one`/`other`; a few languages also use other categories).
+- Translate the new key **only into the allowlist languages** (`nb`, `pl`, `uk`, `ar`). All other locales no longer exist in this fork; they are not re-added.
+- Add a typed accessor in the `L10nLookup` struct matching the key hierarchy; argument names must match. Static strings can be `let`s; strings with substitutions must be functions.
+
+### The catalog tooling
+
+Both tools refuse to touch a catalog unless their serializer reproduces the file's exact hand-maintained formatting (byte-identical round-trip guard), so diffs stay surgical:
+
+- `scripts/prune_localizations.py` — removes any non-allowlist locale that upstream merges may have reintroduced (catalogs, `.lproj` folders, pbxproj `knownRegions`/file references). **Re-run after every upstream merge**, then clean-build the products (incremental builds leave stale `.lproj` folders in build output).
+- `scripts/add_nb.py scripts/nb_translations/<batch>.json` — applies Norwegian Bokmål translation batches (plain values or `{"plural": {"one": ..., "other": ...}}`), reporting coverage per catalog. Keys are added under the `nb` locale with `state: translated`.
 
 ### To modify translations:
 
-- English translations can be updated by modifying them locally in the `.xcstrings` file with the Xcode editor and pushing the change to GitHub. See "To merge translations" below for next steps.
-- Other languages' translations must be made through the CrowdIn interface and integrated into the app by merging the resulting PR. This is because the next time CrowdIn changes are merged, any locally-made changes to those values will be overwritten with the previous values.
-- Changes to *keys* that have already been uploaded to CrowdIn are likely to cause problems with the CrowdIn integration, so try not to change them.
+- Any allowlist-language translation can be edited directly in the catalogs (locally via the Xcode string-catalog editor or the scripts above). There is no Crowdin integration in this fork; changes to other languages would be overwritten the next time upstream merges are pruned, so they should not be made.
+- Norwegian Bokmål is being translated in reviewed batches: `scripts/nb_translations/`.
 
-### To merge translations:
+### To add a new language:
 
-- If you have any new strings or changes to English translations, commit those changes and push them to GitHub. This will immediately trigger the `CrowdIn/Upload translations` GitHub action.
-- Log in to CrowdIn and check the "Activity" tab to confirm that CrowdIn has received your updates.
-- Manually trigger the `CrowdIn/Download translations` GitHub action to pull in any updated translations.
-- Merge the resulting PR from `i18n/crowdin/translations`.
-
-Note: The `.strings` files in `WidgetExtension`, `MastodonIntent`, and `InfoPlist` have not yet been converted to `.xcstrings`, but they also don't seem to have been included in the `swiftgen` workflow.
-
-### To add a new translation language:
-
-- New languages added via CrowdIn should be incorporated automatically.
-- If a new language is not being shown in the UI despite translations being available, ensure that the language code is included in the `.pbxproj` file's `knownRegions` section. This is best accomplished automatically by editing the main bundle's Localizable.xcstrings file at `Mastodon/Resources/Localizable.xcstrings` to add the new language (this MUST be done via the string catalog editor in order to have an effect on the `.pbxproj`; manually editing the json will fail to change the `.pbxproj`). Ensure that you also add a "translation" for the one string in that file for the new language (the "translation" can be any string).
+- Add the locale's translations to the catalogs, add the language code to `ALLOWLIST` in `scripts/prune_localizations.py`, and ensure it appears in the pbxproj `knownRegions` list (editing `Mastodon/Resources/Localizable.xcstrings` in the Xcode string-catalog editor updates `knownRegions`; manual JSON edits do not).
 
 ## Pull Request
 
