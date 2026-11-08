@@ -356,7 +356,11 @@ struct MastodonMainTabView: View {
             .modifier(NavigatorPresentations(navigator: navigationStackNavigator))
             .environment(navigationStackNavigator)
             
-        case .localFeed, .list, .hashtag:
+        case .localFeed:
+            // Tab label reads "Oslo"; the page header carries the brand
+            timelineNavigationStack(forTab: tab, rootModifier: NavigationTitle(title: "oslo.town"))
+
+        case .list, .hashtag:
             timelineNavigationStack(forTab: tab, rootModifier: NavigationTitle(title: tab.title))
             
         case .lists, .hashtags:

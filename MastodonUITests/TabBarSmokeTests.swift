@@ -61,7 +61,8 @@ final class TabBarSmokeTests: XCTestCase {
             throw XCTSkip("No Oslo tab (local timeline disabled on this instance)")
         }
         osloTab.tap()
-        XCTAssertTrue(app.navigationBars["Oslo"].firstMatch.waitForExistence(timeout: 10), "Oslo nav title did not appear")
+        XCTAssertTrue(app.tabBars.buttons["Oslo"].exists, "tab label should stay Oslo")
+        XCTAssertTrue(app.navigationBars["oslo.town"].firstMatch.waitForExistence(timeout: 10), "oslo.town nav title did not appear")
     }
 
     /// The Explore > Hashtags page shows the Trend Board (rank rows over the
