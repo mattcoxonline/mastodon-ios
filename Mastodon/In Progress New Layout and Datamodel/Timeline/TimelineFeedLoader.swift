@@ -64,7 +64,6 @@ public enum NotificationsScope: Hashable {
 public enum DiscoveryType: Equatable {
     case posts
     case hashtags
-    case news
     case forYou
 }
 
@@ -626,10 +625,6 @@ final class TimelineFeedLoader: MastodonFeedLoader<TimelineItem, CacheableTimeli
             newHashtagModels[hashtag.uniqueID] = viewModel
             return TimelineItem.hashtag(viewModel)
         }
-        func timelineItem(fromNewsLink link: Mastodon.Entity.Card) -> TimelineItem {
-            return TimelineItem.link(link)
-        }
-        
         func collections(curatedBy userID: String) async throws -> [TimelineItem] {
             guard authenticatedUser.authentication.instanceConfiguration?.isAvailable(.collections) == true else { return [] }
             let response = try await APIService.shared.collections(accountID: userID, authenticationBox: authenticatedUser)
@@ -795,21 +790,6 @@ final class TimelineFeedLoader: MastodonFeedLoader<TimelineItem, CacheableTimeli
                     }
                 }()
                 newBatch = response.value.map { timelineItem(fromHashtag: $0) }
-                newBatchBottomLoad = bottomLoad(fromLink: response.link)
-                newAsyncRefreshAvailable = response.asyncRefreshAvaliable
-            case .news:
-                let response = try await {
-                    if let loadUrl {
-                        return try await APIService.shared.links(fromUrl: loadUrl, authenticationBox: authenticatedUser)
-                    } else {
-                        return try await APIService.shared.trendLinks(
-                            domain: authenticatedUser.domain,
-                            query: .init(offset: nil, limit: nil),
-                            authenticationBox: authenticatedUser
-                        )
-                    }
-                }()
-                newBatch = response.value.map { timelineItem(fromNewsLink: $0) }
                 newBatchBottomLoad = bottomLoad(fromLink: response.link)
                 newAsyncRefreshAvailable = response.asyncRefreshAvaliable
             case .forYou:

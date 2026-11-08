@@ -945,8 +945,10 @@ public enum L10n {
         public static let forYou = L10n.tr("Localizable", "Scene.Discovery.Tabs.ForYou", fallback: "For You")
         /// Hashtags
         public static let hashtags = L10n.tr("Localizable", "Scene.Discovery.Tabs.Hashtags", fallback: "Hashtags")
-        /// News
-        public static let news = L10n.tr("Localizable", "Scene.Discovery.Tabs.News", fallback: "News")
+        /// Popular
+        public static let popular = L10n.tr("Localizable", "Scene.Discovery.Tabs.Popular", fallback: "Popular")
+        /// Directory
+        public static let directory = L10n.tr("Localizable", "Scene.Discovery.Tabs.Directory", fallback: "Directory")
         /// Posts
         public static let posts = L10n.tr("Localizable", "Scene.Discovery.Tabs.Posts", fallback: "Posts")
       }

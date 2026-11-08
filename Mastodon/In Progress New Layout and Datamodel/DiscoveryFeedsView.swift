@@ -17,13 +17,11 @@ struct DiscoveryFeedsView: View {
             .toolbar {
                 ToolbarItem(placement: .title) {
                     Picker("Feed", selection: $viewModel.selectedViewType) {
-                        Text(L10n.Scene.Discovery.Tabs.posts)
+                        Text(L10n.Scene.Discovery.Tabs.popular)
                             .tag(DiscoveryType.posts)
                         Text(L10n.Scene.Discovery.Tabs.hashtags)
                             .tag(DiscoveryType.hashtags)
-                        Text(L10n.Scene.Discovery.Tabs.news)
-                            .tag(DiscoveryType.news)
-                        Text(L10n.Scene.Discovery.Tabs.forYou)
+                        Text(L10n.Scene.Discovery.Tabs.directory)
                             .tag(DiscoveryType.forYou)
                     }
                     .pickerStyle(.segmented)
