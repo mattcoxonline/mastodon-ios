@@ -227,16 +227,28 @@ struct MastodonMainTabView: View {
                 }
             }
         }
+        // Compose FAB, available on every page (matches the Explore search FAB pattern)
+        .overlay(alignment: .bottomTrailing) {
+            modalComposeButton
+        }
     }
 
-    private var composeTabBarButton: some View {
+    private var modalComposeButton: some View {
         Button {
             guard let authBox = AuthenticationObserver.shared.currentActiveUser else { return }
             tabViewRouter.navigationRouterForCurrentTab()
                 .presentSheet(.modalCompose(.init(authenticationBox: authBox, composeContext: .composeStatus(quoting: nil), destination: .topLevel), nil), afterDeconflictionDelay: false)
         } label: {
-            Image(systemName: "square.and.pencil")
+            Image(phosphor: .penNibLight)
+                .resizable()
+                .scaledToFit()
+                .frame(width: 24, height: 24)
+                .visualEffect({ content, geo in
+                    content.offset(x: geo.size.width * 0.04, y: -geo.size.height * 0.04) // compensate for the visual weight of the icon, otherwise it looks off-center
+                })
         }
+        .buttonStyle(.prominentCircle(diameter: 50))
+        .padding()
         .accessibilityLabel(L10nLookup.MastodonMenuAction.Navigation.compose)
     }
     
@@ -277,33 +289,6 @@ struct MastodonMainTabView: View {
     }
     
     @ViewBuilder private func view(forTab tab: MastodonTabViewRouter.MastodonTab) -> some View {
-        tabContent(forTab: tab)
-            // HIG "button appearance": on iOS 26 the bottom bar is part of the
-            // tab bar, so a .bottomBar toolbar item renders as a separate
-            // trailing button next to (not among) the tabs. The flexible
-            // spacer pushes it to the trailing edge.
-            .toolbar {
-                if #available(iOS 26.0, *) {
-                    ToolbarSpacer(.flexible, placement: .bottomBar)
-                    ToolbarItem(placement: .bottomBar) {
-                        composeTabBarButton
-                    }
-                } else {
-                    ToolbarItem(placement: .bottomBar) {
-                        composeTabBarButton
-                    }
-                }
-                // when the tab bar collapses into a sidebar (iPad), bottom bar
-                // items are not shown; put compose in the top toolbar instead
-                if tabViewRouter.currentTabBarPlacement.isSidebarAvailable {
-                    ToolbarItem(placement: .topBarTrailing) {
-                        composeTabBarButton
-                    }
-                }
-            }
-    }
-
-    @ViewBuilder private func tabContent(forTab tab: MastodonTabViewRouter.MastodonTab) -> some View {
         switch tab {
         case .home:
             timelineNavigationStack(forTab: tab, rootModifier: HomeTimelineChrome())
