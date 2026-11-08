@@ -88,7 +88,7 @@ struct QuotedPostPlaceholderView: View {
             }
             Spacer(minLength: 0)
         }
-        .padding(standardPadding)
+        .padding(Spacing.s)
         .frame(maxWidth: .infinity)
         .background {
             MastodonSecondaryBackground(fillInDarkModeOnly: true)
@@ -115,7 +115,7 @@ struct QuotedPostPlaceholderView: View {
                 }
             }
             .font(.footnote)
-            .padding(standardPadding)
+            .padding(Spacing.s)
             .frame(maxWidth: .infinity)
             .background {
                 MastodonSecondaryBackground(fillInDarkModeOnly: true)
@@ -154,7 +154,7 @@ struct QuotedPostHiddenByFilterView: View {
                 .fixedSize(horizontal: false, vertical: true)
             Spacer(minLength: 0)
         }
-        .padding(standardPadding)
+        .padding(Spacing.s)
         .frame(maxWidth: .infinity)
         .background {
             MastodonSecondaryBackground(fillInDarkModeOnly: true)
@@ -273,7 +273,7 @@ struct EmbeddedPostContentDisplayedView: View {
     private let avatarShape = RoundedRectangle(cornerRadius: 4)
     
     @ViewBuilder var header: some View {
-        HStack(spacing: 4) {
+        HStack(spacing: Spacing.xs) {
             if let url = viewModel.initialDisplayInfo.actionableAuthorStaticAvatar {
                 WebImage(
                     url: url,
@@ -296,11 +296,11 @@ struct EmbeddedPostContentDisplayedView: View {
                     authorDisplayName
                     if isSummary {
                         Spacer()
-                            .frame(width: tinySpacing)
+                            .frame(width: Spacing.xs)
                         Text(viewModel.initialDisplayInfo.actionableAuthorHandle)
                             .foregroundStyle(.secondary)
                     } else {
-                        Spacer(minLength: doublePadding)
+                        Spacer(minLength: Spacing.l)
                         Text(viewModel.initialDisplayInfo.actionableCreatedAt.localizedExtremelyAbbreviatedTimeElapsedUntil(now: timestamper.timestamp))
                             .foregroundStyle(.secondary)
                     }

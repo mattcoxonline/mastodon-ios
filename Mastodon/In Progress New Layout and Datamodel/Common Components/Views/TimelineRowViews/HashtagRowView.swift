@@ -13,7 +13,7 @@ struct HashtagRowView: View {
     
     var body: some View {
         HStack {
-            VStack(alignment: .leading, spacing: tinySpacing) {
+            VStack(alignment: .leading, spacing: Spacing.xs) {
                 Text("#\(viewModel.entity.name)")
                     .foregroundStyle(.primary)
                 
@@ -40,14 +40,14 @@ struct HashtagHeaderView: View {
     var body: some View {
         HStack {
             // HASHTAG AND STATS
-            VStack(alignment: .leading, spacing: tinySpacing) {
+            VStack(alignment: .leading, spacing: Spacing.xs) {
                 Text("#\(viewModel.entity.name)")
                     .font(.headline)
                     .foregroundStyle(.primary)
                     .lineLimit(1)
                     .fixedSize()
 
-                HStack(alignment: .top, spacing: doublePadding) {
+                HStack(alignment: .top, spacing: Spacing.l) {
                     ForEach(StatType.allCases, id: \.self) { stat in
                         statView(stat)
                     }

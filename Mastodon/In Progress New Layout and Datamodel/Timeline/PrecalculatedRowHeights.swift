@@ -24,7 +24,7 @@ final class ViewMeasurer {
             .environment(contentConcealModel)
             .environment(TimestampUpdater.timestamper(withInterval: 60))
             .environment(\.sizeCategory, ContentSizeCategory(contentSizeCategory) ?? .medium)
-            .padding(EdgeInsets(top: 0, leading: standardPadding, bottom: 0, trailing: doublePadding))
+            .padding(EdgeInsets(top: 0, leading: Spacing.s, bottom: 0, trailing: Spacing.l))
         let height = await measureHeight(view, width: totalWidth)
         return PrecalculatedHeight(contentWidth: contentWidth, contentConcealed: contentConcealModel.currentMode, showingTranslation: viewModel.isShowingTranslation == true, calculatedHeight: height)
     }

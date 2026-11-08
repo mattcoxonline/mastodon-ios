@@ -49,7 +49,7 @@ struct MastodonServerRulesView: View {
                         Text("\(index + 1)")
                             .font(.system(size: UIFontMetrics.default.scaledValue(for: 24), weight: .bold))
                             .foregroundStyle(Asset.Colors.Brand.blurple.swiftUIColor)
-                        VStack(alignment: .leading, spacing: tinySpacing) {
+                        VStack(alignment: .leading, spacing: Spacing.xs) {
                             Text(rule.possiblyTranslatedTitle)
                                 .padding(.leading, 30)
                             if let detail = rule.possiblyTranslatedDetail {

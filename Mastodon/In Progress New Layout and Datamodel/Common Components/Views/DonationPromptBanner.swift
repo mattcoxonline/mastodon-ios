@@ -17,7 +17,7 @@ struct DonationPromptBanner: View {
                 .scaledToFill()
             HStack(spacing: 0) {
                 Text(campaign.bannerMessage + " ").foregroundStyle(Asset.Colors.Secondary.onContainer.swiftUIColor) + Text(campaign.bannerButtonText).bold().underline().foregroundStyle(Asset.Colors.goldenrod.swiftUIColor)
-                Spacer(minLength: doublePadding * 2)
+                Spacer(minLength: Spacing.l * 2)
                 Button {
                     close()
                 } label: {
@@ -26,7 +26,7 @@ struct DonationPromptBanner: View {
                         .tint(Asset.Colors.Secondary.onContainer.swiftUIColor)
                 }
             }
-            .padding(EdgeInsets(top: doublePadding, leading: doublePadding, bottom: doublePadding, trailing: standardPadding))
+            .padding(EdgeInsets(top: Spacing.l, leading: Spacing.l, bottom: Spacing.l, trailing: Spacing.s))
         }
         .environment(\.colorScheme, .dark)
         .onTapGesture {

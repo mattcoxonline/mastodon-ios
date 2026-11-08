@@ -140,7 +140,7 @@ enum MastodonTimelineSheet: Identifiable {
 fileprivate let avatarSize = AvatarSize.large
 
 func contentWidth(forUseableWidth useableWidth: CGFloat) -> CGFloat {
-    return max(1, useableWidth - (standardPadding /*left margin*/ + spacingBetweenGutterAndContent /*avatar trailing to content leading*/ + doublePadding /*right margin*/) - avatarSize.rawValue)
+    return max(1, useableWidth - (Spacing.s /*left margin*/ + spacingBetweenGutterAndContent /*avatar trailing to content leading*/ + Spacing.l /*right margin*/) - avatarSize.rawValue)
 }
 
 extension View {
@@ -188,7 +188,7 @@ struct TimelineListView: View {
                                 .background(Asset.Colors.accent.swiftUIColor)
                                 .cornerRadius(CornerRadius.standard)
                         }
-                        .padding(EdgeInsets(top: doublePadding, leading: 0, bottom: doublePadding, trailing: 0))
+                        .padding(EdgeInsets(top: Spacing.l, leading: 0, bottom: Spacing.l, trailing: 0))
                     default:
                         ScrollView(showsIndicators: false) {
                             VStack(spacing: 0) {
@@ -208,7 +208,7 @@ struct TimelineListView: View {
                                 }
                                 emptyStateControls(viewModel.timeline)
                             }
-                            .padding(doublePadding)
+                            .padding(Spacing.l)
                             .frame(maxWidth: geo.size.width)
                             .padding(.leading, geo.safeAreaInsets.leading)
                             .padding(.trailing, geo.safeAreaInsets.trailing)
@@ -330,7 +330,7 @@ struct TimelineListView: View {
                         Spacer()
                             .frame(maxWidth: .infinity, maxHeight: .infinity)
                     }
-                    .padding(tinySpacing)
+                    .padding(Spacing.xs)
                 }
             } // ZStack(alignment: .bottom)
         } // GeometryReader
@@ -574,7 +574,7 @@ struct TimelineListView: View {
                 }
                 .buttonStyle(.prominentCapsule(isLarge: true))
                 .fixedSize()
-                .padding(.top, doublePadding)
+                .padding(.top, Spacing.l)
             } else {
                 EmptyView()
             }
@@ -683,7 +683,7 @@ struct TimelineListView: View {
                     Text(text)
                         .fontWeight(.semibold)
                         .foregroundStyle(.secondary)
-                        .padding(standardPadding)
+                        .padding(Spacing.s)
                         .frame(width: useableWidth, alignment: .leading)
                     
                 case .scopedSearchResults(let queryModel):
@@ -697,7 +697,7 @@ struct TimelineListView: View {
                     if let filteredNotificationsViewModel {
                         FilteredNotificationsRowView(contentWidth: contentWidth)
                             .environment(filteredNotificationsViewModel)
-                            .padding(EdgeInsets(top: standardPadding, leading: standardPadding, bottom: standardPadding, trailing: doublePadding))
+                            .padding(EdgeInsets(top: Spacing.s, leading: Spacing.s, bottom: Spacing.s, trailing: Spacing.l))
                             .frame(width: useableWidth)
                             .accessibilityElement(children: .combine)
                             .accessibilityAction {
@@ -708,7 +708,7 @@ struct TimelineListView: View {
                             }
                     } else {
                         Text(L10nLookup.Timeline.EmptyState.someNotificationsHaveBeenFiltered)
-                            .padding(EdgeInsets(top: standardPadding, leading: standardPadding, bottom: standardPadding, trailing: doublePadding))
+                            .padding(EdgeInsets(top: Spacing.s, leading: Spacing.s, bottom: Spacing.s, trailing: Spacing.l))
                             .frame(width: useableWidth)
                     }
                     Divider()
@@ -730,8 +730,8 @@ struct TimelineListView: View {
                                 .font(.subheadline)
                                 .fontWeight(.semibold)
                                 .foregroundStyle(.secondary)
-                                .padding(.leading, standardPadding)
-                                .padding(.top, standardPadding)
+                                .padding(.leading, Spacing.s)
+                                .padding(.top, Spacing.s)
                             singlePostView(postViewModel, contentWidth: contentWidth, useableWidth: useableWidth, isPinned: isPinned, isScrollAnchor: viewModel.scrollAnchorItem == item)
                         }
                     case .standard:
@@ -741,7 +741,7 @@ struct TimelineListView: View {
                 case .notification(let notificationViewModel):
                     NotificationRowView(contentWidth: contentWidth, actionHandler: viewModel)
                         .environment(notificationViewModel)
-                        .padding(EdgeInsets(top: standardPadding, leading: standardPadding, bottom: standardPadding, trailing: doublePadding))
+                        .padding(EdgeInsets(top: Spacing.s, leading: Spacing.s, bottom: Spacing.s, trailing: Spacing.l))
                         .frame(width: useableWidth)
                         .background() {
                             if let inlinePost = notificationViewModel.inlinePostViewModel {
@@ -756,19 +756,19 @@ struct TimelineListView: View {
                 case .hashtag(let tagViewModel):
                     switch viewModel.timeline {
                     case .hashtag:
-                        HashtagHeaderView(availableWidth: useableWidth - doublePadding * 2)
+                        HashtagHeaderView(availableWidth: useableWidth - Spacing.l * 2)
                             .environment(tagViewModel)
-                            .padding(EdgeInsets(top: doublePadding, leading: doublePadding, bottom: standardPadding, trailing: doublePadding))
+                            .padding(EdgeInsets(top: Spacing.l, leading: Spacing.l, bottom: Spacing.s, trailing: Spacing.l))
                             .frame(width: useableWidth)
                         Divider()
                     case .myFollowedHashtags:
-                        HashtagHeaderView(availableWidth: useableWidth - doublePadding * 2)
+                        HashtagHeaderView(availableWidth: useableWidth - Spacing.l * 2)
                             .environment(tagViewModel)
-                            .padding(EdgeInsets(top: doublePadding, leading: doublePadding, bottom: standardPadding, trailing: doublePadding))
+                            .padding(EdgeInsets(top: Spacing.l, leading: Spacing.l, bottom: Spacing.s, trailing: Spacing.l))
                             .frame(width: useableWidth)
                     default:
                         HashtagRowView()
-                            .padding(EdgeInsets(top: doublePadding, leading: doublePadding, bottom: standardPadding, trailing: doublePadding))
+                            .padding(EdgeInsets(top: Spacing.l, leading: Spacing.l, bottom: Spacing.s, trailing: Spacing.l))
                             .frame(width: useableWidth)
                             .environment(tagViewModel)
                             .onTapGesture {
@@ -790,7 +790,7 @@ struct TimelineListView: View {
                         .foregroundStyle(.secondary)
                         .padding(.vertical)
                     }
-                    .padding(EdgeInsets(top: doublePadding, leading: doublePadding, bottom: standardPadding, trailing: doublePadding))
+                    .padding(EdgeInsets(top: Spacing.l, leading: Spacing.l, bottom: Spacing.s, trailing: Spacing.l))
                     .frame(width: useableWidth)
                     
                 case .account(let accountViewModel):
@@ -809,7 +809,7 @@ struct TimelineListView: View {
                         // TODO: larger, more informative view if in a .discovery timeline?
                         AccountRowView(contentWidth: contentWidth, control: accountRowControl(for: accountViewModel))
                             .environment(accountViewModel)
-                            .padding(EdgeInsets(top: standardPadding, leading: doublePadding, bottom: standardPadding, trailing: standardPadding))
+                            .padding(EdgeInsets(top: Spacing.s, leading: Spacing.l, bottom: Spacing.s, trailing: Spacing.s))
                             .frame(width: useableWidth)
                             .onTapGesture {
                                 navigator.push(.profile(account: accountViewModel.account._legacyEntity, relationship: nil))
@@ -818,7 +818,7 @@ struct TimelineListView: View {
                 case .collection(let collectionViewModel):
                     CollectionRowView(contentWidth: contentWidth, includeMenu: true, showsAuthor: false)
                         .environment(collectionViewModel)
-                        .padding(EdgeInsets(top: standardPadding, leading: standardPadding, bottom: standardPadding, trailing: doublePadding))
+                        .padding(EdgeInsets(top: Spacing.s, leading: Spacing.s, bottom: Spacing.s, trailing: Spacing.l))
                         .frame(width: useableWidth)
                         .onTapGesture {
                             navigator.push(.timeline(.collection(collectionViewModel)))
@@ -853,7 +853,7 @@ struct TimelineListView: View {
             }
         case .concealAll(_, showTextAnyway: false, _):
             concealedContentsView()
-                .padding(standardPadding)
+                .padding(Spacing.s)
         }
     }
     
@@ -878,7 +878,7 @@ struct TimelineListView: View {
     @ViewBuilder func infoPlusActionCalloutView(image: Image, headline: String, message: String, backgroundColor: Color, buttonText: String, buttonColor: Color, buttonAction: @escaping ()->()) -> some View {
         HStack(alignment: .top) {
             image
-                .padding(tinySpacing)
+                .padding(Spacing.xs)
                 .background() {
                     Circle()
                         .fill(buttonColor)
@@ -893,7 +893,7 @@ struct TimelineListView: View {
                    buttonAction()
                 } label: {
                     Text(buttonText)
-                        .padding(.vertical, 4)
+                        .padding(.vertical, Spacing.xs)
                         .padding(.horizontal, 10)
                         .background() {
                             Capsule()
@@ -927,7 +927,7 @@ struct TimelineListView: View {
         MastodonPostRowView(contentWidth: contentWidth, precalculatedHeight: expectedHeight, isPinned: isPinned, actionHandler: viewModel, threadedContext: viewModel.threadedConversationModel?.context(for: postViewModel.initialDisplayInfo.id), filterContext: viewModel.timeline.filterContext)
             .environment(postViewModel)
             .environment(contentConcealModel)
-            .padding(EdgeInsets(top: 0, leading: standardPadding, bottom: 0, trailing: doublePadding))
+            .padding(EdgeInsets(top: 0, leading: Spacing.s, bottom: 0, trailing: Spacing.l))
             .frame(width: useableWidth, height: expectedHeight, alignment: .top)
             .contentShape(Rectangle())
             .onTapGesture {
@@ -971,14 +971,14 @@ struct TimelineListView: View {
                         }
                         .font(.subheadline)
                         .fontWeight(.semibold)
-                        .padding(.vertical, standardPadding)
+                        .padding(.vertical, Spacing.s)
                         .padding(.horizontal)
-                        .frame(width: useableWidth - standardPadding - standardPadding)
+                        .frame(width: useableWidth - Spacing.s - Spacing.s)
                         .background() {
                             MastodonSecondaryBackground(fillInDarkModeOnly: true)
                         }
                     }
-                    .padding(EdgeInsets(top: 0, leading: standardPadding, bottom: doublePadding, trailing: standardPadding))
+                    .padding(EdgeInsets(top: 0, leading: Spacing.s, bottom: Spacing.l, trailing: Spacing.s))
                 }
             } else {
                 ForEach(postViewModels, id: \.self.initialDisplayInfo.id) { postModel in
@@ -992,29 +992,29 @@ struct TimelineListView: View {
         if UserDefaults.standard.showRateLimitTracker {
             RateLimitTracker()
                 .environment(RateLimitViewModel.shared)
-                .padding(.horizontal, doublePadding)
+                .padding(.horizontal, Spacing.l)
         }
         
         // PROFILE TIMELINE - FILTER BOOSTS AND REPLIES
         if filterModel.showBoostsAndRepliesFilterButton {
             VStack(spacing: 0) {
                 Spacer()
-                    .frame(height: doublePadding)
+                    .frame(height: Spacing.l)
                 
                 BoostsAndRepliesFilterButton()
                 
                 Spacer()
-                    .frame(height: doublePadding)
+                    .frame(height: Spacing.l)
             }
             .id("repliesAndBoostsFilterButton")
-            .padding(.horizontal, doublePadding)
+            .padding(.horizontal, Spacing.l)
         }
         
         // PROFILE TIMELINE - FEATURED HASHTAGS
-        FeaturedHashtagsFlow(maxItemWidth: min(maxFeedContentWidth, geoWidth) - doublePadding * 2)
+        FeaturedHashtagsFlow(maxItemWidth: min(maxFeedContentWidth, geoWidth) - Spacing.l * 2)
             .environment(filterModel)
             .environment(filterModel.featuredHashtagsModel ?? FeaturedHashtagsModel())
-            .padding(.horizontal, doublePadding)
+            .padding(.horizontal, Spacing.l)
         
         // FAMILIAR FOLLOWERS - subheadline
         switch viewModel.timeline {
@@ -1024,7 +1024,7 @@ struct TimelineListView: View {
                     .font(.footnote)
                     .fontWeight(.semibold)
                     .foregroundColor(.secondary)
-                    .padding(.horizontal, doublePadding)
+                    .padding(.horizontal, Spacing.l)
                     .frame(maxWidth: .infinity, alignment: .center)
             }
         case .collection(let collectionViewModel):
@@ -1088,7 +1088,7 @@ struct TimelineListView: View {
                 }
             }
             .padding(.horizontal, Spacing.l)
-            .padding(.bottom, doublePadding)
+            .padding(.bottom, Spacing.l)
             .frame(maxWidth: .infinity, alignment: .leading)
         default:
             EmptyView()
@@ -1204,7 +1204,7 @@ struct GapLoaderView: View {
                 .buttonStyle(.borderless)
                 
                 Spacer()
-                    .frame(minHeight: standardPadding, maxHeight: .infinity)
+                    .frame(minHeight: Spacing.s, maxHeight: .infinity)
             }
             
             Spacer()
@@ -1234,7 +1234,7 @@ struct GapLoaderView: View {
             
             VStack {
                 Spacer()
-                    .frame(minHeight: standardPadding, maxHeight: .infinity)
+                    .frame(minHeight: Spacing.s, maxHeight: .infinity)
                 
                 Button {
                     loadFromBottom()
@@ -1278,7 +1278,7 @@ struct Snackbar: View {
         }()
         
         ZStack {
-            HStack(spacing: tinySpacing) {
+            HStack(spacing: Spacing.xs) {
                 switch barType {
                 case .newUnreadItems:
                     Image(systemName: "chevron.up")
@@ -1294,7 +1294,7 @@ struct Snackbar: View {
             }
             .font(.footnote)
             .foregroundStyle(.white)
-            .padding(EdgeInsets(top: tinySpacing, leading: standardPadding, bottom: tinySpacing, trailing: standardPadding))
+            .padding(EdgeInsets(top: Spacing.xs, leading: Spacing.s, bottom: Spacing.xs, trailing: Spacing.s))
             .background {
                 Capsule()
                     .fill(Asset.Colors.accent.swiftUIColor)
@@ -1403,7 +1403,7 @@ struct FeaturedHashtagsFlow: View {
                     }
                 }
                 Spacer()
-                    .frame(height: doublePadding)
+                    .frame(height: Spacing.l)
             } else {
                 EmptyView()
             }
@@ -1437,8 +1437,8 @@ struct FeaturedHashtagsFlow: View {
             }
             .font(.subheadline)
             .foregroundStyle(.primary )
-            .padding(.vertical, tinySpacing)
-            .padding(.horizontal, standardPadding)
+            .padding(.vertical, Spacing.xs)
+            .padding(.horizontal, Spacing.s)
             .background {
                 Capsule()
                     .fill(.secondary.opacity(0.2))
@@ -1451,8 +1451,8 @@ struct FeaturedHashtagsFlow: View {
         Text("#\(hashtag.name)")
         .font(.subheadline)
         .foregroundStyle(isSelected ? .white : .primary )
-        .padding(.vertical, tinySpacing)
-        .padding(.horizontal, standardPadding)
+        .padding(.vertical, Spacing.xs)
+        .padding(.horizontal, Spacing.s)
         .background {
             Capsule()
                 .fill(isSelected ? Asset.Colors.accent.swiftUIColor : .secondary.opacity(0.2))
@@ -1502,7 +1502,7 @@ struct BoostsAndRepliesFilterButton: View {
                 .fixedSize()
             Image(systemName: "chevron.up.chevron.down")
                 .font(.caption)
-                .padding(tinySpacing)
+                .padding(Spacing.xs)
                 .background() {
                     Circle()
                         .fill(.secondary.quinary)
@@ -1550,7 +1550,7 @@ struct ActivityFilterToggles: View {
                 .frame(maxHeight: .infinity)
         }
         .tint(Asset.Colors.accent.swiftUIColor)
-        .padding(doublePadding * 2)
+        .padding(Spacing.l * 2)
         .presentationDetents([.fraction(0.25)])
     }
 }

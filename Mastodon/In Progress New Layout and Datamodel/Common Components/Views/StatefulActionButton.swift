@@ -46,7 +46,7 @@ struct StatefulCountedActionButton: View {
             }
             doAction?()
         } label: {
-            HStack(spacing: 4) {
+            HStack(spacing: Spacing.xs) {
                 imageComponent
                 if actionState.count != nil || reserveCountLayoutSpace {
                     countLabelComponent

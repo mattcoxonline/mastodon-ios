@@ -104,7 +104,7 @@ struct AboutInstanceView: View {
     
     var body: some View {
         GeometryReader() { geoProxy in
-            let readableWidth = min(geoProxy.size.width - doublePadding * 2, maxFeedContentWidth)
+            let readableWidth = min(geoProxy.size.width - Spacing.l * 2, maxFeedContentWidth)
             ScrollView {
                 VStack(alignment: .leading) {
                     if let instance = serverDetailsViewModel.instance {

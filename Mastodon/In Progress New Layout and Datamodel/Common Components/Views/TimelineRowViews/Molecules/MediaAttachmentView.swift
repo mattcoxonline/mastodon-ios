@@ -258,13 +258,13 @@ struct ConcealableMediaAttachmentView<Content: View>: View {
             contentView
                 .overlay {
                     if !contentConcealViewModel.currentMode.isShowingMedia, !contentConcealViewModel.blurFilterReasons.isEmpty {
-                        VStack(spacing: tinySpacing) {
+                        VStack(spacing: Spacing.xs) {
                             ForEach(contentConcealViewModel.blurFilterReasons, id: \.self) { title in
                                 Text(L10n.Common.Controls.Status.matchesFilter(title))
                                     .lineLimit(1)
                                     .font(.subheadline)
                                     .foregroundStyle(.white)
-                                    .padding(standardPadding)
+                                    .padding(Spacing.s)
                                     .background {
                                         RoundedRectangle(cornerRadius: CornerRadius.standard)
                                             .fill(buttonBackgroundColor)
@@ -298,7 +298,7 @@ struct ConcealableMediaAttachmentView<Content: View>: View {
                 }
                 .fixedSize()
                 .buttonStyle(.borderless)
-                .padding(standardPadding)
+                .padding(Spacing.s)
             }
         }
     }
@@ -900,7 +900,7 @@ class PlayerObserver: ObservableObject {
             } label: {
                 Image(systemName: "play.fill")
                     .font(.title2)
-                    .padding(EdgeInsets(top: standardPadding, leading: doublePadding, bottom: standardPadding, trailing: doublePadding))
+                    .padding(EdgeInsets(top: Spacing.s, leading: Spacing.l, bottom: Spacing.s, trailing: Spacing.l))
                     .background() {
                         Capsule()
                             .fill(.ultraThinMaterial)

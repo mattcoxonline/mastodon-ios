@@ -56,7 +56,7 @@ struct ProfileMainMenuView: View {
     @ViewBuilder private var profileCard: some View {
         if let currentActiveUser = authenticationObserver.currentActiveUser, let myProfileViewModel {
             let account = currentActiveUser.cachedAccount
-            VStack(alignment: .leading, spacing: standardPadding) {
+            VStack(alignment: .leading, spacing: Spacing.s) {
                 if let headerString = account?.header, !headerString.isEmpty,
                    let headerURL = URL(string: headerString), !headerString.hasSuffix("/") {
                     AsyncImage(url: headerURL) { image in
@@ -66,12 +66,12 @@ struct ProfileMainMenuView: View {
                     }
                     .frame(height: 110)
                     .frame(maxWidth: .infinity)
-                    .clipShape(RoundedRectangle(cornerRadius: doublePadding))
+                    .clipShape(RoundedRectangle(cornerRadius: Radius.l))
                 }
                 
-                HStack(alignment: .top, spacing: standardPadding) {
+                HStack(alignment: .top, spacing: Spacing.s) {
                     AvatarView(style: .circular, size: .extraLarge, avatarSource: .url(account?.avatarURL))
-                    VStack(alignment: .leading, spacing: tinySpacing) {
+                    VStack(alignment: .leading, spacing: Spacing.xs) {
                         Text(account?.displayNameWithFallback ?? currentActiveUser.authentication.username)
                             .font(.title3)
                             .fontWeight(.bold)
@@ -91,7 +91,7 @@ struct ProfileMainMenuView: View {
                         .lineLimit(3)
                 }
                 
-                HStack(spacing: tinySpacing) {
+                HStack(spacing: Spacing.xs) {
                     statChip(count: account?.statusesCount ?? 0, label: L10n.Scene.Profile.Dashboard.myPosts) {
                         navigator.push(.myProfile(myProfileViewModel))
                     }
@@ -110,14 +110,14 @@ struct ProfileMainMenuView: View {
                 } label: {
                     Text(L10nLookup.Scene.Profile.MainMenu.viewProfile)
                         .frame(maxWidth: .infinity)
-                        .padding(.vertical, tinySpacing)
+                        .padding(.vertical, Spacing.xs)
                 }
                 .buttonStyle(.borderedProminent)
             }
-            .padding(standardPadding)
+            .padding(Spacing.s)
             .background(
                 .regularMaterial,
-                in: RoundedRectangle(cornerRadius: doublePadding)
+                in: RoundedRectangle(cornerRadius: Radius.l)
             )
             .task(id: account?.note) {
                 guard let note = account?.note, !note.isEmpty else {
@@ -142,7 +142,7 @@ struct ProfileMainMenuView: View {
                     .foregroundStyle(.secondary)
             }
             .frame(maxWidth: .infinity)
-            .padding(.vertical, tinySpacing)
+            .padding(.vertical, Spacing.xs)
         }
         .buttonStyle(.plain)
     }
@@ -169,10 +169,10 @@ struct ProfileMainMenuView: View {
     @ViewBuilder private var quickAccessGrid: some View {
         if let currentUser = authenticationObserver.currentActiveUser, let account = currentUser.cachedAccount {
             let columns = [
-                GridItem(.flexible(), spacing: tinySpacing, alignment: .topLeading),
-                GridItem(.flexible(), spacing: tinySpacing, alignment: .topLeading)
+                GridItem(.flexible(), spacing: Spacing.xs, alignment: .topLeading),
+                GridItem(.flexible(), spacing: Spacing.xs, alignment: .topLeading)
             ]
-            LazyVGrid(columns: columns, spacing: tinySpacing) {
+            LazyVGrid(columns: columns, spacing: Spacing.xs) {
                 quickTile(.myFavorites, image: Image(phosphor: .heart))
                 quickTile(.myBookmarks, image: Image(phosphor: .bookmarkSimple))
                 quickTile(.followers(ofUserId: account.id), image: Image(phosphor: .usersThree), subtitle: account.followersCount.asAbbreviatedCountString())
@@ -188,7 +188,7 @@ struct ProfileMainMenuView: View {
         Button {
             navigator.push(.timeline(timelineType))
         } label: {
-            VStack(alignment: .leading, spacing: tinySpacing) {
+            VStack(alignment: .leading, spacing: Spacing.xs) {
                 image
                     .font(.system(size: iconFontSize))
                     .foregroundStyle(Asset.Colors.accent.swiftUIColor)
@@ -203,10 +203,10 @@ struct ProfileMainMenuView: View {
                 }
             }
             .frame(maxWidth: .infinity, alignment: .leading)
-            .padding(standardPadding)
+            .padding(Spacing.s)
             .background(
                 .regularMaterial,
-                in: RoundedRectangle(cornerRadius: doublePadding)
+                in: RoundedRectangle(cornerRadius: Radius.l)
             )
         }
         .buttonStyle(.plain)
@@ -353,7 +353,7 @@ struct ProfileMainMenuView: View {
             .contentShape(Rectangle())
         }
         .padding(.horizontal)
-        .padding(.vertical, tinySpacing)
+        .padding(.vertical, Spacing.xs)
     }
     
     @ViewBuilder private func navigationRow(_ title: String, icon: MenuRowIcon, navigatingTo destination: MastodonNavigationDestination) -> some View {

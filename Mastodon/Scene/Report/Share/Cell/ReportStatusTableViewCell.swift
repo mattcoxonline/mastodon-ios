@@ -30,8 +30,8 @@ final class ReportStatusTableViewCell: UITableViewCell {
     func configure(postViewModel: MastodonPostViewModel, layoutWidth: CGFloat, canChangeSelection: Bool, isSelected: Binding<Bool>) {
         configurationUpdateHandler = { cell, state in
             cell.contentConfiguration = UIHostingConfiguration {
-                ReportablePostRowView(layoutWidth: layoutWidth - doublePadding, canChangeSelection: canChangeSelection, isSelected: isSelected)
-                    .padding(standardPadding)
+                ReportablePostRowView(layoutWidth: layoutWidth - Spacing.l, canChangeSelection: canChangeSelection, isSelected: isSelected)
+                    .padding(Spacing.s)
                     .environment(postViewModel)
                     .environment(TimestampUpdater.timestamper(withInterval: 60))
             }

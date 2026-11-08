@@ -12,7 +12,7 @@ struct PollOptionsView: View {
     let contentWidth: CGFloat
     
     var body: some View {
-        VStack(alignment: .leading, spacing: standardPadding) {
+        VStack(alignment: .leading, spacing: Spacing.s) {
             
             // OPTIONS
             ForEach(options, id: \.self.id) { option in
@@ -28,7 +28,7 @@ struct PollOptionsView: View {
                 Image(systemName: "circle.fill")
                     .foregroundStyle(.quinary)
                 Spacer()
-                    .frame(width: standardPadding)
+                    .frame(width: Spacing.s)
                 
                 MastodonContentView.header(html: option.text, emojis: option.emojis, style: .pollOption)
                     .multilineTextAlignment(.leading)
@@ -51,7 +51,7 @@ struct PollView: View {
     @ScaledMetric var percentLabelWidth: CGFloat = 55
     
     var body: some View {
-        VStack(alignment: .leading, spacing: standardPadding) {
+        VStack(alignment: .leading, spacing: Spacing.s) {
             
             // OPTIONS
             ForEach(viewModel.options, id: \.self.id) { option in
@@ -163,7 +163,7 @@ struct PollView: View {
                         Image(systemName: selectionImageNameForOption(at: index))
                             .foregroundStyle(iVotedForThisOption ? Asset.Colors.Brand.blurple.swiftUIColor : .secondary)
                         Spacer()
-                            .frame(width: standardPadding)
+                            .frame(width: Spacing.s)
                     }
                     
                     MastodonContentView.header(html: option.text, emojis: option.emojis, style: .pollOption)
@@ -212,7 +212,7 @@ struct PollView: View {
             return elements
         }()
         
-        HStack(spacing: tinySpacing) {
+        HStack(spacing: Spacing.xs) {
                 Text(textElements.joined(separator: " · "))
                     .fixedSize()
         }

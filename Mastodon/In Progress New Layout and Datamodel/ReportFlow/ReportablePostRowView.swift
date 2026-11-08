@@ -12,8 +12,8 @@ struct ReportablePostRowView: View {
     @Binding var isSelected: Bool
     
     @ScaledMetric private var checkBoxSize: CGFloat = 30
-    let postPadding: CGFloat = standardPadding
-    let spacingToCheckbox: CGFloat = standardPadding
+    let postPadding: CGFloat = Spacing.s
+    let spacingToCheckbox: CGFloat = Spacing.s
     
     var body: some View {
         let contentWidth = max(1, layoutWidth - checkBoxSize - (postPadding * 2) - spacingToCheckbox)

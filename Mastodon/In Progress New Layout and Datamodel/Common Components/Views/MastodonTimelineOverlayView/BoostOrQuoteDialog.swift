@@ -67,7 +67,7 @@ struct BoostOrQuoteDialog: View {
                     RoundedRectangle(cornerRadius: 14, style: .circular)
                         .fill(.background)
                 }
-                .padding(16)
+                .padding(Spacing.l)
             }
         } else {
             EmptyView()

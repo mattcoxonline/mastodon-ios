@@ -82,7 +82,7 @@ struct VisibilityAndTimestamp: View {
     let visibility: GenericMastodonPost.PrivacyLevel?
     
     var body: some View {
-        HStack(spacing: tinySpacing) {
+        HStack(spacing: Spacing.xs) {
             if let visibilityIconName {
                 Image(systemName: visibilityIconName)
             }
@@ -122,7 +122,7 @@ struct VisibilityAndTimestampWithUserHandle: View {
     let handle: String
     
     var body: some View {
-        HStack(spacing: tinySpacing) {
+        HStack(spacing: Spacing.xs) {
             if let visibilityIconName {
                 Image(systemName: visibilityIconName)
             }

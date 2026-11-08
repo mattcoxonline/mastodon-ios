@@ -45,7 +45,7 @@ struct MastodonPostRowView: View {
                     }
                     VStack(spacing: 0) {
                         Spacer()
-                            .frame(height: standardPadding)
+                            .frame(height: Spacing.s)
                         viewModel.socialContextHeader(inThreadContext: threadedContext, getAccount: { accountID in actionHandler?.account(accountID) })
                             .frame(maxWidth: contentWidth, alignment: .leading)
                     }
@@ -55,7 +55,7 @@ struct MastodonPostRowView: View {
                 // MARK: Social context header
                 VStack(spacing: 0) {
                     Spacer()
-                        .frame(height: standardPadding)
+                        .frame(height: Spacing.s)
                     viewModel.socialContextHeader(inThreadContext: threadedContext, getAccount: { accountID in actionHandler?.account(accountID) })
                         .frame(maxWidth: contentWidth, alignment: .leading)
                 }
@@ -77,7 +77,7 @@ struct MastodonPostRowView: View {
                     if let threadedContext, threadedContext.drawsLineBelow {
                         let lowerThreadDecorationHeight: CGFloat? = {
                             if let precalculatedHeight {
-                                return precalculatedHeight - standardPadding - avatarSize.rawValue
+                                return precalculatedHeight - Spacing.s - avatarSize.rawValue
                             } else {
                                 return nil
                             }
@@ -121,7 +121,7 @@ struct MastodonPostRowView: View {
                     }
                     
                     Spacer()
-                        .frame(height: standardPadding)
+                        .frame(height: Spacing.s)
                 }
             }
         }
@@ -224,20 +224,20 @@ extension MastodonPostRowView {
         VStack(alignment: .center, spacing: 0) {
             if topSpacer {
                 Spacer()
-                    .frame(height: tinySpacing)
+                    .frame(height: Spacing.xs)
             }
             Rectangle()
                 .fill(.separator)
                 .frame(width: 3)
             if bottomSpacer {
                 Spacer()
-                    .frame(height: tinySpacing)
+                    .frame(height: Spacing.xs)
             }
         }
     }
     
     @ViewBuilder var threadFocusDetailFooter: some View {
-        VStack(alignment: .trailing, spacing: doublePadding) {
+        VStack(alignment: .trailing, spacing: Spacing.l) {
             if let fullPost = viewModel.fullPost as? MastodonContentPost {
                 // date posted and application used
                 let dateString = staticTimestampFormatter.string(from: viewModel.initialDisplayInfo.actionableCreatedAt)

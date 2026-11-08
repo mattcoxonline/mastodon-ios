@@ -97,7 +97,7 @@ struct NotificationsDisabledMessageRow: View {
         HStack(alignment: .top, spacing: spacingBetweenGutterAndContent) {
             NotificationIconView(image: Image(systemName: "app.badge.fill"), color: Asset.Colors.accent.swiftUIColor)
 
-            VStack(alignment: .leading, spacing: standardPadding) {
+            VStack(alignment: .leading, spacing: Spacing.s) {
                 Text(L10n.Scene.Settings.Notifications.Disabled.notificationHint)
                 Text(L10n.Scene.Settings.Notifications.Disabled.goToSettings)
                     .fontWeight(.semibold)

@@ -138,7 +138,7 @@ struct LinkPreviewCard: View {
                                             Text(L10n.Common.Controls.Status.loadEmbed)
                                         }
                                         .foregroundStyle(.primary)
-                                        .padding(EdgeInsets(top: standardPadding, leading: ButtonPadding.capsuleHorizontal, bottom: standardPadding, trailing: ButtonPadding.capsuleHorizontal))
+                                        .padding(EdgeInsets(top: Spacing.s, leading: ButtonPadding.capsuleHorizontal, bottom: Spacing.s, trailing: ButtonPadding.capsuleHorizontal))
                                         .background {
                                             Capsule()
                                                 .fill(.ultraThinMaterial)
@@ -198,12 +198,12 @@ struct LinkPreviewCard: View {
                 Button { // author account button
                     accountLinkHandler?.showAccount(account, relationship: nil)
                 } label: {
-                    HStack(spacing: tinySpacing) {
+                    HStack(spacing: Spacing.xs) {
                         AvatarView(style: .circular, size: .tiny, avatarSource: .url(account.avatarURL))
                         MastodonContentView.header(html: account.displayNameWithFallback, emojis: account.emojis, style: .linkPreviewCardAuthorButton)
                             .lineLimit(1)
                     }
-                    .padding(EdgeInsets(top: tinySpacing, leading: 6, bottom: tinySpacing, trailing: 6))
+                    .padding(EdgeInsets(top: Spacing.xs, leading: 6, bottom: Spacing.xs, trailing: 6))
                     .background {
                         RoundedRectangle(cornerRadius: 6)
                             .fill(Asset.Colors.Button.userFollowing.swiftUIColor)
@@ -227,7 +227,7 @@ struct LinkPreviewCard: View {
                 }
             }
         }
-        .padding(EdgeInsets(top: standardPadding, leading: doublePadding, bottom: standardPadding, trailing: doublePadding))
+        .padding(EdgeInsets(top: Spacing.s, leading: Spacing.l, bottom: Spacing.s, trailing: Spacing.l))
     }
     
     @ViewBuilder var publisherAttributionMolecule: some View {
@@ -257,7 +257,7 @@ struct LinkPreviewCard: View {
             case .noPreviewVisual, .large:
                 if !cardEntity.description.isEmpty {
                     Spacer()
-                        .frame(maxHeight: tinySpacing)
+                        .frame(maxHeight: Spacing.xs)
                     Text(cardEntity.description)
                         .font(.subheadline)
                         .lineLimit(2)
@@ -266,7 +266,7 @@ struct LinkPreviewCard: View {
                 EmptyView()
             }
         }
-        .padding(EdgeInsets(top: standardPadding, leading: doublePadding, bottom: standardPadding, trailing: doublePadding))
+        .padding(EdgeInsets(top: Spacing.s, leading: Spacing.l, bottom: Spacing.s, trailing: Spacing.l))
     }
 }
 

@@ -50,7 +50,7 @@ struct ProfileEditingDestinationView: View {
         if destinationType.expectsModalPresentation {
             NavigationStack() {
                 contents
-                    .padding(destinationType.doNotPad ? 0 : doublePadding)
+                    .padding(destinationType.doNotPad ? 0 : Spacing.l)
                     .navigationTitle(profileViewModel.navigationTitle(destinationType))
                     .navigationBarTitleDisplayMode(.inline)
                     .toolbar {
@@ -90,7 +90,7 @@ struct ProfileEditingDestinationView: View {
             .interactiveDismissDisabled(!safeToSwipeToDismiss)
         } else {
             contents
-                .padding(destinationType.doNotPad ? 0 : doublePadding)
+                .padding(destinationType.doNotPad ? 0 : Spacing.l)
                 .frame(maxWidth: maxFeedContentWidth)
                 .frame(maxWidth: .infinity)
                 .navigationTitle(profileViewModel.navigationTitle(destinationType))
@@ -521,7 +521,7 @@ struct FeaturedHashtagsEditor: View {
                             EmptyView()
                         } else {
                             HashtagRow(hashtag: hashtag)
-                                .padding(.vertical, doublePadding)
+                                .padding(.vertical, Spacing.l)
                         }
                     }
                     .onDelete { offsets in
@@ -753,7 +753,7 @@ struct CustomProfileFieldsEditor: View {
     @ViewBuilder func customFieldsList(_ customFields: [Mastodon.Entity.Field]) -> some View {
         ForEach(customFields, id: \.self) { field in
             customFieldRow(field, emojis: editingViewModel.emojis, isReordering: false)
-                .padding(.vertical, doublePadding)
+                .padding(.vertical, Spacing.l)
                 .contentShape(Rectangle())
                 .onTapGesture {
                     withAnimation {
@@ -818,7 +818,7 @@ struct VerifiedLinkInstructions: View {
     
     var body: some View {
         ScrollView() {
-            VStack(alignment: .leading, spacing: standardPadding) {
+            VStack(alignment: .leading, spacing: Spacing.s) {
                 Text(L10nLookup.Scene.EditProfile.VerifiedLinksExplainer.intro)
                 
                 // STEP 1:
@@ -902,7 +902,7 @@ struct EditFieldView: View {
                 @Bindable var labelEditingModel = editState.labelEditingModel
                 @Bindable var valueEditingModel = editState.valueEditingModel
                 Section {
-                    HStack(alignment: .top, spacing: tinySpacing) {
+                    HStack(alignment: .top, spacing: Spacing.xs) {
                         Text(L10nLookup.Scene.EditProfile.CustomFields.label)
                             .fixedSize(horizontal: false, vertical: true)
                             .frame(width: labelWidth, alignment: .leading)
@@ -935,7 +935,7 @@ struct EditFieldView: View {
                         }
                     }
                     
-                    HStack(alignment: .top, spacing: tinySpacing) {
+                    HStack(alignment: .top, spacing: Spacing.xs) {
                         Text(L10nLookup.Scene.EditProfile.CustomFields.value)
                             .fixedSize(horizontal: false, vertical: true)
                             .frame(width: labelWidth, alignment: .leading)
@@ -998,7 +998,7 @@ struct ReorderCustomFieldsView: View {
         List {
             ForEach($editingViewModel.reorderingCustomFields, id: \.self, editActions: .all) { $field in
                 customFieldRow(field, emojis: editingViewModel.emojis, isReordering: true)
-                    .padding(.vertical, doublePadding)
+                    .padding(.vertical, Spacing.l)
             }
             .onChange(of: editingViewModel.reorderingCustomFields) { oldValue, newValue in
                 profileViewModel.checkForEditingChanges(andCommit: false)
@@ -1014,7 +1014,7 @@ struct ReorderCustomFieldsView: View {
     } label: {
         Text(text)
             .foregroundStyle(isDestructive ? .red : Asset.Colors.accent.swiftUIColor)
-            .padding(includeBackground ? doublePadding : 0)
+            .padding(includeBackground ? Spacing.l : 0)
             .frame(maxWidth: .infinity, alignment: .leading)
             .background() {
                 if includeBackground {

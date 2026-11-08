@@ -33,7 +33,7 @@ struct MastodonTopLevelOverlay<Content: View> : View {
                     .font(.title)
                     .foregroundStyle(.white)
             }
-            .padding(standardPadding)
+            .padding(Spacing.s)
         }
     }
 }
@@ -69,7 +69,7 @@ struct FullSizeImageGallery: View {
                 Spacer()
             }
             .padding(.vertical, 80)
-            .padding(.horizontal, doublePadding)
+            .padding(.horizontal, Spacing.l)
             .frame(width: pageableZoomableModel.pagingPageSize.width, height: pageableZoomableModel.pagingPageSize.height, alignment: .topTrailing)
         }
         .overlay {

@@ -37,8 +37,8 @@ struct ProfileView: View {
     var body: some View {
         GeometryReader { geo in
             let fullWidth = min(maxFeedContentWidth, geo.size.width)
-            let headerContentWidth = max(0, fullWidth - doublePadding * 2)
-            let timelineContentWidth = max(0, min(maxFeedContentWidth, geo.size.width - doublePadding))
+            let headerContentWidth = max(0, fullWidth - Spacing.l * 2)
+            let timelineContentWidth = max(0, min(maxFeedContentWidth, geo.size.width - Spacing.l))
             let sideMargin = (geo.size.width - fullWidth) / 2.0
             ZStack(alignment: .top) {
                 ScrollView() {
@@ -48,14 +48,14 @@ struct ProfileView: View {
                             .frame(width: min(maxFeedContentWidth, geo.size.width))
                         
                         Spacer()
-                            .frame(height: doublePadding * 2)
+                            .frame(height: Spacing.l * 2)
                         
                         subview(.mainInfo, width: headerContentWidth)
                             .id(Subview.mainInfo)
                             .frame(width: headerContentWidth)
                         
                         Spacer()
-                            .frame(height: doublePadding)
+                            .frame(height: Spacing.l)
                         
                         ProfileActionBar()
                             .frame(width: headerContentWidth)
@@ -71,7 +71,7 @@ struct ProfileView: View {
                             VStack(spacing: 0) {
                                 
                                 Spacer()
-                                    .frame(height: doublePadding)
+                                    .frame(height: Spacing.l)
                                 
                                 if viewModel.pagesToShow.count > 1 {
                                     // PAGE SELECTOR
@@ -170,7 +170,7 @@ struct ProfileView: View {
                         self.viewModel.relationshipViewModel.cancelPersonalNoteEdit()
                     }
                 
-                VStack(alignment: .leading, spacing: doublePadding) {
+                VStack(alignment: .leading, spacing: Spacing.l) {
                     Text(editState.type.title)
                         .fontWeight(.semibold)
                     
@@ -183,13 +183,13 @@ struct ProfileView: View {
                     }
                     .font(.footnote)
                     .frame(maxWidth: .infinity, alignment: .leading)
-                    .padding(standardPadding)
+                    .padding(Spacing.s)
                     .background() {
                         RoundedRectangle(cornerRadius: CornerRadius.standard)
                             .fill(Asset.Colors.FigmaToken.bgSoftest.swiftUIColor)
                     }
                     
-                    VStack(alignment: .leading, spacing: tinySpacing) {
+                    VStack(alignment: .leading, spacing: Spacing.xs) {
                         SubsectionHeading(title: L10nLookup.Scene.Profile.PersonalNote.editTitle, subtitle: nil)
                         MetaTextInputField(allowScroll: true, drawBackground: true, returnKeyType: .done)
                             .environment(editState.valueEditingModel)
@@ -204,7 +204,7 @@ struct ProfileView: View {
                         } label: {
                             Text(L10n.Common.Controls.Actions.cancel)
                                 .padding(.horizontal)
-                                .padding(.vertical, tinySpacing)
+                                .padding(.vertical, Spacing.xs)
                                 .background() {
                                     Capsule()
                                         .stroke(.secondary)
@@ -219,7 +219,7 @@ struct ProfileView: View {
                             Text(L10n.Common.Controls.Actions.save)
                                 .foregroundColor(.white)
                                 .padding(.horizontal)
-                                .padding(.vertical, tinySpacing)
+                                .padding(.vertical, Spacing.xs)
                                 .background() {
                                     Capsule()
                                         .fill(Asset.Colors.accent.swiftUIColor)
@@ -230,7 +230,7 @@ struct ProfileView: View {
                     .frame(maxWidth: .infinity, alignment: .trailing)
                 }
                 .frame(maxWidth: 300)
-                .padding(doublePadding)
+                .padding(Spacing.l)
                 .background() {
                     RoundedRectangle(cornerRadius: CornerRadius.extraLarge)
                         .fill(.background)
@@ -250,7 +250,7 @@ struct ProfileView: View {
                     }
                 CustomFieldCard(field: field, emojis: viewModel.account?.displayInfo.emojis ?? [], showFullContents: true)
                     .fixedSize(horizontal: false, vertical: true)
-                    .padding(.horizontal, doublePadding)
+                    .padding(.horizontal, Spacing.l)
                     .frame(maxWidth: min(maxFeedContentWidth, geo.size.width))
             }
         }
@@ -316,26 +316,26 @@ struct ProfileAvatarAndBannerView: View {
                 
                 if showsEditControls && !profileViewModel.isSavingEdits {
                     bannerEditButton
-                        .padding(standardPadding)
+                        .padding(Spacing.s)
                 } else if showingFollowRequest {
                     followRequestButtons
-                        .padding(.leading, avatarSize.rawValue + doublePadding * 2)
-                        .padding([.trailing, .bottom], doublePadding)
+                        .padding(.leading, avatarSize.rawValue + Spacing.l * 2)
+                        .padding([.trailing, .bottom], Spacing.l)
                         .accessibilityElement(children: .contain)
                         .accessibilitySortPriority(1)
                 }
             }
             
-            VStack(alignment: .leading, spacing: -(16 - standardPadding) /*because the avatar view is offset down*/) {
+            VStack(alignment: .leading, spacing: -(16 - Spacing.s) /*because the avatar view is offset down*/) {
                 if showingFollowRequest {
                     followRequestApprovalMessage
-                        .padding(.horizontal, doublePadding)
+                        .padding(.horizontal, Spacing.l)
                         .accessibilitySortPriority(2)
                 }
                 
                 ZStack { // for avatar edit button
                     AvatarView(style: .circular, size: avatarSize, avatarSource: avatarSource)
-                        .padding(.horizontal, doublePadding)
+                        .padding(.horizontal, Spacing.l)
                         .accessibilityHidden(true)
                     if showsEditControls && !profileViewModel.isSavingEdits {
                         // if the user has already chosen a new image, let them see it unobscured, but tapping the avatar will still bring up the photo picker
@@ -469,7 +469,7 @@ struct ProfileAvatarAndBannerView: View {
     @ViewBuilder func photoPickerButtonImage() -> some View {
         Image(systemName: "camera")
             .font(.subheadline)
-            .padding(standardPadding)
+            .padding(Spacing.s)
             .tintedBlurBackground()
             .clipShape(Circle())
             .glassEffectIfAvailable(.clear(interactive: true), in: .circle)
@@ -492,7 +492,7 @@ struct ProfileInfoView: View {
             VStack(alignment: .leading, spacing: 0) {
                 // DISPLAY NAME
                 let displayName = viewModel.account?.displayInfo.displayName ?? "No Name"
-                FlowLayout(minItemCountPerRow: 1, interItemSpacing: tinySpacing, rowSpacing: tinySpacing) {
+                FlowLayout(minItemCountPerRow: 1, interItemSpacing: Spacing.xs, rowSpacing: Spacing.xs) {
                     MastodonContentView.header(html: displayName, emojis: viewModel.account?.displayInfo.emojis ?? [], style: .profileDisplayName)
                     if relationshipViewModel.relationship?.info?.theyFollowMe == true {
                         ProfileBadge.followsYou
@@ -503,12 +503,12 @@ struct ProfileInfoView: View {
                 handleDisplay
                 
                 Spacer()
-                    .frame(height: tinySpacing)
+                    .frame(height: Spacing.xs)
                 
                 // SERVER ROLES
                 if let badges {
                     Spacer()
-                        .frame(height: tinySpacing)
+                        .frame(height: Spacing.xs)
                     FlowLayout(minItemCountPerRow: 1) {
                         ForEach(badges, id: \.id) { badge in
                             badge
@@ -517,7 +517,7 @@ struct ProfileInfoView: View {
                 }
                 
                 Spacer()
-                    .frame(height: doublePadding)
+                    .frame(height: Spacing.l)
                 
                 if !viewModel.contentDisplayStatus.hideContent {
                     // ACCOUNT STATS
@@ -546,7 +546,7 @@ struct ProfileInfoView: View {
                     case .isNotMe:
                         if let familiarFollowers = familiarFollowersViewModel.familiarFollowers {
                             Spacer()
-                                .frame(height: doublePadding)
+                                .frame(height: Spacing.l)
                             
                             FamiliarFollowersElement(familiarFollowers: familiarFollowers)
                                 .onTapGesture {
@@ -561,7 +561,7 @@ struct ProfileInfoView: View {
                 if let personalNote = viewModel.relationshipViewModel.relationship?.info?.myOwnComment, !personalNote.isEmpty {
                     
                     Spacer()
-                        .frame(height: doublePadding)
+                        .frame(height: Spacing.l)
                     
                     PersonalNoteView(note: personalNote, isPending: viewModel.relationshipViewModel.personalNoteEditingState?.type == .pending)
                         .onTapGesture() {
@@ -572,7 +572,7 @@ struct ProfileInfoView: View {
                 }
                 
                 Spacer()
-                    .frame(height: doublePadding)
+                    .frame(height: Spacing.l)
                 
                 switch viewModel.contentDisplayStatus {
                 case .showAlways:
@@ -582,7 +582,7 @@ struct ProfileInfoView: View {
                     // CUSTOM FIELDS
                     if let fields = viewModel.account?.metadata.customFieldsForDisplay, !fields.isEmpty {
                         Spacer()
-                            .frame(height: doublePadding)
+                            .frame(height: Spacing.l)
                         CustomFieldsFlow(focusedField: $viewModel.focusedCustomField, fields: viewModel.account?.metadata.customFieldsForDisplay ?? [], emojis: viewModel.account?._legacyEntity.emojis ?? [])
                     }
                 case .hideAlways:
@@ -625,7 +625,7 @@ struct ProfileInfoView: View {
     
     @ViewBuilder var handleDisplay: some View {
         let handle = viewModel.account?.displayInfo.fullHandle ?? "unknown"
-        HStack(alignment: .firstTextBaseline, spacing: tinySpacing) {
+        HStack(alignment: .firstTextBaseline, spacing: Spacing.xs) {
             Text("@\(handle)")
                 .foregroundStyle(.secondary)
                 .font(.subheadline)
@@ -651,7 +651,7 @@ struct HandleInfoPopover: View {
     @Environment(ProfileViewModel.self) var viewModel
     
     var body: some View {
-        VStack(alignment: .leading, spacing: doublePadding) {
+        VStack(alignment: .leading, spacing: Spacing.l) {
             Spacer()
             
             HStack() {
@@ -660,7 +660,7 @@ struct HandleInfoPopover: View {
             .font(.title3)
             .fontWeight(.semibold)
             
-            VStack(alignment: .leading, spacing: standardPadding) {
+            VStack(alignment: .leading, spacing: Spacing.s) {
                 explainerRow(.username(viewModel.handleDetails?.username))
                 explainerRow(.server(viewModel.handleDetails?.domain, isMyServer: viewModel.handleDetails?.isMyDomain ?? false))
             }
@@ -685,7 +685,7 @@ struct HandleInfoPopover: View {
                 }
             }
         }
-        .padding(doublePadding)
+        .padding(Spacing.l)
     }
     
     enum ExplainerRowType {
@@ -760,11 +760,11 @@ struct PersonalNoteView: View {
                     }
                 }
             }
-            .padding(standardPadding)
+            .padding(Spacing.s)
          
             Image(systemName: "square.and.pencil")
                 .foregroundColor(Asset.Colors.accent.swiftUIColor)
-                .padding(standardPadding)
+                .padding(Spacing.s)
         }
         .background() {
             RoundedRectangle(cornerRadius: CornerRadius.standard)
@@ -780,7 +780,7 @@ struct CustomFieldsFlow: View {
     var emojis: [Mastodon.Entity.Emoji]
     
     var body: some View {
-        JustifiedBalancedFlowLayout(minItemCountPerRow: 1, maxItemCountPerRow: 2, interItemSpacing: tinySpacing, rowSpacing: tinySpacing) {
+        JustifiedBalancedFlowLayout(minItemCountPerRow: 1, maxItemCountPerRow: 2, interItemSpacing: Spacing.xs, rowSpacing: Spacing.xs) {
             ForEach(fields, id: \.self) { field in
                 CustomFieldCard(field: field, emojis: emojis, showFullContents: false)
                     .contentShape(Rectangle())
@@ -799,8 +799,8 @@ struct CustomFieldCard: View {
     let showFullContents: Bool
     
     var body: some View {
-        HStack(alignment: .top, spacing: tinySpacing) {
-            VStack(alignment: .leading, spacing: tinySpacing) {
+        HStack(alignment: .top, spacing: Spacing.xs) {
+            VStack(alignment: .leading, spacing: Spacing.xs) {
                 MastodonContentView.customProfileField(html: field.name, emojis: emojis, bold: false, lineLimit: showFullContents ? nil : 1)
                 MastodonContentView.customProfileField(html: field.value, emojis: emojis, bold: true, lineLimit: showFullContents ? nil : 1)
             }
@@ -810,7 +810,7 @@ struct CustomFieldCard: View {
             }
         }
         .font(.footnote)
-        .padding(showFullContents ? doublePadding : standardPadding)
+        .padding(showFullContents ? Spacing.l : Spacing.s)
         .background {
             RoundedRectangle(cornerRadius: CornerRadius.standard)
                 .fill(fillColor)
@@ -890,7 +890,7 @@ struct ProfileActionBar: View {
     @Namespace var profileActionBarAnimationNamespace
     
     var body: some View {
-        HStack(spacing: standardPadding) {
+        HStack(spacing: Spacing.s) {
             if viewModel.contentDisplayStatus.canRevealContent {
                 RelationshipButtonType.hiddenByModerators.largeButton() {
                     withAnimation {
@@ -1250,7 +1250,7 @@ extension ProfileBadge: View {
     }
     
     var body: some View {
-        HStack(spacing: tinySpacing) {
+        HStack(spacing: Spacing.xs) {
             icon
                 .foregroundColor(foregroundIconColor)
             Text(text)
@@ -1258,7 +1258,7 @@ extension ProfileBadge: View {
         }
         .font(.footnote)
         .fontWeight(fontWeight)
-        .padding(tinySpacing)
+        .padding(Spacing.xs)
         .background() {
             RoundedRectangle(cornerRadius: CornerRadius.standard)
                 .fill(fillColor)

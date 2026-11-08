@@ -42,7 +42,7 @@ struct AccountRowView: View {
                     
                     Spacer()
                     
-                    HStack(spacing: doublePadding) {
+                    HStack(spacing: Spacing.l) {
                         AccountStatsView(displayType: .largeStacked, accountMetrics: viewModel.account.metrics, onTapOfMetric: nil)
                         Spacer()
                         switch control {

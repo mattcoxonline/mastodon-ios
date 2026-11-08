@@ -400,7 +400,7 @@ struct NotificationRequestRowView: View {
                     .frame(width: spacingBetweenGutterAndContent)
                 
                 HStack(alignment: .top, spacing: 0) {
-                    VStack(alignment: .leading, spacing: standardPadding) {
+                    VStack(alignment: .leading, spacing: Spacing.s) {
                         AccountDisplayNameAndHandle(account: viewModel.account, includeVerifiedLink: true)
                         HStack {
                             Button {
@@ -577,7 +577,7 @@ struct NotificationRowView: View {
             HStack(spacing: 0) {
                 headlineView
                 if let timestamp = viewModel.notification.timestamp {
-                    Spacer(minLength: standardPadding)
+                    Spacer(minLength: Spacing.s)
                     VisibilityAndTimestamp(referenceDate: timestamp, visibility: nil)
                 }
             }

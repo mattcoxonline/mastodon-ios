@@ -229,7 +229,7 @@ public struct ScopedSearchResultsRowView: View {
                 .foregroundStyle(.secondary)
         }
         .padding()
-        .padding(.bottom, doublePadding)
+        .padding(.bottom, Spacing.l)
         .frame(width: useableWidth, alignment: .leading)
         .contentShape(Rectangle())
     }

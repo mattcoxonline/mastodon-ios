@@ -103,7 +103,7 @@ struct DonationSelectionsView: View {
                         .font(.title3)
                         .keyboardType(.numberPad)
                         .multilineTextAlignment(.trailing)
-                        .padding(.trailing, 8)
+                        .padding(.trailing, Spacing.s)
                     
                 }
                 .background(

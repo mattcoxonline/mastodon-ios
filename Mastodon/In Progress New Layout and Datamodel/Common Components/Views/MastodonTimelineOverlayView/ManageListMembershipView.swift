@@ -17,29 +17,29 @@ struct ManageListMembershipView: View {
         NavigationStack(path: $listsViewModel.navigationPath) {
             VStack {
                 Spacer()
-                    .frame(height: doublePadding)
+                    .frame(height: Spacing.l)
                 Text(L10nLookup.Scene.Lists.addAccountToList(listsViewModel.accountToAddOrRemove.displayInfo.fullHandle))
                     .font(.title3)
                     .fontWeight(.semibold)
-                    .padding(doublePadding)
+                    .padding(Spacing.l)
                     .frame(maxWidth: .infinity, alignment: .leading)
                 
                 if listsViewModel.lists != nil {  // don't try to create a new list when the lists haven't yet loaded
                     newListButton()
                         .frame(maxWidth: .infinity, alignment: .leading)
-                        .padding(.horizontal, doublePadding)
+                        .padding(.horizontal, Spacing.l)
                 }
                     
                 Spacer()
-                    .frame(height: doublePadding)
+                    .frame(height: Spacing.l)
                 
                 ScrollView {
                     if let lists = listsViewModel.lists {
                         VStack {
                             ForEach(lists, id: \.self.id) { list in
                                 listRow(list)
-                                    .padding(.horizontal, doublePadding)
-                                    .padding(.vertical, standardPadding)
+                                    .padding(.horizontal, Spacing.l)
+                                    .padding(.vertical, Spacing.s)
                             }
                         }
                     } else {
@@ -177,14 +177,14 @@ struct CreateNewListView: View {
         @Bindable var viewModel = createListViewModel
         
         VStack(alignment: .leading) {
-            VStack(alignment: .leading, spacing: tinySpacing) {
+            VStack(alignment: .leading, spacing: Spacing.xs) {
                 SubsectionHeading(title:  L10nLookup.Scene.Lists.listName, subtitle: nil)
                 MetaTextInputField(allowScroll: false, drawBackground: true, returnKeyType: .done)
                     .environment(viewModel.listNameFieldEditingViewModel)
                     .frame(height: 36)
             }
             
-            VStack(alignment: .leading, spacing: tinySpacing) {
+            VStack(alignment: .leading, spacing: Spacing.xs) {
                 SubsectionHeading(title:  L10nLookup.Scene.Lists.includeRepliesTo, subtitle: nil)
                     .accessibilityHidden(true)
                 Picker(L10nLookup.Scene.Lists.includeRepliesTo, selection: $viewModel.repliesPolicySelection)
@@ -209,7 +209,7 @@ struct CreateNewListView: View {
             
             if viewModel.hasValidName {
                 Spacer()
-                    .frame(height: doublePadding)
+                    .frame(height: Spacing.l)
 
                 Button() {
                     withAnimation {
@@ -258,7 +258,7 @@ struct CreateNewListView: View {
             
             Spacer()
         }
-        .padding(doublePadding)
+        .padding(Spacing.l)
         .navigationTitle(L10nLookup.Scene.Lists.createList)
     }
 }

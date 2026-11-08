@@ -3,8 +3,7 @@
 import Foundation
 import SwiftUI
 
-/// Layout spacing scale. New code should use these tokens;
-/// `standardPadding` etc. below are compatibility aliases with the same values.
+/// Layout spacing scale — the single source of paddings and gaps.
 struct Spacing {
     static let xs: CGFloat = 4      // hairline gaps, within-lockup offsets
     static let s: CGFloat = 8       // default: row gutters, inner card padding
@@ -25,9 +24,6 @@ struct Radius {
 }
 
 let spacingBetweenGutterAndContent: CGFloat = Spacing.s
-let standardPadding: CGFloat = Spacing.s
-let doublePadding: CGFloat = Spacing.l
-let tinySpacing: CGFloat = Spacing.xs
 
 let maxFeedContentWidth: CGFloat = 700
 

@@ -164,7 +164,7 @@ struct AutoCompleteSuggestionView: View {
     var body: some View {
         let autoCompleteItems = autoCompleteViewModel.autoCompleteSuggestions
         if !autoCompleteItems.isEmpty {
-            VStack(spacing: tinySpacing) {
+            VStack(spacing: Spacing.xs) {
                 if pinToTopOfKeyboard {
                     Spacer()
                         .frame(maxHeight: .infinity)
@@ -462,7 +462,7 @@ struct AutoCompleteCard: View {
                     .foregroundColor(Asset.Colors.accent.swiftUIColor)
                     .font(.subheadline)
                     .fontWeight(.semibold)
-                    .padding(.trailing, tinySpacing)
+                    .padding(.trailing, Spacing.xs)
             case .hashtag(let tag):
                 Text("#\(tag.name)")
                     .foregroundColor(Asset.Colors.accent.swiftUIColor)
@@ -488,12 +488,12 @@ struct AutoCompleteCard: View {
                 Text(":\(emoji.shortcode):")
                     .foregroundStyle(.secondary)
                     .font(.footnote)
-                    .padding(.trailing, tinySpacing)
+                    .padding(.trailing, Spacing.xs)
             case .bottomLoader:
                 EmptyView()
             }
         }
-        .padding(tinySpacing)
+        .padding(Spacing.xs)
         .background() {
             MastodonSecondaryBackground(fillInDarkModeOnly: true)
         }

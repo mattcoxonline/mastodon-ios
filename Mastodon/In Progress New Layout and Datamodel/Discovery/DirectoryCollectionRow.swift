@@ -99,12 +99,12 @@ struct CollectionEmojiTile: View {
 
     var body: some View {
         ZStack {
-            RoundedRectangle(cornerRadius: 3 * standardPadding)
+            RoundedRectangle(cornerRadius: Radius.xl)
                 .fill(Color(uiColor: .secondarySystemBackground))
             Text(emoji)
-                .font(.system(size: 2 * standardPadding))
+                .font(.system(size: 2 * Spacing.s))
         }
-        .frame(width: 5 * standardPadding, height: 5 * standardPadding)
+        .frame(width: 5 * Spacing.s, height: 5 * Spacing.s)
     }
 }
 

@@ -151,7 +151,7 @@ struct TimelinePostContentView: View {
     let linkColor: Color?
     
     var body: some View {
-        VStack(alignment: .leading, spacing: doublePadding) { // the large spacing creates the expected separation between paragraphs
+        VStack(alignment: .leading, spacing: Spacing.l) { // the large spacing creates the expected separation between paragraphs
             ForEach(contentBlocks.prefix(lineLimit == nil ? Int.max : 1)) { block in
                 if let blockquote = block as? MastoParseBlockquote {
                     BlockquoteView(block: blockquote, emojis: emojis, lineLimit: lineLimit, linkColor: linkColor)

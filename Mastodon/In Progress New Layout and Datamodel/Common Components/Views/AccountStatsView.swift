@@ -18,7 +18,7 @@ struct AccountStatsView: View {
     var body: some View {
         switch displayType {
         case .largeStacked:
-            HStack(spacing: doublePadding) {
+            HStack(spacing: Spacing.l) {
                 contents
             }
             .font(.caption)
