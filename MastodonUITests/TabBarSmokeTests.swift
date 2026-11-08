@@ -63,4 +63,41 @@ final class TabBarSmokeTests: XCTestCase {
         osloTab.tap()
         XCTAssertTrue(app.navigationBars["Oslo"].firstMatch.waitForExistence(timeout: 10), "Oslo nav title did not appear")
     }
+
+    /// The Explore > Hashtags page shows the Trend Board (rank rows over the
+    /// trending tags API). Skips if the discovery segment can't be reached.
+    func testTrendBoardRendersOnExploreHashtags() throws {
+        let app = XCUIApplication()
+        app.launch()
+        let tabBar = app.tabBars.firstMatch
+        guard tabBar.waitForExistence(timeout: 20) else {
+            throw XCTSkip("No tab bar visible")
+        }
+        tabBar.buttons["Explore"].tap()
+
+        let hashtagsSegment = app.buttons["Hashtags"].firstMatch
+        guard hashtagsSegment.waitForExistence(timeout: 8) else {
+            throw XCTSkip("Discovery Hashtags segment not found")
+        }
+        hashtagsSegment.tap()
+
+        // the board's mode picker should appear (Today / This Week)
+        let todayButton = app.buttons["Today"].firstMatch
+        XCTAssertTrue(todayButton.waitForExistence(timeout: 10), "Trend board mode picker not found")
+
+        // skip cleanly when the instance serves no trends or is rate limiting
+        let empty = app.staticTexts["Nothing trending right now"].exists
+            || app.staticTexts["Please try again later."].exists
+        if empty {
+            throw XCTSkip("no trends served (empty or server throttling)")
+        }
+
+        // rows combine their content into single accessibility elements whose
+        // labels carry the hashtag name
+        let tagElement = app.descendants(matching: .any)
+            .matching(NSPredicate(format: "label CONTAINS %@", "#"))
+            .firstMatch
+        XCTAssertTrue(tagElement.waitForExistence(timeout: 20), "no trending rows appeared")
+    }
 }
+

@@ -8,30 +8,36 @@ struct DiscoveryFeedsView: View {
     @Environment(DiscoveryFeedsViewModel.self) var viewModel
     @Environment(SearchViewModel.self) private var searchViewModel
     @Environment(\.dismissSearch) private var dismissSearch
-    
+
     var body: some View {
         @Bindable var viewModel = viewModel
-        let timelineModel = viewModel.timelineModel(viewModel.selectedViewType, navigator: navigator)
-            TimelineListView()
-            .timelineEnvironment(timelineModel: timelineModel, contentConcealModel: .alwaysShow, filter: timelineModel.timelineQueryFilter, asyncRefreshModel: viewModel.asyncRefreshModel(viewModel.selectedViewType))
-            .toolbar {
-                ToolbarItem(placement: .title) {
-                    Picker("Feed", selection: $viewModel.selectedViewType) {
-                        Text(L10n.Scene.Discovery.Tabs.popular)
-                            .tag(DiscoveryType.posts)
-                        Text(L10n.Scene.Discovery.Tabs.hashtags)
-                            .tag(DiscoveryType.hashtags)
-                        Text(L10n.Scene.Discovery.Tabs.directory)
-                            .tag(DiscoveryType.forYou)
-                    }
-                    .pickerStyle(.segmented)
-                }
+        Group {
+            if viewModel.selectedViewType == .hashtags {
+                TrendBoardView()
+            } else {
+                let timelineModel = viewModel.timelineModel(viewModel.selectedViewType, navigator: navigator)
+                TimelineListView()
+                    .timelineEnvironment(timelineModel: timelineModel, contentConcealModel: .alwaysShow, filter: timelineModel.timelineQueryFilter, asyncRefreshModel: viewModel.asyncRefreshModel(viewModel.selectedViewType))
             }
-            .onAppear {
-                if searchViewModel.searchHistory.isEmpty {
-                    dismissSearch()
+        }
+        .toolbar {
+            ToolbarItem(placement: .title) {
+                Picker("Feed", selection: $viewModel.selectedViewType) {
+                    Text(L10n.Scene.Discovery.Tabs.popular)
+                        .tag(DiscoveryType.posts)
+                    Text(L10n.Scene.Discovery.Tabs.hashtags)
+                        .tag(DiscoveryType.hashtags)
+                    Text(L10n.Scene.Discovery.Tabs.directory)
+                        .tag(DiscoveryType.forYou)
                 }
+                .pickerStyle(.segmented)
             }
+        }
+        .onAppear {
+            if searchViewModel.searchHistory.isEmpty {
+                dismissSearch()
+            }
+        }
     }
 }
 

@@ -1,0 +1,7 @@
+{
+  "Localizable.xcstrings": {
+    "Scene.FollowedTags.Header.Posts": "innlegg",
+    "Scene.FollowedTags.Header.Participants": "deltakere",
+    "Scene.FollowedTags.Header.PostsToday": "innlegg i dag"
+  }
+}

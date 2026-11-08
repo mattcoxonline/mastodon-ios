@@ -956,6 +956,16 @@ public enum L10n {
         /// Posts
         public static let posts = L10n.tr("Localizable", "Scene.Discovery.Tabs.Posts", fallback: "Posts")
       }
+      public enum TrendBoard {
+        /// Today
+        public static let today = L10n.tr("Localizable", "Scene.Discovery.TrendBoard.Today", fallback: "Today")
+        /// This Week
+        public static let thisWeek = L10n.tr("Localizable", "Scene.Discovery.TrendBoard.ThisWeek", fallback: "This Week")
+        /// New
+        public static let new = L10n.tr("Localizable", "Scene.Discovery.TrendBoard.New", fallback: "New")
+        /// Nothing trending right now
+        public static let nothingTrending = L10n.tr("Localizable", "Scene.Discovery.TrendBoard.NothingTrending", fallback: "Nothing trending right now")
+      }
     }
     public enum Donation {
       /// Currency
