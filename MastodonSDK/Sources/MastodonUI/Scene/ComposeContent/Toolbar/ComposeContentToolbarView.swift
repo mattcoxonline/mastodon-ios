@@ -18,7 +18,7 @@ protocol ComposeContentToolbarViewDelegate: AnyObject {
 
 struct ComposeContentToolbarView: View {
 
-    static var toolbarHeight: CGFloat { 60 }
+    static var toolbarHeight: CGFloat { 64 }
 
     @ObservedObject var viewModel: ViewModel
 
@@ -111,7 +111,23 @@ struct ComposeContentToolbarView: View {
                     showingLanguagePicker = true
                 }
             } label: {
-                languageLabel
+                Image(systemName: "character.book.closed")
+                    .font(.system(size: 17, weight: .medium))
+                    .frame(width: 24, height: 24)
+                    .accessibilityLabel(L10n.Scene.Compose.Language.title)
+                    .accessibilityValue(Text(Language(id: viewModel.language)?.label ?? AttributedString("\(viewModel.language)")))
+                    .overlay(alignment: .topTrailing) {
+                        Group {
+                            if let suggested = viewModel.highConfidenceSuggestedLanguage,
+                               suggested != viewModel.language,
+                               !didChangeLanguage {
+                                Circle().fill(.blue)
+                                    .frame(width: 8, height: 8)
+                            }
+                        }
+                        .transition(.opacity)
+                        .animation(.default, value: [viewModel.highConfidenceSuggestedLanguage, viewModel.language])
+                    }
             }
             .popover(isPresented: $showingLanguagePicker) {
                 let picker = LanguagePickerNavigationView(selectedLanguage: viewModel.language) { newLanguage in
@@ -151,42 +167,6 @@ struct ComposeContentToolbarView: View {
             .accessibilityLabel(L10n.A11y.Plural.Count.charactersLeft(remains))
     }
 
-    private var languageLabel: some View {
-        let font = SwiftUI.Font.system(size: 11, weight: .semibold).width(viewModel.language.count >= 3 ? .compressed : .standard).leading(.tight)
-        return Text(viewModel.language.replacing("-", with: "").prefix(4))
-            .font(font)
-            .textCase(.uppercase)
-            .padding(.horizontal, 4)
-            .padding(.vertical, 2)
-            .minimumScaleFactor(0.5)
-            .overlay { RoundedRectangle(cornerRadius: 7).inset(by: 3).stroke(lineWidth: 1.5) }
-            .accessibilityLabel(L10n.Scene.Compose.Language.title)
-            .accessibilityValue(Text(Language(id: viewModel.language)?.label ?? AttributedString("\(viewModel.language)")))
-            .overlay(alignment: .topTrailing) {
-                Group {
-                    if let suggested = viewModel.highConfidenceSuggestedLanguage,
-                       suggested != viewModel.language,
-                       !didChangeLanguage {
-                        Circle().fill(.blue)
-                            .frame(width: 8, height: 8)
-                    }
-                }
-                .transition(.opacity)
-                .animation(.default, value: [viewModel.highConfidenceSuggestedLanguage, viewModel.language])
-            }
-        // fixes weird appearance when drawing at low opacity (eg when pressed)
-            .drawingGroup()
-    }
-}
-
-extension ComposeContentToolbarView {
-    func label(for action: ComposeContentToolbarView.ViewModel.Action) -> some View {
-        Image(uiImage: viewModel.image(for: action))
-            .foregroundColor(Color(Asset.Scene.Compose.buttonTint.color))
-            .frame(width: 24, height: 24, alignment: .center)
-            .accessibilityLabel(viewModel.label(for: action))
-    }
-
     func label(for image: UIImage) -> some View {
         Image(uiImage: image)
             .foregroundColor(Color(Asset.Scene.Compose.buttonTint.color))
@@ -202,6 +182,15 @@ extension ComposeContentToolbarView {
             }
             didChangeLanguage = true
         }
+    }
+}
+
+extension ComposeContentToolbarView {
+    func label(for action: ComposeContentToolbarView.ViewModel.Action) -> some View {
+        Image(uiImage: viewModel.image(for: action))
+            .foregroundColor(Color(Asset.Scene.Compose.buttonTint.color))
+            .frame(width: 24, height: 24, alignment: .center)
+            .accessibilityLabel(viewModel.label(for: action))
     }
 }
 
