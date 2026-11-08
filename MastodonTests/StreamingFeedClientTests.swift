@@ -3,6 +3,7 @@
 
 import XCTest
 @testable import Mastodon
+import MastodonSDK
 
 final class StreamingFeedClientTests: XCTestCase {
 
@@ -46,5 +47,24 @@ final class StreamingFeedClientTests: XCTestCase {
 
     func test_ignoresNonFrameText() {
         XCTAssertNil(StreamingFeedClient.decodeEvent(fromText: "not json at all"))
+    }
+
+    @MainActor
+    func test_timelineChannelMapping() {
+        XCTAssertEqual(TimelineListViewModel.streamingChannel(for: .homeTimeline), .home)
+        XCTAssertEqual(TimelineListViewModel.streamingChannel(for: .local), .localCommunity)
+        XCTAssertEqual(TimelineListViewModel.streamingChannel(for: .everything), .everything)
+        XCTAssertEqual(TimelineListViewModel.streamingChannel(for: .list("42")), .list(id: "42"))
+        let tag = Mastodon.Entity.Tag(name: "oslo", url: "https://oslo.town/tags/oslo")
+        XCTAssertEqual(TimelineListViewModel.streamingChannel(for: .hashtag(tag, includeHeader: false)), .hashtag(name: "oslo"))
+        XCTAssertNil(TimelineListViewModel.streamingChannel(for: .myBookmarks))
+    }
+
+    func test_channelQueryItems() {
+        XCTAssertEqual(TimelineStreamChannel.hashtag(name: "oslo").extraQueryItems, [URLQueryItem(name: "tag", value: "oslo")])
+        XCTAssertEqual(TimelineStreamChannel.list(id: "42").extraQueryItems, [URLQueryItem(name: "list", value: "42")])
+        XCTAssertTrue(TimelineStreamChannel.everything.extraQueryItems.isEmpty)
+        XCTAssertEqual(TimelineStreamChannel.localCommunity.streamName, "public:local")
+        XCTAssertEqual(TimelineStreamChannel.everything.streamName, "public")
     }
 }

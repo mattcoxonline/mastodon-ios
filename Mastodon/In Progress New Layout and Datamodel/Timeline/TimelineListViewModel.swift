@@ -20,17 +20,38 @@ import MastodonUI
 
     private var streamingFeedClient: StreamingFeedClient?
 
-    /// Starts or stops the streaming connection based on the current timeline and
-    /// visibility. Phase 1: home timeline only.
+    /// The streaming channel matching the current timeline, if any.
+    static func streamingChannel(for timeline: MastodonTimelineType) -> TimelineStreamChannel? {
+        switch timeline {
+        case .homeTimeline:
+            return .home
+        case .local:
+            return .localCommunity
+        case .everything:
+            return .everything
+        case .hashtag(let tag, _):
+            return .hashtag(name: tag.name)
+        case .list(let listID):
+            return .list(id: listID)
+        default:
+            return nil
+        }
+    }
+
+    /// Starts, stops, or swaps the streaming connection to match the current
+    /// timeline and visibility. Phase 2: home, local community, everything,
+    /// hashtag, and list feeds.
     func updateStreamingConnection() {
-        guard isCurrentlyOnScreen, timeline == .homeTimeline, let authenticatedUser else {
+        guard isCurrentlyOnScreen, let authenticatedUser,
+              let channel = Self.streamingChannel(for: timeline) else {
             streamingFeedClient?.stop()
             streamingFeedClient = nil
             return
         }
-        guard streamingFeedClient == nil else { return }
+        if let existing = streamingFeedClient, existing.channel == channel { return }
+        streamingFeedClient?.stop()
 
-        let client = StreamingFeedClient(domain: authenticatedUser.domain, accessToken: authenticatedUser.userAuthorization.accessToken)
+        let client = StreamingFeedClient(domain: authenticatedUser.domain, accessToken: authenticatedUser.userAuthorization.accessToken, channel: channel)
         client.onEvent = { [weak self] event in
             guard let self else { return }
             switch event {
@@ -242,6 +263,7 @@ import MastodonUI
     }
     public func setTimeline(_ timeline: MastodonTimelineType, navigator: MastodonNavigationRouter) {
         _timeline = timeline
+        updateStreamingConnection() // swap the streaming channel while staying on screen
         guard feedLoader?.timeline != timeline else { return }
         feedLoader = nil
         feedLoaderErrorSubscription?.cancel()

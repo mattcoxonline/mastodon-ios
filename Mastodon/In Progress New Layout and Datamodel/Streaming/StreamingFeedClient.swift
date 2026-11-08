@@ -9,6 +9,38 @@
 import Foundation
 import MastodonSDK
 
+/// A Mastodon streaming channel subscription. All channels share the same
+/// frame format (update/delete/status_released as events with status payloads);
+/// they differ only in stream name and query parameters.
+enum TimelineStreamChannel: Equatable {
+    case home
+    case localCommunity
+    case everything
+    case hashtag(name: String)
+    case list(id: String)
+
+    var streamName: String {
+        switch self {
+        case .home: return "user"
+        case .localCommunity: return "public:local"
+        case .everything: return "public"
+        case .hashtag: return "hashtag"
+        case .list: return "list"
+        }
+    }
+
+    var extraQueryItems: [URLQueryItem] {
+        switch self {
+        case .home, .localCommunity, .everything:
+            return []
+        case .hashtag(let name):
+            return [URLQueryItem(name: "tag", value: name)]
+        case .list(let id):
+            return [URLQueryItem(name: "list", value: id)]
+        }
+    }
+}
+
 enum StreamedFeedEvent {
     case newPost(Mastodon.Entity.Status)
     case deletedPost(Mastodon.Entity.Status.ID)
@@ -26,7 +58,7 @@ final class StreamingFeedClient: NSObject {
 
     private let domain: String
     private let accessToken: String
-    private let streamName: String
+    let channel: TimelineStreamChannel
 
     private var session: URLSession?
     private var socket: URLSessionWebSocketTask?
@@ -43,10 +75,10 @@ final class StreamingFeedClient: NSObject {
     }
     private(set) var state: ConnectionState = .idle
 
-    init(domain: String, accessToken: String, stream: String = "user") {
+    init(domain: String, accessToken: String, channel: TimelineStreamChannel = .home) {
         self.domain = domain
         self.accessToken = accessToken
-        self.streamName = stream
+        self.channel = channel
         super.init()
     }
 
@@ -109,8 +141,8 @@ final class StreamingFeedClient: NSObject {
         components.path = "/api/v1/streaming"
         components.queryItems = [
             URLQueryItem(name: "access_token", value: accessToken),
-            URLQueryItem(name: "stream", value: streamName)
-        ]
+            URLQueryItem(name: "stream", value: channel.streamName)
+        ] + channel.extraQueryItems
         return components.url
     }
 
