@@ -1,33 +1,60 @@
-# Mastodon for iOS
+# oslo.town for iOS
 
-[![CI](https://github.com/mastodon/mastodon-ios/actions/workflows/build-only.yml/badge.svg)](https://github.com/mastodon/mastodon-ios/actions/workflows/build-only.yml) [![Crowdin](https://badges.crowdin.net/mastodon-for-ios/localized.svg)](https://crowdin.com/project/mastodon-for-ios)
+The iOS client for **[oslo.town](https://oslo.town)** — a single-server Mastodon community app,
+built as a fork of [Mastodon for iOS](https://github.com/mastodon/mastodon-ios).
 
-<a href="https://apps.apple.com/us/app/mastodon-for-iphone/id1571998974?itsct=apps_box_badge&amp;itscg=30200" style="display: inline-block; overflow: hidden; border-top-left-radius: 13px; border-top-right-radius: 13px; border-bottom-right-radius: 13px; border-bottom-left-radius: 13px; width: 250px; height: 83px;"><img src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/en-us?size=250x83&amp;releaseDate=1627603200&h=72b0c8495c2c0af1291efef280c4c2c1" alt="Download on the App Store" style="border-top-left-radius: 13px; border-top-right-radius: 13px; border-bottom-right-radius: 13px; border-bottom-left-radius: 13px; width: 250px; height: 83px;"></a>
+## About this app
 
-## Introduction
+This fork is tailored to one instance and one community. Unlike the official
+multi-server Mastodon client, everything here assumes oslo.town:
 
-This is the repository for the official iOS app for Mastodon.
+- **Single-instance onboarding** — sign-in and registration go straight to
+  oslo.town; there is no server picker or instance browser.
+- **Live timelines via streaming** — the home, Oslo, Everything, hashtag, and
+  list feeds maintain a Mastodon streaming (WebSocket) connection while you
+  read, so new posts arrive without re-fetching.
+- **Oslo tab** — the local community timeline is a first-class, brand-marked tab.
+- **Mentions-first conversations** — the notifications tab opens on the
+  mentions scope, prioritising conversations over likes and boosts.
+- **Trend Board** — the Explore › Hashtags page is a ranked board with daily
+  movement, sparklines, and a Today / This Week toggle, computed on-device
+  from the trends API.
+- **Curated Directory** — Explore › Directory shows community collections.
+- **Devices & languages** — iOS 26 design system throughout (SF Symbols,
+  Liquid Glass toolbars, the compose bar), localization pruned to
+  `en · nb · pl · uk · ar`, with an ongoing Norwegian Bokmål translation
+  (see `scripts/nb_translations/`).
 
-You can install the app from the App Store. You can build the app from source and file bug reports here.
+## Building
 
-Please note that this app is intended to be used with Mastodon servers. Our team does not have bandwidth to ensure compatibility with other server software, which means that unsolicited pull requests focused on that goal will most likely be closed.
+Requirements:
 
-Read this blog post for this app to learn more.
+- Xcode 27.2 or newer
+- iOS 18.6+ deployment target (iOS 26 APIs are gated with `#available`)
 
-> [Developing an official iOS app for Mastodon](https://blog.joinmastodon.org/2021/02/developing-an-official-ios-app-for-mastodon/)
+Open `Mastodon.xcodeproj`, pick the **Mastodon** scheme and an iOS simulator,
+and build. After signing in to an oslo.town account, the app is fully
+functional on the simulator; see [Documentation/Setup.md](./Documentation/Setup.md)
+for details.
 
-## Contributing
+Two build notes that may bite:
 
-First, please read the Mastodon project [Contributing guide](https://github.com/mastodon/.github/blob/main/CONTRIBUTING.md).
+- SwiftGen runs as a build phase with user-script sandboxing **disabled**
+  (`ENABLE_USER_SCRIPT_SANDBOXING = NO`) — if Xcode offers to "apply
+  recommended settings", decline it.
+- After adding files to the SDK (new Swift files, asset catalogs), a stale
+  incremental build can produce false "no member" errors or missing assets;
+  building the **MastodonSDK** scheme first (or a clean) resolves it.
 
-Note that user interface changes for our official apps are carried out through a design process that involves core team review - most changes of this kind will not be accepted as community contributions; if they are accepted, they will take time to go through this review.
+## Original project
 
-## Getting Started
+This app is a fork of the official Mastodon iOS client by the Mastodon team:
+[github.com/mastodon/mastodon-ios](https://github.com/mastodon/mastodon-ios).
+The upstream project is where the vast majority of this codebase comes from,
+and where most general fixes and features continue to land; this fork
+periodically merges from upstream.
 
-- [Documentation folder](./Documentation/)
-- About [contributing](./Documentation/CONTRIBUTING.md) (specific to the iOS app)
-- Read the [setup guide](./Documentation/Setup.md)
-- [App Store Deployment](./Documentation/Deployment.md)
+Original app blog post: [Developing an official iOS app for Mastodon](https://blog.joinmastodon.org/2021/02/developing-an-official-ios-app-for-mastodon/).
 
 ## Acknowledgments
 
@@ -35,6 +62,8 @@ Thanks to [these open-source projects](./Documentation/Acknowledgments.md).
 
 ## License
 
-This project is released under the [GPL-3 License](./LICENSE). It is also dual-licensed to Apple for the purposes of publishing the app on the App Store. For this reason, any contributors are required to sign a Contributor License Agreement.
-
-The Mastodon name and logo are trademarks. If you intend to redistribute a modified version of this app, use a unique name and icon for your app that does not mistakenly imply any official connection with or endorsement by the Mastodon non-profit organisation.
+This project is released under the [GPL-3 License](./LICENSE), inherited from
+the original Mastodon for iOS project. The Mastodon name and logo are
+trademarks of the Mastodon non-profit organisation; this app uses the
+oslo.town name and branding and is not affiliated with or endorsed by the
+Mastodon organisation.
