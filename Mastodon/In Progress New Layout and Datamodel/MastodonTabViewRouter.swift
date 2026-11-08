@@ -163,7 +163,6 @@ import Combine
         
         case home
         case explore
-        case compose
         case notifications
         case profile
         case lists
@@ -176,7 +175,6 @@ import Combine
             switch self {
             case .home: "home"
             case .explore: "explore"
-            case .compose: "compose"
             case .notifications: "notifications"
             case .profile: "profile"
             case .hashtags: "hashtags"
@@ -199,7 +197,7 @@ import Combine
                 return .list(list.id)
             case .hashtag(let hashtag):
                 return .hashtag(hashtag, includeHeader: false)
-            case .explore, .compose, .notifications, .profile, .lists, .hashtags:
+            case .explore, .notifications, .profile, .lists, .hashtags:
                 return nil
             }
         }
@@ -212,7 +210,7 @@ import Combine
     private(set) var currentTabBarPlacement: TabBarPlacement?
     
     var tabs: [MastodonTab] {
-        return [.home, isLocalTimelineAvailable ? .localFeed : nil, .explore, .notifications, .profile, .compose, .lists, .hashtags]
+        return [.home, isLocalTimelineAvailable ? .localFeed : nil, .explore, .notifications, .profile, .lists, .hashtags]
             .compactMap { $0 }
     }
     

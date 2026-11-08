@@ -227,21 +227,22 @@ struct MastodonMainTabView: View {
                 }
             }
         }
-        .onChange(of: tabViewRouter.selectedTab) { previousTab, newTab in
-            // The compose tab follows the HIG "4 + 1" pattern: it is an action,
-            // not a destination. Tapping it opens the compose sheet over the
-            // current tab, which stays selected.
-            guard newTab == .compose else { return }
-            tabViewRouter.selectedTab = previousTab
+    }
+
+    private var composeTabBarButton: some View {
+        Button {
             guard let authBox = AuthenticationObserver.shared.currentActiveUser else { return }
-            tabViewRouter.navigationRouter(forTab: previousTab)
+            tabViewRouter.navigationRouterForCurrentTab()
                 .presentSheet(.modalCompose(.init(authenticationBox: authBox, composeContext: .composeStatus(quoting: nil), destination: .topLevel), nil), afterDeconflictionDelay: false)
+        } label: {
+            Image(systemName: "square.and.pencil")
         }
+        .accessibilityLabel(L10nLookup.MastodonMenuAction.Navigation.compose)
     }
     
     private func subtabsFor(_ tab: MastodonTabViewRouter.MastodonTab) -> [MastodonTabViewRouter.MastodonTab]? {
         switch tab {
-        case .home, .localFeed, .explore, .compose, .notifications, .profile, .list, .hashtag:
+        case .home, .localFeed, .explore, .notifications, .profile, .list, .hashtag:
             return nil
         case .lists:
             return tabViewRouter.lists.map { list in
@@ -276,6 +277,33 @@ struct MastodonMainTabView: View {
     }
     
     @ViewBuilder private func view(forTab tab: MastodonTabViewRouter.MastodonTab) -> some View {
+        tabContent(forTab: tab)
+            // HIG "button appearance": on iOS 26 the bottom bar is part of the
+            // tab bar, so a .bottomBar toolbar item renders as a separate
+            // trailing button next to (not among) the tabs. The flexible
+            // spacer pushes it to the trailing edge.
+            .toolbar {
+                if #available(iOS 26.0, *) {
+                    ToolbarSpacer(.flexible, placement: .bottomBar)
+                    ToolbarItem(placement: .bottomBar) {
+                        composeTabBarButton
+                    }
+                } else {
+                    ToolbarItem(placement: .bottomBar) {
+                        composeTabBarButton
+                    }
+                }
+                // when the tab bar collapses into a sidebar (iPad), bottom bar
+                // items are not shown; put compose in the top toolbar instead
+                if tabViewRouter.currentTabBarPlacement.isSidebarAvailable {
+                    ToolbarItem(placement: .topBarTrailing) {
+                        composeTabBarButton
+                    }
+                }
+            }
+    }
+
+    @ViewBuilder private func tabContent(forTab tab: MastodonTabViewRouter.MastodonTab) -> some View {
         switch tab {
         case .home:
             timelineNavigationStack(forTab: tab, rootModifier: HomeTimelineChrome())
@@ -343,12 +371,6 @@ struct MastodonMainTabView: View {
         case .localFeed, .list, .hashtag:
             timelineNavigationStack(forTab: tab, rootModifier: NavigationTitle(title: tab.title))
             
-        case .compose:
-            // The compose tab is an action, not a destination: selection is
-            // intercepted in loggedInTabs and immediately reverted, so this
-            // view only shows for a frame at most.
-            EmptyView()
-
         case .lists, .hashtags:
             // these should never be called upon to actually produce a view, they are only used as sidebar sections for the actual views
             EmptyView()
@@ -607,8 +629,6 @@ extension MastodonTabViewRouter.MastodonTab {
             L10n.Common.Controls.Tabs.feed
         case .explore:
             L10n.Common.Controls.Tabs.A11Y.explore
-        case .compose:
-            L10nLookup.MastodonMenuAction.Navigation.compose
         case .notifications:
             L10n.Common.Controls.Tabs.notifications
         case .profile:
@@ -632,8 +652,6 @@ extension MastodonTabViewRouter.MastodonTab {
             Image(phosphor: .listBullets, filled: isSelected)
         case .explore:
             Image(systemName: isSelected ? "map.fill" : "map")
-        case .compose:
-            Image(systemName: "square.and.pencil")
         case .notifications:
             Image(phosphor: .bell, filled: isSelected)
         case .profile:
@@ -659,7 +677,7 @@ extension MastodonTabViewRouter.MastodonTab {
     
     var customizationBehavior: TabCustomizationBehavior {
         switch self {
-        case .home, .explore, .compose, .notifications, .profile, .lists, .hashtags:
+        case .home, .explore, .notifications, .profile, .lists, .hashtags:
                 .disabled
         case .localFeed, .list, .hashtag:
                 .automatic
@@ -668,7 +686,7 @@ extension MastodonTabViewRouter.MastodonTab {
 
     var defaultTabBarVisibility: Visibility {
         switch self {
-        case .home, .explore, .compose, .notifications, .profile:
+        case .home, .explore, .notifications, .profile:
                 .visible
         case .localFeed, .lists, .hashtags, .list, .hashtag:
                 .hidden
@@ -678,7 +696,7 @@ extension MastodonTabViewRouter.MastodonTab {
         switch self {
         case .localFeed, .lists, .hashtags, .list, .hashtag:
                 true
-        case .home, .explore, .compose, .notifications, .profile:
+        case .home, .explore, .notifications, .profile:
                 false
         }
     }
