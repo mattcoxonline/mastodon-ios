@@ -138,3 +138,4 @@ vendor/
 # IDEs
 .idea
 .vscode
+scripts/__pycache__/
