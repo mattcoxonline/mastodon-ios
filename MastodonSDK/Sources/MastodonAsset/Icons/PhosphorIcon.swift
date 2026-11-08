@@ -31,6 +31,7 @@
 import SwiftUI
 
 public enum PhosphorIcon: String, CaseIterable, Sendable {
+    case at = "at"
     case arrowRight = "arrow-right"
     case arrowsClockwise = "arrows-clockwise" // the filled version of arrowsClockwise is our own design, for stronger visual emphasis
     case bell

@@ -160,6 +160,8 @@ public enum Asset {
     public static let arrowRight = SymbolAsset(name: "Phosphor/arrow-right")
     public static let arrowsClockwiseFill = SymbolAsset(name: "Phosphor/arrows-clockwise.fill")
     public static let arrowsClockwise = SymbolAsset(name: "Phosphor/arrows-clockwise")
+    public static let atFill = SymbolAsset(name: "Phosphor/at.fill")
+    public static let at = SymbolAsset(name: "Phosphor/at")
     public static let bellFill = SymbolAsset(name: "Phosphor/bell.fill")
     public static let bell = SymbolAsset(name: "Phosphor/bell")
     public static let bookmarkSimpleFill = SymbolAsset(name: "Phosphor/bookmark-simple.fill")

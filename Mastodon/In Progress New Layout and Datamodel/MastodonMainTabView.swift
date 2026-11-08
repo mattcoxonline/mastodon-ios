@@ -641,7 +641,7 @@ extension MastodonTabViewRouter.MastodonTab {
         case .explore:
             Image(systemName: isSelected ? "map.fill" : "map")
         case .notifications:
-            Image(phosphor: .bell, filled: isSelected)
+            Image(phosphor: .at, filled: isSelected)
         case .profile:
             Image(phosphor: .user, filled: isSelected)
         case .localFeed:
