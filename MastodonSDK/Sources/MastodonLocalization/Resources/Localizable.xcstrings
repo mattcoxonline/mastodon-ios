@@ -8034,6 +8034,12 @@
             "state" : "translated",
             "value" : "Стрічка"
           }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Feed"
+          }
         }
       }
     },
@@ -8068,6 +8074,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Головна"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hjem"
           }
         }
       }
@@ -8104,6 +8116,12 @@
             "state" : "translated",
             "value" : "Сповіщення"
           }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Varsler"
+          }
         }
       }
     },
@@ -8138,6 +8156,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Профіль"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Profil"
           }
         }
       }
@@ -17463,6 +17487,12 @@
             "state" : "translated",
             "value" : "Ось найбільш популярні дописи серед вашого серверу Mastodon."
           }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dette er innleggene som får fart på tvers av oslo.town."
+          }
         }
       }
     },
@@ -17567,6 +17597,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Хештеги"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Emneknagger"
           }
         }
       }
@@ -34682,6 +34718,12 @@
             "state" : "translated",
             "value" : "Популярне"
           }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Populært"
+          }
         }
       }
     },
@@ -34717,6 +34759,12 @@
             "state" : "translated",
             "value" : "Каталог"
           }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Katalog"
+          }
         }
       }
     },
@@ -34751,6 +34799,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Рекомендовані"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Utvalgt"
           }
         }
       }

@@ -34,6 +34,12 @@
             "state" : "translated",
             "value" : "від %1$(authorHandle)@"
           }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "av %1$(authorHandle)@"
+          }
         }
       }
     },
@@ -70,6 +76,12 @@
             "state" : "translated",
             "value" : "%1$(collectionAuthor)@ додав вас %2$(date)@"
           }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$(collectionAuthor)@ la deg til %2$(date)@"
+          }
         }
       }
     },
@@ -104,6 +116,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Колекції (очікуйте в Mastodon 4.6) дозволяють створювати власні списки облікових записів для інших."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Samlinger lar deg lage dine egne kuraterte lister med kontoer å anbefale til andre."
           }
         }
       }
@@ -140,6 +158,12 @@
             "state" : "translated",
             "value" : "Колекції - це підібрані списки облікових записів, які допоможуть іншим дослідити більше Fediverse."
           }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Samlinger er kuraterte lister med kontoer som hjelper andre med å oppdage mer av fediverset."
+          }
         }
       }
     },
@@ -174,6 +198,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Цю дію скасувати не можна. Цей користувач все ще зможе додати вас до інших колекцій, якщо ви їх не заблокуєте."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Denne handlingen kan ikke angres. Brukeren kan fortsatt legge deg til i andre samlinger, med mindre du blokkerer hen."
           }
         }
       }
@@ -211,6 +241,12 @@
             "state" : "translated",
             "value" : "Видалити себе з “%1$(collectionName)@”?"
           }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fjern deg fra «%1$(collectionName)@»?"
+          }
         }
       }
     },
@@ -246,6 +282,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Створити Колекцію"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Opprett en samling"
           }
         }
       }
@@ -283,6 +325,12 @@
             "state" : "translated",
             "value" : "Приховати цю вкладку"
           }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Skjul denne fanen i stedet"
+          }
         }
       }
     },
@@ -318,6 +366,12 @@
           "stringUnit" : {
             "state" : "new",
             "value" : "New Collection"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ny samling"
           }
         }
       }
@@ -463,6 +517,24 @@
               }
             }
           }
+        },
+        "nb" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%1$(count)lld konto"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%1$(count)lld kontoer"
+                }
+              }
+            }
+          }
         }
       }
     },
@@ -498,6 +570,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Видалити"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fjern"
           }
         }
       }
@@ -535,6 +613,12 @@
             "state" : "translated",
             "value" : "Видалити мене"
           }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fjern meg"
+          }
         }
       }
     },
@@ -570,6 +654,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Поскаржитись на Колекцію"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rapporter samling"
           }
         }
       }
@@ -607,6 +697,12 @@
             "state" : "translated",
             "value" : "Чутливий вміст"
           }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Følsomt innhold"
+          }
         }
       }
     },
@@ -643,6 +739,12 @@
             "state" : "translated",
             "value" : "Опис і облікові записи можуть не підходити для всіх глядачів."
           }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Beskrivelsen og kontoene passer kanskje ikke for alle."
+          }
         }
       }
     },
@@ -677,6 +779,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Слідкуйте за оновленнями для Колекцій"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Følg med – samlinger er på vei"
           }
         }
       }
@@ -713,6 +821,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ви представлені в цій Колекції"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Du er med i denne samlingen"
           }
         }
       }
@@ -858,6 +972,24 @@
               }
             }
           }
+        },
+        "nb" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Legg til opptil %1$(limit)lld konto"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Legg til opptil %1$(limit)lld kontoer"
+                }
+              }
+            }
+          }
         }
       }
     },
@@ -893,6 +1025,12 @@
           "stringUnit" : {
             "state" : "new",
             "value" : "%1$(addedCount)lld/%2$(maxCount)lld accounts added"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$(addedCount)lld/%2$(maxCount)lld kontoer lagt til"
           }
         }
       }
@@ -930,6 +1068,12 @@
             "state" : "new",
             "value" : "Can’t be added"
           }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kan ikke legges til"
+          }
         }
       }
     },
@@ -965,6 +1109,12 @@
           "stringUnit" : {
             "state" : "new",
             "value" : "These accounts may have opted out of discovery, or they might be on a server that doesn’t support collections."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Disse kontoene kan ha valgt å ikke synliggjøres i søk, eller de kan være på en server som ikke støtter samlinger."
           }
         }
       }
@@ -1002,6 +1152,12 @@
             "state" : "new",
             "value" : "No one is in this collection yet"
           }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ingen er i denne samlingen ennå"
+          }
         }
       }
     },
@@ -1037,6 +1193,12 @@
           "stringUnit" : {
             "state" : "new",
             "value" : "Search for an account to add"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Søk etter en konto å legge til"
           }
         }
       }
@@ -1074,6 +1236,12 @@
             "state" : "new",
             "value" : "Step %1$(stepNumber)lld/%2$(totalSteps)lld"
           }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trinn %1$(stepNumber)lld/%2$(totalSteps)lld"
+          }
         }
       }
     },
@@ -1110,6 +1278,12 @@
             "state" : "new",
             "value" : "New Collection"
           }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ny samling"
+          }
         }
       }
     },
@@ -1145,6 +1319,12 @@
           "stringUnit" : {
             "state" : "new",
             "value" : "Who will you feature in this collection?"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hvem vil du vise frem i denne samlingen?"
           }
         }
       }

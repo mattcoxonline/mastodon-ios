@@ -1,0 +1,41 @@
+{
+  "Localizable-Collections.xcstrings": {
+    "Scene.Collections.authorLabel": "av %1$(authorHandle)@",
+    "Scene.Collections.collectionAuthorAddedYouOnDate": "%1$(collectionAuthor)@ la deg til %2$(date)@",
+    "Scene.Collections.collectionsExplainerLong": "Samlinger lar deg lage dine egne kuraterte lister med kontoer å anbefale til andre.",
+    "Scene.Collections.collectionsExplainerShort": "Samlinger er kuraterte lister med kontoer som hjelper andre med å oppdage mer av fediverset.",
+    "Scene.Collections.confirmRemoveFromCollectionMessage": "Denne handlingen kan ikke angres. Brukeren kan fortsatt legge deg til i andre samlinger, med mindre du blokkerer hen.",
+    "Scene.Collections.confirmRemoveFromCollectionTitle": "Fjern deg fra «%1$(collectionName)@»?",
+    "Scene.Collections.createCollection": "Opprett en samling",
+    "Scene.Collections.hideThisTabInstead": "Skjul denne fanen i stedet",
+    "Scene.Collections.newCollectionButton": "Ny samling",
+    "Scene.Collections.numberOfAccounts": {"plural": {"one": "%1$(count)lld konto", "other": "%1$(count)lld kontoer"}},
+    "Scene.Collections.remove": "Fjern",
+    "Scene.Collections.removeMe": "Fjern meg",
+    "Scene.Collections.reportCollection": "Rapporter samling",
+    "Scene.Collections.sensitiveContentHeading": "Følsomt innhold",
+    "Scene.Collections.sensitiveContentMessage": "Beskrivelsen og kontoene passer kanskje ikke for alle.",
+    "Scene.Collections.stayTunedForCollections": "Følg med – samlinger er på vei",
+    "Scene.Collections.youAreFeaturedInThisCollection": "Du er med i denne samlingen",
+    "Scene.CreateCollection.accountLimitMessage": {"plural": {"one": "Legg til opptil %1$(limit)lld konto", "other": "Legg til opptil %1$(limit)lld kontoer"}},
+    "Scene.CreateCollection.accountsAddedCount": "%1$(addedCount)lld/%2$(maxCount)lld kontoer lagt til",
+    "Scene.CreateCollection.canNotAdd": "Kan ikke legges til",
+    "Scene.CreateCollection.canNotAddExplainer": "Disse kontoene kan ha valgt å ikke synliggjøres i søk, eller de kan være på en server som ikke støtter samlinger.",
+    "Scene.CreateCollection.emptyCollectionMessage": "Ingen er i denne samlingen ennå",
+    "Scene.CreateCollection.searchBoxPlaceholder": "Søk etter en konto å legge til",
+    "Scene.CreateCollection.stepNumber": "Trinn %1$(stepNumber)lld/%2$(totalSteps)lld",
+    "Scene.CreateCollection.title": "Ny samling",
+    "Scene.CreateCollection.whoWillYouFeature": "Hvem vil du vise frem i denne samlingen?"
+  },
+  "Localizable.xcstrings": {
+    "Common.Controls.Tabs.Feed": "Feed",
+    "Common.Controls.Tabs.Home": "Hjem",
+    "Common.Controls.Tabs.Notifications": "Varsler",
+    "Common.Controls.Tabs.Profile": "Profil",
+    "Scene.Discovery.Tabs.Popular": "Populært",
+    "Scene.Discovery.Tabs.Directory": "Katalog",
+    "Scene.Discovery.Tabs.Hashtags": "Emneknagger",
+    "Scene.Discovery.Featured": "Utvalgt",
+    "Scene.Discovery.Intro": "Dette er innleggene som får fart på tvers av oslo.town."
+  }
+}
