@@ -1,6 +1,7 @@
 // Copyright © 2023 Mastodon gGmbH. All rights reserved.
 
 import SwiftUI
+import WidgetKit
 import MetaTextKit
 import MastodonMeta
 import MastodonLocalization

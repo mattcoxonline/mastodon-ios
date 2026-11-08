@@ -263,7 +263,7 @@ private final class DelegateRef: NSObject, URLSessionWebSocketDelegate {
     }
 
     nonisolated func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
-        guard let error else { return }
+        guard error != nil else { return }
         Task { @MainActor [weak self] in
             self?.client?.didDrop()
         }
