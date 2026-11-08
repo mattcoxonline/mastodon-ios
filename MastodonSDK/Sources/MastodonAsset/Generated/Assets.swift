@@ -289,6 +289,7 @@ public enum Asset {
       public static let tabBarItemInactiveIconColor = ColorAsset(name: "Theme/system/tab.bar.item.inactive.icon.color")
     }
   }
+  public static let oslotownMark = SymbolAsset(name: "oslotown-mark")
 }
 // swiftlint:enable identifier_name line_length nesting type_body_length type_name
 

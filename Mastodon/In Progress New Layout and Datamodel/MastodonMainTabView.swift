@@ -318,10 +318,10 @@ struct MastodonMainTabView: View {
                             // picker as the center item
                             ToolbarItem(placement: .title) {
                                 Picker("Scope", selection: $tabViewRouter.selectedNotificationsTimeline) {
-                                    Text(L10n.Scene.Notification.Title.everything)
-                                        .tag(NotificationsScope.everything)
                                     Text(L10n.Scene.Notification.Title.mentions)
                                         .tag(NotificationsScope.mentions)
+                                    Text(L10n.Scene.Notification.Title.everything)
+                                        .tag(NotificationsScope.everything)
                                 }
                                 .pickerStyle(.segmented)
                             }
@@ -618,11 +618,11 @@ extension MastodonTabViewRouter.MastodonTab {
         case .explore:
             L10n.Common.Controls.Tabs.A11Y.explore
         case .notifications:
-            L10n.Common.Controls.Tabs.notifications
+            L10n.Scene.Notification.Title.mentions
         case .profile:
             L10n.Common.Controls.Tabs.you
         case .localFeed:
-            L10n.Scene.HomeTimeline.TimelineMenu.localCommunity
+            "Oslo"
         case .lists:
             L10nLookup.Timeline.FeedMenu.customFeeds
         case .hashtags:
@@ -645,7 +645,7 @@ extension MastodonTabViewRouter.MastodonTab {
         case .profile:
             Image(phosphor: .user, filled: isSelected)
         case .localFeed:
-            Image(systemName: "building.2")
+            Image("oslotown-mark", bundle: MastodonAsset.bundle)
         case .lists, .list:
             Image(phosphor: .rssSimple)
         case .hashtags:
@@ -665,26 +665,26 @@ extension MastodonTabViewRouter.MastodonTab {
     
     var customizationBehavior: TabCustomizationBehavior {
         switch self {
-        case .home, .explore, .notifications, .profile, .lists, .hashtags:
+        case .home, .explore, .localFeed, .notifications, .profile, .lists, .hashtags:
                 .disabled
-        case .localFeed, .list, .hashtag:
+        case .list, .hashtag:
                 .automatic
         }
     }
 
     var defaultTabBarVisibility: Visibility {
         switch self {
-        case .home, .explore, .notifications, .profile:
+        case .home, .explore, .localFeed, .notifications, .profile:
                 .visible
-        case .localFeed, .lists, .hashtags, .list, .hashtag:
+        case .lists, .hashtags, .list, .hashtag:
                 .hidden
         }
     }
     var hideFromBottomBar: Bool {
         switch self {
-        case .localFeed, .lists, .hashtags, .list, .hashtag:
+        case .lists, .hashtags, .list, .hashtag:
                 true
-        case .home, .explore, .notifications, .profile:
+        case .home, .explore, .localFeed, .notifications, .profile:
                 false
         }
     }

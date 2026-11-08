@@ -16,7 +16,7 @@ import Combine
     public var homeTimelineModel: TimelineListViewModel?
     public var notificationsTimelineModelEverything: TimelineListViewModel?
     public var notificationsTimelineModelMentions: TimelineListViewModel?
-    public var selectedNotificationsTimeline: NotificationsScope = .everything
+    public var selectedNotificationsTimeline: NotificationsScope = .mentions // conversation-first default; the in-screen picker can switch to everything
     public var searchModel: SearchViewModel
     public var discoveryModel: DiscoveryFeedsViewModel
     public var customTimelineModels = [ MastodonTab : TimelineListViewModel]()
@@ -210,7 +210,7 @@ import Combine
     private(set) var currentTabBarPlacement: TabBarPlacement?
     
     var tabs: [MastodonTab] {
-        return [.home, isLocalTimelineAvailable ? .localFeed : nil, .explore, .notifications, .profile, .lists, .hashtags]
+        return [.home, .explore, isLocalTimelineAvailable ? .localFeed : nil, .notifications, .profile, .lists, .hashtags]
             .compactMap { $0 }
     }
     
@@ -304,7 +304,9 @@ import Combine
     }
     
     private func moveSidebarFeedToHome() {
-        // all feeds have their own tabs in the sidebar (or when the sidebar is available via the top bar), but when the tab bar is the bottom bar, those feeds are all shown in the home tab and accessed via the switcher menu.
+        // the local timeline is now a permanent tab (Oslo), so it never needs to be
+        // relocated into the home tab when the bottom bar replaces a sidebar
+        if selectedTab == .localFeed { return }
         guard let timeline = selectedTab.homeTabAlternateTimeline else { return }
         let navigator = navigationRouter(forTab: .home)
         navigator.popToRoot() // TODO: hold onto the navigation path per timeline, so that context is not lost?
