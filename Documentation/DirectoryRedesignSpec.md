@@ -21,11 +21,9 @@ Explore                                  [search]
 └─────────────┴─────────────┘
 FEATURED                        (small caption label)
 ┌──────────────────────────────────────┐
-│ (avatar)  Display Name       [Follow]│
-│           @handle                    │
-│ [thumb][thumb][thumb]   3-photo strip │
-│ bio line 1…                           │
-│ bio line 2…                           │
+│ (avatar)  Display Name        [Follow]│
+│           first line of bio…          │
+│           N followers                 │
 └──────────────────────────────────────┘
 ┌──┐
 │🎨│ Collection title A                │
@@ -52,10 +50,7 @@ Two changes to the feed content:
 - After the collections fetch succeeds, pick a random collection with at least
   one `CollectionMember` that has an `account_id`, then pick a random member.
 - Resolve the member to a full account with the existing
-  `APIService.accountsInfo(userIDs:)`.
-- Fetch up to 3 photo thumbnails with the existing
-  `APIService.userTimeline(accountID:, limit: 12, onlyMedia: true, excludeReplies: true, excludeReblogs: true)`
-  — take the first 3 distinct image/video attachment preview URLs.
+  `APIService.accountsInfo(userIDs:)`. No further API calls needed.
 - Re-roll only when the Directory feed is fetched fresh (open or
   pull-to-refresh). Do not re-roll on background/async refresh or pagination,
   to avoid layout jumping under the user.
@@ -67,10 +62,12 @@ Two changes to the feed content:
   actual relationship, including a Following state if already followed.
 - Tap anywhere else on the card pushes the profile
   (`navigator.push(.profile(account:relationship:))`), same as account rows.
-- Bio: up to 2–3 lines, `.secondary`. Hidden when the account has no note.
-- Photo strip: up to 3 thumbnails, 3-column aspect-fill, ~8pt corner radius,
-  hidden entirely when the account has no media. Thumbnails load through the
-  existing downsampled image pipeline.
+- Layout per wireframe: avatar left; text stack with display name (semibold),
+  first line of the bio truncated with ellipsis (`.secondary`), follower count
+  (caption, `.secondary`); Follow button right of the lockup.
+- Bio text: `account.note` arrives as HTML — reuse the existing
+  HTML-to-plain-text parsing off the main actor (the pattern from the You-screen
+  fix), never parse inline in the row.
 
 ### 3.2 Collection rows (Directory only)
 
@@ -115,8 +112,8 @@ newBatchBottomLoad = .nothingMoreToLoad
 **New files** (under `In Progress New Layout and Datamodel/`):
 
 - `Discovery/DirectoryFeaturedCard.swift` — card view + `DirectoryFeaturedModel`
-  (`@Observable`: wraps an `AccountRowViewModel`, plus up to 3 thumbnail URLs +
-  up to 3 text lines of bio).
+  (`@Observable`: wraps an `AccountRowViewModel`, plus the truncated bio line
+  derived from `account.note`).
 - `Discovery/DirectoryCollectionRow.swift` — emoji-tile row view, plus a shared
   `firstEmoji(in:) -> (emoji, remainingTitle)` helper (used for tile + label).
 
@@ -137,14 +134,14 @@ used in this repo (all ~51 locales; e.g. Norwegian "Utvalgt").
   Following state. (Simple; no re-roll.)
 - Collections with zero resolvable members / account fetch failure: featured is
   skipped silently rather than failing the whole feed.
-- Media fetch failure or no statuses with media: strip hidden, card still shows.
+- Account with no bio: the bio line is omitted; name + follower count remain.
 - Feature flag for the whole section unchanged (`isAvailable(.collections)`).
 
 ## 6. Phases
 
 1. Data plumbing: `TimelineItem` cases, featured model, loader changes, emoji
    extraction helper.
-2. `DirectoryFeaturedCard` (card + Follow + photo strip + bio).
+2. `DirectoryFeaturedCard` (avatar, name, bio line, followers, Follow).
 3. `DirectoryCollectionRow` (emoji tile rows) + `TimelineListView` wiring.
 4. Strings + localization sweep.
 5. Build on iPhone 17 sim, side-by-side against the wireframe, polish spacing.
