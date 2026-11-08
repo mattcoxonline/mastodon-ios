@@ -1,12 +1,14 @@
-<!DOCTYPE html><html><head><meta charset="utf-8"><title>Collection account cards — design options</title><style>
+<!DOCTYPE html><html><head><meta charset="utf-8"><title>Collection detail — whole page designs</title><style>
   body { font-family: -apple-system, sans-serif; background: #f5f5f7; color: #1d1d1f; margin: 24px; }
   h1 { font-size: 22px } h2 { font-size: 17px; margin-top: 36px }
-  .row { display: flex; gap: 20px; flex-wrap: wrap; align-items: flex-start; }
-  .card { background: white; border-radius: 14px; padding: 16px; width: 300px; box-shadow: 0 1px 10px rgba(0,0,0,.07); }
-  .card h3 { margin: 0 0 2px 0; font-size: 15px; }
-  .card .sub { font-size: 11px; color: #6e6e73; text-transform: uppercase; letter-spacing: .05em; margin-bottom: 12px; }
-  .phone { border: 2px solid #3a3a3c; border-radius: 26px; padding: 10px; background: #fbfbfd; width: 272px; }
-  .wf { background: #f5f5f7; border-radius: 16px; height: 500px; overflow: hidden; position: relative; font-size: 11px; color: #3a3a3c; }
+  .row { display: flex; gap: 24px; flex-wrap: wrap; align-items: flex-start; }
+  .col { background: white; border-radius: 14px; padding: 16px; width: 340px; box-shadow: 0 1px 10px rgba(0,0,0,.07); }
+  .col h3 { margin: 0 0 2px 0; font-size: 15px; }
+  .col .sub { font-size: 11px; color: #6e6e73; text-transform: uppercase; letter-spacing: .05em; margin-bottom: 12px; }
+  .phone { border: 2px solid #3a3a3c; border-radius: 26px; padding: 10px; background: #fbfbfd; width: 292px; }
+  .wf { background: #f5f5f7; border-radius: 16px; height: 560px; overflow: hidden; position: relative; font-size: 11px; color: #3a3a3c; }
+  .nav { display: flex; align-items: center; padding: 10px 12px; color: #8e8e93; background: #fbfbfd; }
+  .nav .back { font-size: 15px; margin-right: 4px; }
   .wbox { background: #e8e8ed; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #8e8e93; }
   .wline { background: #e8e8ed; border-radius: 4px; height: 8px; }
   .wline.darker { background: #d2d2d7; }
@@ -16,201 +18,187 @@
   .wsq { border-radius: 50%; background: #e8e8ed; flex: none; position: relative; }
   .wsq:after { content: ""; position: absolute; left: 26%; right: 26%; top: 50%; height: 1.5px; background: #aeaeb2; }
   .wsq:before { content: ""; position: absolute; left: 50%; top: 18%; bottom: 18%; width: 1.5px; background: #aeaeb2; }
-  .wbtn { padding: 7px 14px; border-radius: 12px; background: #d2d2d7; font-weight: 600; display: inline-block; }
+  .wtile { background: #e8e8ed; border-radius: 10px; display: flex; align-items: center; justify-content: center; color: #8e8e93; }
+  .wbtn { padding: 6px 12px; border-radius: 12px; background: #d2d2d7; font-weight: 600; display: inline-block; }
   .wbtn.dark { background: #1d1d1f; color: white; }
-  .ancard { background: white; border-radius: 14px; overflow: hidden; margin: 10px 10px 0 10px; }
-  .lbl { position: absolute; left: 0; right: 0; text-align: center; color: #8e8e93; font-size: 10px; letter-spacing: .04em; text-transform: uppercase; }
+  .ancard { background: white; border-radius: 14px; overflow: hidden; }
+  .lbl { position: absolute; left: 0; right: 0; text-align: center; color: #8e8e93; font-size: 9.5px; letter-spacing: .04em; text-transform: uppercase; }
   .notes { font-size: 12.5px; line-height: 1.5; color: #3a3a3c; }
   .notes b { color: #1d1d1f; }
   .pros, .cons { font-size: 12.5px; line-height: 1.5; margin: 4px 0 0 0; padding-left: 18px; }
   .pros li::marker { color: #34c759 } .cons li::marker { color: #ff453a }
   .effort { display:inline-block; background:#e8e8ed; border-radius: 8px; padding: 2px 8px; font-size: 11px; margin-top: 8px; }
-  table { border-collapse: collapse; width: 100%; background: white; border-radius: 12px; overflow: hidden; margin-top: 10px; }
+  table { border-collapse: collapse; width: 100%; background: white; border-radius: 12px; overflow: hidden; margin-top: 10px; max-width: 700px }
   th { text-align: left; font-size: 12px; text-transform: uppercase; color: #6e6e73; padding: 10px 12px; }
   td { border-top: 1px solid #e5e5ea; padding: 10px 12px; font-size: 13.5px; }
-  .inv { background: white; border-radius: 12px; padding: 14px 18px; font-size: 13px; box-shadow: 0 1px 8px rgba(0,0,0,.05); line-height: 1.7; }
-  .rec { background: #f0fff4; border-left: 4px solid #34c759; border-radius: 10px; padding: 14px 16px; font-size: 14px; line-height: 1.6; max-width: 640px; }
-  .ref { background: white; border-radius: 14px; padding: 16px; width: 300px; box-shadow: 0 1px 10px rgba(0,0,0,.07); }
+  .inv { background: white; border-radius: 12px; padding: 14px 18px; font-size: 13px; box-shadow: 0 1px 8px rgba(0,0,0,.05); line-height: 1.7; max-width: 700px; }
+  .rec { background: #f0fff4; border-left: 4px solid #34c759; border-radius: 10px; padding: 14px 16px; font-size: 14px; line-height: 1.6; max-width: 700px; }
+  .chip { display:inline-block; background:#e8e8ed; border-radius: 8px; padding: 2px 8px; font-size: 10px; color:#6e6e73; }
 </style></head><body>
-<h1>Collection account cards — three directions</h1>
-<p class="notes">Wireframes, not mocks: grey = content, X-boxes = images, circles with cross = avatars, dark pill = the follow CTA. Each phone shows two stacked cards to indicate list rhythm. Context: the <b>collection detail screen</b> (a collection tapped from the Directory or You&nbsp;&gt;&nbsp;Collections) — currently a plain list of the avatar / name / username / verified-link / follower-and-post-counts / follow rows.</p>
+<h1>Collection detail — two whole-page designs</h1>
+<p class="notes">Both pages use the <b>locked Option B member card</b> (inset cover strip, avatar, name, username, truncated bio, follow in the header row). What differs is how the <b>page-level collection info</b> composes above it. Wireframes: grey = slots, X-boxes = images, circled crosses = avatars, dark pill = follow CTA.</p>
 
 <div class="inv" style="margin-top:14px">
-<b>Every card must contain:</b> avatar · cover photo · display name · username · bio snippet (truncated) · follow button<br>
-<b>Drops from the list</b> (still on the full profile): verified links · follower/following/post counts<br>
-<b>Data:</b> everything is already on the account entity — cover = <code>header</code>, so no extra API calls. Bio snippet needs the same off-main-actor HTML→text parsing the Directory featured card uses. Bio is parsed at display-prep time, never in the row.
+<b>Collection info the header carries today</b> (all already on <code>CollectionViewModel</code>): name · “by @author” · description (optional) · account count · conditional “You are featured in this collection / Remove me” callout (kept in both designs, placed under the header).<br>
+<b>Member card (fixed):</b> Option B — cover strip inset in card, small overlapping avatar, display name + username, follow right, bio snippet (1–2 lines, truncated) below.
 </div>
 
 <div class="row" style="margin-top:26px">
 
-<!-- current -->
-<div class="ref"><h3>Today — for reference</h3><div class="sub">AccountRowView in list</div>
+<!-- Design 1 -->
+<div class="col"><h3>Design 1 — “Curated hero”</h3><div class="sub">collection as a hero card, card list below</div>
 <div class="phone"><div class="wf">
-  <div style="display:flex; padding:12px; gap:10px; align-items:flex-start;">
-    <div class="wsq" style="width:44px; height:44px;"></div>
-    <div style="flex:1;">
-      <div class="wline darker" style="width:64%; margin-bottom:6px;"></div>
-      <div class="wline" style="width:44%; margin-bottom:8px;"></div>
-      <div style="font-size:10px; color:#8e8e93; margin-bottom:8px;">✓ verified link</div>
-      <div style="display:flex; gap:10px; margin-bottom:8px;">
-        <div class="wline" style="width:22%;"></div><div class="wline" style="width:22%;"></div>
+  <div class="nav"><span class="back">‹</span> back</div>
+  <div class="ancard" style="margin:10px 10px 0 10px; padding:12px;">
+    <div style="display:flex; gap:10px; align-items:center;">
+      <div class="wtile" style="width:44px; height:44px;">emoji</div>
+      <div style="flex:1;">
+        <div class="wline darker" style="width:70%; margin-bottom:5px;"></div>
+        <div class="wline" style="width:44%;"></div>
       </div>
     </div>
-  </div>
-  <div class="wbtn dark" style="position:absolute; right:12px; top:12px;">Follow</div>
-  <div style="border-top:1px solid #e5e5ea; margin:0 12px;"></div>
-  <div style="display:flex; padding:12px; gap:10px;">
-    <div class="wsq" style="width:44px; height:44px;"></div>
-    <div style="flex:1;">
-      <div class="wline darker" style="width:64%; margin-bottom:6px;"></div>
-      <div class="wline" style="width:44%; margin-bottom:8px;"></div>
-      <div style="font-size:10px; color:#8e8e93; margin-bottom:8px;">✓ verified link</div>
-      <div style="display:flex; gap:10px;">
-        <div class="wline" style="width:22%;"></div><div class="wline" style="width:22%;"></div>
+    <div class="wline" style="margin:10px 0 5px 0; width:96%;"></div>
+    <div class="wline" style="margin:0 0 10px 0; width:78%;"></div>
+    <div style="display:flex; align-items:center; justify-content:space-between;">
+      <div style="display:flex; margin-right:8px;">
+        <div class="wsq" style="width:22px; height:22px; border:2px solid white;"></div>
+        <div class="wsq" style="width:22px; height:22px; border:2px solid white; margin-left:-8px;"></div>
+        <div class="wsq" style="width:22px; height:22px; border:2px solid white; margin-left:-8px;"></div>
+        <div class="wsq" style="width:22px; height:22px; border:2px solid white; margin-left:-8px;"></div>
       </div>
+      <span class="chip">12 accounts</span>
     </div>
   </div>
-  <div class="wbtn dark" style="position:absolute; right:12px; bottom:104px;">Follow</div>
-</div></div>
-<p class="notes"><b>The problem:</b> rows are dense with numbers nobody needs before following, there is no cover, no bio, and nothing anchors the eye — the list reads like a settings table, not a curated directory.</p>
-</div>
-
-<!-- Option A -->
-<div class="card"><h3>Option A — “Cover hero”</h3><div class="sub">full-bleed cover, CTA on the cover</div>
-<div class="phone"><div class="wf">
-  <div class="ancard">
-    <div class="ximg" style="height:84px;"><div class="lbl" style="top:34px;">cover</div></div>
-    <div class="wbtn dark" style="position:absolute; right:10px; margin-top:-72px;">Follow</div>
-    <div style="display:flex; align-items:flex-end; gap:10px; padding:0 12px; margin-top:-28px;">
-      <div class="wsq" style="width:56px; height:56px; border:3px solid white;"></div>
-      <div style="flex:1; padding-bottom:2px;">
-        <div class="wline darker" style="width:52%; margin-bottom:5px;"></div>
-        <div class="wline" style="width:40%;"></div>
-      </div>
-    </div>
-    <div class="wline" style="margin:10px 12px 5px 12px; width:92%;"></div>
-    <div class="wline" style="margin:0 12px 12px 12px; width:70%;"></div>
-  </div>
-  <div class="ancard">
-    <div class="ximg" style="height:84px;"></div>
-    <div class="wbtn dark" style="position:absolute; right:10px; margin-top:-72px;">Follow</div>
-    <div style="display:flex; align-items:flex-end; gap:10px; padding:0 12px; margin-top:-28px;">
-      <div class="wsq" style="width:56px; height:56px; border:3px solid white;"></div>
-      <div style="flex:1; padding-bottom:2px;">
-        <div class="wline darker" style="width:58%; margin-bottom:5px;"></div>
-        <div class="wline" style="width:36%;"></div>
-      </div>
-    </div>
-    <div class="wline" style="margin:10px 12px 5px 12px; width:88%;"></div>
-    <div class="wline" style="margin:0 12px 12px 12px; width:64%;"></div>
-  </div>
-</div></div>
-<ul class="pros"><li>Most visual hierarchy — the cover does the talking</li><li>Follow thumb-reachable mid-card, never covered by other cards</li><li>Card edges give the “directory” feel you asked for</li></ul>
-<ul class="cons"><li>Taller cards (~150pt) — fewer visible at once (≈3)</li><li>CTA sits over the cover; busy covers fight the label</li></ul>
-<div class="effort">new view — medium</div>
-</div>
-
-<!-- Option B -->
-<div class="card"><h3>Option B — “Inset strip”</h3><div class="sub">compact cover, CTA in the header row</div>
-<div class="phone"><div class="wf">
-  <div class="ancard">
-    <div class="ximg" style="height:56px; margin:10px 10px 0 10px; border-radius:10px;"><div class="lbl" style="top:20px;">cover</div></div>
-    <div style="display:flex; align-items:center; gap:10px; padding:8px 12px 0 12px;">
-      <div class="wsq" style="width:40px; height:40px; margin-top:-22px; border:3px solid white;"></div>
+  <div class="ancard" style="margin:10px 10px 0 10px;">
+    <div class="ximg" style="height:52px; margin:10px 10px 0 10px; border-radius:9px;"><div class="lbl" style="top:19px;">cover</div></div>
+    <div style="display:flex; align-items:center; gap:10px; padding:7px 12px 0 12px;">
+      <div class="wsq" style="width:40px; height:40px; margin-top:-20px; border:3px solid white;"></div>
       <div style="flex:1;">
         <div class="wline darker" style="width:56%; margin-bottom:5px;"></div>
-        <div class="wline" style="width:40%;"></div>
-      </div>
-      <div class="wbtn dark">Follow</div>
-    </div>
-    <div class="wline" style="margin:9px 12px 5px 12px; width:92%;"></div>
-    <div class="wline" style="margin:0 12px 12px 12px; width:74%;"></div>
-  </div>
-  <div class="ancard">
-    <div class="ximg" style="height:56px; margin:10px 10px 0 10px; border-radius:10px;"></div>
-    <div style="display:flex; align-items:center; gap:10px; padding:8px 12px 0 12px;">
-      <div class="wsq" style="width:40px; height:40px; margin-top:-22px; border:3px solid white;"></div>
-      <div style="flex:1;">
-        <div class="wline darker" style="width:50%; margin-bottom:5px;"></div>
         <div class="wline" style="width:38%;"></div>
       </div>
       <div class="wbtn dark">Follow</div>
     </div>
-    <div class="wline" style="margin:9px 12px 5px 12px; width:88%;"></div>
-    <div class="wline" style="margin:0 12px 12px 12px; width:66%;"></div>
+    <div class="wline" style="margin:8px 12px 4px 12px; width:92%;"></div>
+    <div class="wline" style="margin:0 12px 11px 12px; width:64%;"></div>
   </div>
-  <div class="ancard" style="opacity:.55;">
-    <div class="ximg" style="height:56px; margin:10px 10px 0 10px; border-radius:10px;"></div>
-    <div style="display:flex; align-items:center; gap:10px; padding:8px 12px 0 12px;">
-      <div class="wsq" style="width:40px; height:40px; margin-top:-22px; border:3px solid white;"></div>
+  <div class="ancard" style="margin:10px 10px 0 10px; opacity:.9;">
+    <div class="ximg" style="height:52px; margin:10px 10px 0 10px; border-radius:9px;"></div>
+    <div style="display:flex; align-items:center; gap:10px; padding:7px 12px 0 12px;">
+      <div class="wsq" style="width:40px; height:40px; margin-top:-20px; border:3px solid white;"></div>
       <div style="flex:1;">
-        <div class="wline darker" style="width:54%; margin-bottom:5px;"></div>
-        <div class="wline" style="width:42%;"></div>
+        <div class="wline darker" style="width:50%; margin-bottom:5px;"></div>
+        <div class="wline" style="width:40%;"></div>
       </div>
       <div class="wbtn dark">Follow</div>
     </div>
-    <div class="wline" style="margin:9px 12px 5px 12px; width:90%;"></div>
-    <div class="wline" style="margin:0 12px 12px 12px; width:72%;"></div>
+    <div class="wline" style="margin:8px 12px 4px 12px; width:88%;"></div>
+    <div class="wline" style="margin:0 12px 11px 12px; width:58%;"></div>
   </div>
 </div></div>
-<ul class="pros"><li>Keeps 4–5 cards on screen — directory stays browsable</li><li>Short cover strip tolerates weak/cropped cover images best</li><li>Familiar pattern (matches how Directory featured card + profile are shaped)</li></ul>
-<ul class="cons"><li>Cover is a garnish; less impact than A</li><li>Small avatar (40pt); name row does the identity work</li></ul>
-<div class="effort">new view — small</div>
+<ul class="pros"><li>Hero card mirrors the Directory’s card language — one continuous system from Explore to here</li><li>Avatar strip previews who’s inside; count is a quiet chip, not a stat row</li><li>Emoji tile carries the collection’s identity from the Directory list to the page</li></ul>
+<ul class="cons"><li>Taller header (~200pt) — the first member card sits lower on arrival</li><li>Second material level (hero card + member cards) — calmer backgrounds needed</li></ul>
+<div class="effort">header: medium · cards: as planned</div>
 </div>
 
-<!-- Option C -->
-<div class="card"><h3>Option C — “Footer CTA”</h3><div class="sub">cover + identity up top, full-width follow bar</div>
+<!-- Design 2 -->
+<div class="col"><h3>Design 2 — “Compact header, two-up grid”</h3><div class="sub">one-line header, members browsable in two columns</div>
 <div class="phone"><div class="wf">
-  <div class="ancard">
-    <div style="display:flex; gap:10px; padding:12px 12px 0 12px;">
-      <div class="wsq" style="width:48px; height:48px;"></div>
+  <div class="nav"><span class="back">‹</span> back</div>
+  <div style="padding:10px 12px 0 12px;">
+    <div style="display:flex; gap:10px; align-items:center;">
+      <div class="wtile" style="width:36px; height:36px;">emoji</div>
       <div style="flex:1;">
-        <div class="wline darker" style="width:60%; margin-bottom:5px;"></div>
-        <div class="wline" style="width:42%; margin-bottom:8px;"></div>
-        <div class="wline" style="width:92%; margin-bottom:4px;"></div>
-        <div class="wline" style="width:74%;"></div>
+        <div class="wline darker" style="width:62%; margin-bottom:5px;"></div>
+        <div class="wline" style="width:40%;"></div>
+      </div>
+      <span class="chip">12</span>
+    </div>
+    <div class="wline" style="margin:8px 0 0 0; width:70%; height:6px;"></div>
+  </div>
+  <div style="display:flex; gap:10px; padding:10px 10px 0 10px;">
+    <div style="flex:1;">
+      <div class="ancard">
+        <div class="ximg" style="height:36px; margin:8px 8px 0 8px; border-radius:7px;"></div>
+        <div style="display:flex; align-items:center; gap:6px; padding:5px 8px 0 8px;">
+          <div class="wsq" style="width:30px; height:30px; margin-top:-14px; border:2px solid white;"></div>
+          <div style="flex:1;">
+            <div class="wline darker" style="width:80%; margin-bottom:4px; height:7px;"></div>
+            <div class="wline" style="width:60%; height:6px;"></div>
+          </div>
+        </div>
+        <div class="wbtn dark" style="margin:7px 8px 9px 8px; font-size:10px;">Follow</div>
       </div>
     </div>
-    <div class="ximg" style="height:72px; margin:10px 10px 0 10px; border-radius:10px;"><div class="lbl" style="top:29px;">cover</div></div>
-    <div class="wbtn dark" style="display:block; text-align:center; border-radius:0 0 14px 14px; padding:9px 0; margin-top:10px;">Follow</div>
-  </div>
-  <div class="ancard" style="opacity:.55;">
-    <div style="display:flex; gap:10px; padding:12px 12px 0 12px;">
-      <div class="wsq" style="width:48px; height:48px;"></div>
-      <div style="flex:1;">
-        <div class="wline darker" style="width:54%; margin-bottom:5px;"></div>
-        <div class="wline" style="width:38%; margin-bottom:8px;"></div>
-        <div class="wline" style="width:90%; margin-bottom:4px;"></div>
-        <div class="wline" style="width:68%;"></div>
+    <div style="flex:1;">
+      <div class="ancard">
+        <div class="ximg" style="height:36px; margin:8px 8px 0 8px; border-radius:7px;"></div>
+        <div style="display:flex; align-items:center; gap:6px; padding:5px 8px 0 8px;">
+          <div class="wsq" style="width:30px; height:30px; margin-top:-14px; border:2px solid white;"></div>
+          <div style="flex:1;">
+            <div class="wline darker" style="width:70%; margin-bottom:4px; height:7px;"></div>
+            <div class="wline" style="width:55%; height:6px;"></div>
+          </div>
+        </div>
+        <div class="wbtn dark" style="margin:7px 8px 9px 8px; font-size:10px;">Follow</div>
       </div>
     </div>
-    <div class="ximg" style="height:72px; margin:10px 10px 0 10px; border-radius:10px;"></div>
-    <div class="wbtn dark" style="display:block; text-align:center; border-radius:0 0 14px 14px; padding:9px 0; margin-top:10px;">Follow</div>
   </div>
+  <div style="display:flex; gap:10px; padding:10px 10px 0 10px;">
+    <div style="flex:1;">
+      <div class="ancard" >
+        <div class="ximg" style="height:36px; margin:8px 8px 0 8px; border-radius:7px;"></div>
+        <div style="display:flex; align-items:center; gap:6px; padding:5px 8px 0 8px;">
+          <div class="wsq" style="width:30px; height:30px; margin-top:-14px; border:2px solid white;"></div>
+          <div style="flex:1;">
+            <div class="wline darker" style="width:75%; margin-bottom:4px; height:7px;"></div>
+            <div class="wline" style="width:58%; height:6px;"></div>
+          </div>
+        </div>
+        <div class="wbtn dark" style="margin:7px 8px 9px 8px; font-size:10px;">Follow</div>
+      </div>
+    </div>
+    <div style="flex:1;">
+      <div class="ancard" style="opacity:.85;">
+        <div class="ximg" style="height:36px; margin:8px 8px 0 8px; border-radius:7px;"></div>
+        <div style="display:flex; align-items:center; gap:6px; padding:5px 8px 0 8px;">
+          <div class="wsq" style="width:30px; height:30px; margin-top:-14px; border:2px solid white;"></div>
+          <div style="flex:1;">
+            <div class="wline darker" style="width:68%; margin-bottom:4px; height:7px;"></div>
+            <div class="wline" style="width:52%; height:6px;"></div>
+          </div>
+        </div>
+        <div class="wbtn dark" style="margin:7px 8px 9px 8px; font-size:10px;">Follow</div>
+      </div>
+    </div>
+  </div>
+  <p class="notes" style="padding:8px 12px 0 12px; font-size:10px; color:#8e8e93;">bio snippet moves under the name row in the two-up card, 1 line max — see note below</p>
 </div></div>
-<ul class="pros"><li>Identity-first; bio is experiential content, cover is the payoff</li><li>Full-width CTA bar — unmissable, clean tap target</li><li>Horizontal rhythm differs most from today’s list</li></ul>
-<ul class="cons"><li>Follow needs a deliberate look-down; CTA furthest from names</li><li>Two visual anchors (text block + image) make cards busy</li><li>Tallest card of the three when bio runs 2 lines</li></ul>
-<div class="effort">new view — small</div>
+<ul class="pros"><li>Most browsable — 4+ members on first screen, swiping beats scrolling</li><li>Compact header (~90pt) puts content immediately</li><li>Degradation-friendly: no cover → tighter card, nothing breaks</li></ul>
+<ul class="cons"><li>Half-width cards: bio cuts to 1 line, long display names truncate harder</li><li>Card rhythm is denser; follow button smaller</li></ul>
+<div class="effort">header: small · cards: medium (grid + compact variant)</div>
 </div>
 </div>
 
 <h2>Comparison</h2>
 <table>
-  <tr><th></th><th>Cover presence</th><th>Cards on screen</th><th>CTA placement</th><th>Weak-cover resilience</th></tr>
-  <tr><td><b>A — Cover hero</b></td><td>dominant</td><td>≈ 3</td><td>overlaid on cover</td><td>medium</td></tr>
-  <tr><td><b>B — Inset strip</b></td><td>accent</td><td>≈ 4–5</td><td>header row</td><td>best</td></tr>
-  <tr><td><b>C — Footer CTA</b></td><td>payoff below bio</td><td>≈ 3–4</td><td>full-width footer</td><td>medium</td></tr>
+  <tr><th></th><th>Header height</th><th>Members visible</th><th>Bio space</th><th>Fits existing patterns</th></tr>
+  <tr><td><b>1 — Curated hero</b></td><td>≈ 200pt</td><td>2</td><td>full (2 lines)</td><td>hero card = featured-card language</td></tr>
+  <tr><td><b>2 — Two-up grid</b></td><td>≈ 90pt</td><td>4–6</td><td>1 line</td><td>grid is new to the app</td></tr>
 </table>
 
-<h2>Implementation notes (any direction)</h2>
+<h2>Card note for the two-up variant</h2>
+<p class="notes" style="max-width:660px">Design 2 needs a <b>compact card variant</b> of Option B: cover strip shortened (~36pt), avatar 30pt, name + username only, follow as a full-width mini-button, bio dropped to a single line under the name row (or omitted — grid cards that are all name/follow still read fine as a directory). The full Option B card stays for iPhoneandscape/full-width contexts.</p>
+
+<h2>Implementation notes (either design)</h2>
 <p class="notes" style="max-width:660px">
-- <b>New view</b> (e.g. <code>DirectoryAccountCard</code>) substituted for <code>AccountRowView</code> in <code>TimelineListView</code>’s <code>.account</code> case when the timeline is a collection detail (<code>viewModel.timeline.collectionViewModel != nil</code>). The “Remove from collection” control and the empty-state for self-removed members flow through the same <code>accountRowControl(for:)</code> path and must keep working — the card takes the same <code>control</code> enum.<br>
-- <b>Data:</b> cover = <code>account.header</code> (already on the entity; add an accessor on <code>MastodonAccount</code> if missing). Fall back to a flat surface/gradient when the header is missing — common on Oslo profiles.<br>
-- <b>Bio snippet:</b> parsed HTML→text off the main actor in display prep (same helper as <code>DirectoryFeaturedModel</code>), cached on the row model; 1–2 lines, line-limited with ellipsis.<br>
-- <b>Follow:</b> unchanged machinery — <code>RelationshipViewModel</code> button + relationship display-prep that already runs for <code>.account</code> items.<br>
-- <b>Images:</b> covers load through the existing downsampled pipeline; request ~600&nbsp;pt width (cards are ≈ full content width) rather than the 1200&nbsp;pt timeline media size.<br>
-- <b>Verified links / counts:</b> dropped from the card only; the profile keeps them. An optional middle ground is a single “1.2k followers” caption in the username row if the directory feels too sparse after using it.
+- <b>Header replaces the block</b> rendered for <code>case .collection</code> in <code>TimelineListView</code>’s header section (name / by-author / description / count today). All data is on <code>CollectionViewModel</code>; the emoji comes from the same title-splitting helper the Directory rows use.<br>
+- <b>“You are featured / Remove me” callout stays</b>, placed directly under the header in both designs (only shown when the viewer is a member).<br>
+- <b>Member cards:</b> new card view substituted for <code>AccountRowView</code> on collection timelines; reuses the relationship/follow machinery and the <code>accountRowControl(for:)</code> “remove from collection” control.<br>
+- <b>Avatars strip (Design 1):</b> member avatar URLs already exist on the collection view model (used by the avatar mosaic today); cap the strip at ~6 avatars + count chip.<br>
+- <b>Grid (Design 2):</b> <code>LazyVGrid</code> columns: 2 fixed with flexible spacing — the timeline list content area already provides a usable width; card width ≈ half minus padding. Nothing in the current TimelineList structure prevents a grid scoped to the collection case.<br>
+- <b>Nav title stays empty</b> (current behaviour — the header holds the title), so the large title area is free for both designs.
 </p>
 
-<div class="rec" style="margin-top:16px"><b>Recommendation:</b> Option A is the strongest realization of “a curated directory of cards”; Option B is the safe, browsable compromise and the quickest to build. If cover photos turn out to be rare in the collection members, A degrades worst — worth a quick eyeball of a real collection before committing to it.</div>
+<div class="rec" style="margin-top:16px"><b>Recommendation:</b> Design 1 is the safer, more on-brand page — it extends the card system you already have and keeps the full bio. Design 2 wins on browsability but needs a compact card variant and gives up most of the bio. If the collections typically hold 10–30 accounts, 2 helps discovery; if they are smaller and curated, 1 tells the story better.</div>
 </body></html>
