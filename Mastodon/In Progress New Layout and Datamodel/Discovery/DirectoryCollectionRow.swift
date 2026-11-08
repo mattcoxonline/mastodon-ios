@@ -100,7 +100,7 @@ struct CollectionEmojiTile: View {
     var body: some View {
         ZStack {
             RoundedRectangle(cornerRadius: Radius.xl)
-                .fill(Color(uiColor: .secondarySystemBackground))
+                .fill(Color.accentColor.opacity(0.12))
             Text(emoji)
                 .font(.system(size: 2 * Spacing.s))
         }

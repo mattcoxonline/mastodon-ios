@@ -13,10 +13,6 @@ struct CollectionAccountCard: View {
     @Environment(AccountRowViewModel.self) var viewModel
     let control: AccountRowControl
 
-    private var cardBackground: Color {
-        Color(uiColor: .secondarySystemBackground)
-    }
-
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
             coverStrip
@@ -27,7 +23,7 @@ struct CollectionAccountCard: View {
                     size: .large,
                     avatarSource: .url(viewModel.account.avatarURL)
                 )
-                .overlay(Circle().stroke(cardBackground, lineWidth: 3))
+                .overlay(Circle().stroke(Color(uiColor: .systemBackground), lineWidth: 3))
                 .padding(.top, -Spacing.xl)
                 .accessibilityHidden(true)
 
@@ -78,10 +74,6 @@ struct CollectionAccountCard: View {
         }
         .padding(.top, Spacing.m)
         .frame(maxWidth: .infinity, alignment: .leading)
-        .background(
-            cardBackground,
-            in: RoundedRectangle(cornerRadius: Radius.m)
-        )
         .accessibilityElement(children: .contain)
     }
 
@@ -94,17 +86,12 @@ struct CollectionAccountCard: View {
                         .resizable()
                         .scaledToFill()
                 default:
-                    Color(uiColor: .tertiarySystemFill)
+                    EmptyView()
                 }
             }
             .frame(height: 64)
             .clipShape(RoundedRectangle(cornerRadius: Radius.m))
             .padding(.horizontal, Spacing.m)
-        } else {
-            Color(uiColor: .tertiarySystemFill)
-                .frame(height: 64)
-                .clipShape(RoundedRectangle(cornerRadius: Radius.m))
-                .padding(.horizontal, Spacing.m)
         }
     }
 }

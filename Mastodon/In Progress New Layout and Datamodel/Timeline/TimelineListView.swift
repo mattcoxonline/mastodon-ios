@@ -667,6 +667,9 @@ struct TimelineListView: View {
         
         switch contentConcealModel.currentMode {
         case .concealAll(_, showTextAnyway: true, _), .neverConceal, .concealMediaOnly:
+            if case .collection(let collectionViewModel) = viewModel.timeline {
+                collectionScrolledHeader(collectionViewModel, useableWidth: useableWidth)
+            }
             ForEach(viewModel.currentDisplaySlice, id: \.self) { item in
                 switch item {
                 case .loadingIndicator:
@@ -1029,8 +1032,17 @@ struct TimelineListView: View {
                     .padding(.horizontal, Spacing.l)
                     .frame(maxWidth: .infinity, alignment: .center)
             }
-        case .collection(let collectionViewModel):
-            VStack(alignment: .leading, spacing: Spacing.m) {
+        default:
+            EmptyView()
+        }
+
+    }
+
+    /// Collection detail: curated hero header + you-are-featured callout,
+    /// rendered inside the scroll content (scrolls away with the list) and
+    /// styled flat (no grey card) with a hairline divider under the header.
+    @ViewBuilder private func collectionScrolledHeader(_ collectionViewModel: CollectionViewModel, useableWidth: CGFloat) -> some View {
+        VStack(alignment: .leading, spacing: Spacing.m) {
                 let splitName = DirectoryCollectionRow.firstEmoji(inTitle: collectionViewModel.collection.name ?? "")
                 VStack(alignment: .leading, spacing: Spacing.m) {
                     HStack(alignment: .center, spacing: Spacing.m) {
@@ -1069,11 +1081,6 @@ struct TimelineListView: View {
                             .foregroundStyle(.secondary)
                     }
                 }
-                .padding(Spacing.l)
-                .background(
-                    Color(uiColor: .secondarySystemBackground),
-                    in: RoundedRectangle(cornerRadius: Radius.m)
-                )
                 let myAccountId = AuthenticationServiceProvider.shared.currentActiveUser.value?.userID
                 if !collectionViewModel.iHaveRemovedMyself, let meAsMember = collectionViewModel.collection.items.first(where: { $0.account_id == myAccountId }) {
                     infoPlusActionCalloutView(
@@ -1088,16 +1095,13 @@ struct TimelineListView: View {
                     }
                     .fixedSize(horizontal: false, vertical: true)
                 }
-            }
-            .padding(.horizontal, Spacing.l)
-            .padding(.bottom, Spacing.l)
-            .frame(maxWidth: .infinity, alignment: .leading)
-        default:
-            EmptyView()
+            
+            Divider()
         }
-        
+        .padding(EdgeInsets(top: Spacing.s, leading: Spacing.m, bottom: Spacing.l, trailing: Spacing.m))
+        .frame(width: useableWidth, alignment: .leading)
     }
-    
+
     private func navigateToFilteredNotifications() {
         navigator.push(.timeline(.notificationRequests))
     }
