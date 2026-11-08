@@ -12,6 +12,7 @@ struct CollectionRowView: View {
     @Environment(CollectionViewModel.self) var viewModel
     let contentWidth: CGFloat
     let includeMenu: Bool
+    var showsAuthor = true
     
     let avatarSize = AvatarSize.extraSmall
     
@@ -38,7 +39,7 @@ struct CollectionRowView: View {
                     VStack(alignment: .leading, spacing: 0) {
                         Text(viewModel.collection.name ?? "")
                             .fontWeight(.semibold)
-                        if let author = viewModel.authorHandle {
+                        if showsAuthor, let author = viewModel.authorHandle {
                             Text(L10nLookup.Scene.Collections.authorLabel(author))
                                 .font(.caption)
                                 .foregroundStyle(.secondary)

@@ -807,7 +807,7 @@ struct TimelineListView: View {
                             }
                     }
                 case .collection(let collectionViewModel):
-                    CollectionRowView(contentWidth: contentWidth, includeMenu: true)
+                    CollectionRowView(contentWidth: contentWidth, includeMenu: true, showsAuthor: false)
                         .environment(collectionViewModel)
                         .padding(EdgeInsets(top: standardPadding, leading: standardPadding, bottom: standardPadding, trailing: doublePadding))
                         .frame(width: useableWidth)
