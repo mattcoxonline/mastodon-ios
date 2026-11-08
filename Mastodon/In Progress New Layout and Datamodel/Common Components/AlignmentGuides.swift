@@ -3,23 +3,42 @@
 import Foundation
 import SwiftUI
 
-private let _eight: CGFloat = 8
+/// Layout spacing scale. New code should use these tokens;
+/// `standardPadding` etc. below are compatibility aliases with the same values.
+struct Spacing {
+    static let xs: CGFloat = 4      // hairline gaps, within-lockup offsets
+    static let s: CGFloat = 8       // default: row gutters, inner card padding
+    static let m: CGFloat = 12      // between related groups in a card
+    static let l: CGFloat = 16      // default: card padding, section separation
+    static let xl: CGFloat = 24     // between sections, generous block spacing
+    static let xxl: CGFloat = 32    // page-level breathing room
+}
 
-let spacingBetweenGutterAndContent: CGFloat = _eight
-let standardPadding: CGFloat = _eight
-let doublePadding: CGFloat = _eight * 2
-let tinySpacing: CGFloat = _eight / 2
+/// Corner radius scale for cards, tiles and controls.
+struct Radius {
+    static let xs: CGFloat = 4      // chips, mini controls, inner elements
+    static let s: CGFloat = 8       // tiles, small cards
+    static let m: CGFloat = 12      // standard cards
+    static let l: CGFloat = 16      // large cards, sheets
+    static let xl: CGFloat = 24     // hero cards, overlays
+    static let pill: CGFloat = 999  // capsule buttons
+}
+
+let spacingBetweenGutterAndContent: CGFloat = Spacing.s
+let standardPadding: CGFloat = Spacing.s
+let doublePadding: CGFloat = Spacing.l
+let tinySpacing: CGFloat = Spacing.xs
 
 let maxFeedContentWidth: CGFloat = 700
 
 struct ButtonPadding {
     static var vertical: CGFloat = 3
-    static var horizontal = _eight
-    static var capsuleHorizontal: CGFloat = _eight * 2
+    static var horizontal = Spacing.s
+    static var capsuleHorizontal: CGFloat = Spacing.l
 }
 
 struct PollPadding {
-    static var optionPadding: CGFloat = 12
+    static var optionPadding: CGFloat = Spacing.m
 }
 
 extension HorizontalAlignment {
