@@ -806,6 +806,21 @@ final class TimelineFeedLoader: MastodonFeedLoader<TimelineItem, CacheableTimeli
                 guard let account = response[$0] else { return nil }
                 return timelineItem(fromAccount: account, suggestedBecause: nil)
             }
+            let notesById = [Mastodon.Entity.Account.ID : String](
+                accountIDs.compactMap { id in
+                    guard let note = response[id]?.note, !note.isEmpty else { return nil }
+                    return (id, note)
+                },
+                uniquingKeysWith: { _, last in last }
+            )
+            if !notesById.isEmpty {
+                let bioLines = await Task.detached(priority: .userInitiated) {
+                    notesById.mapValues { DirectoryFeaturedModel.plainText(fromHTML: $0) }
+                }.value
+                for case .account(let accountRowViewModel) in accounts {
+                    accountRowViewModel.bioLine = bioLines[accountRowViewModel.id].flatMap { $0 }
+                }
+            }
             newBatch = accounts
             newBatchBottomLoad = .nothingMoreToLoad
             newAsyncRefreshAvailable = nil

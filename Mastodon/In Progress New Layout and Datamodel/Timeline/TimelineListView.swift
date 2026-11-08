@@ -796,6 +796,15 @@ struct TimelineListView: View {
                 case .account(let accountViewModel):
                     if let collectionViewModel = viewModel.timeline.collectionViewModel, collectionViewModel.iHaveRemovedMyself, accountViewModel.id == AuthenticationServiceProvider.shared.currentActiveUser.value?.userID {
                         EmptyView()
+                    } else if viewModel.timeline.collectionViewModel != nil {
+                        // collection member: card layout
+                        CollectionAccountCard(control: accountRowControl(for: accountViewModel))
+                            .environment(accountViewModel)
+                            .padding(EdgeInsets(top: standardPadding, leading: standardPadding, bottom: standardPadding, trailing: standardPadding))
+                            .frame(width: useableWidth)
+                            .onTapGesture {
+                                navigator.push(.profile(account: accountViewModel.account._legacyEntity, relationship: nil))
+                            }
                     } else {
                         // TODO: larger, more informative view if in a .discovery timeline?
                         AccountRowView(contentWidth: contentWidth, control: accountRowControl(for: accountViewModel))
@@ -1020,21 +1029,49 @@ struct TimelineListView: View {
             }
         case .collection(let collectionViewModel):
             VStack(alignment: .leading, spacing: standardPadding) {
-                VStack(alignment: .leading, spacing: 0) {
-                    if let collectionName = collectionViewModel.collection.name {
-                        Text(collectionName)
-                            .font(.largeTitle)
-                            .fontWeight(.semibold)
+                let splitName = DirectoryCollectionRow.firstEmoji(inTitle: collectionViewModel.collection.name ?? "")
+                VStack(alignment: .leading, spacing: standardPadding) {
+                    HStack(alignment: .center, spacing: standardPadding) {
+                        CollectionEmojiTile(emoji: splitName.emoji ?? DirectoryCollectionRow.defaultEmoji)
+                            .accessibilityHidden(true)
+                        VStack(alignment: .leading, spacing: 1) {
+                            Text(DirectoryCollectionRow.displayTitle(forTitle: collectionViewModel.collection.name ?? ""))
+                                .font(.title2)
+                                .fontWeight(.semibold)
+                                .lineLimit(2)
+                            if let author = collectionViewModel.authorHandle {
+                                Text(L10nLookup.Scene.Collections.authorLabel(author))
+                                    .font(.caption)
+                                    .foregroundStyle(.secondary)
+                            }
+                        }
                     }
-                    if let author = collectionViewModel.authorHandle {
-                        Text(L10nLookup.Scene.Collections.authorLabel(author))
+                    if let description = collectionViewModel.collection.description, !description.isEmpty {
+                        Text(description)
                             .font(.subheadline)
                             .foregroundStyle(.secondary)
                     }
+                    HStack(alignment: .center, spacing: standardPadding) {
+                        HStack(spacing: 0) {
+                            ForEach(Array(collectionViewModel.accountAvatarUrls.prefix(6).enumerated()), id: \.offset) { index, url in
+                                AvatarView(style: .circular, size: .small, avatarSource: .url(url))
+                                    .overlay(Circle().stroke(Color(uiColor: .systemBackground), lineWidth: 2))
+                                    .padding(.leading, index == 0 ? 0 : -2 * standardPadding)
+                                    .accessibilityHidden(true)
+                            }
+                        }
+                        Spacer(minLength: 0)
+                        Text(L10nLookup.Scene.Collections.numberOfAccounts(collectionViewModel.itemCount))
+                            .font(.caption)
+                            .fontWeight(.semibold)
+                            .foregroundStyle(.secondary)
+                    }
                 }
-                if let description = collectionViewModel.collection.description, !description.isEmpty {
-                    Text(description)
-                }
+                .padding(standardPadding)
+                .background(
+                    Color(uiColor: .secondarySystemBackground),
+                    in: RoundedRectangle(cornerRadius: doublePadding)
+                )
                 let myAccountId = AuthenticationServiceProvider.shared.currentActiveUser.value?.userID
                 if !collectionViewModel.iHaveRemovedMyself, let meAsMember = collectionViewModel.collection.items.first(where: { $0.account_id == myAccountId }) {
                     infoPlusActionCalloutView(
@@ -1049,9 +1086,6 @@ struct TimelineListView: View {
                     }
                     .fixedSize(horizontal: false, vertical: true)
                 }
-                Text(L10nLookup.Scene.Collections.numberOfAccounts(collectionViewModel.itemCount))
-                    .fontWeight(.semibold)
-                    .foregroundStyle(.secondary)
             }
             .padding(.horizontal, standardPadding)
             .padding(.bottom, doublePadding)

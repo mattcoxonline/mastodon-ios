@@ -11,6 +11,8 @@ import SwiftUI
     private(set) var suggestionReasons: [Mastodon.Entity.V2.SuggestionAccount.SuggestionReason]?
     weak var actionHandler: MastodonPostMenuActionHandler?
     var relationshipButton: RelationshipButtonType = .updating
+    /// Plain-text bio snippet for card layouts; parsed off the main actor and assigned by the feed loader.
+    var bioLine: String?
     var accountFollowsMe: Bool? {
         switch relationshipViewModel.relationship {
         case .isMe, .none:

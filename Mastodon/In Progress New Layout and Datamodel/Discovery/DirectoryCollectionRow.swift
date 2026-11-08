@@ -33,19 +33,12 @@ struct DirectoryCollectionRow: View {
     }
 
     private var title: String {
-        let (_, remainder) = splitTitle
-        return remainder.isEmpty ? (viewModel.collection.name ?? "") : remainder
+        Self.displayTitle(forTitle: viewModel.collection.name ?? "")
     }
 
     private var tile: some View {
-        ZStack {
-            RoundedRectangle(cornerRadius: 3 * standardPadding)
-                .fill(Color(uiColor: .secondarySystemBackground))
-            Text(splitTitle.emoji ?? Self.defaultEmoji)
-                .font(.system(size: 2 * standardPadding))
-        }
-        .frame(width: 5 * standardPadding, height: 5 * standardPadding)
-        .accessibilityHidden(true)
+        CollectionEmojiTile(emoji: splitTitle.emoji ?? Self.defaultEmoji)
+            .accessibilityHidden(true)
     }
 
     /// Splits the leading emoji off a collection title so it can be shown as the row's icon tile.
@@ -92,4 +85,26 @@ struct DirectoryCollectionRow: View {
         }
         return nil
     }
+
+    /// The full title with any leading emoji (shown in the tile) stripped off.
+    static func displayTitle(forTitle title: String) -> String {
+        let split = firstEmoji(inTitle: title)
+        return split.title.isEmpty ? title : split.title
+    }
 }
+
+/// The emoji icon tile used by Directory collection rows and the collection hero header.
+struct CollectionEmojiTile: View {
+    let emoji: String
+
+    var body: some View {
+        ZStack {
+            RoundedRectangle(cornerRadius: 3 * standardPadding)
+                .fill(Color(uiColor: .secondarySystemBackground))
+            Text(emoji)
+                .font(.system(size: 2 * standardPadding))
+        }
+        .frame(width: 5 * standardPadding, height: 5 * standardPadding)
+    }
+}
+
