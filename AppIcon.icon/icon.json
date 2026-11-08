@@ -1,26 +1,26 @@
 {
   "fill" : {
-    "solid" : "srgb:0.00000,0.00000,0.00000,1.00000"
+    "solid" : "extended-gray:1.00000,1.00000"
   },
   "groups" : [
     {
       "layers" : [
         {
-          "image-name" : "oslo-icon-white.svg",
-          "name" : "oslo-icon-white",
-          "position" : {
-            "scale" : 1.0894,
-            "translation-in-points" : [
-              0,
-              0
-            ]
-          }
-        }
-      ],
-      "lighting-specializations" : [
-        {
-          "appearance" : "tinted",
-          "value" : "individual"
+          "fill-specializations" : [
+            {
+              "value" : {
+                "solid" : "display-p3:0.17255,0.17255,0.17255,1.00000"
+              }
+            },
+            {
+              "appearance" : "dark",
+              "value" : {
+                "solid" : "display-p3:0.17255,0.17255,0.17255,1.00000"
+              }
+            }
+          ],
+          "image-name" : "oslotown-icon-square.svg",
+          "name" : "oslotown-icon-square"
         }
       ],
       "shadow" : {
@@ -29,7 +29,7 @@
       },
       "translucency" : {
         "enabled" : true,
-        "value" : 0.5
+        "value" : 0.3
       }
     }
   ],
