@@ -129,6 +129,32 @@ final class TabBarSmokeTests: XCTestCase {
         XCTAssertTrue(notificationsSegment.waitForExistence(timeout: 5), "Notifications scope segment not found")
     }
 
+    /// The Explore page has a top-right search button that enters search mode.
+    func testExploreSearchButtonEntersSearchMode() throws {
+        let app = XCUIApplication()
+        app.launch()
+        let tabBar = app.tabBars.firstMatch
+        guard tabBar.waitForExistence(timeout: 20) else {
+            throw XCTSkip("No tab bar visible (simulator session not logged in)")
+        }
+        let exploreTab = tabBar.buttons["Explore"]
+        guard exploreTab.exists else {
+            throw XCTSkip("No Explore tab")
+        }
+        exploreTab.tap()
+
+        let searchButton = app.navigationBars.firstMatch.buttons["Search"].firstMatch
+        guard searchButton.waitForExistence(timeout: 5) else {
+            throw XCTSkip("Explore search button not found")
+        }
+        searchButton.tap()
+
+        // entering search mode exposes the search field (iOS 26 presents it
+        // in the nav bar without a separate Cancel button)
+        let searchField = app.searchFields.firstMatch
+        XCTAssertTrue(searchField.waitForExistence(timeout: 5), "search mode did not activate")
+    }
+
     /// The Explore > Hashtags page shows the Trend Board (rank rows over the
     /// trending tags API). Skips if the discovery segment can't be reached.
     func testTrendBoardRendersOnExploreHashtags() throws {

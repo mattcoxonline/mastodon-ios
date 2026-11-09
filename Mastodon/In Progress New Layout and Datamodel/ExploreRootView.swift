@@ -23,6 +23,18 @@ struct ExploreRootView: View {
         @Bindable var searchViewModel = searchViewModel
         contents
             .toolbarTitleDisplayMode(.inline)
+            .toolbar {
+                if !searchViewModel.isSearchActive {
+                    ToolbarItem(placement: .topBarTrailing) {
+                        Button {
+                            searchViewModel.isSearchActive = true
+                        } label: {
+                            Image(systemName: "magnifyingglass")
+                        }
+                        .accessibilityLabel(L10n.Common.Controls.Tabs.A11Y.search)
+                    }
+                }
+            }
             .searchable(text: $searchViewModel.searchText, tokens: $searchViewModel.searchTokens, isPresented: $searchViewModel.isSearchActive) { item in
                 Text(item.searchHistoryString ?? "")
             }
