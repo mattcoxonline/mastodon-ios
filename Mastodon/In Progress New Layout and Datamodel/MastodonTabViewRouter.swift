@@ -210,7 +210,7 @@ import Combine
     private(set) var currentTabBarPlacement: TabBarPlacement?
     
     var tabs: [MastodonTab] {
-        return [.home, .explore, isLocalTimelineAvailable ? .localFeed : nil, .notifications, .profile, .lists, .hashtags]
+        return [.home, .notifications, isLocalTimelineAvailable ? .localFeed : nil, .explore, .profile, .lists, .hashtags]
             .compactMap { $0 }
     }
     

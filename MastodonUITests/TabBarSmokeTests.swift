@@ -9,7 +9,7 @@ import XCTest
 final class TabBarSmokeTests: XCTestCase {
 
     /// Verifies the tab bar contains exactly the five content tabs (Feed,
-    /// Explore, Oslo local timeline, Mentions, You) and that a Compose
+    /// Mentions, Oslo local timeline, Explore, You) and that a Compose
     /// floating action button is present. Requires a logged-in simulator
     /// session on an instance with the local timeline enabled.
     func testTabBarHasFiveTabsPlusComposeFAB() throws {
@@ -23,10 +23,10 @@ final class TabBarSmokeTests: XCTestCase {
         print("TAB BAR BUTTON LABELS: \(labels)")
 
         if labels.contains("Oslo") {
-            XCTAssertEqual(labels, ["Feed", "Explore", "Oslo", "Mentions", "You"], "unexpected tab bar contents")
+            XCTAssertEqual(labels, ["Feed", "Mentions", "Oslo", "Explore", "You"], "unexpected tab bar contents")
         } else {
             // local timeline disabled on this instance: no Oslo tab
-            XCTAssertEqual(labels, ["Feed", "Explore", "Mentions", "You"], "unexpected tab bar contents")
+            XCTAssertEqual(labels, ["Feed", "Mentions", "Explore", "You"], "unexpected tab bar contents")
         }
         XCTAssertTrue(app.buttons["Compose"].firstMatch.waitForExistence(timeout: 5), "compose FAB not found")
     }
