@@ -19162,6 +19162,12 @@
             "value" : "Following"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Følger"
+          }
+        },
         "pl" : {
           "stringUnit" : {
             "state" : "translated",

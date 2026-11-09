@@ -95,17 +95,17 @@ final class TabBarSmokeTests: XCTestCase {
                 .matching(NSPredicate(format: "label == %@", label))
                 .firstMatch
         }
-        let homeItem = menuItem("Home")
+        let followingItem = menuItem("Following")
         let everythingItem = menuItem("Everything")
-        XCTAssertTrue(homeItem.waitForExistence(timeout: 5), "Home feed item missing from title menu")
+        XCTAssertTrue(followingItem.waitForExistence(timeout: 5), "Following feed item missing from title menu")
         XCTAssertTrue(everythingItem.waitForExistence(timeout: 5), "Everything feed item missing from title menu")
 
         everythingItem.tap()
 
-        // reopen and switch back so the session ends on the home feed
+        // reopen and switch back so the session ends on the following feed
         titleMenu.tap()
-        XCTAssertTrue(homeItem.waitForExistence(timeout: 5), "title menu did not reopen after switching to Everything")
-        homeItem.tap()
+        XCTAssertTrue(followingItem.waitForExistence(timeout: 5), "title menu did not reopen after switching to Everything")
+        followingItem.tap()
     }
 
     /// The Explore > Hashtags page shows the Trend Board (rank rows over the

@@ -32,7 +32,7 @@ struct HomeTimelineChrome: ViewModifier {
     
     @ViewBuilder var homeTimelineFeedPickerContents: some View {
         Section {
-            feedMenuItem(L10n.Common.Controls.Tabs.home, timeline: .homeTimeline, icon: Image(phosphor: .house))
+            feedMenuItem(L10n.Scene.HomeTimeline.TimelineMenu.following, timeline: .homeTimeline, icon: Image(phosphor: .house))
             feedMenuItem(L10n.Scene.HomeTimeline.TimelineMenu.everything, timeline: .everything, icon: Image(phosphor: .globe))
         }
         if !tabViewRouter.lists.isEmpty {
@@ -83,7 +83,7 @@ struct HomeTimelineChrome: ViewModifier {
         guard let timeline = tabViewRouter.homeTimelineModel?.timeline else { return nil }
         switch timeline {
         case .homeTimeline:
-            return L10n.Common.Controls.Tabs.home
+            return L10n.Scene.HomeTimeline.TimelineMenu.following
         case .local:
             return L10n.Scene.HomeTimeline.TimelineMenu.localCommunity
         case .everything:
