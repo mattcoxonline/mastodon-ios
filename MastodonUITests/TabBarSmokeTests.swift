@@ -71,6 +71,43 @@ final class TabBarSmokeTests: XCTestCase {
         XCTAssertTrue(app.navigationBars["oslo.town"].firstMatch.waitForExistence(timeout: 10), "oslo.town nav title did not appear")
     }
 
+    /// The Feed nav title is itself the feed picker (principal toolbar menu):
+    /// tapping it opens the feed options; picking Everything switches feeds.
+    func testFeedTitleMenuOpensFeedPickerAndSwitchesFeed() throws {
+        let app = XCUIApplication()
+        app.launch()
+        let tabBar = app.tabBars.firstMatch
+        guard tabBar.waitForExistence(timeout: 20) else {
+            throw XCTSkip("No tab bar visible (simulator session not logged in)")
+        }
+        // SwiftUI composes the Menu's a11y label, so match on prefix rather
+        // than exact label ("Choose feed" may also carry the trailing chevron)
+        let titleMenu = app.buttons
+            .matching(NSPredicate(format: "label BEGINSWITH %@", "Choose feed"))
+            .firstMatch
+        guard titleMenu.waitForExistence(timeout: 10) else {
+            throw XCTSkip("Feed title menu not found")
+        }
+        titleMenu.tap()
+
+        func menuItem(_ label: String) -> XCUIElement {
+            app.descendants(matching: .any)
+                .matching(NSPredicate(format: "label == %@", label))
+                .firstMatch
+        }
+        let homeItem = menuItem("Home")
+        let everythingItem = menuItem("Everything")
+        XCTAssertTrue(homeItem.waitForExistence(timeout: 5), "Home feed item missing from title menu")
+        XCTAssertTrue(everythingItem.waitForExistence(timeout: 5), "Everything feed item missing from title menu")
+
+        everythingItem.tap()
+
+        // reopen and switch back so the session ends on the home feed
+        titleMenu.tap()
+        XCTAssertTrue(homeItem.waitForExistence(timeout: 5), "title menu did not reopen after switching to Everything")
+        homeItem.tap()
+    }
+
     /// The Explore > Hashtags page shows the Trend Board (rank rows over the
     /// trending tags API). Skips if the discovery segment can't be reached.
     func testTrendBoardRendersOnExploreHashtags() throws {

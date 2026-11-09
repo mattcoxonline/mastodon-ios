@@ -9,14 +9,14 @@ struct HomeTimelineChrome: ViewModifier {
 
     func body(content: Content) -> some View {
         content
-            .navigationTitle(currentHomeFeedName ?? "")
+            .navigationTitle(tabViewRouter.currentTabBarPlacement.isSidebarAvailable ? (currentHomeFeedName ?? "") : "")
             .toolbar {
                 if !tabViewRouter.currentTabBarPlacement.isSidebarAvailable {
-                    ToolbarItem(placement: .topBarLeading) {
+                    ToolbarItem(placement: .principal) {
                         Menu {
                             homeTimelineFeedPickerContents
                         } label: {
-                            Label(L10nLookup.Timeline.FeedMenu.buttonA11yLabel, phosphor: .list)
+                            feedTitleLabel
                         }
                     }
                 }
@@ -33,9 +33,6 @@ struct HomeTimelineChrome: ViewModifier {
     @ViewBuilder var homeTimelineFeedPickerContents: some View {
         Section {
             feedMenuItem(L10n.Common.Controls.Tabs.home, timeline: .homeTimeline, icon: Image(phosphor: .house))
-            if tabViewRouter.isLocalTimelineAvailable {
-                feedMenuItem(L10n.Scene.HomeTimeline.TimelineMenu.localCommunity, timeline: .local, icon: Image(phosphor: .usersThree))
-            }
             feedMenuItem(L10n.Scene.HomeTimeline.TimelineMenu.everything, timeline: .everything, icon: Image(phosphor: .globe))
         }
         if !tabViewRouter.lists.isEmpty {
@@ -70,6 +67,18 @@ struct HomeTimelineChrome: ViewModifier {
         }
     }
     
+    var feedTitleLabel: some View {
+        HStack(spacing: Spacing.xs) {
+            Text(currentHomeFeedName ?? "")
+            Image(systemName: "chevron.up.chevron.down")
+                .font(.footnote.weight(.semibold))
+        }
+        .font(.headline)
+        .foregroundStyle(.primary)
+        .accessibilityElement(children: .ignore)
+        .accessibilityLabel(L10nLookup.Timeline.FeedMenu.buttonA11yLabel)
+    }
+
     var currentHomeFeedName: String? {
         guard let timeline = tabViewRouter.homeTimelineModel?.timeline else { return nil }
         switch timeline {
