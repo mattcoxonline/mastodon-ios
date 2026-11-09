@@ -108,6 +108,27 @@ final class TabBarSmokeTests: XCTestCase {
         followingItem.tap()
     }
 
+    /// The Mentions tab's scope picker offers Mentions and Notifications
+    /// segments (the .everything scope was relabeled "Notifications").
+    func testMentionsScopePickerShowsNotificationsSegment() throws {
+        let app = XCUIApplication()
+        app.launch()
+        let tabBar = app.tabBars.firstMatch
+        guard tabBar.waitForExistence(timeout: 20) else {
+            throw XCTSkip("No tab bar visible (simulator session not logged in)")
+        }
+        let mentionsTab = tabBar.buttons["Mentions"]
+        guard mentionsTab.exists else {
+            throw XCTSkip("No Mentions tab")
+        }
+        mentionsTab.tap()
+
+        let notificationsSegment = app.descendants(matching: .any)
+            .matching(NSPredicate(format: "label == %@", "Notifications"))
+            .firstMatch
+        XCTAssertTrue(notificationsSegment.waitForExistence(timeout: 5), "Notifications scope segment not found")
+    }
+
     /// The Explore > Hashtags page shows the Trend Board (rank rows over the
     /// trending tags API). Skips if the discovery segment can't be reached.
     func testTrendBoardRendersOnExploreHashtags() throws {

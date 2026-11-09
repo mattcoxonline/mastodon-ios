@@ -320,7 +320,7 @@ struct MastodonMainTabView: View {
                                 Picker("Scope", selection: $tabViewRouter.selectedNotificationsTimeline) {
                                     Text(L10n.Scene.Notification.Title.mentions)
                                         .tag(NotificationsScope.mentions)
-                                    Text(L10n.Scene.Notification.Title.everything)
+                                    Text(L10n.Common.Controls.Tabs.notifications)
                                         .tag(NotificationsScope.everything)
                                 }
                                 .pickerStyle(.segmented)
