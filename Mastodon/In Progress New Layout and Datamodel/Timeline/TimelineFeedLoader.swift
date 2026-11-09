@@ -67,7 +67,7 @@ public enum DiscoveryType: Equatable {
     case forYou
 
     /// The account whose curated collections populate the Explore "Directory" tab.
-    public static let directoryCuratorAcct = "matt@oslo.town"
+    public static let directoryCuratorAcct = "themayor@oslo.town"
 }
 
 @Observable public class SearchQueryModel: Identifiable {
