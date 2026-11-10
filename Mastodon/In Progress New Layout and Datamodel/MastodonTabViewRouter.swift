@@ -16,6 +16,9 @@ import Combine
     public var homeTimelineModel: TimelineListViewModel?
     public var notificationsTimelineModelEverything: TimelineListViewModel?
     public var notificationsTimelineModelMentions: TimelineListViewModel?
+
+    public var selectedOsloTimeline: OsloScope = .local // default view is the oslo.town local timeline; the picker switches to #oslo
+    public var osloHashtagTimelineModel: TimelineListViewModel?
     public var selectedNotificationsTimeline: NotificationsScope = .mentions // conversation-first default; the in-screen picker can switch to everything
     public var searchModel: SearchViewModel
     public var discoveryModel: DiscoveryFeedsViewModel

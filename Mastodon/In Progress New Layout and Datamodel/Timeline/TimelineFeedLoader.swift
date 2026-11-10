@@ -61,6 +61,11 @@ public enum NotificationsScope: Hashable {
 //    }
 }
 
+public enum OsloScope: Hashable {
+    case local   // the oslo.town local timeline
+    case hashtag // posts tagged #oslo
+}
+
 public enum DiscoveryType: Equatable {
     case posts
     case hashtags

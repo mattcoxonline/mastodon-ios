@@ -54,7 +54,8 @@ final class TabBarSmokeTests: XCTestCase {
         }
     }
 
-    /// Tapping the Oslo tab shows the local timeline.
+    /// Tapping the Oslo tab shows the local timeline with a scope picker
+    /// (oslo.town local default / #oslo hashtag) in place of the page title.
     func testOsloTabShowsLocalTimeline() throws {
         let app = XCUIApplication()
         app.launch()
@@ -67,8 +68,22 @@ final class TabBarSmokeTests: XCTestCase {
             throw XCTSkip("No Oslo tab (local timeline disabled on this instance)")
         }
         osloTab.tap()
-        XCTAssertTrue(app.tabBars.buttons["Oslo"].exists, "tab label should stay Oslo")
-        XCTAssertTrue(app.navigationBars["oslo.town"].firstMatch.waitForExistence(timeout: 10), "oslo.town nav title did not appear")
+
+        func scopeElement(_ label: String) -> XCUIElement {
+            app.descendants(matching: .any)
+                .matching(NSPredicate(format: "label == %@", label))
+                .firstMatch
+        }
+        let localSegment = scopeElement("oslo.town")
+        let hashtagSegment = scopeElement("#oslo")
+        XCTAssertTrue(localSegment.waitForExistence(timeout: 10), "oslo.town scope segment not found")
+        XCTAssertTrue(hashtagSegment.waitForExistence(timeout: 2), "#oslo scope segment not found")
+
+        // switch to the hashtag timeline and back; end on the default local view
+        hashtagSegment.tap()
+        XCTAssertTrue(scopeElement("#oslo").waitForExistence(timeout: 5), "scope picker disappeared after switching to #oslo")
+        scopeElement("oslo.town").tap()
+        XCTAssertTrue(localSegment.waitForExistence(timeout: 5), "did not switch back to the local timeline")
     }
 
     /// The Feed nav title is itself the feed picker (principal toolbar menu):

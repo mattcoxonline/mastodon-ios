@@ -3,6 +3,7 @@
 import SwiftUI
 import MastodonCore
 import MastodonUI
+import MastodonSDK
 import SDWebImageSwiftUI
 import MastodonAsset
 import MastodonLocalization
@@ -357,8 +358,33 @@ struct MastodonMainTabView: View {
             .environment(navigationStackNavigator)
             
         case .localFeed:
-            // Tab label reads "Oslo"; the page header carries the brand
-            timelineNavigationStack(forTab: tab, rootModifier: NavigationTitle(title: "oslo.town"))
+            // Tab label reads "Oslo"; a title-picker toggles between the
+            // oslo.town local timeline (default) and the #oslo hashtag feed
+            @Bindable var navigationStackNavigator = tabViewRouter.navigationRouter(forTab: tab)
+            NavigationStack(path: $navigationStackNavigator.navigationPath) {
+                let timelineModel = osloTimelineViewModel(scope: tabViewRouter.selectedOsloTimeline)
+                TimelineListView()
+                    .timelineEnvironment(timelineModel: timelineModel, contentConcealModel: .alwaysShow, filter: timelineModel.timelineQueryFilter, asyncRefreshModel: timelineModel.asyncRefreshViewModel)
+                    .id(tabViewRouter.selectedOsloTimeline) // identity so the view models see onAppear/onDisappear correctly across scope switches
+                    .toolbarTitleDisplayMode(.inline)
+                    .toolbar {
+                        // picker as the center item
+                        ToolbarItem(placement: .title) {
+                            Picker("Scope", selection: $tabViewRouter.selectedOsloTimeline) {
+                                Text("oslo.town")
+                                    .tag(OsloScope.local)
+                                Text("#oslo")
+                                    .tag(OsloScope.hashtag)
+                            }
+                            .pickerStyle(.segmented)
+                        }
+                    }
+                    .navigationDestination(for: MastodonNavigationDestination.self) { destination in
+                        navigationStackNavigator.destinationView(destination, sceneCoordinator: sceneCoordinator)
+                    }
+            }
+            .modifier(NavigatorPresentations(navigator: navigationStackNavigator))
+            .environment(navigationStackNavigator)
 
         case .list, .hashtag:
             timelineNavigationStack(forTab: tab, rootModifier: NavigationTitle(title: tab.title))
@@ -369,6 +395,21 @@ struct MastodonMainTabView: View {
         }
     }
     
+    private func osloTimelineViewModel(scope: OsloScope) -> TimelineListViewModel {
+        switch scope {
+        case .local:
+            return tabViewRouter.timelineViewModel(forTab: .localFeed) ?? TimelineListViewModel(timeline: .local, navigator: tabViewRouter.navigationRouter(forTab: .localFeed), asyncRefreshViewModel: AsyncRefreshViewModel())
+        case .hashtag:
+            if let model = tabViewRouter.osloHashtagTimelineModel {
+                return model
+            }
+            let tag = Mastodon.Entity.Tag(name: "oslo", url: "https://oslo.town/tags/oslo")
+            let model = TimelineListViewModel(timeline: .hashtag(tag, includeHeader: false), navigator: tabViewRouter.navigationRouter(forTab: .localFeed), asyncRefreshViewModel: AsyncRefreshViewModel())
+            tabViewRouter.osloHashtagTimelineModel = model
+            return model
+        }
+    }
+
     private func notificationsTimelineViewModel(scope: NotificationsScope) -> TimelineListViewModel {
         func newModel() -> TimelineListViewModel {
             let new = TimelineListViewModel(timeline: .notifications(scope: scope), navigator: tabViewRouter.navigationRouter(forTab: .notifications), asyncRefreshViewModel: AsyncRefreshViewModel())
