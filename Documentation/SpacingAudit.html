@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>oslo.town — Spacing &amp; Margin Audit: Menus and Navigation</title>
+<style>
+  :root { color-scheme: light dark; }
+  * { box-sizing: border-box; }
+  body { font: 15px/1.55 -apple-system, "SF Pro Text", system-ui, sans-serif; margin: 0 auto; max-width: 980px; padding: 32px 24px 120px; }
+  h1 { font-size: 26px; margin: 0 0 4px; }
+  h2 { font-size: 20px; margin-top: 44px; border-top: 1px solid #8884; padding-top: 18px; }
+  h3 { font-size: 16px; margin: 26px 0 6px; }
+  .sub { color: #888; font-size: 13px; margin-bottom: 20px; }
+  table { border-collapse: collapse; width: 100%; margin: 12px 0 20px; font-size: 13.5px; }
+  th, td { border: 1px solid #8884; padding: 6px 9px; text-align: left; vertical-align: top; }
+  th { background: #8882; font-weight: 600; }
+  code, pre { font: 12.5px/1.5 "SF Mono", ui-monospace, Menlo, monospace; }
+  code { background: #8882; padding: 1px 5px; border-radius: 4px; }
+  pre { background: #8881; border: 1px solid #8883; border-radius: 8px; padding: 12px 14px; overflow-x: auto; }
+  .before pre { border-left: 3px solid #d6604d; }
+  .after  pre { border-left: 3px solid #4a8f5c; }
+  .verdict { display: inline-block; font-size: 12px; font-weight: 700; padding: 2px 9px; border-radius: 99px; }
+  .v-ok    { background: #4a8f5c22; color: #2d5f3a; }
+  .v-fix   { background: #d6a02d22; color: #805c0a; }
+  .v-dec   { background: #6b8fd622; color: #31528c; }
+  .card { border: 1px solid #8883; border-radius: 12px; padding: 16px 18px; margin: 18px 0; }
+  .workorder { background: #31528c0d; }
+  .workorder h3 { color: #31528c; }
+  .why { font-size: 13.5px; color: #555; margin: 4px 0 10px; }
+  .guard { font-size: 12.5px; color: #805c0a; }
+  .mono-diff td { font-family: "SF Mono", ui-monospace, Menlo, monospace; font-size: 12.5px; }
+  .status-ok td { background: #4a8f5c08; }
+  .u { text-underline-offset: 3px; text-decoration: underline; text-decoration-color: #8886; }
+</style>
+</head>
+<body>
+
+<h1>Spacing &amp; Margin Audit — Menus and Navigation</h1>
+<div class="sub">oslo.town iOS · branch <code>oslo-reskin</code> · audited 2026-11-09 against HEAD <code>d4d3848c3</code> · artifact only, no changes applied</div>
+
+<p>This is an audit of every <b>menu or navigation surface</b> in the app against the project's design tokens
+(<code>Spacing</code> / <code>Radius</code> in
+<code>Common Components/AlignmentGuides.swift</code>). For each surface it records the current state
+(<span class="u">Before</span>), a recommendation (<span class="u">After</span>), and — in the final section —
+a numbered work order with exact <code>old_string → new_string</code> pairs that an LLM (or human) can apply
+mechanically, including guards and verification steps.</p>
+
+<h2>0. Token reference (single source of truth)</h2>
+<pre>Spacing: xs=4   s=8   m=12   l=16   xl=24   xxl=32        // layout scale
+Radius:  xs=4   s=8   m=12   l=16   xl=24   pill=999      // corner scale
+ButtonPadding: vertical=3, horizontal=Spacing.s, capsuleHorizontal=Spacing.l
+maxFeedContentWidth = 700;  spacingBetweenGutterAndContent = Spacing.s</pre>
+<p><b>House rules inferred from the token migration (commits cb1e11895…90fea8ee6):</b></p>
+<ul>
+  <li>Use <code>Spacing.*</code> for every padding/margin/gap that is layout spacing. Bare <code>.padding()</code> (implicit 16) is <b>not</b> tokenized even though its value equals <code>Spacing.l</code> — the number is invisible to token greps and to future value retunes.</li>
+  <li>Control metrics (icon frame sizes, circle diameters, hero heights) are <i>not</i> spacing tokens — they stay as component constants unless they repeat across components (see §10).</li>
+  <li>Feed content rows use symmetric horizontal gutters of <code>Spacing.m</code> (commit 01070464f).</li>
+</ul>
+
+<h2>1. Scorecard</h2>
+<table>
+<tr><th>Surface</th><th>File</th><th>Status</th><th>Action</th></tr>
+<tr><td>Main tab bar + Compose FAB</td><td>MastodonMainTabView.swift</td><td><span class="verdict v-ok">OK (mostly)</span></td><td>Tokenized positioning; raws are control metrics. Optional: name FAB clearance constant.</td></tr>
+<tr><td>Feed page — title-menu picker + filter button</td><td>HomeTimelineChrome.swift</td><td><span class="verdict v-ok">OK</span></td><td>Fully tokenized, no change.</td></tr>
+<tr><td>Mentions page — scope picker + filter popover</td><td>MastodonMainTabView.swift / TimelineListView.swift</td><td><span class="verdict v-fix">FIX</span></td><td>Popover content uses <code>Spacing.l * 2</code> compound arithmetic.</td></tr>
+<tr><td>Oslo page — scope picker</td><td>MastodonMainTabView.swift</td><td><span class="verdict v-ok">OK</span></td><td>Segmented control, system-styled, no custom padding.</td></tr>
+<tr><td>Explore — search button + discovery picker</td><td>ExploreRootView.swift / DiscoveryFeedsView.swift</td><td><span class="verdict v-ok">OK</span></td><td>System-styled controls; clean.</td></tr>
+<tr><td>Explore — scoped search result rows</td><td>ExploreRootView.swift</td><td><span class="verdict v-fix">FIX</span></td><td>Bare <code>.padding()</code> (implicit 16).</td></tr>
+<tr><td>Explore — Trend Board (Hashtags)</td><td>TrendBoardView.swift</td><td><span class="verdict v-dec">DECISION</span></td><td>Row gutters are <code>s/l</code> asymmetric while feed rows are symmetric <code>m</code>.</td></tr>
+<tr><td>Explore — Directory rows + featured card</td><td>DirectoryCollectionRow.swift / DirectoryFeaturedCard.swift</td><td><span class="verdict v-dec">DECISION</span></td><td>Same <code>s/l</code> gutter question; hairline <code>spacing: 1</code> pairs.</td></tr>
+<tr><td>You screen (nav hub)</td><td>ProfileMainMenuView.swift</td><td><span class="verdict v-fix">FIX</span></td><td>Two bare <code>.padding()</code> sites; raw banner height; hairline stat-chip pairs.</td></tr>
+<tr><td>Compose sheet + glass toolbar</td><td>ComposeContentToolbarView.swift / ComposeContentViewController.swift</td><td><span class="verdict v-ok">OK (mostly)</span></td><td>Raws are control metrics (24pt icon slots, 72pt host height, 400×500 popover) — acceptable; see §9 for optional naming.</td></tr>
+<tr><td>Settings screens</td><td>Common Components/Views/Settings/*</td><td><span class="verdict v-ok">OK</span></td><td>Form/List-based, system-styled rows — no local padding code.</td></tr>
+<tr><td>Post context menus (long-press)</td><td>MastodonMenu system + SwiftUI <code>contextMenu</code></td><td><span class="verdict v-ok">OK</span></td><td>System-rendered menu content; nothing local to pad.</td></tr>
+<tr><td>iPad sidebar</td><td>system sidebar styling</td><td><span class="verdict v-ok">OK</span></td><td>Out of our control by design.</td></tr>
+</table>
+
+<h2>2. Main tab bar + Compose FAB <span class="verdict v-ok">OK (mostly)</span></h2>
+<div class="card">
+<h3>Current state § MastodonMainTabView.swift:245–255</h3>
+<div class="before"><pre>.frame(width: 24, height: 24)                              // FAB icon slot — control metric
+.buttonStyle(.prominentCircle(diameter: 50))               // FAB circle — control metric
+.padding(.bottom, Spacing.xxl + Spacing.l + Spacing.m)      // 60pt clearance over glass capsule
+.padding(.trailing, Spacing.xl)</pre></div>
+<p class="why"><b>Verdict:</b> the FAB's <i>position</i> is tokenized (good, and the comment documents the physics);
+the raws are control metrics, not layout spacing, so they do not violate the token system.
+The one wart is the compound expression <code>Spacing.xxl + Spacing.l + Spacing.m</code> — three tokens summed
+to express a single clearance number, which breaks if any scale step retunes (the Day-4 "global retune" hook).</p>
+<div class="after"><pre>// recommended: name the clearance once, computed from tokens at the definition site
+extension Spacing {
+    /// vertical clearance for overlays floating above the tab bar capsule
+    static let tabOverlayClearance: CGFloat = Spacing.xl + Spacing.m   // = 36; or keep 60 explicitly
+}
+// use:
+.padding(.bottom, Spacing.tabOverlayClearance)  // if retuning the FAB height too, do it here, once
+// PRAGMATIC ALTERNATIVE (no visual change): keep 60 but write it non-arithmetically
+// .padding(.bottom, 60)  with the comment retained — at least the rendered value equals the written value</pre></div>
+<p class="why"><b>Priority:</b> P3 cosmetic. No behavior change either way. If the Oslo palette work later
+retunes <code>Spacing</code> values globally, compound sums silently drift — that is the only real risk.</p>
+</div>
+
+<h2>3. Feed page — title-menu picker + filter <span class="verdict v-ok">OK</span></h2>
+<div class="card">
+<h3>Current state § HomeTimelineChrome.swift:71</h3>
+<pre>HStack(spacing: Spacing.xs)   // title glyph ↔ chevron gap — tokenized</pre>
+<p class="why">Clean. The whole title-as-menu feature (Day 5) is tokenized. No action.</p>
+</div>
+
+<h2>4. Mentions page — scope picker + filter popover <span class="verdict v-fix">FIX</span></h2>
+<div class="card">
+<h3>Current state § TimelineListView.swift (ActivityFilterToggles, ~line 1560)</h3>
+<div class="before"><pre>var body: some View {
+    …
+    .padding(Spacing.l * 2)      // = 32 = Spacing.xxl, written as arithmetic</pre></div>
+<p class="why">The popover content (Activity filter toggles) pads with a multiplied token. Value is correct;
+the expression style is the problem — the codebase greps clean for <code>Spacing.xxl</code> meaning, and
+<code>l * 2</code> breaks if the scale becomes non-linear. Same class of issue as the FAB sum in §0/§2.</p>
+<div class="after"><pre>.padding(Spacing.xxl)</pre></div>
+<p class="why"><b>Priority:</b> P1 — mechanical, zero visual change, one line.</p>
+</div>
+
+<h2>5. Oslo page — scope picker <span class="verdict v-ok">OK</span></h2>
+<div class="card"><p>Segmented control at <code>.title</code> (Day 5): system-styled, no custom padding. No action.</p></div>
+
+<h2>6. Explore — nav points <span class="verdict v-ok">OK</span> &amp; search rows <span class="verdict v-fix">FIX</span></h2>
+<div class="card">
+<h3>6a. Buttons + pickers</h3>
+<p>Search button (toolbar image button), discovery segmented picker, search-history suggestions:
+all system-styled, no local padding. No action.</p>
+<h3>6b. Scoped search result rows § ExploreRootView.swift:220–225</h3>
+<div class="before"><pre>HStack { … Text(rowLabel) … chevron }
+    .padding()                        // ← implicit 16, untokenized
+    .padding(.bottom, Spacing.l)
+    .frame(width: useableWidth, alignment: .leading)</pre></div>
+<p class="why">The row's inner padding is the SwiftUI <i>implicit default</i> (16). It coincidentally equals
+<code>Spacing.l</code>, but it is invisible to token tooling and drifts if the scale retunes. This is the same
+defect class the Day-2/3 migration cleaned out of 31 files — this one slipped through (it predates the migration).</p>
+<div class="after"><pre>HStack { … }
+    .padding(Spacing.l)
+    .padding(.bottom, Spacing.l)      // unchanged
+    .frame(width: useableWidth, alignment: .leading)</pre></div>
+<p class="why"><b>Priority:</b> P1 — mechanical, zero visual change.</p>
+</div>
+
+<h2>7. Trend Board <span class="verdict v-dec">DECISION</span></h2>
+<div class="card">
+<h3>Current state § TrendBoardView.swift:217, 269</h3>
+<div class="before"><pre>.padding(EdgeInsets(top: Spacing.s, leading: Spacing.l, bottom: Spacing.s, trailing: Spacing.l))  // rank rows + header rows</pre></div>
+<p class="why">The board's horizontal gutters are <code>Spacing.l</code> (16) while feed rows, after the Day-4
+gutter pass (01070464f), use symmetric <code>Spacing.m</code> (12). So a post in the timeline and a ranked tag
+sitting on the very same screen-width don't share a content edge — the board's text starts 4pt further out.
+The Day-4 note says "Directory/TrendBoard spacing untouched" — i.e. the divergence is known, not accidental.</p>
+<div class="after"><pre>// Recommended (consistency-first): align to the feed gutter system
+.padding(EdgeInsets(top: Spacing.s, leading: Spacing.m, bottom: Spacing.s, trailing: Spacing.m))
+// Consequences: rows get 4pt tighter to the screen edge — matches every timeline row on Feed/Oslo.
+// If the board should feel MORE airy than feeds (deliberate contrast), instead keep l/l and record
+// that decision as a comment here, so the next audit doesn't re-flag it.</pre></div>
+<h3>Chip hairlines § TrendBoardView.swift:337, 346 <span class="verdict v-ok">intentional — keep</span></h3>
+<pre>.padding(EdgeInsets(top: 1, leading: Spacing.xs + 1, bottom: 1, trailing: Spacing.xs + 1))</pre>
+<p class="why">The <code>1</code> values are optical hairlines tying the chip border to the text — they are
+deliberately not on the layout scale. Keep, but note that <code>Spacing.xs + 1</code> is again compound
+arithmetic; if more chips appear, consider a <code>chipInset = Spacing.xs + 1</code> named constant.</p>
+<p class="why"><b>Priority:</b> P2 — visual change, needs your call (see §11 work order item 5).</p>
+</div>
+
+<h2>8. Directory rows + featured card <span class="verdict v-dec">DECISION</span></h2>
+<div class="card">
+<pre>DirectoryCollectionRow.swift:   HStack(spacing: Spacing.m) · VStack(title/subtitle, spacing: 1)
+DirectoryFeaturedCard.swift:    VStack(spacing: Spacing.m) · .padding(Spacing.l) · VStack(name/handle, spacing: 1)</pre>
+<p class="why"><b>Gutters:</b> the Directory lives inside the Explore page (like the Trend Board) and rows carry
+<code>Spacing.l</code>-ish gutters via the list layout — same §7 question applies if feed-gutter symmetry is chosen.
+<b>Hairlines:</b> the <code>spacing: 1</code> title/subtitle pairs are a good pattern (tight text lockups) but
+the value is a bare raw — it appears in three components (here ×2, plus You-screen stat chips).</p>
+<div class="after"><pre>// Recommended: one named hairline for text lockups, in AlignmentGuides.swift
+extension Spacing {
+    /// within-lockup gap for stacked labels (name/handle, count/label) — deliberately off-scale
+    static let lockup: CGFloat = 1
+}
+// use: VStack(spacing: Spacing.lockup)</pre></div>
+<p class="why"><b>Priority:</b> P3 — naming hygiene, zero visual change, 3 sites.</p>
+</div>
+
+<h2>9. You screen (navigation hub) <span class="verdict v-fix">FIX</span></h2>
+<div class="card">
+<h3>9a. Screen-level padding § ProfileMainMenuView.swift:31</h3>
+<div class="before"><pre>.padding()                                     // screen margins — implicit 16
+.frame(width: fullWidth, alignment: .center) …</pre></div>
+<div class="after"><pre>.padding(Spacing.l)                            // explicit token, same value</pre></div>
+<h3>9b. Menu row padding § ProfileMainMenuView.swift:355–356</h3>
+<div class="before"><pre>.padding(.horizontal)                          // implicit 16
+.padding(.vertical, Spacing.xs)</pre></div>
+<div class="after"><pre>.padding(.horizontal, Spacing.l)
+.padding(.vertical, Spacing.xs)</pre></div>
+<h3>9c. Raw banner height § ProfileMainMenuView.swift:67</h3>
+<div class="before"><pre>.frame(height: 110)                            // hero banner — component metric</pre></div>
+<div class="after"><pre>// acceptable as-is (component metric, not spacing); if naming:
+private static let bannerHeight: CGFloat = 110
+// The audit does NOT require changing this — record-and-leave.</pre></div>
+<p class="why"><b>Verdict:</b> 9a/9b are the same bare-<code>.padding()</code> defect as §6b — P1 mechanical.
+Everything else on this screen (stat chips, tiles, grid) is already tokenized. The <code>spacing: 1</code>
+stat-chip pair is covered by §8's <code>Spacing.lockup</code>.</p>
+</div>
+
+<h2>10. Compose sheet + glass toolbar <span class="verdict v-ok">OK (mostly)</span></h2>
+<div class="card">
+<pre>ComposeContentToolbarView.swift:21     static var toolbarHeight: CGFloat { 72 }   // named component constant ✓
+ComposeContentToolbarView.swift:121/178/197  .frame(width: 24, height: 24)         // icon slot metric ×4
+ComposeContentToolbarView.swift:130   .frame(width: 8, height: 8)                  // suggestion dot metric
+ComposeContentToolbarView.swift:145   picker.frame(width: 400, height: 500)        // language popover metric
+ComposeContentViewController.swift:112 heightAnchor = ComposeContentToolbarView.toolbarHeight     // consumed via named constant ✓</pre>
+<p class="why">All raws here are <b>control/component metrics</b>, not layout spacing — the token system
+deliberately doesn't govern them. The host height is already a named constant, consumed by the constraint.
+<code>24×24</code> repeats across this file AND the FAB (§2) — it is the app's de-facto tabulator icon slot.</p>
+<div class="after"><pre>// Optional P3 naming if the value ever needs retuning:
+enum ControlMetrics {
+    static let standardIconSlot: CGFloat = 24      // share between compose toolbar + FAB icon
+    static let languagePopoverSize = CGSize(width: 400, height: 500)
+}</pre></div>
+<p class="why">Not required by this audit; listed so the repetition is a recorded decision, not an accident.</p>
+</div>
+
+<h2>11. LLM WORK ORDER — machine-actionable changes</h2>
+<div class="card workorder">
+<p>Apply in order. Items 1–4 are <b>P1 mechanical</b> (zero visual change): apply directly.
+Item 5 is a <b>visual decision</b>: apply 5a only if "consistency-first" is approved; otherwise skip and add the
+preserving comment (5b). Items 6–7 are P3 naming (optional — recommend applying alongside 1–4 since they touch
+the same files). After each batch: build the <code>Mastodon</code> scheme for the iOS 17 simulator and run
+<code>-only-testing:MastodonUITests/TabBarSmokeTests</code> — acceptance is a green suite with zero visual
+diffs (except 5a which shifts Explore gutters by 4pt).</p>
+
+<h3>Change 1 — ExploreRootView: tokenize scoped-search row padding</h3>
+<table class="mono-diff"><tr><th>Field</th><td>Value</td></tr>
+<tr><td>File</td><td>Mastodon/In Progress New Layout and Datamodel/ExploreRootView.swift</td></tr>
+<tr><td>old_string</td><td><pre>        HStack {
+            Text(text)
+                .fontWeight(.semibold)
+                .foregroundStyle(Asset.Colors.accent.swiftUIColor)
+            Spacer()
+            Image(systemName: "chevron.forward")
+                .foregroundStyle(.secondary)
+        }
+        .padding()</pre></td></tr>
+<tr><td>new_string</td><td><pre>        HStack {
+            Text(text)
+                .fontWeight(.semibold)
+                .foregroundStyle(Asset.Colors.accent.swiftUIColor)
+            Spacer()
+            Image(systemName: "chevron.forward")
+                .foregroundStyle(.secondary)
+        }
+        .padding(Spacing.l)</pre></td></tr>
+</table>
+<p class="guard">Guard: <code>Spacing</code> is accessible in this target (same file already uses <code>Spacing.l</code> on the next line).
+Only ONE occurrence of this block exists (inside <code>ScopedSearchResultsRowView.body</code>).</p>
+
+<h3>Change 2 — ProfileMainMenuView: tokenize screen padding</h3>
+<table class="mono-diff">
+<tr><td>File</td><td>Mastodon/In Progress New Layout and Datamodel/Profile/ProfileMainMenuView.swift (line ~31)</td></tr>
+<tr><td>old_string</td><td><pre>                }
+                .padding()
+                .frame(width: fullWidth, alignment: .center)
+                .frame(width: geo.size.width, alignment: .center)</pre></td></tr>
+<tr><td>new_string</td><td><pre>                }
+                .padding(Spacing.l)
+                .frame(width: fullWidth, alignment: .center)
+                .frame(width: geo.size.width, alignment: .center)</pre></td></tr>
+</table>
+<p class="guard">Guard: this is the content-list container padding (after <code>logOutActiveUserButton</code>); the site is the ONLY bare <code>.padding()</code> in this file when the two-line context is included. There is a second bare-padding site (menuRow) handled by Change 3 — do not conflate.</p>
+
+<h3>Change 3 — ProfileMainMenuView: tokenize menu-row horizontal padding</h3>
+<table class="mono-diff">
+<tr><td>File</td><td>Mastodon/In Progress New Layout and Datamodel/Profile/ProfileMainMenuView.swift (menuRow, line ~355)</td></tr>
+<tr><td>old_string</td><td><pre>        .padding(.horizontal)
+        .padding(.vertical, Spacing.xs)
+    }</pre></td></tr>
+<tr><td>new_string</td><td><pre>        .padding(.horizontal, Spacing.l)
+        .padding(.vertical, Spacing.xs)
+    }</pre></td></tr>
+</table>
+<p class="guard">Guard: this exact two-line sequence followed by brace occurs once, inside <code>menuRow</code>.</p>
+
+<h3>Change 4 — TimelineListView: collapse compound padding in ActivityFilterToggles</h3>
+<table class="mono-diff">
+<tr><td>File</td><td>Mastodon/In Progress New Layout and Datamodel/Timeline/TimelineListView.swift (struct ActivityFilterToggles, ~line 1560)</td></tr>
+<tr><td>old_string</td><td><pre>.padding(Spacing.l * 2)</pre></td></tr>
+<tr><td>new_string</td><td><pre>.padding(Spacing.xxl)</pre></td></tr>
+</table>
+<p class="guard">Guard: <code>Spacing.l * 2</code> appears SEVEN times project-wide, but only ONE is a padding call — this one, in <code>ActivityFilterToggles</code>. The other six are width/height computations (e.g. <code>fullWidth - Spacing.l * 2</code> in ProfileView, ServerDetailsView, TimelineListView) where the compound form correctly expresses "two page margins" — do NOT touch those. Match the full string <code>.padding(Spacing.l * 2)</code> only. Value is identical (32 = 32).</p>
+
+<h3>Change 5 — DECISION REQUIRED: Trend Board gutters (Explore pages)</h3>
+<table class="mono-diff">
+<tr><td>File</td><td>Mastodon/In Progress New Layout and Datamodel/Discovery/TrendBoardView.swift (lines 217 and 269)</td></tr>
+<tr><td>5a. Consistency-first (approved default)</td><td><pre>OLD: .padding(EdgeInsets(top: Spacing.s, leading: Spacing.l, bottom: Spacing.s, trailing: Spacing.l))
+NEW: .padding(EdgeInsets(top: Spacing.s, leading: Spacing.m, bottom: Spacing.s, trailing: Spacing.m))
+(replace ALL occurrences — there are exactly two)</pre></td></tr>
+<tr><td>5b. Keep-airy (alternative)</td><td>Keep both lines unchanged and append above each:
+<pre>// LR gutters intentionally l (not the feed system's m): boards sit visually wider — see Documentation/SpacingAudit.html §7</pre></td></tr>
+</table>
+<p class="guard">Visual impact: content edges move 4pt inward (l=16 → m=12) on Explore &gt; Hashtags rows only. Everything else unaffected.</p>
+
+<h3>Change 6 (P3, with batch) — Add the lockup hairline token</h3>
+<table class="mono-diff">
+<tr><td>File</td><td>Mastodon/In Progress New Layout and Datamodel/Common Components/AlignmentGuides.swift</td></tr>
+<tr><td>old_string</td><td><pre>    static let xxl: CGFloat = 32    // page-level breathing room
+}</pre></td></tr>
+<tr><td>new_string</td><td><pre>    static let xxl: CGFloat = 32    // page-level breathing room
+
+    /// within-lockup gap for stacked labels (name/handle, count/label) — deliberately off-scale
+    static let lockup: CGFloat = 1
+}</pre></td></tr>
+</table>
+
+<h3>Change 7 (P3, with batch) — Use the lockup token at the three text-lockup sites</h3>
+<table class="mono-diff">
+<tr><td>Files</td><td>DirectoryCollectionRow.swift:17 · DirectoryFeaturedCard.swift:50 · ProfileMainMenuView.swift:136</td></tr>
+<tr><td>replace_all per file</td><td><pre>OLD: VStack(alignment: .leading, spacing: 1)
+NEW: VStack(alignment: .leading, spacing: Spacing.lockup)</pre></td></tr>
+</table>
+<p class="guard">Guard: grep each file for <code>spacing: 1</code> first — if a site is NOT a text lockup (e.g. chart stack), leave it and note the exception.</p>
+
+<h2>12. Verification protocol (post-application)</h2>
+<ol>
+  <li><code>xcodebuild -project Mastodon.xcodeproj -scheme Mastodon -destination 'platform=iOS Simulator,id=&lt;sim&gt;' build</code> → BUILD SUCCEEDED.</li>
+  <li>Token hygiene greps return <b>zero</b> hits for bare padding in the audited surfaces:
+<pre>grep -n "\.padding()" "Mastodon/In Progress New Layout and Datamodel/ExploreRootView.swift"          # → empty
+grep -n "\.padding()" "Mastodon/In Progress New Layout and Datamodel/Profile/ProfileMainMenuView.swift"  # → empty (both sites gone)
+grep -rn "Spacing.l \* " "Mastodon/In Progress New Layout and Datamodel/"                            # → empty</pre></li>
+  <li>Run TabBarSmokeTests suite → green (no visual assertions exist for paddings; smoke guards against crashes).</li>
+  <li>Changes 1–4 &amp; 6–7 are pixel-neutral: a full-screen screenshot diff against pre-change build should show ZERO pixel deltas (same 16/32/1 values rendered). Change 5a shifts Explore gutter edges by 4pt — screenshot-diff THAT page deliberately and eyeball the new alignment against a Feed row screenshot side by side.</li>
+  <li>Commit message skeleton: "Spacing audit: tokenize menu/nav paddings (mechanical) [+ Trend Board gutters m if 5a]".</li>
+</ol>
+
+<h2>13. What this audit deliberately did NOT flag</h2>
+<ul>
+  <li>System-styled chrome (segmented controls, Form rows, UIContextMenu content, sidebar) — platform-owned, not ours to tune.</li>
+  <li>Content-row internals (post cards, media, polls) — retuned in earlier passes; separate concern.</li>
+  <li>Typography sizes (.font metrics) — a scale hook could be added to AlignmentGuides later, but no raw-size cleanup is urgent.</li>
+  <li>Control metrics retained as component constants: 24pt icon slot, 50pt FAB circle, 72pt toolbar host, 110pt profile banner, 400×500 language popover — each is a named, single-purpose dimension, not a layout gap.</li>
+</ul>
+
+<div class="sub" style="margin-top:40px">Generated by Mistral Vibe · Documentation/SpacingAudit.html · audit of branch oslo-reskin @ d4d3848c3 (2026-11-09). Drives work order items 1–7 directly; no code changed by this artifact.</div>
+
+</body>
+</html>
