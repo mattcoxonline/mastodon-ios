@@ -47,7 +47,7 @@ struct DirectoryFeaturedCard: View {
                 AvatarView(style: .circular, size: .large, avatarSource: .url(model.accountRowViewModel.account.avatarURL))
                     .accessibilityHidden(true)
 
-                VStack(alignment: .leading, spacing: 1) {
+                VStack(alignment: .leading, spacing: Spacing.lockup) {
                     MastodonContentView.header(
                         html: model.accountRowViewModel.account.displayInfo.displayName,
                         emojis: model.accountRowViewModel.account.displayInfo.emojis,

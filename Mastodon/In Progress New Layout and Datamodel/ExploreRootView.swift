@@ -220,7 +220,7 @@ public struct ScopedSearchResultsRowView: View {
             Image(systemName: "chevron.forward")
                 .foregroundStyle(.secondary)
         }
-        .padding()
+        .padding(Spacing.l)
         .padding(.bottom, Spacing.l)
         .frame(width: useableWidth, alignment: .leading)
         .contentShape(Rectangle())

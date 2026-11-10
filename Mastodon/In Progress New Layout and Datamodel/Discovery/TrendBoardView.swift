@@ -214,7 +214,7 @@ struct TrendBoardView: View {
                         .tag(TrendBoardViewModel.TrendBoardMode.thisWeek)
                 }
                 .pickerStyle(.segmented)
-                .padding(EdgeInsets(top: Spacing.s, leading: Spacing.l, bottom: Spacing.s, trailing: Spacing.l))
+                .padding(EdgeInsets(top: Spacing.s, leading: Spacing.m, bottom: Spacing.s, trailing: Spacing.m))
 
                 content
             }
@@ -266,7 +266,7 @@ struct TrendBoardView: View {
                             await viewModel.toggleFollow(entry.tag, authBox: authBox)
                         }
                     }
-                    .padding(EdgeInsets(top: Spacing.s, leading: Spacing.l, bottom: Spacing.s, trailing: Spacing.l))
+                    .padding(EdgeInsets(top: Spacing.s, leading: Spacing.m, bottom: Spacing.s, trailing: Spacing.m))
                     .contentShape(Rectangle())
                     .onTapGesture {
                         navigator.push(.timeline(.hashtag(entry.tag, includeHeader: true)))

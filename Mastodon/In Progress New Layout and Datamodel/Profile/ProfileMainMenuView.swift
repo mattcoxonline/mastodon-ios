@@ -28,7 +28,7 @@ struct ProfileMainMenuView: View {
                     Divider()
                     logOutActiveUserButton
                 }
-                .padding()
+                .padding(Spacing.l)
                 .frame(width: fullWidth, alignment: .center)
                 .frame(width: geo.size.width, alignment: .center)
             }
@@ -133,7 +133,7 @@ struct ProfileMainMenuView: View {
     
     private func statChip(count: Int, label: String, action: @escaping () -> Void) -> some View {
         Button(action: action) {
-            VStack(spacing: 1) {
+            VStack(spacing: Spacing.lockup) {
                 Text(count.asAbbreviatedCountString())
                     .font(.headline)
                     .foregroundStyle(.primary)
@@ -352,7 +352,7 @@ struct ProfileMainMenuView: View {
             }
             .contentShape(Rectangle())
         }
-        .padding(.horizontal)
+        .padding(.horizontal, Spacing.l)
         .padding(.vertical, Spacing.xs)
     }
     

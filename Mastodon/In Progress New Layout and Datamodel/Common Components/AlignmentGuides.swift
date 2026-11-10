@@ -11,6 +11,9 @@ struct Spacing {
     static let l: CGFloat = 16      // default: card padding, section separation
     static let xl: CGFloat = 24     // between sections, generous block spacing
     static let xxl: CGFloat = 32    // page-level breathing room
+
+    /// within-lockup gap for stacked labels (name/handle, count/label) — deliberately off-scale
+    static let lockup: CGFloat = 1
 }
 
 /// Corner radius scale for cards, tiles and controls.

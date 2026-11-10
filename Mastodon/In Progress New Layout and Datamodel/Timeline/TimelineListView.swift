@@ -1556,7 +1556,7 @@ struct ActivityFilterToggles: View {
                 .frame(maxHeight: .infinity)
         }
         .tint(Asset.Colors.accent.swiftUIColor)
-        .padding(Spacing.l * 2)
+        .padding(Spacing.xxl)
         .presentationDetents([.fraction(0.25)])
     }
 }

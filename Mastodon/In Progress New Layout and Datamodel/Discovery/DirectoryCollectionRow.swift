@@ -14,7 +14,7 @@ struct DirectoryCollectionRow: View {
     var body: some View {
         HStack(alignment: .center, spacing: Spacing.m) {
             tile
-            VStack(alignment: .leading, spacing: 1) {
+            VStack(alignment: .leading, spacing: Spacing.lockup) {
                 Text(title)
                     .fontWeight(.semibold)
                     .lineLimit(1)
