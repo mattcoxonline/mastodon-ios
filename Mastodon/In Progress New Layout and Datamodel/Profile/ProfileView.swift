@@ -27,11 +27,9 @@ extension ProfileView {
         ToolbarItem(placement: .topBarTrailing) {
             profileRelationshipButton
         }
-        .sharedBackgroundVisibilityHidden()
         ToolbarItem(placement: .topBarTrailing) {
             ProfileToolbarOverflowMenu()
         }
-        .sharedBackgroundVisibilityHidden()
     }
 
     @ViewBuilder private var profileRelationshipButton: some View {
@@ -139,6 +137,11 @@ struct ProfileToolbarOverflowMenu: View {
             }
         } label: {
             Image(systemName: "ellipsis")
+                .frame(width: 36, height: 36)
+                // SwiftUI toolbar Menus don't receive the automatic Liquid Glass
+                // that Buttons get; paint it explicitly so the menu matches the
+                // glass circle of the back button in the same bar.
+                .glassEffectIfAvailable(.regular(interactive: true), in: .circle)
         }
         .accessibilityLabel(L10n.Common.Controls.Actions.moreActions)
     }

@@ -2,13 +2,15 @@
 
 **Status:** IMPLEMENTED (all four decision points accepted as recommended:
 D1 accent glass for follow states, D2 neutral glass for Edit profile,
-D3 separate glass capsules, D4 `moreActions` a11y key added). Verification:
-build green; TabBarSmokeTests 7 passed + 1 designed TrendBoard skip;
-frame-logged + pixel-verified — back (16pt), Edit Profile capsule
-(232-338pt, dark text on light glass), 12pt gap, ellipsis circle
-(350-386pt); no inline or floating action bar remains. Follow-state
-prominence (.glassProminent) verified by code path only — eyeball on a
-not-followed profile in Xcode when convenient.
+D3 separate capsules, D4 `moreActions` a11y key added), then REVISED on
+user feedback: the whole-header frost sheet is gone (per-item
+sharedBackgroundVisibilityHidden removed — it was the frost trigger) and
+the overflow menu now carries an explicit glass circle so it matches the
+back button. Verification: build green; TabBarSmokeTests 7 passed + 1
+designed TrendBoard skip; per-element XCUITest screenshots pixel-compared
+(back button edge shift -69 = strong glass; overflow was -0.0 bare → now
+a visible 36pt glass circle with the three dots; no luminance step at the
+nav bar bottom = no frost band).
 **Request (user):** The profile page's primary action ("Edit profile" on your own
 profile; "Follow"/"Unfollow" etc. on others) and the overflow menu (ellipsis icon)
 are currently inline in the header and awkwardly duplicated as a bottom-pinned bar.
@@ -136,10 +138,16 @@ membershipExceptions chore):
   `ProfileToolbarOverflowMenu` — zero behavioural change to any menu action
   (share/mute/block/report/navigate streaks continue to work identically).
 
-- **Glass grouping**: two separate `ToolbarItem`s with
-  `.sharedBackgroundVisibilityHidden()` each — matching the collections "+"
-  precedent — so each control gets its own capsule rather than merging into one
-  shared glass container. (Decision point D3, visual.)
+- **Glass grouping — REVISED after implementation**: the per-item
+  `.sharedBackgroundVisibilityHidden()` approach **REMOVED the items' own
+  glass and made the nav bar paint a frosted glass sheet across the whole
+  header** (user-visible on the coloured banner). The fix (Day 6 follow-up):
+  no per-item background hiding at all — system default glass for the
+  relationship Button (SwiftUI toolbar *Buttons* get Liquid Glass
+  automatically), plus an **explicit** `.glassEffectIfAvailable(.regular,
+  in: .circle)` on the overflow Menu label, because SwiftUI toolbar *Menus*
+  receive no automatic glass (measured: bare dotted label before the
+  explicit glass; circular glass matching the back button after).
 
 ### 2.2 Removal list (all in ProfileView.swift)
 
