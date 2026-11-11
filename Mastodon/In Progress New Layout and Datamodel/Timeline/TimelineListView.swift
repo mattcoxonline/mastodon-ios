@@ -1322,13 +1322,7 @@ struct Snackbar: View {
         }()
         
         ZStack {
-            HStack(spacing: Spacing.xs) {
-                switch barType {
-                case .newUnreadItems:
-                    Image(systemName: "chevron.up")
-                case .asyncRefreshUpdateAvailable, .asyncRefreshUpdateFetching:
-                    EmptyView()
-                }
+            Group {
                 if barType.hidesText {
                     Text(text)
                         .hidden()

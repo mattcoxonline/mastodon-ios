@@ -140,6 +140,11 @@ import MastodonUI
     }
     
     func updateUnreadCount(scrollAnchor: TimelineItem) {
+#if DEBUG
+        // demo mode: the scroll-anchored unread count would immediately
+        // clamp the demo-set count back down to zero as the feed settles
+        if isSnackbarDemoMode { return }
+#endif
         if unseenNewItemsCount > 0 {
             if let indexOfNewScrollAnchor = currentDisplaySlice.firstIndex(of: scrollAnchor), indexOfNewScrollAnchor < unseenNewItemsCount {
                 unseenNewItemsCount = indexOfNewScrollAnchor
