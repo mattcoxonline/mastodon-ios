@@ -235,5 +235,31 @@ final class TabBarSmokeTests: XCTestCase {
         let overflowMenu = navBar.buttons["More actions"].firstMatch
         XCTAssertTrue(overflowMenu.waitForExistence(timeout: 5), "overflow menu button missing from profile nav bar")
     }
+
+    /// The home feed's "N new" Liquid Glass pill: renders with the DEBUG
+    /// demo launch argument (-UITestSnackbarDemo), horizontally centered at
+    /// the top of the feed. The pill only appears naturally when the live
+    /// feed delivers new posts while the user is scrolled down.
+    func testNewPostsSnackbarRendersCentered() throws {
+        let app = XCUIApplication()
+        app.launchArguments += ["-UITestSnackbarDemo"]
+        app.launch()
+        let tabBar = app.tabBars.firstMatch
+        guard tabBar.waitForExistence(timeout: 20) else {
+            throw XCTSkip("No tab bar visible (simulator session not logged in)")
+        }
+
+        // Button semantics: the pill is an actionable element labeled "2 new"
+        // (matching BEGINSWITH in case the chevron glyph joins the label)
+        let pill = app.buttons
+            .matching(NSPredicate(format: "label BEGINSWITH %@", "2 new"))
+            .firstMatch
+        XCTAssertTrue(pill.waitForExistence(timeout: 15), "demo new-posts pill not found")
+
+        let windowMidX = app.windows.firstMatch.frame.midX
+        XCTAssertEqual(pill.frame.midX, windowMidX, accuracy: 10.0,
+                       "new-posts pill is not horizontally centered")
+        XCTAssertTrue(pill.frame.height >= 40, "pill tap target should be >= 40pt")
+    }
 }
 

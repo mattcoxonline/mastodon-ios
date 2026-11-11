@@ -81,6 +81,11 @@ import MastodonUI
             }
         }
     }
+#if DEBUG
+    /// UI-test demo mode (-UITestSnackbarDemo): while active, the merge
+    /// pipeline must not zero the demo-set unseen count.
+    private(set) var isSnackbarDemoMode: Bool = false
+#endif
     private(set) var waitingReplacementItems: [TimelineItem]?
     
     var presentedDonationCampaign: Mastodon.Entity.DonationCampaign?
@@ -458,7 +463,14 @@ import MastodonUI
         }()
         
         if timeline.canDisplayNewItemsSnackbar {
+#if DEBUG
+            // demo mode: keep the demo pill up instead of zero-ing it
+            if !(isSnackbarDemoMode && newItemsCount == 0) {
+                self.unseenNewItemsCount = newItemsCount
+            }
+#else
             self.unseenNewItemsCount = newItemsCount
+#endif
         }
         
         self.resetToUntrackedAfterDelay(from: loadingState)
@@ -503,6 +515,20 @@ import MastodonUI
                 navigator.didReceiveError(error)
             }
         feedLoader?.doFirstLoad()
+        
+#if DEBUG
+        // UI-test demo mode: deterministically populate the new-posts pill,
+        // which otherwise only appears when the live feed delivers new posts
+        // while the user is scrolled down (not testable on demand)
+        if timeline == .homeTimeline,
+           ProcessInfo.processInfo.arguments.contains("-UITestSnackbarDemo") {
+            isSnackbarDemoMode = true
+            Task { @MainActor in
+                try? await Task.sleep(nanoseconds: 2_000_000_000)
+                self.unseenNewItemsCount = 2
+            }
+        }
+#endif
         
         if timeline.canDisplayUnreadNotifications {
             lastPushNotificationCount = UnreadNotificationCounts.shared.unreadCount(for: authenticatedUser) // prevents an unnecessary immediate reload on launch

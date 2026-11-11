@@ -1,6 +1,16 @@
 # New-Posts Snackbar: Centered Liquid Glass Pill — Design Spec
 
-**Status:** spec for review — no code written yet
+**Status:** IMPLEMENTED (all four decision points per recommendation: D1
+neutral `.regular` glass with adaptive labels, D2 coverage unchanged,
+D3 DEBUG `-UITestSnackbarDemo` launch arg + UI test, D4 slide+fade
+transition). All three Snackbar variants restyled; pill top-center below
+the header; `onTapGesture` → real Buttons with 44pt tap targets
+(VoiceOver now announces "2 new, button"). Verification: UI test passed
+(pill midX within 0.3pt of window center; 44pt target) and pixel-checked —
+soft blurred glass edges, adaptive dark text, ~32pt visual capsule on the
+demo screenshot. Demo-mode flag keeps the merge pipeline from zero-ing
+the demo count (initial-load race found by the first failing run).
+TabBarSmokeTests suite green (8 pass + 1 designed skip).
 **Request (user):** The home feed's "N new" indicator (appears top-right below
 the header when the background refresh/streaming delivers new posts) should
 keep its behaviour, but be restyled as a proper Liquid Glass element, sized

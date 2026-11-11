@@ -300,37 +300,42 @@ struct TimelineListView: View {
                         .fixedSize(horizontal: false, vertical: true)
                     }
                     
-                    // Snackbars at the top right
-                    VStack(alignment: .trailing) {
+                    // New-posts pill + async-refresh snackbars, top-center below the header
+                    VStack(alignment: .center) {
                         if viewModel.unseenNewItemsCount > 0 {
-                            Snackbar(barType: .newUnreadItems(viewModel.unseenNewItemsCount))
-                                .onTapGesture {
-                                    viewModel.scrollToTop()
-                                }
+                            snackbarButton {
+                                Snackbar(barType: .newUnreadItems(viewModel.unseenNewItemsCount))
+                            } action: {
+                                viewModel.scrollToTop()
+                            }
                         } else {
                             switch asyncRefreshViewModel.refreshButtonState {
                             case .hidden:
                                 EmptyView()
                             case .newResultsExpected:
-                                Snackbar(barType: .asyncRefreshUpdateAvailable)
-                                    .onTapGesture {
-                                        guard asyncRefreshViewModel.willRefreshFromOriginalEndpoint() else {
-                                            return
-                                        }
-                                        guard viewModel.loadingState != .requestedAsyncRefreshResults else { return }
-                                        viewModel.loadingState = .requestedAsyncRefreshResults
-                                        Task {
-                                            await viewModel.forceReload(.asyncRefreshResultsRequested)
-                                        }
+                                snackbarButton {
+                                    Snackbar(barType: .asyncRefreshUpdateAvailable)
+                                } action: {
+                                    guard asyncRefreshViewModel.willRefreshFromOriginalEndpoint() else {
+                                        return
                                     }
+                                    guard viewModel.loadingState != .requestedAsyncRefreshResults else { return }
+                                    viewModel.loadingState = .requestedAsyncRefreshResults
+                                    Task {
+                                        await viewModel.forceReload(.asyncRefreshResultsRequested)
+                                    }
+                                }
                             case .fetching:
                                 Snackbar(barType: .asyncRefreshUpdateFetching)
+                                    .transition(snackbarTransition)
                             }
                         }
                         Spacer()
                             .frame(maxWidth: .infinity, maxHeight: .infinity)
                     }
-                    .padding(Spacing.xs)
+                    .animation(.snappy, value: viewModel.unseenNewItemsCount)
+                    .animation(.snappy, value: asyncRefreshViewModel.refreshButtonState)
+                    .padding(EdgeInsets(top: Spacing.s, leading: Spacing.xs, bottom: Spacing.xs, trailing: Spacing.xs))
                 }
             } // ZStack(alignment: .bottom)
         } // GeometryReader
@@ -1255,6 +1260,29 @@ struct GapLoaderView: View {
     }
 }
 
+// MARK: - Snackbar presentation
+
+/// The pill slides gently in from under the header and fades on dismissal.
+private var snackbarTransition: AnyTransition {
+    .move(edge: .top).combined(with: .opacity)
+}
+
+/// Snackbar pills are actions (tap = jump to top / load async results), so
+/// they render as real buttons — VoiceOver announces them as actionable —
+/// with a 44pt tap target wrapping the ~32pt visual pill.
+@ViewBuilder
+private func snackbarButton<Pill: View>(@ViewBuilder _ pill: () -> Pill, action: @escaping () -> Void) -> some View {
+    Button {
+        action()
+    } label: {
+        pill()
+            .frame(minHeight: 44)
+            .contentShape(Rectangle())
+    }
+    .buttonStyle(.plain)
+    .transition(snackbarTransition)
+}
+
 struct Snackbar: View {
     enum SnackbarType {
         case newUnreadItems(Int)
@@ -1283,6 +1311,16 @@ struct Snackbar: View {
             }
         }()
         
+        // adaptive labels over glass on iOS 26; the pre-26 fallback keeps the
+        // old white-on-accent look
+        let labelColor: Color = {
+            if #available(iOS 26.0, *) {
+                return .primary
+            } else {
+                return .white
+            }
+        }()
+        
         ZStack {
             HStack(spacing: Spacing.xs) {
                 switch barType {
@@ -1298,12 +1336,16 @@ struct Snackbar: View {
                     Text(text)
                 }
             }
-            .font(.footnote)
-            .foregroundStyle(.white)
-            .padding(EdgeInsets(top: Spacing.xs, leading: Spacing.s, bottom: Spacing.xs, trailing: Spacing.s))
+            .font(.subheadline)
+            .foregroundStyle(labelColor)
+            .padding(Spacing.s)
+            .glassEffectIfAvailable(.regular(interactive: true), in: .capsule)
             .background {
-                Capsule()
-                    .fill(Asset.Colors.accent.swiftUIColor)
+                // pre-iOS-26: no glass effect exists — keep the solid accent capsule
+                if #unavailable(iOS 26) {
+                    Capsule()
+                        .fill(Asset.Colors.accent.swiftUIColor)
+                }
             }
             
             switch barType {
@@ -1312,7 +1354,7 @@ struct Snackbar: View {
             case .asyncRefreshUpdateFetching:
                 ProgressView()
                     .progressViewStyle(.circular)
-                    .tint(.white)
+                    .tint(labelColor)
             }
         }
     }
