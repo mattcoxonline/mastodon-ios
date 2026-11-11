@@ -1,6 +1,14 @@
 # Profile Page: Action Buttons to the Nav Bar — Design Spec
 
-**Status:** spec for review — no code written yet
+**Status:** IMPLEMENTED (all four decision points accepted as recommended:
+D1 accent glass for follow states, D2 neutral glass for Edit profile,
+D3 separate glass capsules, D4 `moreActions` a11y key added). Verification:
+build green; TabBarSmokeTests 7 passed + 1 designed TrendBoard skip;
+frame-logged + pixel-verified — back (16pt), Edit Profile capsule
+(232-338pt, dark text on light glass), 12pt gap, ellipsis circle
+(350-386pt); no inline or floating action bar remains. Follow-state
+prominence (.glassProminent) verified by code path only — eyeball on a
+not-followed profile in Xcode when convenient.
 **Request (user):** The profile page's primary action ("Edit profile" on your own
 profile; "Follow"/"Unfollow" etc. on others) and the overflow menu (ellipsis icon)
 are currently inline in the header and awkwardly duplicated as a bottom-pinned bar.

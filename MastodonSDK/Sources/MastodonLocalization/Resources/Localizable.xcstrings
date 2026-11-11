@@ -2675,6 +2675,48 @@
         }
       }
     },
+    "Common.Controls.Actions.MoreActions" : {
+      "comment" : "Accessibility label for the profile nav bar's overflow menu (ellipsis icon)",
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "المزيد من الإجراءات"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "More actions"
+          }
+        },
+        "en-US" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "More actions"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Flere handlinger"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Więcej działań"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Більше дій"
+          }
+        }
+      }
+    },
     "Common.Controls.Actions.Next" : {
       "extractionState" : "migrated",
       "localizations" : {

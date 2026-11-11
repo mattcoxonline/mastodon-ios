@@ -19,13 +19,135 @@ extension View {
     }
 }
 
+extension ProfileView {
+    /// The profile's primary actions, pinned to the nav bar's trailing edge:
+    /// the relationship button (Follow/Unfollow/Edit profile/…) and the
+    /// overflow menu, each in its own Liquid Glass capsule on iOS 26.
+    @ToolbarContentBuilder var profileActionToolbar: some ToolbarContent {
+        ToolbarItem(placement: .topBarTrailing) {
+            profileRelationshipButton
+        }
+        .sharedBackgroundVisibilityHidden()
+        ToolbarItem(placement: .topBarTrailing) {
+            ProfileToolbarOverflowMenu()
+        }
+        .sharedBackgroundVisibilityHidden()
+    }
+
+    @ViewBuilder private var profileRelationshipButton: some View {
+        if viewModel.contentDisplayStatus.canRevealContent {
+            relationshipToolbarButton(for: .hiddenByModerators) {
+                withAnimation {
+                    viewModel.contentDisplayStatus = .showAlways
+                }
+            }
+        } else if let account = viewModel.account {
+            relationshipToolbarButton(for: relationshipViewModel.button) {
+                switch relationshipViewModel.button {
+                case .editMe:
+                    navigator.push(.editProfile(profileViewModel: viewModel))
+                default:
+                    Task {
+                        do {
+                            try await relationshipViewModel.doRelationshipAction(relationshipViewModel.button.buttonAction, account: account, navigator: navigator)
+                        } catch {
+                            navigator.didReceiveError(error)
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    /// Short-form label (the nav bar has no room for long-form variants),
+    /// tinted glass for the follow-type calls to action, neutral glass for
+    /// everything else.
+    @ViewBuilder private func relationshipToolbarButton(for type: RelationshipButtonType, action: @escaping () -> Void) -> some View {
+        switch type {
+        case .updating:
+            Button { } label: { ProgressView().progressViewStyle(.circular) }
+                .glassButtonStyleIfAvailable(prominent: false)
+        case .error:
+            Button { } label: { lightwieghtImageView("exclamationmark.triangle", size: AvatarSize.tiny.rawValue) }
+                .glassButtonStyleIfAvailable(prominent: false)
+        default:
+            if let text = type.buttonText(isLarge: false) {
+                Button(text) { action() }
+                    .glassButtonStyleIfAvailable(prominent: type.isFollowCallToAction)
+                    .lineLimit(1)
+                    .minimumScaleFactor(0.6)
+            }
+        }
+    }
+}
+
+private extension RelationshipButtonType {
+    /// Follow-type states get the accent-tinted glass; Edit profile, unfollow,
+    /// unblock, cancel-request and reveal-content states stay neutral glass.
+    var isFollowCallToAction: Bool {
+        switch self {
+        case .iDoNotFollowThem, .acceptTheirFollowRequest:
+            return true
+        default:
+            return false
+        }
+    }
+}
+
+/// The ellipsis overflow menu for the profile nav bar. Menu item construction
+/// moved here verbatim from the former ProfileActionBar.ActionBarMenuButton.
+struct ProfileToolbarOverflowMenu: View {
+    @Environment(MastodonNavigationRouter.self) private var navigator
+    @Environment(ProfileViewModel.self) private var viewModel
+    @Environment(RelationshipViewModel.self) private var relationshipViewModel
+
+    var body: some View {
+        Menu {
+            if let account = viewModel.account {
+                let submenus = relationshipViewModel.profileMenuActions(account: account, relationship: relationshipViewModel.relationship)
+                ForEach(submenus, id: \.self.id) { submenu in
+                    ForEach(submenu.items, id: \.self) { menuAction in
+                        switch menuAction {
+                        case .miscellaneous(let miscAction):
+                            viewModel.menuItem(miscAction)
+                        case .share(let urlString):
+                            if let url = URL(string: urlString) {
+                                ShareLink(item: url) {
+                                    Label(L10nLookup.MastodonMenuAction.Navigation.share, systemImage: "square.and.arrow.up")
+                                }
+                            }
+                        case .navigationalAction(let navAction):
+                            let domainName: String? = {
+                                switch relationshipViewModel.relationship {
+                                case .isMe, .none:
+                                    return nil
+                                case .isNotMe:
+                                    return viewModel.account?.domain == AuthenticationServiceProvider.shared.currentActiveUser.value?.domain ? nil : viewModel.account?.domain
+                                }
+                            }()
+                            navigator.menuItem(navAction, notMyDomainName: domainName)
+                        case .postAction:
+                            EmptyView()
+                        case .collectionAction:
+                            EmptyView()  // we do not expect collection actions to be launched from the profile toolbar
+                        case .relationshipAction(let relAction):
+                            relationshipViewModel.menuItem(relAction, forAccount: account, navigator: navigator)
+                        }
+                    }
+                    Divider()
+                }
+            }
+        } label: {
+            Image(systemName: "ellipsis")
+        }
+        .accessibilityLabel(L10n.Common.Controls.Actions.moreActions)
+    }
+}
+
 struct ProfileView: View {
     @Environment(MastodonNavigationRouter.self) private var navigator
     @Environment(ProfileViewModel.self) var viewModel
-    @Environment(NestedScrollInteractionViewModel.self) var nestedScrollViewModel
-    
-    @State var isPresentingActivityFilter: Bool = false
-    @State var embeddedActionBarHasCaughtUpToFloatingActionBar: Bool = false
+    @Environment(RelationshipViewModel.self) var relationshipViewModel
     
     enum Subview: Hashable {
         case bannerAndAvatar
@@ -57,22 +179,8 @@ struct ProfileView: View {
                         Spacer()
                             .frame(height: Spacing.l)
                         
-                        ProfileActionBar()
-                            .frame(width: headerContentWidth)
-                            .background() {
-                                GeometryReader { embeddedGeo in
-                                    Color.clear
-                                        .preference(key: VerticalPositionKey.self, value: ["embedded": embeddedGeo.frame(in: CoordinateSpace.named("scrollview")).minY])
-                                }
-                            }
-                            .opacity((embeddedActionBarHasCaughtUpToFloatingActionBar && nestedScrollViewModel.innerScrollDisabled) ? 1.0 : 0.0)
-                        
                         if !viewModel.contentDisplayStatus.hideContent {
                             VStack(spacing: 0) {
-                                
-                                Spacer()
-                                    .frame(height: Spacing.l)
-                                
                                 if viewModel.pagesToShow.count > 1 {
                                     // PAGE SELECTOR
                                     subview(.paginationControl, width: fullWidth)
@@ -94,20 +202,6 @@ struct ProfileView: View {
                 .nestedScrollview(.outer)
                 .frame(width: geo.size.width, height: geo.size.height)
                 .coordinateSpace(name: "scrollview")
-                
-                VStack {
-                    Spacer()
-                    ProfileActionBar()
-                        .frame(width: headerContentWidth)
-                        .background() {
-                            GeometryReader { floatingGeo in
-                                Color.clear
-                                    .preference(key: VerticalPositionKey.self, value: ["floating": floatingGeo.frame(in: CoordinateSpace.named("scrollview")).minY])
-                            }
-                        }
-                        .opacity(embeddedActionBarHasCaughtUpToFloatingActionBar ? 0.0 : 1.0)
-                }
-                .frame(height: max(0, geo.size.height - geo.safeAreaInsets.bottom - 90))
             }
             .padding(.leading, geo.safeAreaInsets.leading)
             .padding(.trailing, geo.safeAreaInsets.trailing)
@@ -122,13 +216,8 @@ struct ProfileView: View {
             }
         }
         .toolbarBackgroundVisibility(.hidden, for: .navigationBar)
-        .onPreferenceChange(VerticalPositionKey.self) { values in
-            guard
-                let embedded = values["embedded"],
-                let floating = values["floating"]
-            else { return }
-            
-            embeddedActionBarHasCaughtUpToFloatingActionBar = floating >= embedded
+        .toolbar {
+            profileActionToolbar
         }
         .task(id: viewModel.account?.id) {
             await fetchFamiliarFollowers()
@@ -883,99 +972,6 @@ struct ProfilePaginationControl: View {
     }
 }
 
-struct ProfileActionBar: View {
-    @Environment(ProfileViewModel.self) var viewModel
-    @Environment(RelationshipViewModel.self) var relationshipViewModel
-    @Environment(MastodonNavigationRouter.self) var navigator
-    @Namespace var profileActionBarAnimationNamespace
-    
-    var body: some View {
-        HStack(spacing: Spacing.s) {
-            if viewModel.contentDisplayStatus.canRevealContent {
-                RelationshipButtonType.hiddenByModerators.largeButton() {
-                    withAnimation {
-                        viewModel.contentDisplayStatus = .showAlways
-                    }
-                }
-                .glassEffectIfAvailable(.regular(interactive: true), in: .capsule)
-                .matchedGeometryEffect(id: "action_button", in: profileActionBarAnimationNamespace)
-            } else if let account = viewModel.account {
-                relationshipViewModel.button.largeButton() {
-                    switch relationshipViewModel.button {
-                    case .editMe:
-                        navigator.push(.editProfile(profileViewModel: viewModel))
-                    default:
-                        Task {
-                            do {
-                                try await relationshipViewModel.doRelationshipAction(relationshipViewModel.button.buttonAction, account: account, navigator: navigator)
-                            } catch {
-                                navigator.didReceiveError(error)
-                            }
-                        }
-                    }
-                }
-                .glassEffectIfAvailable(.regular(interactive: true), in: .capsule)
-                .matchedGeometryEffect(id: "action_button", in: profileActionBarAnimationNamespace)
-            }
-            
-            ActionBarMenuButton()
-        }
-    }
-    
-    struct ActionBarMenuButton: View {
-        @Environment(MastodonNavigationRouter.self) private var navigator
-        @Environment(ProfileViewModel.self) private var viewModel
-        @Environment(RelationshipViewModel.self) private var relationshipViewModel
-        
-        var body: some View {
-            Menu {
-                if let account = viewModel.account {
-                    let submenus = relationshipViewModel.profileMenuActions(account: account, relationship: relationshipViewModel.relationship)
-                    ForEach(submenus, id: \.self.id) { submenu in
-                        ForEach(submenu.items, id: \.self) { menuAction in
-                            switch menuAction {
-                            case .miscellaneous(let miscAction):
-                                viewModel.menuItem(miscAction)
-                            case .share(let urlString):
-                                if let url = URL(string: urlString) {
-                                    ShareLink(item: url) {
-                                        Label(L10nLookup.MastodonMenuAction.Navigation.share, systemImage: "square.and.arrow.up")
-                                    }
-                                }
-                            case .navigationalAction(let navAction):
-                                let domainName: String? = {
-                                    switch relationshipViewModel.relationship {
-                                    case .isMe, .none:
-                                        return nil
-                                    case .isNotMe:
-                                        return viewModel.account?.domain == AuthenticationServiceProvider.shared.currentActiveUser.value?.domain ? nil : viewModel.account?.domain
-                                    }
-                                }()
-                                navigator.menuItem(navAction, notMyDomainName: domainName)
-                            case .postAction:
-                                EmptyView()
-                            case .collectionAction:
-                                EmptyView()  // we do not expect collection actions to be launched from the profile action bar
-                            case .relationshipAction(let relAction):
-                                relationshipViewModel.menuItem(relAction, forAccount: account, navigator: navigator)
-                            }
-                        }
-                        Divider()
-                    }
-                }
-            } label: {
-                ZStack {
-                    Circle()
-                        .fill(.clear)
-                        .frame(width: 48, height: 48)
-                    Image(systemName: "ellipsis")
-                }
-            }
-            .glassEffectIfAvailable(.regular(interactive: true), in: .circle)
-        }
-    }
-}
-
 struct ProfilePaginatingView: View {
     @Environment(ProfileViewModel.self) var viewModel
     
@@ -1129,15 +1125,6 @@ extension ProfileViewModel: FeedCoordinatorUpdatable {
     
     func updateRelationship(_ updatedRelationship: MastodonAccount.Relationship) {
         relationshipViewModel.prepareForDisplay(relationship: updatedRelationship, theirAccountIsLocked: account?.locked ?? false)
-    }
-}
-
-struct VerticalPositionKey: PreferenceKey {
-    static var defaultValue: [String: CGFloat] = [:]
-    
-    static func reduce(value: inout [String: CGFloat],
-                       nextValue: () -> [String: CGFloat]) {
-        value.merge(nextValue(), uniquingKeysWith: { $1 })
     }
 }
 

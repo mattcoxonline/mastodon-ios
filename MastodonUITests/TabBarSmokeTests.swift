@@ -205,5 +205,35 @@ final class TabBarSmokeTests: XCTestCase {
             .firstMatch
         XCTAssertTrue(tagElement.waitForExistence(timeout: 20), "no trending rows appeared")
     }
+
+    /// The profile page's primary actions live in the nav bar's trailing
+    /// edge: opening your own profile shows an "Edit Profile" glass button
+    /// and a "More actions" overflow menu alongside the back arrow.
+    func testProfileToolbarActionsRenderOnOwnProfile() throws {
+        let app = XCUIApplication()
+        app.launch()
+        let tabBar = app.tabBars.firstMatch
+        guard tabBar.waitForExistence(timeout: 20) else {
+            throw XCTSkip("No tab bar visible (simulator session not logged in)")
+        }
+        let youTab = tabBar.buttons["You"]
+        guard youTab.exists else {
+            throw XCTSkip("No You tab")
+        }
+        youTab.tap()
+
+        let viewProfileButton = app.buttons["View Profile"].firstMatch
+        guard viewProfileButton.waitForExistence(timeout: 8) else {
+            throw XCTSkip("View Profile button not found on You screen")
+        }
+        viewProfileButton.tap()
+
+        let navBar = app.navigationBars.firstMatch
+        XCTAssertTrue(navBar.waitForExistence(timeout: 10), "profile nav bar not found")
+        let editProfileButton = navBar.buttons["Edit Profile"].firstMatch
+        XCTAssertTrue(editProfileButton.waitForExistence(timeout: 10), "Edit Profile toolbar button missing from profile nav bar")
+        let overflowMenu = navBar.buttons["More actions"].firstMatch
+        XCTAssertTrue(overflowMenu.waitForExistence(timeout: 5), "overflow menu button missing from profile nav bar")
+    }
 }
 

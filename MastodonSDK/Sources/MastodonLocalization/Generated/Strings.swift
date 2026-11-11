@@ -203,6 +203,8 @@ public enum L10n {
         public static let loadOlder = L10n.tr("Localizable", "Common.Controls.Actions.LoadOlder", fallback: "Load older posts")
         /// Manually search instead
         public static let manuallySearch = L10n.tr("Localizable", "Common.Controls.Actions.ManuallySearch", fallback: "Manually search instead")
+        /// More actions
+        public static let moreActions = L10n.tr("Localizable", "Common.Controls.Actions.MoreActions", fallback: "More actions")
         /// Next
         public static let next = L10n.tr("Localizable", "Common.Controls.Actions.Next", fallback: "Next")
         /// OK

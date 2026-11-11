@@ -65,24 +65,7 @@ import MastodonLocalization
     var selectedPage: ProfilePage = .activity
     var focusedCustomField: Mastodon.Entity.Field?
     var handleDetails: HandleDetails?
-    
-    var navigationButtons: [UIBarButtonItem] {
-        guard account != nil, let relationship = relationshipViewModel.relationship else { return [] }
-        switch relationship {
-        case .isMe:
-            let settings = UIBarButtonItem(image: .init(systemName: "gearshape"), style: .plain, target: self, action: nil)
-            let hashtags = UIBarButtonItem(image: .init(systemName: "number"), style: .plain, target: self, action: nil)
-            let bookmarks = UIBarButtonItem(image: .init(systemName: "bookmark"), style: .plain, target: self, action: nil)
-            let favourites = UIBarButtonItem(image: .init(systemName: "heart"), style: .plain, target: self, action: nil)
-            let share = UIBarButtonItem(image: .init(systemName: "square.and.arrow.up"), style: .plain, target: self, action: nil)
-            return [hashtags, bookmarks, favourites, share, settings]
-        case .isNotMe:
-            let menu = UIBarButtonItem(image: .init(systemName: "ellipsis.circle"), style: .plain, target: self, action: nil)
-            let reply = UIBarButtonItem(image: .init(systemName: "arrow.turn.up.left"), style: .plain, target: self, action: nil)
-            return [menu, reply]
-        }
-    }
-    
+
     private var updateSubscription: AnyCancellable?
     init() {
         self.updateSubscription = FeedCoordinator.shared.$mostRecentUpdate
