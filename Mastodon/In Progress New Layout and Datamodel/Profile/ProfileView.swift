@@ -197,7 +197,13 @@ struct ProfileView: View {
                                 subview(.pages, width: timelineContentWidth)
                                     .id(Subview.pages)
                             }
-                            .frame(height: max(0, geo.size.height - geo.safeAreaInsets.top /*this is always 0*/ - 45 /*because the safeAreaInsets lie*/))
+                            // Taller than the screen by enough slack that the
+                            // pagination control + divider can scroll fully past
+                            // the top edge before the outer scroll bottoms out
+                            // (a shorter block would leave the tabs pinned up
+                            // top, colliding with the header's glass buttons;
+                            // see Documentation/ProfilePaginationScrollAwaySpec.md)
+                            .frame(height: geo.size.height + 100)
                         }
                     }
                     .frame(width: geo.size.width, alignment: .center)

@@ -261,5 +261,41 @@ final class TabBarSmokeTests: XCTestCase {
                        "new-posts pill is not horizontally centered")
         XCTAssertTrue(pill.frame.height >= 40, "pill tap target should be >= 40pt")
     }
+
+    /// The profile's Activity/Media tabs are inline and scroll away with the
+    /// page (no stickiness): after scrolling down to the timeline, the
+    /// pagination segment must be fully past the top edge, and scrolling back
+    /// up re-reveals it. See Documentation/ProfilePaginationScrollAwaySpec.md.
+    func testProfilePaginationScrollsAway() throws {
+        let app = XCUIApplication()
+        app.launch()
+        let tabBar = app.tabBars.firstMatch
+        guard tabBar.waitForExistence(timeout: 20) else {
+            throw XCTSkip("No tab bar visible (simulator session not logged in)")
+        }
+        tabBar.buttons["You"].tap()
+        let viewProfileButton = app.buttons["View Profile"].firstMatch
+        guard viewProfileButton.waitForExistence(timeout: 8) else {
+            throw XCTSkip("View Profile button not found")
+        }
+        viewProfileButton.tap()
+        let activity = app.buttons["Activity"].firstMatch
+        XCTAssertTrue(activity.waitForExistence(timeout: 10), "Activity segment not found")
+        let window = app.windows.firstMatch.frame
+        XCTAssertTrue(activity.frame.minY > 120, "pagination should begin inline below the header")
+
+        for _ in 0..<6 {
+            app.swipeUp()
+        }
+        XCTAssertTrue(activity.frame.maxY <= 0,
+                      "pagination tabs should have scrolled fully past the top edge (maxY=\(activity.frame.maxY))")
+
+        // scrolling back up hands control to the outer scroll and re-reveals the header + tabs
+        for _ in 0..<8 {
+            app.swipeDown()
+        }
+        XCTAssertTrue(activity.frame.maxY > 0 && activity.frame.minY < window.height,
+                      "pagination tabs should reappear after scrolling back (frame=\(activity.frame))")
+    }
 }
 

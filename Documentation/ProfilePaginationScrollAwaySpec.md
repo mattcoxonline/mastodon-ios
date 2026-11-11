@@ -1,6 +1,15 @@
 # Profile Pagination Tabs: Unstick and Scroll Away — Design Spec
 
-**Status:** spec for review — no code written yet
+**Status:** IMPLEMENTED (D1 resize as recommended, D2 slack = 100pt). The
+pages block in ProfileView.swift is now geo.size.height + 100 (stale
+"safeAreaInsets lie" comment removed), so the pagination + divider scroll
+fully past the top edge before the nested handoff; the tabs rest at
+y ≈ -65..-100 at full scroll (was pinned at y=45 inside the header-button
+band). Inner timelines gained ~45pt and extend under the status bar edge.
+Verified: new testProfilePaginationScrollsAway (inline at rest → maxY ≤ 0
+after swipes → reappears after scroll-back) passed, and the FULL
+TabBarSmokeTests suite ran 10/10 green (first run with the TrendBoard test
+passing rather than throttling).
 **Request (user):** On profile pages, the Activity / Media / Featured tabs
 stick to the top of the screen as you scroll and collide with the profile's
 new nav-bar buttons. They should NOT be sticky — scroll away inline with the
